@@ -1,0 +1,35 @@
+.header {
+    max-height: 215px;
+    height: 15vw;
+    font-size: .75em;
+    background-image: url(../../img/header-bg.jpg);
+    background-size: auto 100%;
+    background-repeat: repeat;
+}
+
+.header .header__column {
+    flex: 1;
+}
+
+.header .header__column.header__column--center {
+    position: relative;
+}
+
+.img {
+    display: inline-block;
+    font-size: 0;
+}
+
+a,
+a img {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: #1c1c1c;
+}
+.header__buttons > div {
+    margin-left: .5em;
+    margin-right: .5em;
+  }
