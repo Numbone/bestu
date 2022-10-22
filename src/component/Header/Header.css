@@ -7,6 +7,12 @@
     background-repeat: repeat;
 }
 
+@media only screen and (max-width: 768px) {
+    .header {
+        height: 17vw;
+    }
+}
+
 .header .header__column {
     flex: 1;
 }
@@ -29,7 +35,15 @@ a {
     text-decoration: none;
     color: #1c1c1c;
 }
-.header__buttons > div {
+
+.header__buttons>div {
     margin-left: .5em;
     margin-right: .5em;
-  }
+}
+
+.img img {
+    max-width: 100%;
+}
+@media screen and (max-width:768px){
+    
+}

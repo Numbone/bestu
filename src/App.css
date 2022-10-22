@@ -1,1 +1,33 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+div {
+    display: block;
+}
+a, b, blockquote, body, canvas, caption, code, div, em, embed, fieldset, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, label, li, main, nav, object, ol, p, pre, section, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    text-size-adjust: none;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+body {
+    background: #fff;
+    font-family: Montserrat,Tahoma,sans-serif;
+    color: #1c1c1c;
+    font-size: calc(var(--index));
+    font-size: clamp(8px,var(--index),22px);
+    font-weight: 300;
+    line-height: 1.25;
+}
+
+:root {
+    --index: calc(1vh + 1vw);
+}

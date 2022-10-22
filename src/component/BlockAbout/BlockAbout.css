@@ -1,0 +1,35 @@
+
+
+.badge {
+    margin-bottom: calc(var(--index)*2);
+    padding: calc(var(--index)*1.5);
+    font-size: 1.1em;
+    background: #eadae2;
+}
+.badge .badge__title {
+    margin-bottom: 0.5em;
+    font-size: 1.75em;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: .05em;
+}
+.badge .badge__text {
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.badge--flowers {
+    background-image: url(../../img/badge-flowers.jpg);
+    background-size: cover;
+    background-repeat: repeat;
+}
+
+
+p {
+    margin-bottom: 15px;
+}
+
+.block-about {
+    padding-top: 3em;
+}

@@ -10,7 +10,7 @@ const Header = () => {
       <div className="container container-xxl">
         <div className='d-flex justify-content-between align-items-center'>
           <div className='header__column header__column--first'>
-            <div className='header__subtitle'>
+            <div className='header__subtitle' data-da="header__column--center,last,768" data-da-index="0">
               Косметика <br></br> из натуральных масел
             </div>
           </div>
@@ -21,9 +21,9 @@ const Header = () => {
           </div>
           <div className='header__column'>
             <div className='header__buttons d-flex justify-content-end'>
-              <div className='search-button'>
+              <div className='search-button' data-da="header__column--first,first,768" data-da-index="1">
                 <a href='#'>
-                  <img src={search}>
+                  <img src={search} >
                   </img>
                 </a>
               </div>
