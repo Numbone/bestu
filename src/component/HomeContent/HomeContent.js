@@ -1,6 +1,7 @@
 import React from 'react'
 import BlockAbout from '../BlockAbout/BlockAbout'
 import BlockCatalog from '../BlockCatalog/BlockCatalog'
+import BlockPartner from '../BlockPartners/BlockPartner'
 import BlockTop from '../BlockTop/BlockTop'
 
 const HomeContent = () => {
@@ -9,6 +10,7 @@ const HomeContent = () => {
         <BlockTop/>
         <BlockAbout/>
         <BlockCatalog/>
+        <BlockPartner/>
     </div>
   )
 }

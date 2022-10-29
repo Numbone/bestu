@@ -1,4 +1,12 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@font-face {
+    font-family: 'Betmo';
+    src: url('../src/fonts/webfontkit-20221024-161950/otf-webfont.woff2') format('woff2'),
+         url('../src/fonts/webfontkit-20221024-161950/otf-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 div {
     display: block;
 }

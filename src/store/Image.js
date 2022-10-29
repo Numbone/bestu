@@ -12,22 +12,22 @@ const Item = [
     {
         id: 2,
         image: a2,
-        text:"body"
+        text:"beauty"
     },
     {
         id: 3,
         image: a3,
-        text:"body"
+        text:"SPA"
     },
     {
         id: 4,
         image: a4,
-        text:"body"
+        text:"Подарочные сертификаты"
     },
     {
         id: 5,
         image: a5,
-        text:"body"
+        text:"Упаковка"
     }
 ]
 export default Item

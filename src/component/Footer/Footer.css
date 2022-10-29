@@ -1,0 +1,16 @@
+.footer,
+.footer a {
+    color: #fff;
+}
+
+.footer {
+    font-size: .8em;
+    padding: 3em 0;
+    line-height: 1.5;
+    background: #181818;
+}
+
+a:hover {
+    color: #1c1c1c;
+  }
+
