@@ -1,0 +1,46 @@
+.block-catalog {
+    margin-top: 4em;
+    margin-bottom: 2em;
+}
+.block__title {
+    margin-bottom: 1em;
+    font-size: 2em;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: .05em;
+    font-family: Tenor Sans,sans-serif;
+}
+.item-square:after {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+.block-catalog__item:after {
+    padding-top: 96%;
+}
+.block-catalog .block-catalog__items .block-catalog__item {
+    background: #eadae2;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    text-align: center;
+}
+.item-square {
+    position: relative;
+    padding: 0;
+}
+.block-catalog .block-catalog__items .block-catalog__item a {
+    font-size: 1em;
+}
+.item-square>* {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+ .block-catalog__item-title {
+    font-family: Betmo;
+    font-size: 6em;
+}
