@@ -1,0 +1,11 @@
+.block-top__big-name {
+    font-size: 3.5em;
+    margin-top: 1em;
+    text-transform: uppercase;
+    color: #fff;
+}
+.block-top:after {
+    content: "";
+    display: block;
+    padding-top: 49.17%;
+}   

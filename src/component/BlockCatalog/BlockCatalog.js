@@ -6,16 +6,17 @@ import ps2 from "../../img/2.jpg"
 import ps3 from "../../img/3.jpg"
 import ps4 from "../../img/4.jpg"
 import ps5 from "../../img/5.jpg"
+import { NavLink } from 'react-router-dom'
 
 const BlockCatalog = () => {
     return (
         <div className='block-catalog'>
             <div className='container'>
                 <div className='block__title text-center'>
-                    <a href='/'>Смотреть все товары</a>
+                    <NavLink to='/all_products'>Смотреть все товары</NavLink>
                     <br></br>
                     <br></br>
-                    <a href='/'>Сейчас в наличии</a>
+                    <NavLink to='/all_products'>Сейчас в наличии</NavLink>
                 </div>
                 <div className='block-catalog__items'>
                     <div className='row g-2 g-md-4'>

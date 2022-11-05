@@ -4,6 +4,7 @@ import logo from "../../img/logo.svg"
 import search from "../../img/icon-search.svg"
 import cabinet from "../../img/icon-user.svg"
 import cart from "../../img/icon-cart.svg"
+import { NavLink } from 'react-router-dom'
 const Header = () => {
   return (
     <header className="header d-flex align-items-center">
@@ -15,9 +16,9 @@ const Header = () => {
             </div>
           </div>
           <div className='header__column header__column--center text-center'>
-            <a className='header__logo img' href=''>
+            <NavLink to='/' className='header__logo img' >
               <img src={logo}></img>
-            </a>
+            </NavLink>
           </div>
           <div className='header__column'>
             <div className='header__buttons d-flex justify-content-end'>

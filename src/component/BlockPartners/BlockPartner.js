@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import "../BlockPartners/BlockPartner.css"
 const BlockPartner = () => {
     return (
@@ -6,34 +7,34 @@ const BlockPartner = () => {
             <div className='container'>
                 <div className='row g-4 align-items-center justify-content-center'>
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
-                        <a className='btn'>
+                        <NavLink to='/dealers_form' className='btn'>
                             Заявка для дилеров
-                        </a>
+                        </NavLink>
                     </div>
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
-                        <a className='btn'>
+                        <NavLink to='/ambassadors' className='btn'>
                             Заявка для амбассадоров
-                        </a>
+                        </NavLink>
                     </div>
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
-                        <a className='btn'>
+                        <NavLink to='/partners' className='btn'>
                             Прочее сотрудничество
-                        </a>
+                        </NavLink>
                     </div>
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
-                        <a className='btn'>
+                        <NavLink to='/certificates' className='btn'>
                             Сертификаты
-                        </a>
+                        </NavLink>
                     </div>
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
-                        <a className='btn'>
+                        <NavLink to='/dealers' className='btn'>
                             Дилеры
-                        </a>
+                        </NavLink>
                     </div>
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
-                        <a className='btn'>
+                        <NavLink to='/stores' className='btn'>
                             Наши магазины
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
             </div>

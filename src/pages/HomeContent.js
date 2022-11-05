@@ -1,8 +1,8 @@
 import React from 'react'
-import BlockAbout from '../BlockAbout/BlockAbout'
-import BlockCatalog from '../BlockCatalog/BlockCatalog'
-import BlockPartner from '../BlockPartners/BlockPartner'
-import BlockTop from '../BlockTop/BlockTop'
+import BlockAbout from '../component/BlockAbout/BlockAbout'
+import BlockCatalog from '../component/BlockCatalog/BlockCatalog'
+import BlockPartner from '../component/BlockPartners/BlockPartner'
+import BlockTop from '../component/BlockTop/BlockTop'
 
 const HomeContent = () => {
   return (
