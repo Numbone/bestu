@@ -30,8 +30,10 @@ a,
 a img {
     cursor: pointer;
 }
-
-a {
+button{
+    border:none;
+}
+a  {
     text-decoration: none;
     color: #1c1c1c;
 }

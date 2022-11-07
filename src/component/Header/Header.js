@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../Header/Header.css"
 import logo from "../../img/logo.svg"
 import search from "../../img/icon-search.svg"
 import cabinet from "../../img/icon-user.svg"
 import cart from "../../img/icon-cart.svg"
 import { NavLink } from 'react-router-dom'
+import Modal from '../Modal/Modal'
 const Header = () => {
+  const [modal, setModal] = useState(false)
   return (
     <header className="header d-flex align-items-center">
       <div className="container container-xxl">
@@ -23,10 +25,12 @@ const Header = () => {
           <div className='header__column'>
             <div className='header__buttons d-flex justify-content-end'>
               <div className='search-button' data-da="header__column--first,first,768" data-da-index="1">
-                <a href='#'>
+                <button onClick={()=>setModal(true)}>
+                 
                   <img src={search} >
                   </img>
-                </a>
+                 
+                </button>
               </div>
               <div className='cabinet-button'>
                 <a href='#'>
@@ -39,11 +43,16 @@ const Header = () => {
                   <img src={cart}>
                   </img>
                 </a>
-              </div>
+              </div>  
             </div>
           </div>
         </div>
+        <Modal active={modal} setActive={setModal}>
+          <input>
+          </input>
+        </Modal>
       </div>
+      
     </header>
   )
 }

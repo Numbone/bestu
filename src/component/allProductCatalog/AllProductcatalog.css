@@ -53,3 +53,7 @@ ol, ul {
     list-style: none;
     border:none;
 }
+.block-product__item {
+    font-size: calc(var(--index));
+    font-family: Tenor Sans,sans-serif;
+}

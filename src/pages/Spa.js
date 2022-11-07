@@ -1,21 +1,27 @@
 import React from 'react'
-import '../allProductCatalog/AllProductcatalog.css'
-import ph1 from '../../img/all1.png'
-import ProductImages from '../SwiperCard/ProductImages'
-import { productImages, productImages1 } from '../../img'
-const AllProductCatalog = () => {
-    const prev = '<'
-    const next = '>'
+import btop from '../img/spatop.jpg'
+import ProductImages from '../component/SwiperCard/ProductImages'
+import { productImages, productImages1 } from '../img'
+const Spa = () => {
     return (
         <>
+            <div className='block-top category' style={{ backgroundImage: `url(${btop})` }}>
+                <div className='d-flex justify-content-center'>
+                    <div className='container'>
+                        <div className='block-top__big-name'>
+                            Le mousse
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className='block-catalog'>
                 <div className='container'>
                     <div className='block__title text-center'>
-                        Каталог
+                        <p>Каталог</p>
                     </div>
                     <div className='block-catalog__items'>
-                        <div className='row gy-4 gx-2 g-md-4'>
-                            <div className='col-sm-6' style={{fontSize:'calc(var(--index))',fontFamily:'Tenor Sans,san-serif'}}>
+                        <div className='row g-2 g-md-4'>
+                            <div className='col-sm-6' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
                                 <ProductImages images={productImages} />
                                 <div className='block-product__info flex-1 d-flex flex-column justify-content-between'
                                     style={{
@@ -96,7 +102,7 @@ const AllProductCatalog = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='col-sm-6' style={{fontSize:'calc(var(--index))',fontFamily:'Tenor Sans,san-serif'}}>
+                            <div className='col-sm-6' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
                                 <ProductImages images={productImages1} />
                                 <div className='block-product__info flex-1 d-flex flex-column justify-content-between'
                                     style={{
@@ -181,26 +187,8 @@ const AllProductCatalog = () => {
                     </div>
                 </div>
             </div>
-            <div className='container'>
-                <nav>
-                    <ul className='pagination'>
-                        <li className='page-item'>
-                            <a className='page-link'>{prev}</a>
-                        </li>
-                        <li className='page-item'>
-                            <a className='page-link'>1</a>
-                        </li>
-                        <li className='page-item'>
-                            <a className='page-link'>2</a>
-                        </li>
-                        <li className='page-item'>
-                            <a className='page-link'>{next}</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
         </>
     )
 }
 
-export default AllProductCatalog
+export default Spa

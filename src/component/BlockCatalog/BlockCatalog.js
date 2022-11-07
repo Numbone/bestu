@@ -25,11 +25,11 @@ const BlockCatalog = () => {
                                 style={{
                                     backgroundImage: `url("${ps}")`
                                 }}>
-                                <a className='img d-flex justify-content-center align-items-center flex-column'>
+                                <NavLink to='/body' className='img d-flex justify-content-center align-items-center flex-column'>
                                     <span className='block-catalog__item-title '>
                                         body
                                     </span>
-                                </a>
+                                </NavLink>
                             </div>
                         </div>
                         <div className='col-sm-6'>
@@ -37,11 +37,11 @@ const BlockCatalog = () => {
                                 style={{
                                     backgroundImage: `url("${ps2}")`
                                 }}>
-                                <a className='img d-flex justify-content-center align-items-center flex-column'>
+                                <NavLink to='/beauty' className='img d-flex justify-content-center align-items-center flex-column'>
                                     <span className='block-catalog__item-title '>
                                         beauty
                                     </span>
-                                </a>
+                                </NavLink>
                             </div>
                         </div>
                         <div className='col-sm-6'>
@@ -49,7 +49,7 @@ const BlockCatalog = () => {
                                 style={{
                                     backgroundImage: `url("${ps3}")`
                                 }}>
-                                <a className='img d-flex justify-content-center align-items-center flex-column'>
+                                <NavLink to='/spa' className='img d-flex justify-content-center align-items-center flex-column'>
                                     <span className='block-catalog__item-title ' 
                                     style={{position:'relative',bottom:'60px'}}>
                                         SPA
@@ -60,7 +60,7 @@ const BlockCatalog = () => {
                                         <br></br>
                                         для SPA-салонов и бьюти-мастеров)
                                     </span>
-                                </a>
+                                </NavLink>
                             </div>
                         </div>
                         <div className='col-sm-6'>
@@ -68,11 +68,11 @@ const BlockCatalog = () => {
                                 style={{
                                     backgroundImage: `url("${ps4}")`
                                 }}>
-                                <a className='img d-flex justify-content-center align-items-center flex-column'>
+                                <NavLink to='/vouchers' className='img d-flex justify-content-center align-items-center flex-column'>
                                     <span className='block-catalog__item-title block-catalog__item-title--montserrat '>
                                         Подарочные сертификаты
                                     </span>
-                                </a>
+                                </NavLink>
                             </div>
                         </div>
                         <div className='col-sm-6'>
@@ -80,11 +80,11 @@ const BlockCatalog = () => {
                                 style={{
                                     backgroundImage: `url("${ps5}")`
                                 }}>
-                                <a className='img d-flex justify-content-center align-items-center flex-column'>
+                                <NavLink to='/packaging' className='img d-flex justify-content-center align-items-center flex-column'>
                                     <span className='block-catalog__item-title block-catalog__item-title--montserrat '>
                                         Упаковка
                                     </span>
-                                </a>
+                                </NavLink>
                             </div>
                         </div>
                     </div>
