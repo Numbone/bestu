@@ -1,6 +1,6 @@
 
 
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Footer from './component/Footer/Footer';
 import Header from './component/Header/Header';
@@ -13,13 +13,17 @@ import Certificates from './pages/Certificates';
 import Dealers from './pages/Dealers';
 import DelaersInfo from './pages/DelaersInfo';
 import HomeContent from './pages/HomeContent';
+import Login from './pages/Login';
+import Order from './pages/Order';
 import Packaging from './pages/Packaging';
 import Partners from './pages/Partners';
+import Reset from './pages/Reset';
 import Spa from './pages/Spa';
 import Stores from './pages/Stores';
 import Vouchers from './pages/Vouchers';
 
 function App() {
+  const navi = useLocation()
   return (
     <div className="App">
       <Header />
@@ -39,10 +43,14 @@ function App() {
         <Route key={12} path='/spa' element={< Spa />}></Route>
         <Route key={13} path='/vouchers' element={< Vouchers />}></Route>
         <Route key={14} path='/packaging' element={< Packaging />}></Route>
+        <Route key={14} path='/login' element={< Login />}></Route>
+        <Route key={15} path='/reset' element={< Reset />}></Route>
+        <Route key={16} path='/order' element={< Order />}></Route>
       </Routes>
 
-
       <Footer />
+
+
     </div>
   );
 }

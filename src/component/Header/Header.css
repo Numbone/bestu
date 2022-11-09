@@ -49,3 +49,29 @@ a  {
 @media screen and (max-width:768px){
     
 }
+.btn-search {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 10px;
+    height: 50px;
+    width: 50px;
+    max-width: none;
+    min-width: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.form-field:last-child {
+    margin-bottom: 0;
+}
+input[type=email], input[type=password], input[type=tel], input[type=text], select {
+    border-radius: 4px;
+    height: 48px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid #e8e0e4;
+    width: 100%;
+}

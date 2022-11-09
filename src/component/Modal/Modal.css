@@ -26,7 +26,6 @@
     background-color: white;
     
     width: 90vw;
-    height: 30vh;
     transform: scale(0.5);
     transition: 0.4s all;
 }

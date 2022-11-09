@@ -42,3 +42,10 @@ body {
 .swiper-pagination-bullet .swiper-pagination-bullet-active {
     background-color: #1c1c1c;
 }
+a {
+    text-decoration: none;
+    color: #1c1c1c;
+}
+.App{
+    min-height: 100%;
+}
