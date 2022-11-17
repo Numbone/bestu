@@ -16,7 +16,7 @@ const BlockCatalog = () => {
                     <NavLink to='/all_products'>Смотреть все товары</NavLink>
                     <br></br>
                     <br></br>
-                    <NavLink to='/all_products'>Сейчас в наличии</NavLink>
+                    <NavLink to='/all_products2'>Сейчас в наличии</NavLink>
                 </div>
                 <div className='block-catalog__items'>
                     <div className='row g-2 g-md-4'>
