@@ -68,3 +68,6 @@
 .block-catalog .block-catalog__items .block-catalog__item a>span {
     display: block;
 }
+.block-catalog__item  a:hover{
+    color: #1c1c1c;
+}

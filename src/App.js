@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Footer from './component/Footer/Footer';
 import Header from './component/Header/Header';
+import ProductItem from './component/ProductItem/ProductItem';
 import SwiperCard from './component/SwiperCard/SwiperCard';
 import AllProducts from './pages/AllProducts';
 import Ambassadors from './pages/Ambassadors';
@@ -46,6 +47,7 @@ function App() {
         <Route key={14} path='/login' element={< Login />}></Route>
         <Route key={15} path='/reset' element={< Reset />}></Route>
         <Route key={16} path='/order' element={< Order />}></Route>
+        <Route key={17} path='/productitem' element={< ProductItem />}></Route>
       </Routes>
 
       <Footer />
