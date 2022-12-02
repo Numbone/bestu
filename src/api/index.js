@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export const API_URL="https://test-back.thebestforyourself.ru/"
 
 export const instance= axios.create({

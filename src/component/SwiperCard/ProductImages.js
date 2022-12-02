@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import {  Pagination, Thumbs } from 'swiper'
 
 const ProductImages = props => {
+    console.log(props,"ProductImages");
     return (
         <>
             <Swiper
@@ -14,7 +15,8 @@ const ProductImages = props => {
             grabCursor={true}
             >
                 {
-                    props.images.map((item,index)=>(
+                    props.images==undefined?<div></div>
+                    :props.images.map((item,index)=>(
                         <SwiperSlide>
                             <img src={item} alt="SliderImage"></img>
                             
