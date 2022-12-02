@@ -19,7 +19,7 @@ const ProductImages = props => {
                     :props.images.map((item,index)=>(
                         <SwiperSlide>
                             <img src={item} alt="SliderImage"></img>
-                            
+                    
                         </SwiperSlide>
                     ))
                 }
