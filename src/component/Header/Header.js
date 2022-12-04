@@ -30,7 +30,7 @@ const Header = () => {
                 <div className='header__column'>
                   <div className='header__buttons d-flex justify-content-end'>
                     <div className='search-button' data-da="header__column--first,first,768" data-da-index="1">
-                      <button onClick={() => setModal(true)}>
+                      <button style={{backgroundColor:'transparent'}} onClick={() => setModal(true)}>
 
                         <img src={search} >
                         </img>
@@ -53,7 +53,7 @@ const Header = () => {
                 </div>
               </div>
               <Modal active={modal} setActive={setModal}>
-                <div className='container fancybox__content'>
+                <div className='fancybox__content'>
                   <form>
                     <div className='form-field position-relative'>
                       <input type='text' placeholder="Введите слово для поиска">

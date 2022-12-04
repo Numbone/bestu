@@ -5,6 +5,8 @@ import ProductImages from '../SwiperCard/ProductImages'
 import { productImages, productImages1 } from '../../img'
 import Item from '../Item/Item'
 import { productAll } from '../../api/product'
+import { RegExp1 } from '../../Regexp/regexp'
+
 const AllProductCatalog = () => {
     const [product, setProduct] = useState({})
     const prev = '<'
@@ -20,7 +22,8 @@ const AllProductCatalog = () => {
     useEffect(() => {
         getAllProducts()
     }, [])
-    console.log(product)
+    console.log(product,"productAllItems")
+    console.log(product[5]?.Action?.split(new RegExp("/n")))
     return (
         <>
             <div className='block-catalog'>
@@ -30,17 +33,10 @@ const AllProductCatalog = () => {
                     </div>
                     <div className='block-catalog__items'>
                         <div className='row gy-4 gx-2 g-md-4'>
-                            {/* <Item />
-                            <Item />
-                            <Item />
-                            <Item />
-                            <Item />
-                            <Item />
-                            <Item /> */}
                             {product.length==undefined
                             ?<div></div>
-                            :product.map((item)=>
-                                    <Item props={item}/>  )
+                            :product.map((item,index)=>
+                                    <Item props={item} key={index} />  )
                             }
                         </div>
                     </div>

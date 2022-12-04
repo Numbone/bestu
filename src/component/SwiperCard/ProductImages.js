@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import {  Pagination, Thumbs } from 'swiper'
 
 const ProductImages = props => {
-    console.log(props,"ProductImages");
     return (
         <>
             <Swiper
@@ -18,7 +17,7 @@ const ProductImages = props => {
                     props.images==undefined?<div></div>
                     :props.images.map((item,index)=>(
                         <SwiperSlide>
-                            <img src={item} alt="SliderImage"></img>
+                            <img src={item}  alt="SliderImage"></img>
                     
                         </SwiperSlide>
                     ))

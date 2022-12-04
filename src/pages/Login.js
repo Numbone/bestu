@@ -2,13 +2,20 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './css/Login.css'
 const Login = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(!open);
+  };
   return (
     <>
       <nav className='main-header navbar navbar-expand-md navbar-light navbar-white' style={{ minHeight: '100%' }}>
         <div className='container-fluid'>
-          <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
+          <button
+            onClick={handleOpen}
+            class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+
           <div className='navbar-collapse order-3 collapse'>
             <ul className='navbar-nav'>
               <li className='nav-item'>
@@ -19,6 +26,20 @@ const Login = () => {
             </ul>
           </div>
         </div>
+        {
+          open
+            ? <div>
+              <ul className='navbar-nav'>
+                <li className='nav-item'>
+                  <NavLink to='/' className='nav-link'>
+                    Магазин
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+            : null
+        }
+
       </nav>
 
 

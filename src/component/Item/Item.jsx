@@ -1,9 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { productImages, productImages1 } from '../../img'
 import ProductImages from '../SwiperCard/ProductImages'
 const Item = (props) => {
-    console.log(props.props,"cheker")
-    console.log(productImages)
+    const navigate =useNavigate()
     return (
         <div className='col-sm-6' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
             <ProductImages images={props.props.Images} />
@@ -23,7 +23,7 @@ const Item = (props) => {
                             maxHeight: '60px',
                             minHeight: '60px'
                         }}>
-                        Скраб для тела с ароматом летнего дождя
+                        {props.props.Name}
 
                     </div>
                     <div className='block-product__volume'
@@ -43,7 +43,7 @@ const Item = (props) => {
                             style={{
 
                             }}>
-                            1 790 руб.
+                            {props.props.Price} руб.
                         </div>
                     </div>
                     <div className='block-product__btns row g-2'
@@ -68,8 +68,8 @@ const Item = (props) => {
                                 В корзину
                             </a>
                         </div>
-                        <div className='col-6'>
-                            <a href='#'
+                        <div className='col-6' onClick={()=>navigate("/productitem/"+props.props.ID)} >
+                            <a 
                                 className='custom-btn'
                                 style={{
                                     display: 'inline-block',

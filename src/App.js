@@ -48,6 +48,7 @@ function App() {
         <Route key={15} path='/reset' element={< Reset />}></Route>
         <Route key={16} path='/order' element={< Order />}></Route>
         <Route key={17} path='/productitem/:id' element={< ProductItem />}></Route>
+      
       </Routes>
 
       <Footer />
