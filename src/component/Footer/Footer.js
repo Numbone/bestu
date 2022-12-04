@@ -102,7 +102,7 @@ const Footer = () => {
 
 
                     </div>
-                    : <div style={{ height: '360px', backgroundColor: '#E7DBE2' }}></div>
+                    : <div style={{ height: '100vh', backgroundColor: '#E7DBE2' }}></div>
             }
         </>
     )

@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { authChange } from '../api/auth'
 
 const Reset = () => {
+    const [password,setPassword]=useState()
+    const getPassword=async()=>{
+        const data =await authChange(password)
+        return data
+    }
     return (
         <>
             <nav className='main-header navbar navbar-expand-md navbar-light navbar-white' style={{ minHeight: '100%' }}>
@@ -54,7 +60,8 @@ const Reset = () => {
                                                     <div className='col-md-6'>
                                                         <input className='form-control '
                                                             id='email'
-                                                            type='email'></input>
+                                                            type='email'
+                                                            onChange={(e)=>setPassword(e.target.value)}></input>
                                                     </div>
                                                 </div>
 
