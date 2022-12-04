@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react'
 import '../allProductCatalog/AllProductcatalog.css'
 
 import Item from '../Item/Item'
-import { productAll } from '../../api/product'
+import { productAll, productAvailable } from '../../api/product'
 
 
-const AllProductCatalog = () => {
+const AvailableProduct = () => {
     const [product, setProduct] = useState({})
     const prev = '<'
     const next = '>'
     const getAllProducts = async () => {
         try {
-            const { data } = await productAll()
+            const { data } = await productAvailable()   
             setProduct(data.product)
         } catch (error) {
             console.log(error);
@@ -62,4 +62,4 @@ const AllProductCatalog = () => {
     )
 }
 
-export default AllProductCatalog
+export default AvailableProduct

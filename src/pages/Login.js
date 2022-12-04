@@ -1,18 +1,33 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { Context } from '..';
+import { authSignin } from '../api/auth';
 import './css/Login.css'
+import { observer } from 'mobx-react-lite';
 const Login = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
+  const [username,setUser]=useState()
+  const [password,setPassword]=useState()
+  const [data,setData]=useState({})
+  const {user}=useContext(Context)
+  const getToken=async()=>{
+    const data=await authSignin(username,password)
+    setData(data)
+  }
+  // useEffect(()=>{
+  //   getToken()
+  // },[])
+  console.log(data);
   return (
     <>
       <nav className='main-header navbar navbar-expand-md navbar-light navbar-white' style={{ minHeight: '100%' }}>
         <div className='container-fluid'>
           <button
             onClick={handleOpen}
-            class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
+            className="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
@@ -77,7 +92,8 @@ const Login = () => {
                           <div className='col-md-6'>
                             <input className='form-control '
                               id='email'
-                              type='email'></input>
+                              type='email'
+                              onChange={(e)=>setUser(e.target.value)}></input>
                           </div>
                         </div>
                         <div className='form-group row'>
@@ -87,14 +103,15 @@ const Login = () => {
                           <div className='col-md-6'>
                             <input className='form-control '
                               id='password'
-                              type='password'></input>
+                              type='password'
+                              onChange={(e)=>setPassword(e.target.value)}></input>
                           </div>
                         </div>
                         <div className='form-group row mb-0'>
                           <div className='col-md-8 offset-md-4'>
-                            <button type='submit' className='btn2 btn-primary'>
+                            <div onClick={getToken} className='btn2 btn-primary'>
                               Войти
-                            </button>
+                            </div>
                             <NavLink to='/reset' className='btn2 btn-link' href='#'>
                               Не помню пароль
                             </NavLink>
@@ -113,4 +130,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default observer(Login)
