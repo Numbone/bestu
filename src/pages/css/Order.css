@@ -15,7 +15,7 @@
 .block-cart .box-quantity .plus {
     background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg width='9' height='9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fff' d='M9 4.59H0M4.409 9V0'/%3E%3C/svg%3E);
 }
-.block-cart .box-quantity input.quantity {
+.block-cart .box-quantity .quantity {
     height: auto;
     width: 2.5em;
     font-size: 1.2em;

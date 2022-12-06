@@ -1,4 +1,6 @@
+import { useContext, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { Context } from '.';
 import './App.css';
 import Footer from './component/Footer/Footer';
 import Header from './component/Header/Header';
@@ -25,6 +27,25 @@ import Vouchers from './pages/Vouchers';
 
 function App() {
   const navi = useLocation()
+  const {user, basket} = useContext(Context);
+
+  //Loading Basket
+  useEffect(() => {
+    if(user.isAuth === false) {
+        basket.setDeleteAllDeviceFromBasket();
+        const savedBasket = JSON.parse(localStorage.getItem("basket"));
+        for (let key in savedBasket) {
+            basket.setBasket(savedBasket[key]);
+        }
+    } else if(user.isAuth === true){
+        // basket.setDeleteAllDeviceFromBasket();
+        // getDeviceFromBasket().then(data => {
+        //     for (let key in data) {
+        //         basket.setBasket(data[key], true);
+        //     }
+        // })
+    }
+ }, [basket, user.isAuth]);
   return (
     <div className="App">
       <Header />
