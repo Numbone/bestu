@@ -27,9 +27,10 @@ const AllProductCatalog = () => {
     useEffect(() => {
         getAllProducts()
     }, [])
-    console.log(product, "productAllItems")
+
     
     console.log(basket.Basket,"basket");
+    console.log(basket.Price,"basket");
     return (
         <>
             <div className='block-catalog'>

@@ -4,7 +4,7 @@ import { productImages, productImages1 } from '../../img'
 import ProductImages from '../SwiperCard/ProductImages'
 import { observer } from 'mobx-react-lite';
 const Item = (props) => {
-    console.log(props)
+ 
     const navigate =useNavigate()
     return (
         <div className='col-sm-6' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
