@@ -49,3 +49,9 @@ a {
 .App{
     min-height: 100%;
 }
+.block-cart #table-cart tr td {
+    height: 100%;
+    border: 1px solid black;
+    padding: 0 7px;
+    vertical-align: middle;
+}

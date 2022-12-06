@@ -2,7 +2,9 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { productImages, productImages1 } from '../../img'
 import ProductImages from '../SwiperCard/ProductImages'
+import { observer } from 'mobx-react-lite';
 const Item = (props) => {
+    console.log(props)
     const navigate =useNavigate()
     return (
         <div className='col-sm-6' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
@@ -51,7 +53,9 @@ const Item = (props) => {
                             marginTop: '0.9em'
                         }}>
                         <div className='col-6'>
-                            <a href='#'
+                            <a
+                            onClick={()=>props.clickOrder(props.props)} 
+                            href='#'
                                 className='custom-btn custom-btn-dark'
                                 style={{
                                     display: 'inline-block',
@@ -92,4 +96,4 @@ const Item = (props) => {
     )
 }
 
-export default Item
+export default observer(Item)

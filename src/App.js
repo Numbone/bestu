@@ -18,6 +18,7 @@ import Order from './pages/Order';
 import Packaging from './pages/Packaging';
 import Partners from './pages/Partners';
 import Reset from './pages/Reset';
+import Search from './pages/Search';
 import Spa from './pages/Spa';
 import Stores from './pages/Stores';
 import Vouchers from './pages/Vouchers';
@@ -48,6 +49,7 @@ function App() {
         <Route key={16} path='/order' element={< Order />}></Route>
         <Route key={17} path='/productitem/:id' element={< ProductItem />}></Route>
         <Route key={18} path='/available' element={<AvailablePages />}></Route>
+        <Route key={19} path='/search' element={<Search />}></Route>
       </Routes>
 
       <Footer />
