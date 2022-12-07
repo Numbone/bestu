@@ -11,7 +11,7 @@ const Order = () => {
 
 
   //state for api
-  const [delivery, setDelivety] = useState("")
+  const [delivery, setDelivery] = useState("")
   const [email, setEmail] = useState("")
   const [father_name, setFather_name] = useState("")
   const [first_name, setFirst_name] = useState("")
@@ -38,6 +38,7 @@ const Order = () => {
   useEffect(() => {
 
   }, [basket.Price])
+  console.log(delivery);
   return (
     <div className='flex-1' style={{ minHeight: '100vh' }}>
       {
@@ -104,15 +105,15 @@ const Order = () => {
                       </div>
                       <div className="form-field">
                         <label htmlFor="middle_name">Ваше отчество</label>
-                        <input type="text" name="middle_name" id="middle_name" />
+                        <input  type="text" name="middle_name" id="middle_name" />
                       </div>
                       <div className="form-field">
                         <label htmlFor="phone">Ваш телефон</label>
-                        <input type="text" name="phone" id="phone" />
+                        <input onChange={(e) => setPhone_number(e.target.value)} type="text" name="phone" id="phone" />
                       </div>
                       <div className="form-field">
                         <label htmlFor="email">Ваш email</label>
-                        <input type="text" name="email" id="email" />
+                        <input onChange={(e) => setEmail(e.target.value)} type="text" name="email" id="email" />
                       </div>
                       <div className="form-field">
                         <label htmlFor="email_confirmation">Повторите email</label>
@@ -140,17 +141,17 @@ const Order = () => {
                     <div className="shipping-choose">
                       <div className="box-form">
                         <input type="hidden" name="shipping-code" defaultValue />
-                        <div className="form-field">
-                          <input type="radio" name="shipping-method" id="cdek" className="input-radio" defaultValue="СДЭК до ПВЗ" />
+                        <div className="form-field" onClick={()=>setDelivery('СДЭК до пункта выдачи')}>
+                          <input  type="radio" name="shipping-method" id="cdek" className="input-radio" defaultValue="СДЭК до ПВЗ" />
                           <label htmlFor="cdek">СДЭК до пункта выдачи</label>
                         </div>
-                        <div className="form-field">
+                        <div className="form-field" onClick={()=>setDelivery('Почта России')}>
                           <input type="radio" name="shipping-method" id="pochta" className="input-radio" defaultValue="Доставка Почтой" />
                           <label htmlFor="pochta">Почта России<br />
                             <span style={{ display: 'inline', fontSize: '.8em', color: 'red', padding: 0 }}>(только по РФ)</span>
                           </label>
                         </div>
-                        <div className="form-field">
+                        <div className="form-field" onClick={()=>setDelivery('Самовывоз в Волгограде')}>
                           <input type="radio" name="shipping-method" id="pickup" className="input-radio" defaultValue="Самовывоз в Волгограде" />
                           <label htmlFor="pickup">Самовывоз в Волгограде</label>
                         </div>

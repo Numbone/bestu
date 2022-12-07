@@ -32,6 +32,7 @@
     border-radius: 3px;
     padding: 15px 15px 15px 36px;
     border: 1px solid #c9c9c9;
+   
 }
 #total-block {
     font-size: 1.5em;
@@ -48,6 +49,8 @@
     background-color: transparent;
     border: 1px solid #c9c9c9;
     box-sizing: border-box;
+
+    color:blue;
 }
 .input-radio:not(checked)+label:after {
     content: "";
@@ -64,3 +67,11 @@
     transition: all .2s;
     transform: scale(0);
 }
+.input-radio:checked+label, .input-radio:checked+label:before {
+    border-color: purple;
+}
+.input-radio:checked+label:after {
+    transform: scale(1);
+    opacity: 1;
+}
+
