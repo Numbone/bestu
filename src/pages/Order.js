@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Context } from '..'
-import { transactionCreate } from '../api/transaction'
+import { transactionCreate, transactionCreate2 } from '../api/transaction'
 import { observer } from 'mobx-react-lite';
 import './css/Order.css'
 const Order = () => {
   const { basket } = useContext(Context)
-  const [rerender, setRerender] = useState(false);
+  const [rerender, setRerender] = useState(Boolean);
+
+  /// dropdown component 
+  const [open, setOpen] = React.useState(false);
 
 
 
@@ -20,25 +23,61 @@ const Order = () => {
   const [promo_code, setPromo_code] = useState("")
   const [second_name, setSecond_name] = useState("")
   const [total_cost, setTotal_cost] = useState(0)
-
+  const [count, setCount] = useState(0)
+  const [data, setData] = useState()
   //api for transaction/create
-  const sendTransaction = () => {
-    const data = transactionCreate()
+  
+  const sendTransaction = async () => {
+    const data = await transactionCreate2(delivery, email, father_name, first_name, phone_number, products, promo_code, second_name, total_cost)
+    console.log(data);
   }
 
   ///every rerender
 
+  (JSON.parse(localStorage.getItem("basket")).map(item => console.log(item.count)))
 
-  
+  const object = {
+    basket: (JSON.parse(localStorage.getItem("basket")))
+  }
+  var copy = JSON.parse(JSON.stringify(object))
+  copy.basket.map(item => (delete item.Action,
+    delete item.Category,
+    delete item.Compound,
+    delete item.Contraindications,
+    delete item.Count,
+    delete item.Description,
+    delete item.Files,
+    delete item.ID,
+    delete item.Images,
+    delete item.ModeOfApp,
+    delete item.Name,
+    delete item.Price,
+    delete item.Reviews,
+    delete item.Stars,
+    delete item.Weight))
+  console.log(copy.basket, "copy");
   const reRender = () => {
     setRerender(!rerender);
   }
-  console.log(basket.Basket.length)
-  console.log(father_name, "father name");
-  useEffect(() => {
 
-  }, [basket.Price])
-  console.log(delivery);
+  const handleOpen = () => {
+    if (count % 2 == 0) {
+      setOpen(!open)
+    }
+    setCount(count => count + 1)
+    setDelivery('Почта России')
+  };
+  console.log(open);
+
+  useEffect(() => {
+    reRender()
+    
+    setProducts(copy.basket)
+    
+  }, [])
+
+  console.log(total_cost,"total cost");
+  console.log(products,"products");
   return (
     <div className='flex-1' style={{ minHeight: '100vh' }}>
       {
@@ -105,7 +144,7 @@ const Order = () => {
                       </div>
                       <div className="form-field">
                         <label htmlFor="middle_name">Ваше отчество</label>
-                        <input  type="text" name="middle_name" id="middle_name" />
+                        <input onChange={(e) => setSecond_name(e.target.value)} type="text" name="middle_name" id="middle_name" />
                       </div>
                       <div className="form-field">
                         <label htmlFor="phone">Ваш телефон</label>
@@ -141,63 +180,81 @@ const Order = () => {
                     <div className="shipping-choose">
                       <div className="box-form">
                         <input type="hidden" name="shipping-code" defaultValue />
-                        <div className="form-field" onClick={()=>setDelivery('СДЭК до пункта выдачи')}>
-                          <input  type="radio" name="shipping-method" id="cdek" className="input-radio" defaultValue="СДЭК до ПВЗ" />
+                        <div className="form-field" onClick={() => setDelivery('СДЭК до пункта выдачи')}>
+                          <input type="radio" name="shipping-method" id="cdek" className="input-radio" defaultValue="СДЭК до ПВЗ" />
                           <label htmlFor="cdek">СДЭК до пункта выдачи</label>
                         </div>
-                        <div className="form-field" onClick={()=>setDelivery('Почта России')}>
+
+
+
+
+                        <div className="form-field" onClick={handleOpen}>
                           <input type="radio" name="shipping-method" id="pochta" className="input-radio" defaultValue="Доставка Почтой" />
                           <label htmlFor="pochta">Почта России<br />
                             <span style={{ display: 'inline', fontSize: '.8em', color: 'red', padding: 0 }}>(только по РФ)</span>
                           </label>
                         </div>
-                        <div className="form-field" onClick={()=>setDelivery('Самовывоз в Волгограде')}>
+
+
+
+                        <div className="form-field" onClick={() => setDelivery('Самовывоз в Волгограде')}>
                           <input type="radio" name="shipping-method" id="pickup" className="input-radio" defaultValue="Самовывоз в Волгограде" />
                           <label htmlFor="pickup">Самовывоз в Волгограде</label>
                         </div>
+
+
+
                       </div>
                     </div>
-                    <div className="box-address" >
-                      <h3>Адрес</h3>
-                      <div className="pochta-info info" style={{ display: 'none', color: 'red' }}>
-                        Внимание!<br />
-                        Адрес и ФИО заполняйте только на английском языке
-                      </div>
-                      <div className="box-form">
-                        <div className="form-pochta">
-                          <div className="form-field">
-                            <label htmlFor="postcode">Почтовый индекс</label>
-                            <input type="text" name="postcode" defaultValue id="postcode" />
+                    {
+                      open ?
+                        <div className="box-address" >
+                          <h3>Адрес</h3>
+                          <div className="pochta-info info" style={{ color: 'red' }}>
+                            Внимание!<br />
+                            Адрес и ФИО заполняйте только на английском языке
                           </div>
-                          <div className="form-field">
-                            <label htmlFor="region">Регион или область</label>
-                            <input type="text" name="region" defaultValue id="region" />
-                          </div>
-                          <div className="form-field">
-                            <label htmlFor="city">Населенный пункт</label>
-                            <input type="text" name="city" defaultValue id="city" />
-                          </div>
-                          <div className="form-field">
-                            <label htmlFor="street">Улица</label>
-                            <input type="text" name="street" defaultValue id="street" />
-                          </div>
-                          <div className="row">
-                            <div className="col-6">
+                          <div className="box-form">
+                            <div className="form-pochta">
                               <div className="form-field">
-                                <label htmlFor="house">Дом</label>
-                                <input type="text" name="house" defaultValue id="house" />
+                                <label htmlFor="postcode">Почтовый индекс</label>
+                                <input type="text" name="postcode" defaultValue id="postcode" />
                               </div>
-                            </div>
-                            <div className="col-6">
                               <div className="form-field">
-                                <label htmlFor="flat">Квартира</label>
-                                <input type="text" name="flat" defaultValue id="flat" />
+                                <label htmlFor="region">Регион или область</label>
+                                <input type="text" name="region" defaultValue id="region" />
+                              </div>
+                              <div className="form-field">
+                                <label htmlFor="city">Населенный пункт</label>
+                                <input type="text" name="city" defaultValue id="city" />
+                              </div>
+                              <div className="form-field">
+                                <label htmlFor="street">Улица</label>
+                                <input type="text" name="street" defaultValue id="street" />
+                              </div>
+                              <div className="row">
+                                <div className="col-6">
+                                  <div className="form-field">
+                                    <label htmlFor="house">Дом</label>
+                                    <input type="text" name="house" defaultValue id="house" />
+                                  </div>
+                                </div>
+                                <div className="col-6">
+                                  <div className="form-field">
+                                    <label htmlFor="flat">Квартира</label>
+                                    <input type="text" name="flat" defaultValue id="flat" />
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                        : <div>
+
+
+                        </div>
+                    }
+
                     <div id="shipping-info" style={{ padding: 20, border: '2px solid rgb(179, 139, 138)', margin: 20, textAlign: 'center', display: 'block' }}>
                       <span id="info-pvz-address">Самовывоз по адресу: г. Волгоград, пр. Жукова 100б (вход через магазин "магнит")<br />Тел. +7 902 312-55-32</span>
                     </div>
@@ -205,15 +262,19 @@ const Order = () => {
                     <div className="box-form">
                       <div className="text-center mt-2 d-flex">
                         <div style={{ position: 'relative' }}>
-                          <input type="radio" name="promo" id="promo-field-voucher" form="order" defaultValue="voucher" className="input-checkbox" /><label htmlFor="promo-field-voucher">Использовать подарочный
-                            сертификат</label>
+                          <input type="checkbox" name="promo" id="promo-field-voucher" form="order" defaultValue="voucher" className="input-checkbox" />
+                          <label htmlFor="promo-field-voucher">
+                            Использовать подарочный
+                            сертификат
+                          </label>
+
                         </div>
                       </div>
                     </div>
-                    <div className="box-form" id="box-field-voucher" style={{ display: 'none' }}>
+                    <div className="box-form" id="box-field-voucher" >
                       <div className="form-field">
                         <label htmlFor="voucher">Подарочный сертификат</label>
-                        <input type="text" name="voucher" id="voucher" form="order" />
+                        <input onChange={(e) => setPromo_code(e.target.value)} type="text" name="voucher" id="voucher" form="order" />
                       </div>
                     </div>
                     <hr />
@@ -222,7 +283,7 @@ const Order = () => {
                         <table className="table" style={{ width: '100%' }}>
                           <tbody><tr>
                             <td width="60%" id="cart-total">Товары в корзине</td>
-                            <td>1790</td>
+                            <td>{basket.Price}</td>
                           </tr>
                             <tr>
                               <td width="60%" id="delname" />
@@ -231,7 +292,7 @@ const Order = () => {
                             <tr id="total-tr" style={{ fontWeight: 'bold', marginTop: '.5em' }}>
                               <td width="60%">Итого к оплате</td>
                               <td id="total">
-                                1790
+                                {basket.Price}
                               </td>
                             </tr>
                           </tbody></table>
@@ -242,20 +303,29 @@ const Order = () => {
 
                       <div className="text-center mt-2 d-flex justify-content-start">
                         <div style={{ position: 'relative' }}>
-                          <input type="checkbox" name="oferta" id="oferta" className="input-checkbox" defaultValue={1} form="order" /><label htmlFor="oferta">Я принимаю условия <a href="https://thebestforyourself.ru/page/oferta" target="_blank">публичной оферты</a></label>
+                          <input type="checkbox" name="oferta" id="oferta" className="input-checkbox" defaultValue={1} form="order" /><label htmlFor="oferta">
+                            Я принимаю условия
+                            <a href="https://thebestforyourself.ru/page/oferta" target="_blank">
+                              публичной оферты</a>
+                          </label>
                         </div>
                       </div>
                       <div className="text-center mt-2 d-flex justify-content-start">
                         <div style={{ position: 'relative' }}>
-                          <input type="checkbox" name="politika" id="politika" className="input-checkbox" defaultValue={1} form="order" /><label htmlFor="politika">Я соглашаюсь с условиями <a href="https://thebestforyourself.ru/page/politika" target="_blank">политики обработки
-                            персональных данных</a></label>
+                          <input type="checkbox" name="politika" id="politika" className="input-checkbox" defaultValue={1} form="order" />
+                          <label htmlFor="politika">Я соглашаюсь с условиями
+                            <a href="https://thebestforyourself.ru/page/politika" target="_blank">
+                              политики обработки
+                              персональных данных
+                            </a>
+                          </label>
                         </div>
                       </div>
 
 
                     </div>
                     <div id="error-message" style={{ color: 'red', marginBottom: 15 }} />
-                    <div className="text-center">
+                    <div className="text-center" onClick={sendTransaction}>
                       <button type="submit" form="order" className="btn" id="submit">К оплате</button>
                     </div>
                   </div>

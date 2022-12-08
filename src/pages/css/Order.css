@@ -1,9 +1,7 @@
 .block-cart #table-cart {
     font-size: 1.2em;
 }
-.block-cart .box-quantity .minus {
-    background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg width='9' height='2' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fff' d='M9 .59H0'/%3E%3C/svg%3E);
-}
+
 .block-cart .box-quantity .minus, .block-cart .box-quantity .plus {
     width: 1em;
     height: 1em;
@@ -15,6 +13,8 @@
 .block-cart .box-quantity .plus {
     background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg width='9' height='9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fff' d='M9 4.59H0M4.409 9V0'/%3E%3C/svg%3E);
 }
+
+
 .block-cart .box-quantity .quantity {
     height: auto;
     width: 2.5em;
@@ -52,6 +52,10 @@
 
     color:blue;
 }
+.input-checkbox:checked+label:after {
+    transform: scale(1);
+    opacity: 1;
+}
 .input-radio:not(checked)+label:after {
     content: "";
     position: absolute;
@@ -70,8 +74,15 @@
 .input-radio:checked+label, .input-radio:checked+label:before {
     border-color: purple;
 }
+
+.input-checkbox:checked+label, .input-checkbox:checked+label:before {
+    border-color: #b38b8a;
+}
+
+.block-cart .box-quantity .minus {
+    background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg width='9' height='2' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fff' d='M9 .59H0'/%3E%3C/svg%3E);
+}
 .input-radio:checked+label:after {
     transform: scale(1);
     opacity: 1;
 }
-

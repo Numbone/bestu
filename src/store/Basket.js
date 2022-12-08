@@ -9,7 +9,7 @@ export default class BasketStore {
     setBasket(item, isAuth = false) {
         const checkDeviceInBasket = this._basket.findIndex(device => device.ID === item.ID);
         if (checkDeviceInBasket < 0) {
-            this._basket = [...this._basket, { count: 1, ...item }];
+            this._basket = [...this._basket, { count: 1,name:item.Name,price:item.Price,product_id:item.ID, ...item }];
             let totalPrice = 0;
             this._basket.forEach(device => totalPrice += Number(device.Price * device.count));
             this._totalPrice = totalPrice;
