@@ -4,11 +4,15 @@ import logo from "../../img/logo.svg"
 import search from "../../img/icon-search.svg"
 import cabinet from "../../img/icon-user.svg"
 import cart from "../../img/icon-cart.svg"
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation} from 'react-router-dom'
 import Modal from '../Modal/Modal'
+import { Context } from '../..'
+import { useContext } from 'react'
+import { observer } from 'mobx-react-lite'
 const Header = () => {
   const navigation = useLocation()
-  console.log(navigation.pathname)
+  const { basket } = useContext(Context)
+  console.log(basket.Basket.length, "Header");
   const [modal, setModal] = useState(false)
   return (
     <div>
@@ -30,10 +34,11 @@ const Header = () => {
                 <div className='header__column'>
                   <div className='header__buttons d-flex justify-content-end'>
                     <div className='search-button' data-da="header__column--first,first,768" data-da-index="1">
-                      <button style={{backgroundColor:'transparent'}} onClick={() => setModal(true)}>
+                      <button style={{ backgroundColor: 'transparent' }} onClick={() => setModal(true)}>
 
                         <img src={search} >
                         </img>
+
 
                       </button>
                     </div>
@@ -44,9 +49,16 @@ const Header = () => {
                       </NavLink>
                     </div>
                     <div className='cart-button'>
-                      <NavLink to='/order'>
+                      <NavLink to='/order' style={{ display: 'flex',alignItems:"flex-end" }}>
                         <img src={cart}>
                         </img>
+                        {basket.Basket.length>0
+                        ? <div className='box-order'>
+                        {basket?.Basket?.length}
+                        </div>
+                        :null
+                        }
+                        
                       </NavLink>
                     </div>
                   </div>
@@ -63,14 +75,16 @@ const Header = () => {
                       </button>
                     </div>
                   </form>
-                  <button onClick={()=>setModal(false)} className='carousel__button is-close' 
-                  style={{fontSize:'34px',
-                  color:'white',
-                  position:'absolute',
-                  top:'-50px',
-                  right:'20px',
-                  backgroundColor:' rgba(0, 0, 0, 0)'}} >
-                      X
+                  <button onClick={() => setModal(false)} className='carousel__button is-close'
+                    style={{
+                      fontSize: '34px',
+                      color: 'white',
+                      position: 'absolute',
+                      top: '-50px',
+                      right: '20px',
+                      backgroundColor: ' rgba(0, 0, 0, 0)'
+                    }} >
+                    X
                   </button>
                 </div>
               </Modal>
@@ -86,4 +100,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default observer(Header) 

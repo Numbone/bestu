@@ -75,3 +75,15 @@ input[type=email], input[type=password], input[type=tel], input[type=text], sele
     border: 1px solid #e8e0e4;
     width: 100%;
 }
+.box-order{
+        font-size: 10px;
+        position: relative;
+        right:8px;
+        top: 5px;
+        width: 15px;
+        height: 15px;
+        border-radius: 20px;
+        background-color:#e7dbe2 ;
+        align-items: center;
+        padding:3px;
+}
