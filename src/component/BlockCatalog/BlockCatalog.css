@@ -68,11 +68,13 @@
 .block-catalog .block-catalog__items .block-catalog__item a>span {
     display: block;
 }
-.block-catalog__item  a:hover{
+
+.block-catalog__item a:hover {
     color: #1c1c1c;
 }
-@media only screen and (max-width: 768px){
-.block-catalog .block-catalog__items .block-catalog__item .block-catalog__item-title.block-catalog__item-title--montserrat {
-    font-size: 2em;
-}
+
+@media only screen and (max-width: 768px) {
+    .block-catalog .block-catalog__items .block-catalog__item .block-catalog__item-title.block-catalog__item-title--montserrat {
+        font-size: 2em;
+    }
 }

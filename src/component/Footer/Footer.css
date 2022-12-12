@@ -4,7 +4,7 @@
 }
 @media screen and (max-width:768px) {
     .footer {
-        font-size: 1.6em!important;
+        font-size: 1.7em!important;
     }
 }
 .footer {
@@ -13,6 +13,7 @@
     line-height: 1.5;
     background: #181818;
 }
+
 
 
 
