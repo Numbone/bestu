@@ -13,6 +13,19 @@
     }
 }
 
+@media only screen and (max-width: 768px) {
+    .header-mobile {
+        display: block!important;
+    }
+    .header_computer{
+        display: none!important;
+    }
+}
+
+.header-mobile {
+    display: none;
+}
+
 .header .header__column {
     flex: 1;
 }
@@ -30,10 +43,12 @@ a,
 a img {
     cursor: pointer;
 }
-button{
-    border:none;
+
+button {
+    border: none;
 }
-a  {
+
+a {
     text-decoration: none;
     color: #1c1c1c;
 }
@@ -46,9 +61,9 @@ a  {
 .img img {
     max-width: 100%;
 }
-@media screen and (max-width:768px){
-    
-}
+
+@media screen and (max-width:768px) {}
+
 .btn-search {
     background-color: transparent;
     border: none;
@@ -64,10 +79,16 @@ a  {
     top: 50%;
     transform: translateY(-50%);
 }
+
 .form-field:last-child {
     margin-bottom: 0;
 }
-input[type=email], input[type=password], input[type=tel], input[type=text], select {
+
+input[type=email],
+input[type=password],
+input[type=tel],
+input[type=text],
+select {
     border-radius: 4px;
     height: 48px;
     padding-left: 15px;
@@ -75,15 +96,16 @@ input[type=email], input[type=password], input[type=tel], input[type=text], sele
     border: 1px solid #e8e0e4;
     width: 100%;
 }
-.box-order{
-        font-size: 10px;
-        position: relative;
-        right:8px;
-        top: 5px;
-        width: 15px;
-        height: 15px;
-        border-radius: 20px;
-        background-color:#e7dbe2 ;
-        align-items: center;
-        padding:3px;
+
+.box-order {
+    font-size: 10px;
+    position: relative;
+    right: 8px;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 20px;
+    background-color: #e7dbe2;
+    align-items: center;
+    padding: 3px;
 }

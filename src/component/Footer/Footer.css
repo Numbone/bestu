@@ -2,7 +2,11 @@
 .footer a {
     color: #fff;
 }
-
+@media screen and (max-width:768px) {
+    .footer {
+        font-size: 1.6em!important;
+    }
+}
 .footer {
     font-size: .8em;
     padding: 3em 0;
