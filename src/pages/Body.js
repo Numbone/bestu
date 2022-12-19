@@ -18,6 +18,7 @@ const Body = () => {
   useEffect(() => {
     getAllProducts()
   }, [])
+ 
   return (
     <div>
       <BlockTop />

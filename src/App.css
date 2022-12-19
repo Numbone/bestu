@@ -1,4 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;);
 @font-face {
     font-family: 'Betmo';
     src: url('../src/fonts/webfontkit-20221024-161950/otf-webfont.woff2') format('woff2'),
