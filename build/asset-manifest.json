@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Numbone/bestu/static/css/main.aa6d1eb4.css",
-    "main.js": "/Numbone/bestu/static/js/main.dca889d6.js",
+    "main.js": "/Numbone/bestu/static/js/main.a2b60daf.js",
     "static/media/chemodan.png": "/Numbone/bestu/static/media/chemodan.61062e203540ce87c727.png",
     "static/media/chemodan1.png": "/Numbone/bestu/static/media/chemodan1.ec214138ff7dbc1f4c55.png",
     "static/media/b3.png": "/Numbone/bestu/static/media/b3.ce787b8472ee94bed1fb.png",
@@ -62,10 +62,10 @@
     "static/media/icon-cart.svg": "/Numbone/bestu/static/media/icon-cart.6dfcc156f882b52de6fbf25a9c897e77.svg",
     "static/media/icon-user.svg": "/Numbone/bestu/static/media/icon-user.edb26af9f2f9e21041ab4e50d3f61621.svg",
     "main.aa6d1eb4.css.map": "/Numbone/bestu/static/css/main.aa6d1eb4.css.map",
-    "main.dca889d6.js.map": "/Numbone/bestu/static/js/main.dca889d6.js.map"
+    "main.a2b60daf.js.map": "/Numbone/bestu/static/js/main.a2b60daf.js.map"
   },
   "entrypoints": [
     "static/css/main.aa6d1eb4.css",
-    "static/js/main.dca889d6.js"
+    "static/js/main.a2b60daf.js"
   ]
 }

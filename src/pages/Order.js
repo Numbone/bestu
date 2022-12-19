@@ -28,8 +28,13 @@ const Order = () => {
   //api for transaction/create
   
   const sendTransaction = async () => {
-    const data = await transactionCreate2(delivery, email, father_name, first_name, phone_number, products, promo_code, second_name, total_cost)
-    console.log(data);
+    try {
+      const data = await transactionCreate2(delivery, email, father_name, first_name, phone_number, products, promo_code, second_name, basket.Price)
+      console.log(data);
+    } catch (error) {
+      console.log(error,"///////////error//////////////");
+    }
+   
   }
 
   ///every rerender

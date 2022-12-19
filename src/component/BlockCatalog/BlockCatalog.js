@@ -1,5 +1,4 @@
 import React from 'react'
-import Item from '../../store/Image'
 import "../BlockCatalog/BlockCatalog.css"
 import ps from "../../img/1.jpg"
 import ps2 from "../../img/2.jpg"

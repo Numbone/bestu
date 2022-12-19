@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import '../allProductCatalog/AllProductcatalog.css'
 
 import Item from '../Item/Item'
-import { productAll, productAvailable } from '../../api/product'
+import {  productAvailable } from '../../api/product'
+import { NavLink } from 'react-router-dom'
 
 
 const AvailableProduct = () => {
@@ -31,10 +32,10 @@ const AvailableProduct = () => {
                     </div>
                     <div className='block-catalog__items'>
                         <div className='row gy-4 gx-2 g-md-4'>
-                            {product.length==undefined
+                            {product.length===undefined
                             ?<div></div>
                             :product.map((item,index)=>
-                                    <Item props={item} key={index} />  )
+                                    <Item props={item} key={index+1} />  )
                             }
                         </div>
                     </div>
@@ -44,16 +45,16 @@ const AvailableProduct = () => {
                 <nav>
                     <ul className='pagination'>
                         <li className='page-item'>
-                            <a className='page-link'>{prev}</a>
+                            <NavLink to='/avaliable' className='page-link'>{prev}</NavLink>
                         </li>
                         <li className='page-item'>
-                            <a className='page-link'>1</a>
+                            <NavLink to='/avaliable' className='page-link'>1</NavLink>
                         </li>
                         <li className='page-item'>
-                            <a className='page-link'>2</a>
+                            <NavLink to='/avaliable' className='page-link'>2</NavLink>
                         </li>
                         <li className='page-item'>
-                            <a className='page-link'>{next}</a>
+                            <NavLink to='/avaliable' className='page-link'>{next}</NavLink>
                         </li>
                     </ul>
                 </nav>

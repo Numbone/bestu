@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <>
             {
-                navi.pathname != "/login" && navi.pathname != "/reset" ?
+                navi.pathname !== "/login" && navi.pathname !== "/reset" ?
                     <div>
 
                         <footer className='footer'>
@@ -18,11 +18,11 @@ const Footer = () => {
                                                 <a className='img me-4'
                                                     href='https://www.ozon.ru/seller/le-mousse-337461/products/?miniapp=seller_337461'
                                                     target='_blank'
-                                                    rel='nofollow'>
-                                                    <img src='https://thebestforyourself.ru/img/ozon.png' style={{ width: '40px' }}>
+                                                    rel="noreferrer">
+                                                    <img src='https://thebestforyourself.ru/img/ozon.png' alt='props' style={{ width: '40px' }}>
                                                     </img>
                                                 </a>
-                                                <a target='_blank' rel='nofollow'
+                                                <a target='_blank' rel="noreferrer"
                                                     href='https://www.ozon.ru/seller/le-mousse-337461/products/?miniapp=seller_337461'>
                                                     Мы на Ozon
                                                 </a>
@@ -32,11 +32,11 @@ const Footer = () => {
                                                 <a className='img me-4'
                                                     href='https://www.wildberries.ru/brands/le-mousse'
                                                     target='_blank'
-                                                    rel='nofollow'>
-                                                    <img src='https://thebestforyourself.ru/img/wildberries.png' style={{ width: '40px' }}>
+                                                    rel="noreferrer">
+                                                    <img alt='props' src='https://thebestforyourself.ru/img/wildberries.png' style={{ width: '40px' }}>
                                                     </img>
                                                 </a>
-                                                <a target='_blank' rel='nofollow'
+                                                <a target='_blank' rel="noreferrer"
                                                     href='https://www.wildberries.ru/brands/le-mousse'>
                                                     Мы на Wildberries
                                                 </a>

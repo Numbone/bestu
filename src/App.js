@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Context } from '.';
 import './App.css';
 import Footer from './component/Footer/Footer';
@@ -26,7 +26,7 @@ import Stores from './pages/Stores';
 import Vouchers from './pages/Vouchers';
 
 function App() {
-  const navi = useLocation()
+
   const {user, basket} = useContext(Context);
 
   //Loading Basket
@@ -51,7 +51,7 @@ function App() {
       <Header />
 
       <Routes>
-        <Route key={1} path='/' element={<HomeContent />}></Route>
+        <Route key={1} exact path='/' element={<HomeContent />}></Route>
         <Route key={2} path='/all_products' element={<AllProducts />}></Route>
         <Route key={3} path='/dealers_form' element={<Dealers />}></Route>
         <Route key={4} path='/ambassadors' element={<Ambassadors />}></Route>

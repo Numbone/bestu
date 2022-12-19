@@ -17,13 +17,13 @@ const Header = () => {
   return (
     <div>
       {
-        navigation.pathname != "/login" && navigation.pathname != "/reset" ?
+        navigation.pathname !== "/login" && navigation.pathname !== "/reset" ?
           <header className="header d-flex align-items-center" >
             <div className="container container-xxl">
               <div className=' d-flex justify-content-between align-items-center'>
                 <div className='header-mobile header__column header__column--first'>
                   <button style={{ backgroundColor: 'transparent' }} onClick={() => setModal(true)}>
-                    <img src={search} >
+                    <img alt='props' src={search} >
                     </img>
                   </button>
                 </div>
@@ -34,7 +34,7 @@ const Header = () => {
                 </div>
                 <div className='header-mobile  header__column header__column--center text-center'>
                   <NavLink to='/' className='header__logo img' >
-                    <img src={logo}></img>
+                    <img alt='props' src={logo}></img>
                   </NavLink>
                   <div className='header__subtitle' data-da="header__column--center,last,768" data-da-index="0">
                     Косметика  из натуральных масел
@@ -42,20 +42,20 @@ const Header = () => {
                 </div>
                 <div className='header_computer header__column header__column--center text-center'>
                   <NavLink to='/' className='header__logo img' >
-                    <img src={logo}></img>
+                    <img  alt='props' src={logo}></img>
                   </NavLink>
                 </div>
                 <div className='header-mobile header__column'>
                   <div className='header__buttons d-flex justify-content-end'>
                   <div className='cabinet-button'>
                       <NavLink to='/login'>
-                        <img src={cabinet}>
+                        <img alt='props' src={cabinet}>
                         </img>
                       </NavLink>
                     </div>
                     <div className='cart-button'>
                       <NavLink to='/order' style={{ display: 'flex', alignItems: "flex-end" }}>
-                        <img src={cart}>
+                        <img  alt='props'src={cart}>
                         </img>
                         {basket.Basket.length > 0
                           ? <div className='box-order'>
@@ -72,19 +72,19 @@ const Header = () => {
                   <div className='header__buttons d-flex justify-content-end'>
                     <div className='search-button' data-da="header__column--first,first,768" data-da-index="1">
                       <button style={{ backgroundColor: 'transparent' }} onClick={() => setModal(true)}>
-                        <img src={search} >
+                        <img alt='props' src={search} >
                         </img>
                       </button>
                     </div>
                     <div className='cabinet-button'>
                       <NavLink to='/login'>
-                        <img src={cabinet}>
+                        <img alt='props' src={cabinet}>
                         </img>
                       </NavLink>
                     </div>
                     <div className='cart-button'>
                       <NavLink to='/order' style={{ display: 'flex', alignItems: "flex-end" }}>
-                        <img src={cart}>
+                        <img  alt='props' src={cart}>
                         </img>
                         {basket.Basket.length > 0
                           ? <div className='box-order'>
@@ -107,7 +107,7 @@ const Header = () => {
                       <input type='text' placeholder="Введите слово для поиска">
                       </input>
                       <button className='btn-search'>
-                        <img src={search}></img>
+                        <img alt='props' src={search}></img>
                       </button>
                     </div>
                   </form>
