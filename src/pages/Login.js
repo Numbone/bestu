@@ -9,12 +9,12 @@ const Login = () => {
   const handleOpen = () => {
     setOpen(!open);
   };
-  const [username,setUser]=useState()
-  const [password,setPassword]=useState()
-  const [data,setData]=useState({})
-  const {user}=useContext(Context)
-  const getToken=async()=>{
-    const data=await authSignin(username,password)
+  const [username, setUser] = useState()
+  const [password, setPassword] = useState()
+  const [data, setData] = useState({})
+  const { user } = useContext(Context)
+  const getToken = async () => {
+    const data = await authSignin(username, password)
     setData(data)
   }
   // useEffect(()=>{
@@ -86,25 +86,27 @@ const Login = () => {
                       </p>
                       <form>
                         <div className='form-group row'>
-                          <label for='email' className='col-md-4 col-form-label text-md-right'>
+                          <label htmlFor="email" classname="col-md-4 col-form-label text-md-right">
                             Email
                           </label>
+
                           <div className='col-md-6'>
                             <input className='form-control '
                               id='email'
                               type='email'
-                              onChange={(e)=>setUser(e.target.value)}></input>
+                              onChange={(e) => setUser(e.target.value)}></input>
                           </div>
                         </div>
                         <div className='form-group row'>
-                          <label for='password' className='col-md-4 col-form-label text-md-right'>
+                          <label htmlFor="password" classname="col-md-4 col-form-label text-md-right">
                             Пароль
                           </label>
+
                           <div className='col-md-6'>
                             <input className='form-control '
                               id='password'
                               type='password'
-                              onChange={(e)=>setPassword(e.target.value)}></input>
+                              onChange={(e) => setPassword(e.target.value)}></input>
                           </div>
                         </div>
                         <div className='form-group row mb-0'>

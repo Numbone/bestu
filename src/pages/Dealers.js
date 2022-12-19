@@ -2,7 +2,7 @@ import React from 'react'
 import '../pages/css/Dealers.css'
 const Dealers = () => {
     return (
-        <div className='flex-1' style={{minHeight:'100%'}}>
+        <div className='flex-1' style={{ minHeight: '100%' }}>
             <div className='block-page-order'>
                 <div className='text-center'>
                     <h1>
@@ -16,44 +16,45 @@ const Dealers = () => {
                                 <h3>
                                     Заполните анкету и наш менеджер ответит на все Ваши вопросы
                                 </h3>
-                                <div className='box-form customer'>
-                                    <div className='form-field'>
-                                        <label for="name" >
+                                <div classname="box-form customer">
+                                    <div classname="form-field">
+                                        <label htmlFor="name">
                                             Ваше имя
                                         </label>
-                                        <input type="text" name="name" id="name" ></input>
+                                        <input type="text" name="name" id="name" />
                                     </div>
-                                    <div className='form-field'>
-                                        <label for="name" >
+                                    <div classname="form-field">
+                                        <label htmlFor="name">
                                             Ваше имя
                                         </label>
-                                        <input type="text" name="name" id="name" ></input>
+                                        <input type="text" name="name" id="name" />
                                     </div>
-                                    <div className='form-field'>
-                                        <label for="name" >
+                                    <div classname="form-field">
+                                        <label htmlFor="name">
                                             Ваш телефон
                                         </label>
-                                        <input type="text" name="name" id="name" ></input>
+                                        <input type="text" name="name" id="name" />
                                     </div>
-                                    <div className='form-field'>
-                                        <label for="name" >
+                                    <div classname="form-field">
+                                        <label htmlFor="name">
                                             Ваш email
                                         </label>
-                                        <input type="text" name="name" id="name" ></input>
+                                        <input type="text" name="name" id="name" />
                                     </div>
-                                    <div className='form-field'>
-                                        <label for="name" >
+                                    <div classname="form-field">
+                                        <label htmlFor="name">
                                             Планируемая страна сотрудничества
                                         </label>
-                                        <input type="text" name="name" id="name" ></input>
+                                        <input type="text" name="name" id="name" />
                                     </div>
-                                    <div className='form-field'>
-                                        <label for="name" >
+                                    <div classname="form-field">
+                                        <label htmlFor="name">
                                             Планируемый город сотрудничества
                                         </label>
-                                        <input type="text" name="name" id="name" ></input>
+                                        <input type="text" name="name" id="name" />
                                     </div>
                                 </div>
+
                                 <hr></hr>
                                 <div className='box-form'>
                                     <div className='text-center mt-2 d-flex justify-content-start'>

@@ -11,7 +11,7 @@ import BasketStore from './store/Basket';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 export const Context = createContext(null)
 root.render(
-    <BrowserRouter>
+    
         <Context.Provider value={{
             user: new UserStore(),
             basket: new BasketStore()
@@ -19,7 +19,7 @@ root.render(
         >
             <App />
         </Context.Provider>
-    </BrowserRouter>
+    
 
 );
 

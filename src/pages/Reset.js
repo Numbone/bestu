@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom'
 import { authChange } from '../api/auth'
 
 const Reset = () => {
-    const [password,setPassword]=useState()
-    const getPassword=async()=>{
-        const data =await authChange(password)
+    const [password, setPassword] = useState()
+    const getPassword = async () => {
+        const data = await authChange(password)
         return data
     }
     return (
@@ -54,14 +54,15 @@ const Reset = () => {
 
                                             <form>
                                                 <div className='form-group row'>
-                                                    <label for='email' className='col-md-4 col-form-label text-md-right'>
+                                                    <label htmlFor="email" classname="col-md-4 col-form-label text-md-right">
                                                         Email
                                                     </label>
+
                                                     <div className='col-md-6'>
                                                         <input className='form-control '
                                                             id='email'
                                                             type='email'
-                                                            onChange={(e)=>setPassword(e.target.value)}></input>
+                                                            onChange={(e) => setPassword(e.target.value)}></input>
                                                     </div>
                                                 </div>
 

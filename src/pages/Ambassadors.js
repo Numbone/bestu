@@ -16,55 +16,55 @@ const Ambassadors = () => {
                 <h3>
                   Заполните анкету и наш менеджер ответит на все Ваши вопросы
                 </h3>
-                <div className='box-form customer'>
-                  <div className='form-field'>
-                    <label for="name" >
+                <div classname="box-form customer">
+                  <div classname="form-field">
+                    <label htmlFor="name">
                       Кем вы являетесь?
                     </label>
-                    <input type="text" name="name" id="name" ></input>
+                    <input type="text" name="name" id="name" />
                   </div>
-                  <div className='form-field'>
-                    <label for="name" >
+                  <div classname="form-field">
+                    <label htmlFor="name">
                       Блог предлагаемого амбассадора
                     </label>
-                    <input type="text" name="name" id="name" ></input>
+                    <input type="text" name="name" id="name" />
                   </div>
-                  <div className='form-field'>
-                    <label for="name" >
+                  <div classname="form-field">
+                    <label htmlFor="name">
                       Актуальные охваты в сторис (приложить фото)
                     </label>
-                    <div className='field__wrapper'>
-                      <input type='file' className='field field__file'>
-                      </input>
-                      <label className='field__file-wrapper'>
-                        <div className='field__file-fake'>
+                    <div classname="field__wrapper">
+                      <input type="file" classname="field field__file" />
+                      <label classname="field__file-wrapper">
+                        <div classname="field__file-fake">
                           Файл не выбран
                         </div>
-                        <div className='field__file-button'>
+                        <div classname="field__file-button">
                           Выбрать
                         </div>
                       </label>
                     </div>
                   </div>
-                  <div className='form-field'>
-                    <label for="name" >
+                  <div classname="form-field">
+                    <label htmlFor="name">
                       Ваше имя
                     </label>
-                    <input type="text" name="name" id="name" ></input>
+                    <input type="text" name="name" id="name" />
                   </div>
-                  <div className='form-field'>
-                    <label for="name" >
+                  <div classname="form-field">
+                    <label htmlFor="name">
                       Ваш телефон
                     </label>
-                    <input type="text" name="name" id="name" ></input>
+                    <input type="text" name="name" id="name" />
                   </div>
-                  <div className='form-field'>
-                    <label for="name" >
+                  <div classname="form-field">
+                    <label htmlFor="name">
                       Ваш email
                     </label>
-                    <input type="text" name="name" id="name" ></input>
+                    <input type="text" name="name" id="name" />
                   </div>
                 </div>
+
                 <hr></hr>
                 <div className='box-form'>
                   <div className='text-center mt-2 d-flex justify-content-start'>
@@ -76,12 +76,13 @@ const Ambassadors = () => {
                         value='1'
                         form='order' />
 
-                      <label for='politika'>
+                      <label htmlFor="politika">
                         Я соглашаюсь с условиями
                         политики обработки
-                        <br></br>
+                        <br /><br />
                         персональных данных
                       </label>
+
                     </div>
                   </div>
                 </div>

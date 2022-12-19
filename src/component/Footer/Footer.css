@@ -2,10 +2,10 @@
 .footer a {
     color: #fff;
 }
-@media screen and (max-width:768px) {
-    .footer {
-        font-size: 1.1em!important;
-    }
+@media only screen and (max-width: 480px){
+.footer {
+    font-size: 1.1em;
+}
 }
 .footer {
     font-size: .8em;

@@ -15,7 +15,7 @@ const Vouchers = () => {
                                         boxShadow: '0 0 30px rgba(0,0,0,.15)',
                                         display: 'block'
                                     }}>
-                                    <img style={{ maxWidth: '100%' }} src={ph}></img>
+                                    <img alt='props' style={{ maxWidth: '100%' }} src={ph}></img>
                                 </div>
                                 <button
                                     className='btn btn-light voucher'
@@ -31,7 +31,7 @@ const Vouchers = () => {
                                         boxShadow: '0 0 30px rgba(0,0,0,.15)',
                                         display: 'block'
                                     }}>
-                                    <img style={{ maxWidth: '100%' }} src={ph1}></img>
+                                    <img alt='props' style={{ maxWidth: '100%' }} src={ph1}></img>
                                 </div>
                                 <button
                                     className='btn btn-light voucher'
@@ -47,7 +47,7 @@ const Vouchers = () => {
                                         boxShadow: '0 0 30px rgba(0,0,0,.15)',
                                         display: 'block'
                                     }}>
-                                    <img style={{ maxWidth: '100%' }} src={ph2}></img>
+                                    <img alt='props' style={{ maxWidth: '100%' }} src={ph2}></img>
                                 </div>
                                 <button
                                     className='btn btn-light voucher'

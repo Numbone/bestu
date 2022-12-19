@@ -24,58 +24,59 @@ import Search from './pages/Search';
 import Spa from './pages/Spa';
 import Stores from './pages/Stores';
 import Vouchers from './pages/Vouchers';
-
+import { BrowserRouter } from 'react-router-dom';
 function App() {
 
-  const {user, basket} = useContext(Context);
+  const { user, basket } = useContext(Context);
 
   //Loading Basket
   useEffect(() => {
-    if(user.isAuth === false) {
-        basket.setDeleteAllDeviceFromBasket();
-        const savedBasket = JSON.parse(localStorage.getItem("basket"));
-        for (let key in savedBasket) {
-            basket.setBasket(savedBasket[key]);
-        }
-    } else if(user.isAuth === true){
-        // basket.setDeleteAllDeviceFromBasket();
-        // getDeviceFromBasket().then(data => {
-        //     for (let key in data) {
-        //         basket.setBasket(data[key], true);
-        //     }
-        // })
+    if (user.isAuth === false) {
+      basket.setDeleteAllDeviceFromBasket();
+      const savedBasket = JSON.parse(localStorage.getItem("basket"));
+      for (let key in savedBasket) {
+        basket.setBasket(savedBasket[key]);
+      }
+    } else if (user.isAuth === true) {
+      // basket.setDeleteAllDeviceFromBasket();
+      // getDeviceFromBasket().then(data => {
+      //     for (let key in data) {
+      //         basket.setBasket(data[key], true);
+      //     }
+      // })
     }
- }, [basket, user.isAuth]);
+  }, [basket, user.isAuth]);
   return (
     <div className="App">
-      <Header />
+      <BrowserRouter>
+        <Header />
 
-      <Routes>
-        <Route key={1} exact path='/' element={<HomeContent />}></Route>
-        <Route key={2} path='/all_products' element={<AllProducts />}></Route>
-        <Route key={3} path='/dealers_form' element={<Dealers />}></Route>
-        <Route key={4} path='/ambassadors' element={<Ambassadors />}></Route>
-        <Route key={5} path='/partners' element={<Partners />}></Route>
-        <Route key={6} path='/certificates' element={<Certificates />}></Route>
-        <Route key={7} path='/dealers' element={<DelaersInfo />}></Route>
-        <Route key={8} path='/stores' element={<Stores />}></Route>
-        <Route key={9} path='/swiper' element={<SwiperCard />}></Route>
-        <Route key={10} path='/body' element={< Body />}></Route>
-        <Route key={11} path='/beauty' element={< Beauty />}></Route>
-        <Route key={12} path='/spa' element={< Spa />}></Route>
-        <Route key={13} path='/vouchers' element={< Vouchers />}></Route>
-        <Route key={14} path='/packaging' element={< Packaging />}></Route>
-        <Route key={14} path='/login' element={< Login />}></Route>
-        <Route key={15} path='/reset' element={< Reset />}></Route>
-        <Route key={16} path='/order' element={< Order />}></Route>
-        <Route key={17} path='/productitem/:id' element={< ProductItem />}></Route>
-        <Route key={18} path='/available' element={<AvailablePages />}></Route>
-        <Route key={19} path='/search' element={<Search />}></Route>
-      </Routes>
+        <Routes>
+          <Route key={1} exact path='/' element={<HomeContent />}></Route>
+          <Route key={2} path='/all_products' element={<AllProducts />}></Route>
+          <Route key={3} path='/dealers_form' element={<Dealers />}></Route>
+          <Route key={4} path='/ambassadors' element={<Ambassadors />}></Route>
+          <Route key={5} path='/partners' element={<Partners />}></Route>
+          <Route key={6} path='/certificates' element={<Certificates />}></Route>
+          <Route key={7} path='/dealers' element={<DelaersInfo />}></Route>
+          <Route key={8} path='/stores' element={<Stores />}></Route>
+          <Route key={9} path='/swiper' element={<SwiperCard />}></Route>
+          <Route key={10} path='/body' element={< Body />}></Route>
+          <Route key={11} path='/beauty' element={< Beauty />}></Route>
+          <Route key={12} path='/spa' element={< Spa />}></Route>
+          <Route key={13} path='/vouchers' element={< Vouchers />}></Route>
+          <Route key={14} path='/packaging' element={< Packaging />}></Route>
+          <Route key={14} path='/login' element={< Login />}></Route>
+          <Route key={15} path='/reset' element={< Reset />}></Route>
+          <Route key={16} path='/order' element={< Order />}></Route>
+          <Route key={17} path='/productitem/:id' element={< ProductItem />}></Route>
+          <Route key={18} path='/available' element={<AvailablePages />}></Route>
+          <Route key={19} path='/search' element={<Search />}></Route>
+        </Routes>
 
-      <Footer />
+        <Footer />
 
-
+      </BrowserRouter>
     </div>
   );
 }
