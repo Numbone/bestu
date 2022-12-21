@@ -24,9 +24,7 @@ import ph20 from '../img/img-20.jpg'
 import ph21 from '../img/img-21.jpg'
 import ph22 from '../img/img-22.jpg'
 import ph23 from '../img/img-23.jpg'
-import ph25 from '../img/img-25.jpg'
-import ph26 from '../img/img-26.jpg'
-import ph27 from '../img/img-27.jpg'
+
 const Certificates = () => {
     return (
         <div className='flex-1' style={{ minHeight: '100vh' }}>
@@ -50,7 +48,7 @@ const Certificates = () => {
                         <div className='row g-3'>
                             <div className='col-12 col-md-4'>
                                 <div className='img mb-3'>
-                                    <img src={ph1}>
+                                    <img alt='props' src={ph1}>
                                     </img>
                                 </div>
                                 <p>

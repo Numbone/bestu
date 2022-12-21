@@ -26,41 +26,60 @@ const Order = () => {
   const [count, setCount] = useState(0)
   const [data, setData] = useState()
   //api for transaction/create
-  
+
   const sendTransaction = async () => {
     try {
-      const data = await transactionCreate2(delivery, email, father_name, first_name, phone_number, products, promo_code, second_name, basket.Price)
+      const object = {
+        basket: (JSON.parse(localStorage.getItem("basket")))
+      }
+      var copy = JSON.parse(JSON.stringify(object))
+      copy.basket.map(item => (delete item.Action,
+        delete item.Category,
+        delete item.Compound,
+        delete item.Contraindications,
+        delete item.Count,
+        delete item.Description,
+        delete item.Files,
+        delete item.ID,
+        delete item.Images,
+        delete item.ModeOfApp,
+        delete item.Name,
+        delete item.Price,
+        delete item.Reviews,
+        delete item.Stars,
+        delete item.Weight))
+      console.log(copy.basket, "copy");
+ 
+      const data = await transactionCreate2(delivery, email, father_name, first_name, phone_number, copy.basket, promo_code, second_name, basket.Price)
       console.log(data);
     } catch (error) {
-      console.log(error,"///////////error//////////////");
+      console.log(error, "///////////error//////////////");
     }
-   
+
   }
 
   ///every rerender
 
-  (JSON.parse(localStorage.getItem("basket")).map(item => console.log(item.count)))
+  // (JSON.parse(localStorage.getItem("basket")).map(item => console.log(item.count)))
 
-  const object = {
-    basket: (JSON.parse(localStorage.getItem("basket")))
-  }
-  var copy = JSON.parse(JSON.stringify(object))
-  copy.basket.map(item => (delete item.Action,
-    delete item.Category,
-    delete item.Compound,
-    delete item.Contraindications,
-    delete item.Count,
-    delete item.Description,
-    delete item.Files,
-    delete item.ID,
-    delete item.Images,
-    delete item.ModeOfApp,
-    delete item.Name,
-    delete item.Price,
-    delete item.Reviews,
-    delete item.Stars,
-    delete item.Weight))
-  console.log(copy.basket, "copy");
+
+  // var copy = JSON.parse(JSON.stringify(object))
+  // copy.basket.map(item => (delete item.Action,
+  //   delete item.Category,
+  //   delete item.Compound,
+  //   delete item.Contraindications,
+  //   delete item.Count,
+  //   delete item.Description,
+  //   delete item.Files,
+  //   delete item.ID,
+  //   delete item.Images,
+  //   delete item.ModeOfApp,
+  //   delete item.Name,
+  //   delete item.Price,
+  //   delete item.Reviews,
+  //   delete item.Stars,
+  //   delete item.Weight))
+  // console.log(copy.basket, "copy");
   const reRender = () => {
     setRerender(!rerender);
   }
@@ -73,16 +92,16 @@ const Order = () => {
     setDelivery('Почта России')
   };
   console.log(open);
+  console.log(basket.Basket, "in BAsket")
 
   useEffect(() => {
-    reRender()
-    
-    setProducts(copy.basket)
-    
+
+
   }, [])
 
-  console.log(total_cost,"total cost");
-  console.log(products,"products");
+  console.log(total_cost, "total cost");
+  console.log(products, "products");
+
   return (
     <div className='flex-1' style={{ minHeight: '100vh' }}>
       {

@@ -3,16 +3,28 @@ import { NavLink } from 'react-router-dom'
 import { authChange } from '../api/auth'
 
 const Reset = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(!open);
+    };
     const [password, setPassword] = useState()
-    const getPassword = async () => {
-        const data = await authChange(password)
-        return data
+    const getPassword = async (e) => {
+        e.preventDefault()
+        try {
+            const data = await authChange(password)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+
     }
     return (
         <>
             <nav className='main-header navbar navbar-expand-md navbar-light navbar-white' style={{ minHeight: '100%' }}>
                 <div className='container-fluid'>
-                    <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
+                    <button
+                        onClick={handleOpen}
+                        className="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div className='navbar-collapse order-3 collapse'>
@@ -25,6 +37,20 @@ const Reset = () => {
                         </ul>
                     </div>
                 </div>
+                {
+                    open
+                        ? <div>
+                            <ul className='navbar-nav'>
+                                <li className='nav-item'>
+                                    <NavLink to='/' className='nav-link'>
+                                        Магазин
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </div>
+                        : null
+                }
+
             </nav>
 
 
@@ -54,7 +80,7 @@ const Reset = () => {
 
                                             <form>
                                                 <div className='form-group row'>
-                                                    <label htmlFor="email" classname="col-md-4 col-form-label text-md-right">
+                                                    <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
                                                         Email
                                                     </label>
 
@@ -68,7 +94,7 @@ const Reset = () => {
 
                                                 <div className='form-group row mb-0'>
                                                     <div className='col-md-8 offset-md-4'>
-                                                        <button type='submit' className='btn2 btn-primary'>
+                                                        <button onClick={getPassword} className='btn2 btn-primary'>
                                                             Продолжить
                                                         </button>
 

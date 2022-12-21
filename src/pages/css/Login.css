@@ -73,16 +73,38 @@ html {
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-.col-form-label {
-    padding-top: calc(0.375rem + 1px);
-    padding-bottom: calc(0.375rem + 1px);
-    margin-bottom: 0;
-    font-size: inherit;
-    line-height: 1.5;
-}
+ 
 
 @media (min-width: 768px) {
     .text-md-right {
         text-align: right !important;
     }
+}
+
+.bd-example {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: solid #dee2e6;
+    border-width: 1px 0 0;
+    background-color: #fff;
+}
+
+@media (min-width: 768px){
+    .col-md-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+}
+
+.table thead tr th{
+    background-color: #fff;
+    font-weight: 600;
+}
+.table tbody tr:nth-child(2n+1){
+    background-color:#dee2e6;
+}
+.table tbody tr:nth-child(2n){
+    background-color: #fff;
 }

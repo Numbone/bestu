@@ -7,7 +7,7 @@ const Search = () => {
                 <form action="https://thebestforyourself.ru/search" method="GET" id="search-form">
                     <div className="form-field position-relative">
                         <input type="text" name="keyword" placehoder="Введите слово для поиска" defaultValue="скраб" required />
-                        <button className=" btn-search"><img src="https://thebestforyourself.ru/img/icons/icon-search.svg" alt /></button>
+                        <button className=" btn-search"><img src="https://thebestforyourself.ru/img/icons/icon-search.svg" alt='props' /></button>
                     </div>
                 </form>
             </div>

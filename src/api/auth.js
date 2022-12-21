@@ -8,7 +8,7 @@ export const authLink=async(email)=>{
     const data =await instance.post("/auth/link",{email})
     return data
 }
-export const authChange=async(password)=>{
-    const data =await instance.post("/auth/change",{password})
+export const authChange=async(email)=>{
+    const data =await instance.post("/auth/change",{email})
     return data
 }
