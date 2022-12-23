@@ -67,3 +67,6 @@
     visibility: hidden;
     position: absolute;
 }
+.form-field {
+    margin-bottom: 20px;
+}

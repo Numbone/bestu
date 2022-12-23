@@ -6,6 +6,7 @@
     min-height: 0;
     position: relative;
     padding: 0;
+    height: 600.297px;
 }
 
 .block-top>* {
@@ -53,18 +54,18 @@
     .block-top:not(.category) .block-top__badge-box {
         margin-top: 10vh;
         font-size: 1.6em;
-        color:#fff;
-        display:none;
+        color: #fff;
+        display: none;
     }
 }
 
-/* @media (min-width: 576px) {
+@media (min-width: 576px) {
 
     .container,
     .container-sm {
         max-width: 540px;
     }
-} */
+}
 
 @media only screen and (max-width: 768px) {
     .block-top:not(.category)>* {
@@ -74,4 +75,19 @@
         left: auto;
         right: auto;
     }
+}
+
+@media only screen and (max-width: 768px) {
+    .block-top:not(.category):before {
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: linear-gradient(-43deg, rgba(22, 31, 38, 0), #161f26);
+    }
+}
+@media only screen and (max-width: 768px) {
+.block-top {
+    background-image: url(../../img/block-top-768.jpg)!important;
+   
+}
 }

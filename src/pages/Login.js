@@ -6,6 +6,7 @@ import './css/Login.css'
 import { observer } from 'mobx-react-lite';
 import { getUser } from '../api/user';
 import Moment from 'react-moment';
+import ModalForOrder from '../component/ModalForOrder/ModalForOrder';
 const Login = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -15,6 +16,7 @@ const Login = () => {
   const [password, setPassword] = useState()
   const [data, setData] = useState({})
   const [userData, setUserData] = useState()
+  const [modalShow, setModalShow] = useState(false);
   const { user } = useContext(Context)
   const getToken = async () => {
     const { data } = await authSignin(username, password)
@@ -183,21 +185,18 @@ const Login = () => {
                       </thead>
                       <tbody>
                         {
-                          userData?.Transactions.map(item =>
-                            <>
+                          userData?.Transactions.map((item,index) =>
+                            <>  
                               <tr>
                                 <th scope="row">{item.id}</th>
                                 <td>{item.total_cost}</td>
                                 <td><Moment format="DD/MM/YYYY HH:mm:ss">{item.date}</Moment></td>
-                                <td>Открыть статус заказа</td>
+                                <td onClick={() => setModalShow(true)}>Открыть статус заказа</td>
                               </tr>
-                              <tr>
-                                <th scope="row">{item.id}</th>
-                                <td>{item.total_cost}</td>
-                                <td><Moment format="DD/MM/YYYY HH:mm:ss">{item.date}</Moment></td>
-                                <td>Открыть статус заказа</td>
-                              </tr>
-                            </>)
+                              <ModalForOrder show={modalShow} onHide={() => setModalShow(false)} data={item.products} totalCosts={item.total_cost} status ={item.status[0].status_text}/>
+                            </>
+                            
+                            )
                         }
 
 
@@ -207,6 +206,7 @@ const Login = () => {
                 </div>
               </div>
             </div>
+            
           </>
       }
 
