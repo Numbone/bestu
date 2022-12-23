@@ -50,7 +50,7 @@ const BlockCatalog = () => {
                                 }}>
                                 <NavLink to='/spa' className='img d-flex justify-content-center align-items-center flex-column'>
                                     <span className='block-catalog__item-title ' 
-                                    style={{position:'relative',bottom:'60px'}}>
+                                    style={{position:'relative'}}>
                                         SPA
                                     </span>
                                     <span className='block-catalog__item-subtitle'

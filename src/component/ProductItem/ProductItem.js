@@ -1,7 +1,10 @@
-import React from 'react'
+import { observer } from 'mobx-react-lite';
+import React, { useContext, useEffect, useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom';
+import { Context } from '../..';
+import { productId } from '../../api/product';
 import { productImages1 } from '../../img';
-
-import Item from '../Item/Item';
+import ph1 from '../../img/assets.jpg'
 import ProductImages from '../SwiperCard/ProductImages';
 import './ProductItem.css'
 const ProductItem = () => {
@@ -17,11 +20,28 @@ const ProductItem = () => {
   const handleOpen2 = () => {
     setOpen2(!open2);
   };
+  const {id}=useParams()
+  console.log(id);
+  const [data,setData]=useState({})
+  const getItem=async()=>{
+      const {data} = await productId(id)
+      setData(data)
+      return data
+  }
+  console.log(data);
+  const {basket}=useContext(Context)
+  const clickOrder = () => {
+    basket.setBasket(id)
+
+}
+  useEffect(()=>{
+    getItem()
+  },[])
   return (
     <div className="flex-1" style={{ minHeight: '100vh' }}>
       <div className="product-top item-square"
-        data-style-background-image="url('https://thebestforyourself.ru/storage/media/products_pages/scrub-ld/page/1270x900/1500x1064_img-01.jpg')"
-        style={{ backgroundImage: 'url("https://thebestforyourself.ru/storage/media/products_pages/scrub-ld/page/1270x900/1500x1064_img-01.jpg")' }}>
+        data-style-background-image={({ph1})}
+        style={{  backgroundImage:`url(${ph1})` }}>
         <div className="d-flex justify-content-center">
           <div className="container flex-1 d-flex flex-column justify-content-between">
             <div className="product-top__title -fill -light"><p>Скраб для тела<br />с ароматом <br />летнего дождя</p></div>
@@ -61,7 +81,7 @@ const ProductItem = () => {
           <div className="product-buttons__btns">
             <div className="row g-2">
               <div className="col-6">
-                <a href="#" className="custom-btn custom-btn-dark" onclick="addToCart(2); return false;">В корзину</a>
+                <a  className="custom-btn custom-btn-dark" onClick={clickOrder}>В корзину</a>
               </div>
               <div className="col-6">
                 <a href="javascript:;" data-src="https://thebestforyourself.ru/product/scrub-ld/reviews" className="custom-btn" data-type="iframe" data-fancybox data-was-processed="true" style={{ backgroundImage: 'url("https://thebestforyourself.ru/product/scrub-ld/reviews")' }}>Читать все отзывы</a>
@@ -210,251 +230,7 @@ const ProductItem = () => {
       <div className="block-similar">
         <div className="container">
           <div className="block__title">Похожие продукты</div>
-          <div className='row'>
-            <div className='col-md-4' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
-              <ProductImages images={productImages1} />
-              <div className='block-product__info flex-1 d-flex flex-column justify-content-between'
-                style={{
-                  padding: '1em 1.1em 0',
-                  flex: '1',
-                  display: 'flex',
-                  flex: 'column',
-                  justifyContent: 'space-between'
-                }}>
-                <div>
-                  <div className='block-product__name'
-                    style={{
-                      fontSize: '1.2em',
-                      lineHeight: '1'
-                    }}>
-                    Скраб для тела
-                  </div>
-                  <div className='block-product__volume'
-                    style={{ fontSize: '.7em' }}>
-                    250мл (280г)
-                  </div>
-                </div>
-                <div>
-                  <div className='block-product__price-block d-flex align-items-center'
-                    style={{
-                      marginTop: '0.5em',
-                      fontSize: '1.2em',
-                      display: 'flex',
-                      alignItems: 'center'
-                    }}>
-                    <div className='block-product__price'
-                      style={{
-
-                      }}>
-                      1 790 руб.
-                    </div>
-                  </div>
-                  <div className='block-product__btns row g-2'
-                    style={{
-                      marginTop: '0.9em'
-                    }}>
-                    <div className='col-6'>
-                      <a href='#'
-                        className='custom-btn custom-btn-dark'
-                        style={{
-                          display: 'inline-block',
-                          border: '1px solid #000',
-                          width: '100%',
-                          color: '#000',
-                          textDecoration: 'none',
-                          textAlign: 'center',
-                          fontSize: '0.6em',
-                          padding: '0.7em 0.5em',
-                          background: '#000',
-                          color: '#fff'
-                        }}>
-                        В корзину
-                      </a>
-                    </div>
-                    <div className='col-6'>
-                      <a href='#'
-                        className='custom-btn'
-                        style={{
-                          display: 'inline-block',
-                          border: '1px solid #000',
-                          width: '100%',
-                          color: '#000',
-                          textDecoration: 'none',
-                          textAlign: 'center',
-                          fontSize: '0.6em',
-                          padding: '0.7em 0.5em',
-
-                        }}>
-                        Читать подробнее
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='col-md-4' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
-              <ProductImages images={productImages1} />
-              <div className='block-product__info flex-1 d-flex flex-column justify-content-between'
-                style={{
-                  padding: '1em 1.1em 0',
-                  flex: '1',
-                  display: 'flex',
-                  flex: 'column',
-                  justifyContent: 'space-between'
-                }}>
-                <div>
-                  <div className='block-product__name'
-                    style={{
-                      fontSize: '1.2em',
-                      lineHeight: '1'
-                    }}>
-                    Скраб для тела
-                  </div>
-                  <div className='block-product__volume'
-                    style={{ fontSize: '.7em' }}>
-                    250мл (280г)
-                  </div>
-                </div>
-                <div>
-                  <div className='block-product__price-block d-flex align-items-center'
-                    style={{
-                      marginTop: '0.5em',
-                      fontSize: '1.2em',
-                      display: 'flex',
-                      alignItems: 'center'
-                    }}>
-                    <div className='block-product__price'
-                      style={{
-
-                      }}>
-                      1 790 руб.
-                    </div>
-                  </div>
-                  <div className='block-product__btns row g-2'
-                    style={{
-                      marginTop: '0.9em'
-                    }}>
-                    <div className='col-6'>
-                      <a href='#'
-                        className='custom-btn custom-btn-dark'
-                        style={{
-                          display: 'inline-block',
-                          border: '1px solid #000',
-                          width: '100%',
-                          color: '#000',
-                          textDecoration: 'none',
-                          textAlign: 'center',
-                          fontSize: '0.6em',
-                          padding: '0.7em 0.5em',
-                          background: '#000',
-                          color: '#fff'
-                        }}>
-                        В корзину
-                      </a>
-                    </div>
-                    <div className='col-6'>
-                      <a href='#'
-                        className='custom-btn'
-                        style={{
-                          display: 'inline-block',
-                          border: '1px solid #000',
-                          width: '100%',
-                          color: '#000',
-                          textDecoration: 'none',
-                          textAlign: 'center',
-                          fontSize: '0.6em',
-                          padding: '0.7em 0.5em',
-
-                        }}>
-                        Читать подробнее
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='col-md-4' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
-              <ProductImages images={productImages1} />
-              <div className='block-product__info flex-1 d-flex flex-column justify-content-between'
-                style={{
-                  padding: '1em 1.1em 0',
-                  flex: '1',
-                  display: 'flex',
-                  flex: 'column',
-                  justifyContent: 'space-between'
-                }}>
-                <div>
-                  <div className='block-product__name'
-                    style={{
-                      fontSize: '1.2em',
-                      lineHeight: '1'
-                    }}>
-                    Скраб для тела
-                  </div>
-                  <div className='block-product__volume'
-                    style={{ fontSize: '.7em' }}>
-                    250мл (280г)
-                  </div>
-                </div>
-                <div>
-                  <div className='block-product__price-block d-flex align-items-center'
-                    style={{
-                      marginTop: '0.5em',
-                      fontSize: '1.2em',
-                      display: 'flex',
-                      alignItems: 'center'
-                    }}>
-                    <div className='block-product__price'
-                      style={{
-
-                      }}>
-                      1 790 руб.
-                    </div>
-                  </div>
-                  <div className='block-product__btns row g-2'
-                    style={{
-                      marginTop: '0.9em'
-                    }}>
-                    <div className='col-6'>
-                      <a href='#'
-                        className='custom-btn custom-btn-dark'
-                        style={{
-                          display: 'inline-block',
-                          border: '1px solid #000',
-                          width: '100%',
-                          color: '#000',
-                          textDecoration: 'none',
-                          textAlign: 'center',
-                          fontSize: '0.6em',
-                          padding: '0.7em 0.5em',
-                          background: '#000',
-                          color: '#fff'
-                        }}>
-                        В корзину
-                      </a>
-                    </div>
-                    <div className='col-6'>
-                      <a href='#'
-                        className='custom-btn'
-                        style={{
-                          display: 'inline-block',
-                          border: '1px solid #000',
-                          width: '100%',
-                          color: '#000',
-                          textDecoration: 'none',
-                          textAlign: 'center',
-                          fontSize: '0.6em',
-                          padding: '0.7em 0.5em',
-
-                        }}>
-                        Читать подробнее
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
         </div>
       </div>
@@ -465,4 +241,4 @@ const ProductItem = () => {
   )
 }
 
-export default ProductItem
+export default observer(ProductItem)

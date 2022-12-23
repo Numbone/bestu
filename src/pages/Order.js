@@ -49,7 +49,7 @@ const Order = () => {
         delete item.Stars,
         delete item.Weight))
       console.log(copy.basket, "copy");
- 
+
       const data = await transactionCreate2(delivery, email, father_name, first_name, phone_number, copy.basket, promo_code, second_name, basket.Price)
       console.log(data);
     } catch (error) {
@@ -58,28 +58,7 @@ const Order = () => {
 
   }
 
-  ///every rerender
 
-  // (JSON.parse(localStorage.getItem("basket")).map(item => console.log(item.count)))
-
-
-  // var copy = JSON.parse(JSON.stringify(object))
-  // copy.basket.map(item => (delete item.Action,
-  //   delete item.Category,
-  //   delete item.Compound,
-  //   delete item.Contraindications,
-  //   delete item.Count,
-  //   delete item.Description,
-  //   delete item.Files,
-  //   delete item.ID,
-  //   delete item.Images,
-  //   delete item.ModeOfApp,
-  //   delete item.Name,
-  //   delete item.Price,
-  //   delete item.Reviews,
-  //   delete item.Stars,
-  //   delete item.Weight))
-  // console.log(copy.basket, "copy");
   const reRender = () => {
     setRerender(!rerender);
   }
@@ -98,9 +77,15 @@ const Order = () => {
 
 
   }, [])
-
-  console.log(total_cost, "total cost");
-  console.log(products, "products");
+  const [checkSelfDelivey, setcheckSelfDevivery] = useState(false)
+  const changeSelfDelivery = (e) => {
+    setcheckSelfDevivery(e.target.checked)
+  }
+  
+  const [checkGift,setcheckGift]=useState(false)
+  const setGiftTic = (e) => {
+    setcheckGift(e.target.checked)
+  }
 
   return (
     <div className='flex-1' style={{ minHeight: '100vh' }}>
@@ -184,7 +169,7 @@ const Order = () => {
                       </div>
                     </div>
                     <h3 className="block__title">Доставка</h3>
-                    <div className="shipping-country mb-4">
+                    {/* <div className="shipping-country mb-4">
                       <div className="box-form">
                         <div className="form-field">
                           <label htmlFor="country">Страна</label>
@@ -200,29 +185,11 @@ const Order = () => {
                           </label>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="shipping-choose">
                       <div className="box-form">
-                        <input type="hidden" name="shipping-code" defaultValue />
-                        <div className="form-field" onClick={() => setDelivery('СДЭК до пункта выдачи')}>
-                          <input type="radio" name="shipping-method" id="cdek" className="input-radio" defaultValue="СДЭК до ПВЗ" />
-                          <label htmlFor="cdek">СДЭК до пункта выдачи</label>
-                        </div>
-
-
-
-
-                        <div className="form-field" onClick={handleOpen}>
-                          <input type="radio" name="shipping-method" id="pochta" className="input-radio" defaultValue="Доставка Почтой" />
-                          <label htmlFor="pochta">Почта России<br />
-                            <span style={{ display: 'inline', fontSize: '.8em', color: 'red', padding: 0 }}>(только по РФ)</span>
-                          </label>
-                        </div>
-
-
-
                         <div className="form-field" onClick={() => setDelivery('Самовывоз в Волгограде')}>
-                          <input type="radio" name="shipping-method" id="pickup" className="input-radio" defaultValue="Самовывоз в Волгограде" />
+                          <input type="checkbox" name="shipping-method" id="pickup" className="input-radio" onClick={changeSelfDelivery} />
                           <label htmlFor="pickup">Самовывоз в Волгограде</label>
                         </div>
 
@@ -231,6 +198,14 @@ const Order = () => {
                       </div>
                     </div>
                     {
+                      checkSelfDelivey
+                        ? <div id="shipping-info" style={{ padding: 20, border: '2px solid rgb(179, 139, 138)', margin: 20, textAlign: 'center', display: 'block' }}>
+                          <span id="info-pvz-address">Самовывоз по адресу: г. Волгоград, пр. Жукова 100б (вход через магазин "магнит")<br />Тел. +7 902 312-55-32</span>
+                        </div>
+                        : null
+                    }
+
+                    {/* {
                       open ?
                         <div className="box-address" >
                           <h3>Адрес</h3>
@@ -277,16 +252,14 @@ const Order = () => {
 
 
                         </div>
-                    }
+                    } */}
 
-                    <div id="shipping-info" style={{ padding: 20, border: '2px solid rgb(179, 139, 138)', margin: 20, textAlign: 'center', display: 'block' }}>
-                      <span id="info-pvz-address">Самовывоз по адресу: г. Волгоград, пр. Жукова 100б (вход через магазин "магнит")<br />Тел. +7 902 312-55-32</span>
-                    </div>
+
 
                     <div className="box-form">
                       <div className="text-center mt-2 d-flex">
                         <div style={{ position: 'relative' }}>
-                          <input type="checkbox" name="promo" id="promo-field-voucher" form="order" defaultValue="voucher" className="input-checkbox" />
+                          <input type="checkbox" name="promo" id="promo-field-voucher"  className="input-checkbox" onChange={setGiftTic} />
                           <label htmlFor="promo-field-voucher">
                             Использовать подарочный
                             сертификат
@@ -295,12 +268,17 @@ const Order = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="box-form" id="box-field-voucher" >
+                    {
+                      checkGift
+                      ?<div className="box-form" id="box-field-voucher" >
                       <div className="form-field">
                         <label htmlFor="voucher">Подарочный сертификат</label>
                         <input onChange={(e) => setPromo_code(e.target.value)} type="text" name="voucher" id="voucher" form="order" />
                       </div>
                     </div>
+                    :null
+                    }
+                    
                     <hr />
                     <div className="box-form">
                       <div id="total-block">
@@ -329,8 +307,9 @@ const Order = () => {
                         <div style={{ position: 'relative' }}>
                           <input type="checkbox" name="oferta" id="oferta" className="input-checkbox" defaultValue={1} form="order" /><label htmlFor="oferta">
                             Я принимаю условия
-                            <a href="https://thebestforyourself.ru/page/oferta" target="_blank">
-                              публичной оферты</a>
+                            <NavLink to='/ofertapage'>
+                              публичной оферты</NavLink
+                              >
                           </label>
                         </div>
                       </div>
@@ -338,10 +317,10 @@ const Order = () => {
                         <div style={{ position: 'relative' }}>
                           <input type="checkbox" name="politika" id="politika" className="input-checkbox" defaultValue={1} form="order" />
                           <label htmlFor="politika">Я соглашаюсь с условиями
-                            <a href="https://thebestforyourself.ru/page/politika" target="_blank">
+                            <NavLink to="/politicapage" >
                               политики обработки
                               персональных данных
-                            </a>
+                            </NavLink>
                           </label>
                         </div>
                       </div>

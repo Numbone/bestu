@@ -25,6 +25,8 @@ import Spa from './pages/Spa';
 import Stores from './pages/Stores';
 import Vouchers from './pages/Vouchers';
 import { BrowserRouter } from 'react-router-dom';
+import Politika from './pages/Politika';
+import Oferta from './pages/Oferta';
 function App() {
 
   const { user, basket } = useContext(Context);
@@ -76,6 +78,8 @@ function App() {
           <Route key={17} path='/productitem/:id' element={< ProductItem />}></Route>
           <Route key={18} path='/available' element={<AvailablePages />}></Route>
           <Route key={19} path='/search' element={<Search />}></Route>
+          <Route key={20} path='/politicapage' element={<Politika />}></Route>
+          <Route key={21} path='/ofertapage' element={<Oferta />}></Route>
         </Routes>
 
         <Footer />

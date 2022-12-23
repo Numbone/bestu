@@ -6,7 +6,7 @@ import { productAll } from '../../api/product'
 import { Context } from '../..'
 import { observer } from 'mobx-react-lite';
 
-const AllProductCatalog = () => {
+const AllProductCatalog = ({setToast}) => {
     const [product, setProduct] = useState({})
     const prev = '<'
     const next = '>'
@@ -43,7 +43,7 @@ const AllProductCatalog = () => {
                             {product.length == undefined
                                 ? <div></div>
                                 : product.map((item, index) =>
-                                    <Item props={item} key={index} clickOrder={clickOrder} />)
+                                    <Item props={item} key={index} clickOrder={clickOrder}  />)
                             }
                         </div>
                     </div>

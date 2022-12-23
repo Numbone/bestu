@@ -4,7 +4,7 @@ import logo from "../../img/logo.svg"
 import search from "../../img/icon-search.svg"
 import cabinet from "../../img/icon-user.svg"
 import cart from "../../img/icon-cart.svg"
-import { NavLink, useLocation } from 'react-router-dom'
+import { Navigate, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import Modal from '../Modal/Modal'
 import { Context } from '../..'
 import { useContext } from 'react'
@@ -14,6 +14,8 @@ const Header = () => {
   const { basket } = useContext(Context)
   console.log(basket.Basket.length, "Header");
   const [modal, setModal] = useState(false)
+  const navigate = useNavigate()
+  const [search1, setSeacrh1] = useState("")
   return (
     <div>
       {
@@ -42,12 +44,12 @@ const Header = () => {
                 </div>
                 <div className='header_computer header__column header__column--center text-center'>
                   <NavLink to='/' className='header__logo img' >
-                    <img  alt='props' src={logo}></img>
+                    <img alt='props' src={logo}></img>
                   </NavLink>
                 </div>
                 <div className='header-mobile header__column'>
                   <div className='header__buttons d-flex justify-content-end'>
-                  <div className='cabinet-button'>
+                    <div className='cabinet-button'>
                       <NavLink to='/login'>
                         <img alt='props' src={cabinet}>
                         </img>
@@ -55,7 +57,7 @@ const Header = () => {
                     </div>
                     <div className='cart-button'>
                       <NavLink to='/order' style={{ display: 'flex', alignItems: "flex-end" }}>
-                        <img  alt='props'src={cart}>
+                        <img alt='props' src={cart}>
                         </img>
                         {basket.Basket.length > 0
                           ? <div className='box-order'>
@@ -84,7 +86,7 @@ const Header = () => {
                     </div>
                     <div className='cart-button'>
                       <NavLink to='/order' style={{ display: 'flex', alignItems: "flex-end" }}>
-                        <img  alt='props' src={cart}>
+                        <img alt='props' src={cart}>
                         </img>
                         {basket.Basket.length > 0
                           ? <div className='box-order'>
@@ -102,16 +104,21 @@ const Header = () => {
 
               <Modal active={modal} setActive={setModal}>
                 <div className='fancybox__content'>
-                  <form>
+                  <form >
                     <div className='form-field position-relative'>
-                      <input type='text' placeholder="Введите слово для поиска">
+                      <input type='text' placeholder="Введите слово для поиска" onChange={(e) => setSeacrh1(e.target.value)}>
                       </input>
-                      <button className='btn-search'>
-                        <img alt='props' src={search}></img>
-                      </button>
+                      <NavLink to={"/search"} state={search1}  >
+                        <button className='btn-search' onClick={()=>setModal(false)}>
+                          <img alt='props' src={search}></img>
+                        </button>
+                        {/* onClick={()=>navigate(`search?wolrd=${search1}`)} */}
+
+                      </NavLink>
                     </div>
                   </form>
-                  <button onClick={() => setModal(false)} className='carousel__button is-close'
+                  <button className='carousel__button is-close'
+                  onClick={()=>setModal(false)}
                     style={{
                       fontSize: '34px',
                       color: 'white',

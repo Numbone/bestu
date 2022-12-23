@@ -1,11 +1,13 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { productImages, productImages1 } from '../../img'
 import ProductImages from '../SwiperCard/ProductImages'
 import { observer } from 'mobx-react-lite';
+import ModalItem from '../ModalItem/ModalItem';
+import './Item.css'
 const Item = (props) => {
- 
-    const navigate =useNavigate()
+    const [active, setActive] = React.useState(false)
+    const navigate = useNavigate()
     return (
         <div className='col-sm-6' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
             <ProductImages images={props.props.Images} />
@@ -22,7 +24,7 @@ const Item = (props) => {
                         style={{
                             fontSize: '1.2em',
                             lineHeight: '1',
-                    
+
                         }}>
                         {props.props.Name}
 
@@ -51,10 +53,10 @@ const Item = (props) => {
                         style={{
                             marginTop: '0.9em'
                         }}>
-                        <div className='col-6'>
+                        <div className='col-6' onClick={() => setActive(true)} >
                             <a
-                            onClick={()=>props.clickOrder(props.props)} 
-                            
+                                onClick={() => props.clickOrder(props.props)}
+
                                 className='custom-btn custom-btn-dark'
                                 style={{
                                     display: 'inline-block',
@@ -71,8 +73,8 @@ const Item = (props) => {
                                 В корзину
                             </a>
                         </div>
-                        <div className='col-6' onClick={()=>navigate("/productitem/"+props.props.ID)} >
-                            <a 
+                        <div className='col-6' onClick={() => navigate("/productitem/" + props.props.ID)} >
+                            <a
                                 className='custom-btn'
                                 style={{
                                     display: 'inline-block',
@@ -91,6 +93,24 @@ const Item = (props) => {
                     </div>
                 </div>
             </div>
+            <ModalItem active={active} setActive={setActive}>
+                <div className="toastjs-container">
+                    <div className="toastjs success">
+                        <p> {props.props.Name}</p>
+                        <div className="d-flex">
+                            <NavLink to='/order'>
+                                <button type="button" className="toastjs-btn toastjs-btn--custom" onClick={() => setActive(false)}>
+                                    Оформить заказ
+                                </button>
+                            </NavLink>
+                            <button type="button" className="toastjs-btn toastjs-btn--close" onClick={() => setActive(false)}>
+                                Ок
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </ModalItem>
         </div>
     )
 }

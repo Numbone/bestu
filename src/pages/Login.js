@@ -35,6 +35,14 @@ const Login = () => {
 
 
   }
+
+  ///// validation //// 
+  const [emailValidation,setEmailValidation]=useState("")
+  const [passwordValidation,setPasswordValidation]=useState("")
+  const [emailDirty,setEmailDirty]=useState(false)
+  const [passwordDirty,setPasswordDirty]=useState(false)
+  const [emailError,setEmailError]=useState("error email")
+  const [passwordError,setPasswordError]=useState("error password")
   useEffect(() => {
     getUserContent()
   }, [])
@@ -174,7 +182,7 @@ const Login = () => {
               <div className='content'>
                 <div className='container-fluid'>
                   <div className='container'>
-                    <table className="table">
+                    <table className="table-order">
                       <thead>
                         <tr>
                           <th scope="col">Номер заказа</th>

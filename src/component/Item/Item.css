@@ -1,0 +1,40 @@
+.toastjs.success {
+    border-left-color: #2ECC40;
+}
+.toastjs {
+    color: #000;
+}
+.toastjs {
+    background: #fff;
+    padding: 0.5em 0.75em 0;
+    border: 1px solid #000;
+    border-left-style: solid;
+    border-left-width: 5px;
+    border-radius: 0px;
+    font-size: 1.2em;
+}
+.toastjs-btn:hover, .toastjs-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+.toastjs-btn--custom {
+    background: #1c1c1c;
+    color: #fff;
+}
+.toastjs-btn {
+    background: #000;
+    color: #fff;
+    padding: 5px 10px;
+    border: 0;
+    border-radius: 0px;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.toastjs-btn--close {
+    background-color: transparent;
+    border: 1px solid #1c1c1c;
+    color: #1c1c1c;
+    margin-left: 0.5em;
+}
