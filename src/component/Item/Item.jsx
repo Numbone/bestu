@@ -22,8 +22,7 @@ const Item = (props) => {
                         style={{
                             fontSize: '1.2em',
                             lineHeight: '1',
-                            maxHeight: '60px',
-                            minHeight: '60px'
+                    
                         }}>
                         {props.props.Name}
 

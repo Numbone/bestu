@@ -59,26 +59,22 @@
     }
 }
 
-@media (min-width: 576px) {
 
-    .container,
-    .container-sm {
-        max-width: 540px;
-    }
-}
 
 @media only screen and (max-width: 768px) {
     .block-top:not(.category)>* {
-        position: relative;
-        top: auto;
-        bottom: auto;
-        left: auto;
-        right: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
     }
 }
 
 @media only screen and (max-width: 768px) {
     .block-top:not(.category):before {
+        position: absolute;
         left: 0;
         top: 0;
         bottom: 0;

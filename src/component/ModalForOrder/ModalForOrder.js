@@ -19,7 +19,7 @@ const ModalForOrder = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <table style={{ width: '100%', maxWidth: 'none' }}>
-                    <thead>
+                    <thead className='order__filter__thead'>
                         <tr>
                             <th style={{ width: '50%' }}>Наименование</th>
                             <th className="d-none d-sm-table-cell">Цена</th>
@@ -65,7 +65,7 @@ const ModalForOrder = (props) => {
                                         </div>
                                     </td>
                                     <td>
-                                        <span className="item-total">
+                                        <span className="item-total" style={{fontWeight:'700'}}>
                                             {props.totalCosts}
                                         </span>
                                     </td>

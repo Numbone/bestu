@@ -1,3 +1,11 @@
 .item__modal{
     border :1px solid black;
 }
+.order__filter__thead{
+     border :1px solid black;
+     font-size: 24px;
+     font-weight: 700;
+}
+.item__modal:nth-child(2n+1){
+    background-color: beige;
+}
