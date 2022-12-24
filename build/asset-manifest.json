@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/Numbone/bestu/static/css/main.9ee330dc.css",
-    "main.js": "/Numbone/bestu/static/js/main.534f2a72.js",
+    "main.css": "/Numbone/bestu/static/css/main.448b197d.css",
+    "main.js": "/Numbone/bestu/static/js/main.7855a7a3.js",
     "static/media/chemodan.png": "/Numbone/bestu/static/media/chemodan.61062e203540ce87c727.png",
     "static/media/block-top-768.jpg": "/Numbone/bestu/static/media/block-top-768.efb9a9850375a1e21830.jpg",
+    "static/media/assets.jpg": "/Numbone/bestu/static/media/assets.f69cc9f43958fa8e21e0.jpg",
     "static/media/chemodan1.png": "/Numbone/bestu/static/media/chemodan1.ec214138ff7dbc1f4c55.png",
     "static/media/b3.png": "/Numbone/bestu/static/media/b3.ce787b8472ee94bed1fb.png",
     "static/media/all1.png": "/Numbone/bestu/static/media/all1.0a7378f8ad52c64b2527.png",
@@ -59,11 +60,11 @@
     "index.html": "/Numbone/bestu/index.html",
     "static/media/icon-cart.svg": "/Numbone/bestu/static/media/icon-cart.6dfcc156f882b52de6fbf25a9c897e77.svg",
     "static/media/icon-user.svg": "/Numbone/bestu/static/media/icon-user.edb26af9f2f9e21041ab4e50d3f61621.svg",
-    "main.9ee330dc.css.map": "/Numbone/bestu/static/css/main.9ee330dc.css.map",
-    "main.534f2a72.js.map": "/Numbone/bestu/static/js/main.534f2a72.js.map"
+    "main.448b197d.css.map": "/Numbone/bestu/static/css/main.448b197d.css.map",
+    "main.7855a7a3.js.map": "/Numbone/bestu/static/js/main.7855a7a3.js.map"
   },
   "entrypoints": [
-    "static/css/main.9ee330dc.css",
-    "static/js/main.534f2a72.js"
+    "static/css/main.448b197d.css",
+    "static/js/main.7855a7a3.js"
   ]
 }

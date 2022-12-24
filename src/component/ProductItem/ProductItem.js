@@ -5,6 +5,7 @@ import { Context } from '../..';
 import { productId } from '../../api/product';
 import { productImages1 } from '../../img';
 import ph1 from '../../img/assets.jpg'
+import ModalComment from '../ModalComment/ModalComment';
 import ProductImages from '../SwiperCard/ProductImages';
 import './ProductItem.css'
 const ProductItem = () => {
@@ -20,31 +21,34 @@ const ProductItem = () => {
   const handleOpen2 = () => {
     setOpen2(!open2);
   };
-  const {id}=useParams()
+  const { id } = useParams()
   console.log(id);
-  const [data,setData]=useState({})
-  const getItem=async()=>{
-      const {data} = await productId(id)
-      setData(data)
-      return data
+  const [data, setData] = useState({})
+  const getItem = async () => {
+    const { data } = await productId(id)
+    setData(data)
+    return data
   }
   console.log(data);
-  const {basket}=useContext(Context)
+  const { basket } = useContext(Context)
   const clickOrder = () => {
     basket.setBasket(id)
 
-}
-  useEffect(()=>{
+  }
+
+  const [modalShow, setModalShow] = React.useState(false);
+  useEffect(() => {
     getItem()
-  },[])
+  }, [])
+  console.log(data);
   return (
     <div className="flex-1" style={{ minHeight: '100vh' }}>
       <div className="product-top item-square"
-        data-style-background-image={({ph1})}
-        style={{  backgroundImage:`url(${ph1})` }}>
+        data-style-background-image={({ ph1 })}
+        style={data?.Images === undefined ? null : { backgroundImage: `url(${data?.Images[0]})` }}>
         <div className="d-flex justify-content-center">
           <div className="container flex-1 d-flex flex-column justify-content-between">
-            <div className="product-top__title -fill -light"><p>Скраб для тела<br />с ароматом <br />летнего дождя</p></div>
+            <div className="product-top__title -fill -light"><p>{data?.Name}</p></div>
             <div className="product-top__about  -fill -light">
               <ul>
                 <li>Масло жожоба</li>
@@ -58,14 +62,14 @@ const ProductItem = () => {
               <div>
                 <div className="product-top__volume">250мл (280г)</div>
                 <div className="product-top__price-block d-flex align-items-center">
-                  <div className="product-top__price">1 790 руб.</div>
+                  <div className="product-top__price">{data.Price} руб.</div>
                 </div>
               </div>
               <div>
                 <div style={{ fontSize: '1.8em' }} className="d-flex align-items-center">
                   <svg style={{ width: '1em', marginRight: '.2em' }} viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.04917 0.927067C7.34852 0.00575614 8.65193 0.00575656 8.95129 0.927067L10.0209 4.21886C10.1547 4.63089 10.5387 4.90985 10.9719 4.90985H14.4331C15.4018 4.90985 15.8046 6.14946 15.0209 6.71886L12.2207 8.75331C11.8702 9.00795 11.7236 9.45932 11.8575 9.87134L12.927 13.1631C13.2264 14.0844 12.1719 14.8506 11.3882 14.2812L8.58801 12.2467C8.23753 11.9921 7.76293 11.9921 7.41244 12.2467L4.61227 14.2812C3.82856 14.8506 2.77408 14.0844 3.07343 13.1631L4.143 9.87134C4.27688 9.45932 4.13022 9.00795 3.77973 8.75331L0.979561 6.71886C0.195848 6.14946 0.598623 4.90985 1.56735 4.90985H5.02855C5.46177 4.90985 5.84573 4.63089 5.9796 4.21886L7.04917 0.927067Z" fill="#1D1D1B" />
-                  </svg> 5
+                  </svg> {data.Stars}
                 </div>
 
                 <div className="rating-line">
@@ -81,10 +85,11 @@ const ProductItem = () => {
           <div className="product-buttons__btns">
             <div className="row g-2">
               <div className="col-6">
-                <a  className="custom-btn custom-btn-dark" onClick={clickOrder}>В корзину</a>
+                <a className="custom-btn custom-btn-dark" onClick={clickOrder}>В корзину</a>
               </div>
               <div className="col-6">
-                <a href="javascript:;" data-src="https://thebestforyourself.ru/product/scrub-ld/reviews" className="custom-btn" data-type="iframe" data-fancybox data-was-processed="true" style={{ backgroundImage: 'url("https://thebestforyourself.ru/product/scrub-ld/reviews")' }}>Читать все отзывы</a>
+                <a  className="custom-btn" data-type="iframe"  
+                onClick={() => setModalShow(true)}>Читать все отзывы</a>
               </div>
             </div>
           </div>
@@ -135,6 +140,7 @@ const ProductItem = () => {
           <div className="row g-0 gy-4">
             <div className="col-6">
               <div className="block-product-about__text p-3">
+                <p>{data?.Description}</p>
                 <p>Скраб с ароматом летнего дождя имеет в своем составе натуральные природные афродизиаки, которые способны раскрываться на каждой коже по разному. 5 драгоценных масел мира напитают вашу кожу после скрабирования и сделают ее увлажненной на 24 часа. После применения данного скраба дополнительного увлажнения кожи не требуется.</p>
               </div>
             </div>
@@ -230,11 +236,13 @@ const ProductItem = () => {
       <div className="block-similar">
         <div className="container">
           <div className="block__title">Похожие продукты</div>
-          
+
 
         </div>
       </div>
-
+          <ModalComment
+           show={modalShow}
+           onHide={() => setModalShow(false)}/>
     </div>
 
 

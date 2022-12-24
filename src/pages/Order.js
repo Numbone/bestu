@@ -4,8 +4,10 @@ import { Context } from '..'
 import { transactionCreate, transactionCreate2 } from '../api/transaction'
 import { observer } from 'mobx-react-lite';
 import './css/Order.css'
+import ModalSucces from '../component/ModalSuccess/ModalSucces';
+import ModalError from '../component/ModalError/ModalError';
 const Order = () => {
-  const { basket } = useContext(Context)
+  const { basket,user } = useContext(Context)
   const [rerender, setRerender] = useState(Boolean);
 
   /// dropdown component 
@@ -24,11 +26,15 @@ const Order = () => {
   const [second_name, setSecond_name] = useState("")
   const [total_cost, setTotal_cost] = useState(0)
   const [count, setCount] = useState(0)
-  const [data, setData] = useState()
+  const [data1, setData] = useState()
   //api for transaction/create
 
+  const [active,setActive]=useState(false)
+  const [activeError,setActiveError]=useState(false)
   const sendTransaction = async () => {
+    
     try {
+      
       const object = {
         basket: (JSON.parse(localStorage.getItem("basket")))
       }
@@ -50,10 +56,19 @@ const Order = () => {
         delete item.Weight))
       console.log(copy.basket, "copy");
 
-      const data = await transactionCreate2(delivery, email, father_name, first_name, phone_number, copy.basket, promo_code, second_name, basket.Price)
-      console.log(data);
+      const data =  !user.isAuth
+      ?  await transactionCreate2(delivery, email, father_name, first_name, phone_number, copy.basket, promo_code, second_name, basket.Price)
+      : await transactionCreate(delivery, email, father_name, first_name, phone_number, copy.basket, promo_code, second_name, basket.Price)
+      setData(data1);
+      console.log();
     } catch (error) {
       console.log(error, "///////////error//////////////");
+    }finally{
+      if (data1?.status==200){
+          setActive(true)
+      }else if (data1?.status!=200){
+          setActiveError(true)
+      }
     }
 
   }
@@ -70,8 +85,10 @@ const Order = () => {
     setCount(count => count + 1)
     setDelivery('Почта России')
   };
-  console.log(open);
-  console.log(basket.Basket, "in BAsket")
+  
+  console.log(active);
+  console.log(activeError);
+  
 
   useEffect(() => {
 
@@ -335,6 +352,13 @@ const Order = () => {
                 </div>
               </div>
             </div>
+            <ModalSucces 
+            show={active}
+            onHide={() => setActive(false)}/>
+            <ModalError
+             show={activeError}
+             onHide={() => setActiveError(false)}/>
+            
           </div>
           : <div className='block-page-order'>
             <div className='text-center mb-5' style={{ fontSize: '14px' }}>

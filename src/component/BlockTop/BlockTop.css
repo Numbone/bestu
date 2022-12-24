@@ -48,7 +48,7 @@
     .block-top:after {
         content: "";
         display: block;
-        padding-top: 49.17%;
+        
     }
     .block-top:not(.category):before {
         content: "";
