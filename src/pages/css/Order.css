@@ -86,3 +86,7 @@
     transform: scale(1);
     opacity: 1;
 }
+.label_check{
+    color: red;
+    font-size: 14px!important;
+}

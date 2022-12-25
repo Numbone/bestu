@@ -3,8 +3,8 @@
 }
 .order__filter__thead{
      border :1px solid black;
-     font-size: 24px;
-     font-weight: 700;
+     font-size: 16px;
+    
 }
 .item__modal:nth-child(2n+1){
     background-color: beige;

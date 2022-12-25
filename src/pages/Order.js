@@ -7,7 +7,7 @@ import './css/Order.css'
 import ModalSucces from '../component/ModalSuccess/ModalSucces';
 import ModalError from '../component/ModalError/ModalError';
 const Order = () => {
-  const { basket,user } = useContext(Context)
+  const { basket, user } = useContext(Context)
   const [rerender, setRerender] = useState(Boolean);
 
   /// dropdown component 
@@ -26,15 +26,124 @@ const Order = () => {
   const [second_name, setSecond_name] = useState("")
   const [total_cost, setTotal_cost] = useState(0)
   const [count, setCount] = useState(0)
-  const [data1, setData] = useState()
+  const [data1, setData] = useState({})
   //api for transaction/create
 
-  const [active,setActive]=useState(false)
-  const [activeError,setActiveError]=useState(false)
+  const [active, setActive] = useState(false)
+  const [activeError, setActiveError] = useState(false)
+
+
+
+
+  /////validator first name 
+  const [first_nameError, setFirst_nameError] = useState("Заполните поле")
+  const [first_nameDirty, setFirst_nameDirty] = useState(false)
+  const First_nameHandler = (e) => {
+    setFirst_name(e.target.value)
+    if (e.target.value.length < 3) {
+      setFirst_nameError('Имя не может быть меньше 3 символов')
+      if (!e.target.value) {
+        setFirst_nameError('Имя не может быть меньше 3 символов')
+      }
+    } else {
+      setFirst_nameError('')
+    }
+  }
+
+  ///validator father name
+  const [father_nameError, setFather_nameError] = useState("Заполните поле")
+  const [father_nameDirty, setFather_nameDirty] = useState(false)
+  const Father_nameHandler = (e) => {
+    setFather_name(e.target.value)
+    if (e.target.value.length < 3) {
+      setFather_nameError('Фамилия не может быть меньше 3 символов')
+      if (!e.target.value) {
+        setFather_nameError('Фамилия не может быть меньше 3 символов')
+      }
+    } else {
+      setFather_nameError('')
+    }
+  }
+  /// validator second name
+  const [second_nameError, setSecond_nameError] = useState("Заполните поле")
+  const [second_nameDirty, setSecond_nameDirty] = useState(false)
+  const Second_nameHandler = (e) => {
+    setSecond_name(e.target.value)
+    if (e.target.value.length < 3) {
+      setSecond_nameError('Отечество не может быть меньше 3 символов')
+      if (!e.target.value) {
+        setSecond_nameError('Отечество не может быть меньше 3 символов')
+      }
+    } else {
+      setSecond_nameError('')
+    }
+  }
+
+  //// validator phone
+  const [phone_numberError, setPhone_numberError] = useState("Заполните поле")
+  const [phone_numberDirty, setPhone_numberDirty] = useState(false)
+  const Phone_numberHandler = (e) => {
+    setPhone_number(e.target.value)
+    if (e.target.value.length < 7) {
+      setPhone_numberError('Телефон номер не может быть меньше 7 символов')
+      if (!e.target.value) {
+        setPhone_numberError('Телефон номер не может быть меньше 7 символов')
+      }
+    } else {
+      setPhone_numberError('')
+    }
+  }
+  /////validator email///
+  const [emailDirty, setEmailDirty] = useState(false)
+  const [emailError, setEmailError] = useState("Заполните поле")
+  const emailHandler = (e) => {
+    setEmail(e.target.value)
+    const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (!re.test(String(e.target.value).toLowerCase())) {
+      setEmailError('Некорректный email')
+    } else {
+      setEmailError("")
+    }
+  }
+  ////repeat email///
+  const [repeat, setRepeat] = useState("")
+  const [repeatDirty, setRepeatDirty] = useState(false)
+  const [repeatError, setRepeatError] = useState("Заполните поле")
+  const RepeatHandler = (e) => {
+    setRepeat(e.target.value)
+    if (email != String(e.target.value)) {
+      setRepeatError('Email не совпадает')
+    } else {
+      setRepeatError("")
+    }
+  }
+  //////blurHandler for all input
+  const blurHandler = (e) => {
+    switch (e.target.name) {
+      case 'father_name':
+        setFather_nameDirty(true)
+        break
+      case 'first_name':
+        setFirst_nameDirty(true)
+        break
+      case 'second_name':
+        setSecond_nameDirty(true)
+        break
+      case 'phone_number':
+        setPhone_numberDirty(true)
+        break
+      case 'email':
+        setEmailDirty(true)
+        break
+      case 'repeat':
+        setRepeatDirty(true)
+        break
+    }
+  }
+
+
   const sendTransaction = async () => {
-    
     try {
-      
       const object = {
         basket: (JSON.parse(localStorage.getItem("basket")))
       }
@@ -56,18 +165,19 @@ const Order = () => {
         delete item.Weight))
       console.log(copy.basket, "copy");
 
-      const data =  !user.isAuth
-      ?  await transactionCreate2(delivery, email, father_name, first_name, phone_number, copy.basket, promo_code, second_name, basket.Price)
-      : await transactionCreate(delivery, email, father_name, first_name, phone_number, copy.basket, promo_code, second_name, basket.Price)
-      setData(data1);
+      const data = !user.isAuth
+        ? await transactionCreate2(delivery, email, father_name, first_name, phone_number, copy.basket, promo_code, second_name, basket.Price)
+        : await transactionCreate(delivery, email, father_name, first_name, phone_number, copy.basket, promo_code, second_name, basket.Price)
+      setData(data);
       console.log();
     } catch (error) {
       console.log(error, "///////////error//////////////");
-    }finally{
-      if (data1?.status==200){
-          setActive(true)
-      }else if (data1?.status!=200){
-          setActiveError(true)
+    } finally {
+      console.log(data1);
+      if (data1?.status == 200) {
+        setActive(true)
+      } else if (data1?.status != 200) {
+        setActiveError(true)
       }
     }
 
@@ -85,24 +195,29 @@ const Order = () => {
     setCount(count => count + 1)
     setDelivery('Почта России')
   };
-  
-  console.log(active);
-  console.log(activeError);
-  
-
-  useEffect(() => {
-
-
-  }, [])
   const [checkSelfDelivey, setcheckSelfDevivery] = useState(false)
   const changeSelfDelivery = (e) => {
     setcheckSelfDevivery(e.target.checked)
   }
-  
-  const [checkGift,setcheckGift]=useState(false)
+
+  const [checkGift, setcheckGift] = useState(false)
   const setGiftTic = (e) => {
     setcheckGift(e.target.checked)
   }
+  const [checkerpolitica, setCheckerpolitika] = useState(false)
+  console.log(checkerpolitica, "checkpolitika");
+  const [checkOferta, setCheckOferta] = useState(false)
+  const [formValid, setFormvalid] = useState(false)
+  useEffect(() => {
+    if (!checkerpolitica || !checkOferta || emailError || first_nameError || second_nameError || father_nameError || phone_numberError || repeatError) {
+      setFormvalid(false)
+    } else {
+      setFormvalid(true)
+    }
+  }, [checkerpolitica, checkOferta, emailError, first_nameError, second_nameError, father_nameError, phone_numberError, repeatError,])
+
+
+
 
   return (
     <div className='flex-1' style={{ minHeight: '100vh' }}>
@@ -161,28 +276,90 @@ const Order = () => {
                     <h3 className="block__title">Покупатель</h3>
                     <div className="box-form customer">
                       <div className="form-field">
-                        <label htmlFor="last_n  ame">Ваша фамилия</label>
-                        <input onChange={(e) => setFather_name(e.target.value)} type="text" name="last_name" id="last_name" />
+                        <label htmlFor="last_name">Ваша фамилия</label>
+                        <input
+                          onChange={(e) => Father_nameHandler(e)}
+                          type="text"
+                          name="father_name"
+                          id="last_name"
+                          onBlur={e => blurHandler(e)}
+                          value={father_name}
+                          placeholder='Напишите фамилию'
+                        />
+                        {(father_nameDirty && father_nameError) &&
+                          <label className='label_check'>{father_nameError}</label>
+                        }
                       </div>
                       <div className="form-field">
                         <label htmlFor="first_name">Ваше имя</label>
-                        <input onChange={(e) => setFirst_name(e.target.value)} type="text" name="first_name" id="first_name" />
+                        <input
+                          onChange={(e) => First_nameHandler(e)}
+                          type="text"
+                          name="first_name"
+                          id="first_name"
+                          value={first_name}
+                          onBlur={e => blurHandler(e)}
+                          placeholder='Напишите имя' />
+                        {(first_nameDirty && first_nameError) &&
+                          <label className='label_check'>{first_nameError}</label>
+                        }
                       </div>
                       <div className="form-field">
-                        <label htmlFor="middle_name">Ваше отчество</label>
-                        <input onChange={(e) => setSecond_name(e.target.value)} type="text" name="middle_name" id="middle_name" />
+                        <label htmlFor="second_name">Ваше отечество</label>
+                        <input
+                          onChange={(e) => Second_nameHandler(e)}
+                          type="text"
+                          name="second_name"
+                          id="second_name"
+                          value={second_name}
+                          onBlur={e => blurHandler(e)}
+                          placeholder='Напишите отечество' />
+                        {(second_nameDirty && second_nameError) &&
+                          <label className='label_check'>{second_nameError}</label>
+                        }
                       </div>
                       <div className="form-field">
-                        <label htmlFor="phone">Ваш телефон</label>
-                        <input onChange={(e) => setPhone_number(e.target.value)} type="text" name="phone" id="phone" />
+                        <label htmlFor="phone_number">Ваш телефон</label>
+                        <input
+                          onChange={(e) => Phone_numberHandler(e)}
+                          type="text"
+                          name="phone_number"
+                          id="phone_number"
+                          value={phone_number}
+                          onBlur={e => blurHandler(e)}
+                          placeholder='Напишите номер телефона' />
+                        {(phone_numberDirty && phone_numberError) &&
+                          <label className='label_check'>{phone_numberError}</label>
+                        }
                       </div>
                       <div className="form-field">
                         <label htmlFor="email">Ваш email</label>
-                        <input onChange={(e) => setEmail(e.target.value)} type="text" name="email" id="email" />
+                        <input
+                          type="text"
+                          name="email"
+                          id="email"
+                          onBlur={e => blurHandler(e)}
+                          value={email}
+                          onChange={(e) => emailHandler(e)}
+                          placeholder="Введите email" />
+                        {(emailDirty && emailError) &&
+                          <label className='label_check'>{emailError}</label>
+                        }
                       </div>
                       <div className="form-field">
-                        <label htmlFor="email_confirmation">Повторите email</label>
-                        <input type="text" name="email_confirmation" id="email_confirmation" required />
+                        <label htmlFor="repeat">Повторите email</label>
+                        <input
+                          onBlur={e => blurHandler(e)}
+                          value={repeat}
+                          onChange={e => RepeatHandler(e)}
+                          placeholder='Повторите введенный email'
+                          type="text"
+                          name="repeat"
+                          id="repeat"
+                          required />
+                        {(repeatDirty && repeatError) &&
+                          <label className='label_check'>{repeatError}</label>
+                        }
                       </div>
                     </div>
                     <h3 className="block__title">Доставка</h3>
@@ -276,7 +453,7 @@ const Order = () => {
                     <div className="box-form">
                       <div className="text-center mt-2 d-flex">
                         <div style={{ position: 'relative' }}>
-                          <input type="checkbox" name="promo" id="promo-field-voucher"  className="input-checkbox" onChange={setGiftTic} />
+                          <input type="checkbox" name="promo" id="promo-field-voucher" className="input-checkbox" onChange={setGiftTic} />
                           <label htmlFor="promo-field-voucher">
                             Использовать подарочный
                             сертификат
@@ -287,15 +464,15 @@ const Order = () => {
                     </div>
                     {
                       checkGift
-                      ?<div className="box-form" id="box-field-voucher" >
-                      <div className="form-field">
-                        <label htmlFor="voucher">Подарочный сертификат</label>
-                        <input onChange={(e) => setPromo_code(e.target.value)} type="text" name="voucher" id="voucher" form="order" />
-                      </div>
-                    </div>
-                    :null
+                        ? <div className="box-form" id="box-field-voucher" >
+                          <div className="form-field">
+                            <label htmlFor="voucher">Подарочный сертификат</label>
+                            <input onChange={(e) => setPromo_code(e.target.value)} type="text" name="voucher" id="voucher" form="order" />
+                          </div>
+                        </div>
+                        : null
                     }
-                    
+
                     <hr />
                     <div className="box-form">
                       <div id="total-block">
@@ -322,17 +499,25 @@ const Order = () => {
 
                       <div className="text-center mt-2 d-flex justify-content-start">
                         <div style={{ position: 'relative' }}>
-                          <input type="checkbox" name="oferta" id="oferta" className="input-checkbox" defaultValue={1} form="order" /><label htmlFor="oferta">
+                          <input
+                            type="checkbox"
+                            name="oferta"
+                            id="oferta"
+                            className="input-checkbox"
+                            defaultValue={1}
+                            form="order"
+                            onClick={(e) => setCheckOferta(e.target.checked)} /><label htmlFor="oferta">
                             Я принимаю условия
                             <NavLink to='/ofertapage'>
                               публичной оферты</NavLink
-                              >
+                            >
                           </label>
                         </div>
                       </div>
                       <div className="text-center mt-2 d-flex justify-content-start">
                         <div style={{ position: 'relative' }}>
-                          <input type="checkbox" name="politika" id="politika" className="input-checkbox" defaultValue={1} form="order" />
+                          <input type="checkbox" name="politika" id="politika" className="input-checkbox" defaultValue={1} form="order"
+                            onClick={(e) => setCheckerpolitika(e.target.checked)} />
                           <label htmlFor="politika">Я соглашаюсь с условиями
                             <NavLink to="/politicapage" >
                               политики обработки
@@ -346,19 +531,19 @@ const Order = () => {
                     </div>
                     <div id="error-message" style={{ color: 'red', marginBottom: 15 }} />
                     <div className="text-center" onClick={sendTransaction}>
-                      <button type="submit" form="order" className="btn" id="submit">К оплате</button>
+                      <button disabled={!formValid} type="submit" form="order" className="btn" id="submit">К оплате</button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <ModalSucces 
-            show={active}
-            onHide={() => setActive(false)}/>
+            <ModalSucces
+              show={active}
+              onHide={() => setActive(false)} />
             <ModalError
-             show={activeError}
-             onHide={() => setActiveError(false)}/>
-            
+              show={activeError}
+              onHide={() => setActiveError(false)} />
+
           </div>
           : <div className='block-page-order'>
             <div className='text-center mb-5' style={{ fontSize: '14px' }}>

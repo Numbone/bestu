@@ -57,3 +57,7 @@ a {
     padding: 0 7px;
     vertical-align: middle;
 }
+button:disabled{
+    background-color: grey!important;
+    border:none!important;
+}

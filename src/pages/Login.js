@@ -35,14 +35,55 @@ const Login = () => {
 
 
   }
-
+  console.log(username)
   ///// validation //// 
-  const [emailValidation,setEmailValidation]=useState("")
-  const [passwordValidation,setPasswordValidation]=useState("")
-  const [emailDirty,setEmailDirty]=useState(false)
-  const [passwordDirty,setPasswordDirty]=useState(false)
-  const [emailError,setEmailError]=useState("error email")
-  const [passwordError,setPasswordError]=useState("error password")
+  const [emailValidation, setEmailValidation] = useState("")
+  const [passwordValidation, setPasswordValidation] = useState("")
+  const [emailDirty, setEmailDirty] = useState(false)
+  const [passwordDirty, setPasswordDirty] = useState(false)
+  const [emailError, setEmailError] = useState("Заполните поле")
+  const [passwordError, setPasswordError] = useState("Заполните поле")
+
+  const blurHandler = (e) => {
+    switch (e.target.name) {
+      case 'emailValidation':
+        setEmailDirty(true)
+        break
+      case 'passwordValidation':
+        setPasswordDirty(true)
+        break
+
+    }
+  }
+
+  const emailHandler = (e) => {
+    setUser(e.target.value)
+    const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (!re.test(String(e.target.value).toLowerCase())) {
+      setEmailError('Некорректный email')
+    } else {
+      setEmailError("")
+    }
+  }
+  const passwordHandler=(e)=>{
+    setPassword(e.target.value)
+    if (e.target.value.length<3){
+      setPasswordError('Пароль не может быть меньше 3 символов')
+      if(!e.target.value){
+        setPasswordError('Пароль не может быть меньше 3 символов')
+      }
+    }else{
+      setPasswordError('')
+    }
+  }
+  const [formValid,setFormvalid]=useState(false)
+  useEffect(()=>{
+    if(emailError || passwordError){
+      setFormvalid(false)
+    }else{
+      setFormvalid(true)
+    }
+  },[emailError,passwordError])
   useEffect(() => {
     getUserContent()
   }, [])
@@ -113,16 +154,32 @@ const Login = () => {
                           </p>
                           <form>
                             <div className='form-group row'>
+                             
+
                               <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
                                 Email
                               </label>
 
                               <div className='col-md-6'>
-                                <input className='form-control '
-                                  id='email'
-                                  type='email'
-                                  onChange={(e) => setUser(e.target.value)}></input>
+                                <input className='form-control'
+                                  onBlur={e => blurHandler(e)}
+                                  name='emailValidation'
+                                  value={username}
+                                  onChange={(e) => emailHandler(e)}
+                                  placeholder="Введите email">
+                                  
+                                </input>
                               </div>
+                               {(emailDirty && emailError) &&
+                              <>
+                                <div className='col-md-4 col-form-label text-md-right'>
+                                  
+                                </div>
+                                 <div className='col-md-6 ' style={{color:'red'}}>
+                                 {emailError}
+                               </div>
+                               </>
+                                }
                             </div>
                             <div className='form-group row'>
                               <label htmlFor="password" className="col-md-4 col-form-label text-md-right">
@@ -131,16 +188,30 @@ const Login = () => {
 
                               <div className='col-md-6'>
                                 <input className='form-control '
-                                  id='password'
-                                  type='password'
-                                  onChange={(e) => setPassword(e.target.value)}></input>
+                                 onBlur={e => blurHandler(e)}
+                                 name='passwordValidation'
+                                 value={password}
+                                 type='password'
+                                 placeholder='Введите пароль'
+                                  onChange={(e) => passwordHandler(e)}></input>
                               </div>
+                              {(passwordDirty && passwordError) &&
+                              <>
+                                <div className='col-md-4 col-form-label text-md-right'>
+                                  
+                                </div>
+                                 <div className='col-md-6 ' style={{color:'red'}}>
+                                 {passwordError}
+                               </div>
+                               </>
+                                }
                             </div>
+                            
                             <div className='form-group row mb-0'>
                               <div className='col-md-8 offset-md-4'>
-                                <div onClick={getToken} className='btn2 btn-primary'>
+                                <button disabled={!formValid} onClick={getToken} className='btn2 btn-primary'>
                                   Войти
-                                </div>
+                                </button>
                                 <NavLink to='/reset' className='btn2 btn-link' href='#'>
                                   Не помню пароль
                                 </NavLink>
@@ -193,18 +264,18 @@ const Login = () => {
                       </thead>
                       <tbody>
                         {
-                          userData?.Transactions.map((item,index) =>
-                            <>  
+                          userData?.Transactions.map((item, index) =>
+                            <>
                               <tr>
                                 <th scope="row">{item.id}</th>
                                 <td>{item.total_cost}</td>
                                 <td><Moment format="DD/MM/YYYY HH:mm:ss">{item.date}</Moment></td>
                                 <td onClick={() => setModalShow(true)}>Открыть статус заказа</td>
                               </tr>
-                              <ModalForOrder show={modalShow} onHide={() => setModalShow(false)} data={item.products} totalCosts={item.total_cost} status ={item.status[0].status_text}/>
+                              <ModalForOrder show={modalShow} onHide={() => setModalShow(false)} data={item.products} totalCosts={item.total_cost} status={item.status[0].status_text} />
                             </>
-                            
-                            )
+
+                          )
                         }
 
 
@@ -214,7 +285,7 @@ const Login = () => {
                 </div>
               </div>
             </div>
-            
+
           </>
       }
 
