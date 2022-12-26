@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Numbone/bestu/static/css/main.9f7c5f6e.css",
-    "main.js": "/Numbone/bestu/static/js/main.033ed9ed.js",
+    "main.js": "/Numbone/bestu/static/js/main.dfd1b6c6.js",
     "static/media/chemodan.png": "/Numbone/bestu/static/media/chemodan.61062e203540ce87c727.png",
     "static/media/block-top-768.jpg": "/Numbone/bestu/static/media/block-top-768.efb9a9850375a1e21830.jpg",
     "static/media/assets.jpg": "/Numbone/bestu/static/media/assets.f69cc9f43958fa8e21e0.jpg",
@@ -61,10 +61,10 @@
     "static/media/icon-cart.svg": "/Numbone/bestu/static/media/icon-cart.6dfcc156f882b52de6fbf25a9c897e77.svg",
     "static/media/icon-user.svg": "/Numbone/bestu/static/media/icon-user.edb26af9f2f9e21041ab4e50d3f61621.svg",
     "main.9f7c5f6e.css.map": "/Numbone/bestu/static/css/main.9f7c5f6e.css.map",
-    "main.033ed9ed.js.map": "/Numbone/bestu/static/js/main.033ed9ed.js.map"
+    "main.dfd1b6c6.js.map": "/Numbone/bestu/static/js/main.dfd1b6c6.js.map"
   },
   "entrypoints": [
     "static/css/main.9f7c5f6e.css",
-    "static/js/main.033ed9ed.js"
+    "static/js/main.dfd1b6c6.js"
   ]
 }

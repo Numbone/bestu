@@ -30,11 +30,11 @@ const ModalForOrder = (props) => {
                     </thead>
                     <tbody id="table-cart">
                         {
-                            props.data.map(item =>
+                            props?.data?.map(item =>
                                 <tr className="item__modal" data-price={1790} data-product={2} data-shipping={1}>
-                                    <td><span className="cart-item__name">{item.name} (250мл (280г))</span><br /><span style={{ fontSize: '.8em' }}></span></td>
+                                    <td><span className="cart-item__name">{item?.name} (250мл (280г))</span><br /><span style={{ fontSize: '.8em' }}></span></td>
                                     <td className="d-none d-sm-table-cell">
-                                        {item.price} руб.
+                                        {item?.price} руб.
                                     </td>
                                     <td>
                                         <div className="d-flex justify-content-center align-items-center box-quantity" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
@@ -45,7 +45,7 @@ const ModalForOrder = (props) => {
                                     </td>
                                     <td>
                                         <span className="item-total">
-                                            {item.price*item.count}
+                                            {item?.price*item?.count}
                                         </span>
                                     </td>
 

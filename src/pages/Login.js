@@ -286,9 +286,9 @@ const Login = () => {
                         <ModalForOrder
                           show={modalShow}
                           onHide={() => setModalShow(false)}
-                          data={userData.Transactions[modalIndex]?.products}
-                          totalCosts={userData.Transactions[modalIndex]?.total_cost}
-                          status={userData.Transactions[modalIndex]?.status[0]?.status_text} />
+                          data={userData?.Transactions[modalIndex]?.products}
+                          totalCosts={userData?.Transactions[modalIndex]?.total_cost}
+                          status={userData?.Transactions[modalIndex]?.status[0]?.status_text} />
 
 
 
