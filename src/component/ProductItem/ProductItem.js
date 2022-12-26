@@ -1,13 +1,14 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Context } from '../..';
 import { productId } from '../../api/product';
-import { productImages1 } from '../../img';
 import ph1 from '../../img/assets.jpg'
 import ModalComment from '../ModalComment/ModalComment';
-import ProductImages from '../SwiperCard/ProductImages';
 import './ProductItem.css'
+import { RiStarSFill } from 'react-icons/ri';
+import { reviewAdd } from '../../api/review';
+import ModalSucces from '../ModalSuccess/ModalSucces';
 const ProductItem = () => {
   const [open, setOpen] = React.useState(false);
   const [open1, setOpen1] = React.useState(false);
@@ -22,25 +23,42 @@ const ProductItem = () => {
     setOpen2(!open2);
   };
   const { id } = useParams()
-  console.log(id);
+
   const [data, setData] = useState({})
   const getItem = async () => {
     const { data } = await productId(id)
     setData(data)
     return data
   }
-  console.log(data);
+
   const { basket } = useContext(Context)
   const clickOrder = () => {
     basket.setBasket(id)
 
+  }
+  const [reviews, setReviews] = useState("")
+  const [numberStar, setNumberStars] = useState(0)
+
+  const sendReviewStar = async () => {
+    const data = await reviewAdd(reviews, numberStar, id)
+   
   }
 
   const [modalShow, setModalShow] = React.useState(false);
   useEffect(() => {
     getItem()
   }, [])
-  console.log(data);
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  const [active,setActive]=useState(false)
+  useEffect(()=>{
+    if (numberStar!=0){
+      sendReviewStar()
+      setActive(true)
+    }
+  },[reviews, numberStar, id,data.Stars])
+  console.log(active);
   return (
     <div className="flex-1" style={{ minHeight: '100vh' }}>
       <div className="product-top item-square"
@@ -69,7 +87,7 @@ const ProductItem = () => {
                 <div style={{ fontSize: '1.8em' }} className="d-flex align-items-center">
                   <svg style={{ width: '1em', marginRight: '.2em' }} viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.04917 0.927067C7.34852 0.00575614 8.65193 0.00575656 8.95129 0.927067L10.0209 4.21886C10.1547 4.63089 10.5387 4.90985 10.9719 4.90985H14.4331C15.4018 4.90985 15.8046 6.14946 15.0209 6.71886L12.2207 8.75331C11.8702 9.00795 11.7236 9.45932 11.8575 9.87134L12.927 13.1631C13.2264 14.0844 12.1719 14.8506 11.3882 14.2812L8.58801 12.2467C8.23753 11.9921 7.76293 11.9921 7.41244 12.2467L4.61227 14.2812C3.82856 14.8506 2.77408 14.0844 3.07343 13.1631L4.143 9.87134C4.27688 9.45932 4.13022 9.00795 3.77973 8.75331L0.979561 6.71886C0.195848 6.14946 0.598623 4.90985 1.56735 4.90985H5.02855C5.46177 4.90985 5.84573 4.63089 5.9796 4.21886L7.04917 0.927067Z" fill="#1D1D1B" />
-                  </svg> {data.Stars}
+                  </svg> {Math.floor(data.Stars) }
                 </div>
 
                 <div className="rating-line">
@@ -88,48 +106,106 @@ const ProductItem = () => {
                 <a className="custom-btn custom-btn-dark" onClick={clickOrder}>В корзину</a>
               </div>
               <div className="col-6">
-                <a  className="custom-btn" data-type="iframe"  
-                onClick={() => setModalShow(true)}>Читать все отзывы</a>
+                <a className="custom-btn" data-type="iframe"
+                  onClick={() => setModalShow(true)}>Читать все отзывы</a>
               </div>
             </div>
           </div>
           <div className="text-center">
-            <a href="https://thebestforyourself.ru/cabinet/review/scrub-ld" target="_blank" className="Tenor-Sans-link">Оставить отзыв</a>
+            <a className="Tenor-Sans-link">Оставить отзыв</a>
             <div className="box-rating" style={{ marginTop: '1em' }}>
               <div className="d-flex justify-content-center">
                 <div>
-                  <div className="d-flex justify-content-end align-items-center">
+                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("product_quality")}>
                     <div>Качество продукта: </div>
                     <div className="rating-stars">
-                      <div className="rating-stars__fill" style={{ width: '100%' }} />
+                      <div className='d-flex'>
+                        <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "product_quality"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(1)} />
+                        <RiStarSFill style={(numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "product_quality"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(2)} />
+                        <RiStarSFill style={(numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "product_quality"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(3)} />
+                        <RiStarSFill style={(numberStar == 4 || numberStar == 5) && reviews === "product_quality"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(4)} />
+                        <RiStarSFill style={(numberStar == 5) && reviews === "product_quality"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(5)} />
+                      </div>
                     </div>
                   </div>
-                  <div className="d-flex justify-content-end align-items-center">
+                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("aromat")}>
                     <div>Аромат: </div>
                     <div className="rating-stars">
-                      <div className="rating-stars__fill" style={{ width: '100%' }} />
+                      <div className='d-flex'>
+                        <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "aromat"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(1)} />
+                        <RiStarSFill style={(numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "aromat"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(2)} />
+                        <RiStarSFill style={(numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "aromat"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(3)} />
+                        <RiStarSFill style={(numberStar == 4 || numberStar == 5) && reviews === "aromat"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(4)} />
+                        <RiStarSFill style={(numberStar == 5) && reviews === "aromat"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(5)} />
+                      </div>
                     </div>
                   </div>
-                  <div className="d-flex justify-content-end align-items-center">
+                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("texttura")}>
                     <div>Текстура: </div>
                     <div className="rating-stars">
-                      <div className="rating-stars__fill" style={{ width: '100%' }} />
+                      <div className='d-flex'>
+                      <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "texttura"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(1)} />
+                        <RiStarSFill style={(numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "texttura"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(2)} />
+                        <RiStarSFill style={(numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "texttura"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(3)} />
+                        <RiStarSFill style={(numberStar == 4 || numberStar == 5) && reviews === "texttura"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(4)} />
+                        <RiStarSFill style={(numberStar == 5) && reviews === "texttura"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(5)} />
+                      </div>
                     </div>
                   </div>
-                  <div className="d-flex justify-content-end align-items-center">
+                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("effect_product")}>
                     <div>Эффект от продукта: </div>
                     <div className="rating-stars">
-                      <div className="rating-stars__fill" style={{ width: '100%' }} />
+                      <div className='d-flex'>
+                      <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "effect_product"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(1)} />
+                        <RiStarSFill style={(numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "effect_product"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(2)} />
+                        <RiStarSFill style={(numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "effect_product"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(3)} />
+                        <RiStarSFill style={(numberStar == 4 || numberStar == 5) && reviews === "effect_product"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(4)} />
+                        <RiStarSFill style={(numberStar == 5) && reviews === "effect_product"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(5)} />
+                      </div>
                     </div>
                   </div>
-                  <div className="d-flex justify-content-end align-items-center">
+                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("deliver_quality")}>
                     <div>Качество доставки: </div>
                     <div className="rating-stars">
-                      <div className="rating-stars__fill" style={{ width: '100%' }} />
+                      <div className='d-flex'>
+                      <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "deliver_quality"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(1)} />
+                        <RiStarSFill style={(numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "deliver_quality"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(2)} />
+                        <RiStarSFill style={(numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "deliver_quality"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(3)} />
+                        <RiStarSFill style={(numberStar == 4 || numberStar == 5) && reviews === "deliver_quality"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(4)} />
+                        <RiStarSFill style={(numberStar == 5) && reviews === "deliver_quality"
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(5)} />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <ModalSucces
+              show={active}
+              onHide={() => setActive(false)} />
             </div>
           </div>
         </div>
@@ -240,9 +316,9 @@ const ProductItem = () => {
 
         </div>
       </div>
-          <ModalComment
-           show={modalShow}
-           onHide={() => setModalShow(false)}/>
+      <ModalComment
+        show={modalShow}
+        onHide={() => setModalShow(false)} />
     </div>
 
 

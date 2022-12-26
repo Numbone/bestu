@@ -12,7 +12,7 @@ import { observer } from 'mobx-react-lite'
 const Header = () => {
   const navigation = useLocation()
   const { basket } = useContext(Context)
-  console.log(basket.Basket.length, "Header");
+
   const [modal, setModal] = useState(false)
   const navigate = useNavigate()
   const [search1, setSeacrh1] = useState("")

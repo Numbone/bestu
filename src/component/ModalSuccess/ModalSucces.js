@@ -12,7 +12,7 @@ const ModalSucces = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Ваш заказ отправлен
+                    Ваш запрос отправлен
                 </Modal.Title>
             </Modal.Header>
         

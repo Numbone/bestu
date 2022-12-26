@@ -139,7 +139,7 @@ p {
     display: inline-block;
     position: relative;
     height: 20px;
-    width: 89px;
+    width: 120px;
 }
 .rating-stars .rating-stars__fill, .rating-stars:before {
     display: block;
@@ -322,4 +322,7 @@ p {
     .product-top .product-top__title {
         font-size: 1.4em;
     }
+}
+.icon_star{
+    width: 32px;
 }
