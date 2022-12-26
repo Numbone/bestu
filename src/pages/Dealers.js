@@ -1,6 +1,10 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import '../pages/css/Dealers.css'
 const Dealers = () => {
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <div className='flex-1' style={{ minHeight: '100%' }}>
             <div className='block-page-order'>
@@ -22,37 +26,32 @@ const Dealers = () => {
                                             <label htmlFor="name">
                                                 Ваше имя
                                             </label>
-                                            <input type="text" name="name" id="name" />
+                                            <input type="text" name="name" id="name" placeholder="Введите имя" />
                                         </div>
-                                        <div className="form-field">
-                                            <label htmlFor="name">
-                                                Ваше имя
-                                            </label>
-                                            <input type="text" name="name" id="name" />
-                                        </div>
+
                                         <div className="form-field">
                                             <label htmlFor="name">
                                                 Ваш телефон
                                             </label>
-                                            <input type="text" name="name" id="name" />
+                                            <input type="text" name="name" id="name" placeholder="Введите телефон " />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="name">
                                                 Ваш email
                                             </label>
-                                            <input type="text" name="name" id="name" />
+                                            <input type="text" name="name" id="name" placeholder="Введите  email" />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="name">
                                                 Планируемая страна сотрудничества
                                             </label>
-                                            <input type="text" name="name" id="name" />
+                                            <input type="text" name="name" id="name" placeholder="Введите  страну" />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="name">
                                                 Планируемый город сотрудничества
                                             </label>
-                                            <input type="text" name="name" id="name" />
+                                            <input type="text" name="name" id="name" placeholder="Введите город " />
                                         </div>
                                     </div>
 
@@ -67,12 +66,16 @@ const Dealers = () => {
                                                     value='1'
                                                     form='order' />
 
-                                                <label for='politika'>
-                                                    Я соглашаюсь с условиями
-                                                    политики обработки
-                                                    <br></br>
-                                                    персональных данных
+                                                <label htmlFor="politika">
+
+                                                    <span> Я соглашаюсь с условиями
+                                                        политики обработки </span>
+                                                    <NavLink to='/politicapage'>
+                                                        персональных данных
+                                                    </NavLink>
+
                                                 </label>
+
                                             </div>
                                         </div>
                                     </div>

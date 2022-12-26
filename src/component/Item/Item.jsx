@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { productImages, productImages1 } from '../../img'
 import ProductImages from '../SwiperCard/ProductImages'
@@ -6,6 +6,9 @@ import { observer } from 'mobx-react-lite';
 import ModalItem from '../ModalItem/ModalItem';
 import './Item.css'
 const Item = (props) => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
     const [active, setActive] = React.useState(false)
     const navigate = useNavigate()
     return (
@@ -13,7 +16,7 @@ const Item = (props) => {
             <ProductImages images={props.props.Images} />
             <div className='block-product__info flex-1 d-flex flex-column justify-content-between'
                 style={{
-                    padding: '1em 1.1em 0',
+                
                     flex: '1',
                     display: 'flex',
                     flex: 'column',

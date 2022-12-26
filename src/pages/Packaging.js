@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import btop from '../img/packtop.jpg'
 import ph from "../img/chemodan.png"
 import ph1 from "../img/chemodan1.png"
 const Packaging = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
   return (
     <div>
         <div className='block-top category' style={{ backgroundImage: `url(${btop})` }}>

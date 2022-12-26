@@ -1,6 +1,9 @@
 import React from 'react'
 
 const Stores = () => {
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
     return (
         <div className='block-page-order'>
             <div className='container'>

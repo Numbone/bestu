@@ -52,6 +52,7 @@ function App() {
     }
   }, [basket, user]);
   console.log(user.isAuth);
+
   return (
     <div className="App">
       <BrowserRouter>

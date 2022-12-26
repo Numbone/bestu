@@ -46,7 +46,7 @@ const Search = () => {
             <div className='block-catalog'>
                 <div className='container'>
                     <div className='block__title text-center'>
-                        Резльтаты поиска
+                        Результаты поиска
                     </div>
                     <div className='block-catalog__items'>
                         <div className='row gy-4 gx-2 g-md-4'>

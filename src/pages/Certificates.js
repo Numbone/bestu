@@ -26,6 +26,9 @@ import ph22 from '../img/img-22.jpg'
 import ph23 from '../img/img-23.jpg'
 
 const Certificates = () => {
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
     return (
         <div className='flex-1' style={{ minHeight: '100vh' }}>
             <div className='block-top category' style={{ backgroundImage: `url(${ph})` }}>

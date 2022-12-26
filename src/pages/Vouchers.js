@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ph from "../img/voucher.jpg"
 import ph1 from "../img/voucher1.jpg"
 import ph2 from "../img/voucher2.jpg"
 const Vouchers = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
     return (
         <>
             <div className='block-catalog'>

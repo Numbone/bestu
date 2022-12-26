@@ -1,6 +1,10 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Partners = () => {
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <div className='flex-1' style={{ minHeight: '100%' }}>
             <div className='block-page-order'>
@@ -22,31 +26,31 @@ const Partners = () => {
                                             <label htmlFor="name">
                                                 Кем вы являетесь?
                                             </label>
-                                            <input type="text" name="name" id="name" />
+                                            <input type="text" name="name" id="name" placeholder='Введите...' />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="name">
                                                 Опишите вашу услугу
                                             </label>
-                                            <input type="text" name="name" id="name" />
+                                            <input type="text" name="name" id="name" placeholder='Введите услуги' />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="name">
                                                 Ваше имя
                                             </label>
-                                            <input type="text" name="name" id="name" />
+                                            <input type="text" name="name" id="name" placeholder='Введите имя' />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="name">
                                                 Ваш телефон
                                             </label>
-                                            <input type="text" name="name" id="name" />
+                                            <input type="text" name="name" id="name" placeholder='Введите телефон' />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="name">
                                                 Ваш email
                                             </label>
-                                            <input type="text" name="name" id="name" />
+                                            <input type="text" name="name" id="name" placeholder='Введите email' />
                                         </div>
                                     </div>
 
@@ -62,10 +66,13 @@ const Partners = () => {
                                                     form='order' />
 
                                                 <label htmlFor="politika">
-                                                    Я соглашаюсь с условиями
-                                                    политики обработки
-                                                    <br /><br />
-                                                    персональных данных
+
+                                                    <span> Я соглашаюсь с условиями
+                                                        политики обработки </span>
+                                                    <NavLink to='/politicapage'>
+                                                        персональных данных
+                                                    </NavLink>
+
                                                 </label>
 
                                             </div>

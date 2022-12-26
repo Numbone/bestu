@@ -2,6 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const DelaersInfo = () => {
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
     return (
         <div className='block-page-order'>
             <div className='container'>
