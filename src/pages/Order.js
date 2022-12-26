@@ -507,7 +507,7 @@ const Order = () => {
                             defaultValue={1}
                             form="order"
                             onClick={(e) => setCheckOferta(e.target.checked)} /><label htmlFor="oferta">
-                            Я принимаю условия
+                            <span>Я принимаю условия </span>
                             <NavLink to='/ofertapage'>
                               публичной оферты</NavLink
                             >
@@ -518,7 +518,7 @@ const Order = () => {
                         <div style={{ position: 'relative' }}>
                           <input type="checkbox" name="politika" id="politika" className="input-checkbox" defaultValue={1} form="order"
                             onClick={(e) => setCheckerpolitika(e.target.checked)} />
-                          <label htmlFor="politika">Я соглашаюсь с условиями
+                          <label htmlFor="politika"><span>Я соглашаюсь с условиями </span>
                             <NavLink to="/politicapage" >
                               политики обработки
                               персональных данных

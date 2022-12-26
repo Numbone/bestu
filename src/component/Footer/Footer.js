@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import "../Footer/Footer.css"
 const Footer = () => {
     const navi = useLocation()
@@ -78,22 +78,22 @@ const Footer = () => {
                                     </div>
                                     <div className='col-lg-7 order-last order-lg-0'>
                                         <div className='item'>
-                                            <a href='https://thebestforyourself.ru/page/ofertahttps://thebestforyourself.ru/page/oferta'
+                                            <NavLink to='/ofertapage'
                                                 style={{ textDecoration: 'underline' }}>
                                                 Публичная оферта
-                                            </a>
+                                            </NavLink>
                                             <br></br>
                                             <br></br>
-                                            <a href='https://thebestforyourself.ru/page/politika'
+                                            <NavLink to="/politicapage"
                                                 style={{ textDecoration: 'underline' }}>
                                                 Политика обработки персональных данных
-                                            </a>
+                                            </NavLink>
                                             <br></br>
                                             <br></br>
-                                            <a href='https://thebestforyourself.ru/cabinet'
+                                            <NavLink to='/login'
                                                 style={{ textDecoration: 'underline' }}>
                                                 Личный кабинет
-                                            </a>
+                                            </NavLink>
                                         </div>
                                     </div>
                                 </div>
