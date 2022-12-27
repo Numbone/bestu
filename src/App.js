@@ -29,7 +29,7 @@ import Politika from './pages/Politika';
 import Oferta from './pages/Oferta';
 function App() {
 
-  const { user, basket } = useContext(Context);
+ const { user, basket } = useContext(Context);
   if ((localStorage.getItem("access")?.length > 0)) {
     user.setIsAuth(true)
   }

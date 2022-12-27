@@ -5,10 +5,11 @@ const Ambassadors = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  const [file,setFile]=React.useState("")
-  const selectFile=(e)=>{
-    setFile(e.target.value)
-  } 
+  const [file, setFile] = React.useState([])
+  const selectFile = (e) => {
+    setFile(e.target.files)
+  }
+
   return (
     <div className='flex-1' style={{ minHeight: '100%' }}>
       <div className='block-page-order'>
@@ -36,21 +37,20 @@ const Ambassadors = () => {
                       <label htmlFor="name">
                         Блог предлагаемого амбассадора
                       </label>
-                      <input type="text" name="name" id="name"  placeholder="Введите..."/>
+                      <input type="text" name="name" id="name" placeholder="Введите..." />
                     </div>
                     <div className="form-field">
                       <label htmlFor="name">
                         Актуальные охваты в сторис (приложить фото)
                       </label>
                       <div className="field__wrapper">
-                        <input type="file" className="field field__file" id="file" onChange={selectFile} />
-                        <label className="field__file-wrapper"  for="file">
+                        <input type="file" className="field field__file" id="file" onChange={selectFile} multiple />
+                        <label className="field__file-wrapper" for="file">
                           <div className="field__file-fake">
                             {
-                              file==""?<span>Файл не выбран</span>
-                              :file
+                              file.length == 0 ? <span>Файл не выбран</span>
+                                : <div>Файлы выбраны</div>
                             }
-                            
                           </div>
                           <div className="field__file-button">
                             Выбрать
@@ -90,13 +90,13 @@ const Ambassadors = () => {
                           form='order' />
 
                         <label htmlFor="politika">
-                         
+
                           <span> Я соглашаюсь с условиями
-                          политики обработки </span>
+                            политики обработки </span>
                           <NavLink to='/politicapage'>
-                          персональных данных
+                            персональных данных
                           </NavLink>
-                          
+
                         </label>
 
                       </div>

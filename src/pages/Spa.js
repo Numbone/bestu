@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import btop from '../img/spatop.jpg'
 import Item from '../component/Item/Item'
 import { productCategory } from '../api/product'
+import {Context} from "../"
 const Spa = () => {
     const [product, setProduct] = useState({})
     const getAllProducts = async () => {
@@ -12,7 +13,11 @@ const Spa = () => {
             console.log(error);
         }
     }
-    console.log(product);
+    const { basket } = useContext(Context)
+    const clickOrder = (id) => {
+      basket.setBasket(id)
+  
+  }
     useEffect(() => {
         getAllProducts()
     }, [])
@@ -37,7 +42,7 @@ const Spa = () => {
                             {product?.length === undefined | null
                                 ? <div></div>
                                 : product.map((item, index) =>
-                                    <Item props={item} key={index} />)
+                                    <Item props={item} key={index} clickOrder={clickOrder} />)
                             }
                         </div>
                     </div>

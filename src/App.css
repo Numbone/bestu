@@ -61,3 +61,10 @@ button:disabled{
     background-color: grey!important;
     border:none!important;
 }
+
+/* @media screen and (min-width:576px) {
+    .swiper-backface-hidden .swiper-slide img{
+        min-height: 21.6em;
+        max-height: "100%";
+    }
+} */

@@ -106,9 +106,11 @@ const Item = (props) => {
                                     Оформить заказ
                                 </button>
                             </NavLink>
+                            <div>
                             <button type="button" className="toastjs-btn toastjs-btn--close" onClick={() => setActive(false)}>
                                 Ок
                             </button>
+                            </div>
                         </div>
                     </div>
                 </div>

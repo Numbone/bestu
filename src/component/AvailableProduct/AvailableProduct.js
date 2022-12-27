@@ -41,7 +41,7 @@ const AvailableProduct = () => {
                     </div>
                 </div>
             </div>
-            <div className='container'>
+           {/* <div className='container'>
                 <nav>
                     <ul className='pagination'>
                         <li className='page-item'>
@@ -58,7 +58,7 @@ const AvailableProduct = () => {
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div>*/} 
         </>
     )
 }

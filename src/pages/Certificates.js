@@ -28,7 +28,7 @@ import ph23 from '../img/img-23.jpg'
 const Certificates = () => {
     React.useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
+    }, [])
     return (
         <div className='flex-1' style={{ minHeight: '100vh' }}>
             <div className='block-top category' style={{ backgroundImage: `url(${ph})` }}>
@@ -40,247 +40,247 @@ const Certificates = () => {
                     </div>
                 </div>
             </div>
-            <div className='block-catalog' style={{paddingTop:'5em'}}>
+            <div className='block-catalog' style={{ paddingTop: '5em' }}>
                 <div className='container'>
                     <div className='block-title my-4'>
-                            <h2 style={{fontSize:'1.5em'}}>
+                        <h2 style={{ fontSize: '1.5em' }}>
                             Сертификаты и декларации качества
-                            </h2>
+                        </h2>
                     </div>
                     <div className='catalog'>
                         <div className='row g-3'>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img alt='props' src={ph1}>
+                                <div className='img mb-3'  >
+                                    <img src={ph1} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Мусс
-                                </p>
-                            </div>
-                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph2}>
-                                    </img>
-                                </div>
-                                <p>
-                                Декларация. Скраб
+                                    Декларация. Мусс
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph3}>
+                                <div className='img mb-3'  >
+                                    <img src={ph2} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Соль
+                                    Декларация. Скраб
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph4}>
+                                <div className='img mb-3' >
+                                    <img src={ph3} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Масло для загара
-                                </p>
-                            </div>
-                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph5}>
-                                    </img>
-                                </div>
-                                <p>
-                                Декларация. Масло для кутикулы
+                                    Декларация. Соль
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph6}>
+                                <div className='img mb-3' >
+                                    <img src={ph4} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Моно-масла
+                                    Декларация. Масло для загара
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph7}>
+                                <div className='img mb-3'  >
+                                    <img src={ph5} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Бальзам для губ
-                                </p>
-                            </div>
-                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph8}>
-                                    </img>
-                                </div>
-                                <p>
-                                Декларация. Масло для ванны
-                                </p>
-                            </div>
-                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph9}>
-                                    </img>
-                                </div>
-                                <p>
-                                Декларация. Гель для душа
+                                    Декларация. Масло для кутикулы
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph10}>
+                                <div className='img mb-3'  >
+                                    <img src={ph6} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Масло для бровей
+                                    Декларация. Моно-масла
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph11}>
+                                <div className='img mb-3'  >
+                                    <img src={ph7} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Extra мусс
+                                    Декларация. Бальзам для губ
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph12}>
+                                <div className='img mb-3'  >
+                                    <img src={ph8} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Масло-активатор для роста ресниц
-                                </p>
-                            </div>
-                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph13}>
-                                    </img>
-                                </div>
-                                <p>
-                                Декларация. Масло для загара
+                                    Декларация. Масло для ванны
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph14}>
+                                <div className='img mb-3'  >
+                                    <img src={ph9} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Охлаждающий скраб
+                                    Декларация. Гель для душа
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph15}>
+                                <div className='img mb-3'  >
+                                    <img src={ph10} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Молочко для тела
+                                    Декларация. Масло для бровей
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph16}>
+                                <div className='img mb-3'  >
+                                    <img src={ph11} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Моно-масло миндаля, персика
+                                    Декларация. Extra мусс
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph17}>
+                                <div className='img mb-3' >
+                                    <img src={ph12} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Скраб для лица
+                                    Декларация. Масло-активатор для роста ресниц
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph18}>
+                                <div className='img mb-3' >
+                                    <img src={ph13} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Пенка для лица
+                                    Декларация. Масло для загара
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph19}>
+                                <div className='img mb-3' >
+                                    <img src={ph14} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Мицеллярная вода
+                                    Декларация. Охлаждающий скраб
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph17}>
+                                <div className='img mb-3'  >
+                                    <img src={ph15} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Крем для лица
+                                    Декларация. Молочко для тела
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph18}>
+                                <div className='img mb-3'  >
+                                    <img src={ph16} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Скраб "Солнце Африки"
+                                    Декларация. Моно-масло миндаля, персика
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph19}>
+                                <div className='img mb-3'  >
+                                    <img src={ph17} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Молочко для тела
+                                    Декларация. Скраб для лица
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph20}>
+                                <div className='img mb-3'  >
+                                    <img src={ph18} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Лосьен для рук
+                                    Декларация. Пенка для лица
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph21}>
+                                <div className='img mb-3'  >
+                                    <img src={ph19} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Крем для лица (бергамот)
-                                </p>
-                            </div>
-                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph22}>
-                                    </img>
-                                </div>
-                                <p>
-                                Декларация. Масло массажное в форме свечи
+                                    Декларация. Мицеллярная вода
                                 </p>
                             </div>
                             <div className='col-12 col-md-4'>
-                                <div className='img mb-3'>
-                                    <img src={ph23}>
+                                <div className='img mb-3'  >
+                                    <img src={ph17} style={{ height: "500px" }}>
                                     </img>
                                 </div>
                                 <p>
-                                Декларация. Скраб для лица (бергамот)
+                                    Декларация. Крем для лица
+                                </p>
+                            </div>
+                            <div className='col-12 col-md-4'>
+                                <div className='img mb-3'  >
+                                    <img src={ph18} style={{ height: "500px" }}>
+                                    </img>
+                                </div>
+                                <p>
+                                    Декларация. Скраб "Солнце Африки"
+                                </p>
+                            </div>
+                            <div className='col-12 col-md-4'>
+                                <div className='img mb-3' >
+                                    <img src={ph19} style={{ height: "500px" }}>
+                                    </img>
+                                </div>
+                                <p>
+                                    Декларация. Молочко для тела
+                                </p>
+                            </div>
+                            <div className='col-12 col-md-4'>
+                                <div className='img mb-3' >
+                                    <img src={ph20} style={{ height: "500px" }}>
+                                    </img>
+                                </div>
+                                <p>
+                                    Декларация. Лосьен для рук
+                                </p>
+                            </div>
+                            <div className='col-12 col-md-4'>
+                                <div className='img mb-3' >
+                                    <img src={ph21} style={{ height: "500px" }}>
+                                    </img>
+                                </div>
+                                <p>
+                                    Декларация. Крем для лица (бергамот)
+                                </p>
+                            </div>
+                            <div className='col-12 col-md-4'>
+                                <div className='img mb-3'  >
+                                    <img src={ph22} style={{ height: "500px" }}>
+                                    </img>
+                                </div>
+                                <p>
+                                    Декларация. Масло массажное в форме свечи
+                                </p>
+                            </div>
+                            <div className='col-12 col-md-4'>
+                                <div className='img mb-3'  >
+                                    <img src={ph23} style={{ height: "500px" }}>
+                                    </img>
+                                </div>
+                                <p>
+                                    Декларация. Скраб для лица (бергамот)
                                 </p>
                             </div>
                         </div>

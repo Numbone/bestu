@@ -244,7 +244,7 @@ const Order = () => {
                     <tbody id="table-cart">
                       {basket.Basket.map(item =>
                         <tr className="item" data-price={1790} data-product={2} data-shipping={1}>
-                          <td><span className="cart-item__name">{item.Name} (250мл (280г))</span><br /><span style={{ fontSize: '.8em' }}>Артикул: scrub-ld</span></td>
+                          <td><span className="cart-item__name">{item.Name} </span><br /><span style={{ fontSize: '.8em' }}>Артикул: scrub-ld</span></td>
                           <td className="d-none d-sm-table-cell">
                             {item.Price} руб.
                           </td>

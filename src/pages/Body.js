@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { productCategory } from '../api/product'
 import BlockAbout from '../component/BlockAbout/BlockAbout'
 import BlockTop from '../component/BlockTop/BlockTop'
 import Item from '../component/Item/Item'
-
+import {Context} from "../"
 const Body = () => {
   const [product, setProduct] = useState({})
   const getAllProducts = async () => {
@@ -18,6 +18,11 @@ const Body = () => {
   useEffect(() => {
     getAllProducts()
   }, [])
+  const { basket } = useContext(Context)
+  const clickOrder = (id) => {
+    basket.setBasket(id)
+
+}
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -35,7 +40,7 @@ const Body = () => {
               {product.length == undefined
                 ? <div></div>
                 : product.map((item, index) =>
-                  <Item props={item} key={index} />)
+                  <Item props={item} key={index} clickOrder={clickOrder} />)
               }
             </div>
           </div>
