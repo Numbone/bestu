@@ -24,8 +24,8 @@ const BlockCatalog = () => {
                                 style={{
                                     backgroundImage: `url("${ps}")`
                                 }}>
-                                <NavLink to='/body' className='img d-flex justify-content-center align-items-center flex-column'>
-                                    <span className='block-catalog__item-title '>
+                                <NavLink to='/body' className='img d-flex justify-content-center align-items-center flex-column '>
+                                    <span className='block-catalog__item-title  notranslate'>
                                         body
                                     </span>
                                 </NavLink>
@@ -37,7 +37,7 @@ const BlockCatalog = () => {
                                     backgroundImage: `url("${ps2}")`
                                 }}>
                                 <NavLink to='/beauty' className='img d-flex justify-content-center align-items-center flex-column'>
-                                    <span className='block-catalog__item-title '>
+                                    <span className='block-catalog__item-title notranslate '>
                                         beauty
                                     </span>
                                 </NavLink>
@@ -49,7 +49,7 @@ const BlockCatalog = () => {
                                     backgroundImage: `url("${ps3}")`
                                 }}>
                                 <NavLink to='/spa' className='img d-flex justify-content-center align-items-center flex-column'>
-                                    <span className='block-catalog__item-title ' 
+                                    <span className='block-catalog__item-title  notranslate' 
                                     style={{position:'relative',bottom:'60px'}}>
                                         SPA
                                     </span>
@@ -68,7 +68,7 @@ const BlockCatalog = () => {
                                     backgroundImage: `url("${ps4}")`
                                 }}>
                                 <NavLink to='/vouchers' className='img d-flex justify-content-center align-items-center flex-column'>
-                                    <span className='block-catalog__item-title block-catalog__item-title--montserrat '>
+                                    <span className='block-catalog__item-title block-catalog__item-title--montserrat notranslate '>
                                         Подарочные сертификаты
                                     </span>
                                 </NavLink>
@@ -80,7 +80,7 @@ const BlockCatalog = () => {
                                     backgroundImage: `url("${ps5}")`
                                 }}>
                                 <NavLink to='/packaging' className='img d-flex justify-content-center align-items-center flex-column'>
-                                    <span className='block-catalog__item-title block-catalog__item-title--montserrat '>
+                                    <span className='block-catalog__item-title block-catalog__item-title--montserrat  notranslate'>
                                         Упаковка
                                     </span>
                                 </NavLink>
