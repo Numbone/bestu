@@ -260,7 +260,7 @@ const Order = () => {
                               {item.count * item.Price}
                             </span>
                           </td>
-                          <td className="d-none d-sm-table-cell">
+                          <td className=" d-sm-table-cell">
                             <div onClick={() => basket.setDeleteItemBasket(item)} style={{ color: '#fff' }}>Х</div></td>
                         </tr>
                       )}

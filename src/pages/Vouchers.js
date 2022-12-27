@@ -67,7 +67,7 @@ const Vouchers = () => {
                                     style={{
                                         maxWidth: '100%'
                                     }}>
-                                    Купить1
+                                    Купить
                                 </button>
                             </div>
                             <div className='col-6'>
