@@ -12,6 +12,7 @@ const Partners = () => {
         emailjs.sendForm('service_w53fpdr', 'template_ynhq9ht', form.current, 'QR6Ghi73lFpWjvQzS')
             .then((result) => {
                 console.log(result.text);
+                console.log('finally')
             }, (error) => {
                 console.log(error.text);
             });
