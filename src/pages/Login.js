@@ -259,7 +259,7 @@ const Login = () => {
               <div className='content'>
                 <div className='container-fluid'>
                   <div className='container'>
-                    <table className="table-order">
+                    <table className="table-order table">
                       <thead>
                         <tr>
                           <th scope="col">Номер заказа</th>

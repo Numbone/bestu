@@ -6,7 +6,7 @@ import { productId } from '../../api/product';
 import ph1 from '../../img/assets.jpg'
 import ModalComment from '../ModalComment/ModalComment';
 import './ProductItem.css'
-import { RiStarSFill } from 'react-icons/ri';
+import { RiStarSFill } from "react-icons/ri";
 import { reviewAdd } from '../../api/review';
 import ModalSucces from '../ModalSuccess/ModalSucces';
 const ProductItem = () => {
