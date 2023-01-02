@@ -19,7 +19,7 @@ const ModalForOrder = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <table className='table table-bordered table-striped dataTable dtr-inline' style={{ width: '100%', maxWidth: 'none' }}>
-                    <thead className='order__filter__thead'>
+                    <thead className=''>
                         <tr>
                             <th style={{ width: '50%' }}>Наименование</th>
                             <th className="">Цена</th>
@@ -33,7 +33,7 @@ const ModalForOrder = (props) => {
                             props?.data?.map(item =>
                                 <tr className="" data-price={1790} data-product={2} data-shipping={1}>
                                     <td><span className="cart-item__name">{item?.name} (250мл (280г))</span><br /><span style={{ fontSize: '.8em' }}></span></td>
-                                    <td className="d-none d-sm-table-cell">
+                                    <td className="d-sm-table-cell">
                                         {item?.price} руб.
                                     </td>
                                     <td>
@@ -54,7 +54,7 @@ const ModalForOrder = (props) => {
                         }
                             <tr className="item" data-price={1790} data-product={2} data-shipping={1}>
                                     <td><span className="cart-item__name"></span><br /><span style={{ fontSize: '.8em' }}></span></td>
-                                    <td className="d-none d-sm-table-cell">
+                                    <td className=" d-sm-table-cell">
                                        
                                     </td>
                                     <td>
