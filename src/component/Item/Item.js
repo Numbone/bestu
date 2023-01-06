@@ -101,16 +101,16 @@ const Item = (props) => {
                     <div className="toastjs success">
                         <p> {props.props.Name}</p>
                         <div className="d-flex">
-                            <NavLink to='/order'>
+                           
                                 <button type="button" className="toastjs-btn toastjs-btn--custom" onClick={() => setActive(false)}>
-                                    Оформить заказ
+                                <NavLink to='/order' style={{color:'#fff'}}>Оформить заказ </NavLink>
                                 </button>
-                            </NavLink>
-                            <div>
+                           
+                          
                             <button type="button" className="toastjs-btn toastjs-btn--close" onClick={() => setActive(false)}>
                                 Ок
                             </button>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

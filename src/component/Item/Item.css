@@ -22,6 +22,7 @@
     color: #fff;
 }
 .toastjs-btn {
+    width:100%;
     background: #000;
     color: #fff;
     padding: 5px 10px;
@@ -37,4 +38,17 @@
     border: 1px solid #1c1c1c;
     color: #1c1c1c;
     margin-left: 0.5em;
+}
+.toastjs-container{
+    position: fixed;
+    bottom: 50px;
+    left: 10px;
+    width: calc(100% - 20px);
+    max-width: 400px;
+  
+    z-index: 100;
+}
+.toastjs.success p{
+    margin-block-start: 0em;
+     /* margin-block-end: 0em; */
 }

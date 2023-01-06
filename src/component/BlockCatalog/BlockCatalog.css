@@ -78,3 +78,6 @@
         font-size: 2em;
     }
 }
+.block__title.text-center a:hover{
+    color:black
+}

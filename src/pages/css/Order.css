@@ -90,3 +90,6 @@
     color: red;
     font-size: 14px!important;
 }
+.block-page-order .block__title {
+    margin-top: 1.5em;
+}

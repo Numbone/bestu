@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import '../pages/css/Ambassador.css'
 import emailjs from '@emailjs/browser';
@@ -8,20 +8,43 @@ const Ambassadors = () => {
   }, [])
   const [file, setFile] = React.useState([])
   const selectFile = (e) => {
-    setFile(e.target.files)
+    setFile(e.target.files[0])
   }
   const form = useRef()
-  const sendEmail = (e) => {
-      e.preventDefault();
-      emailjs.sendForm()
-      emailjs.sendForm('service_w53fpdr', 'template_ynhq9ht', form.current, 'QR6Ghi73lFpWjvQzS')
-          .then((result) => {
-              console.log(result.text);
-              console.log('finally')
-          }, (error) => {
-              console.log(error.text);
-          });
+  const [name, setName] = useState('')
+  const [person, setPerson] = useState('')
+  const [service, setService] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+
+  const convertBase64 = (file1) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file1);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
   };
+  const [photo,setPhoto]=useState("")
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    const test = await convertBase64(file)
+    setPhoto(test)
+    emailjs.sendForm('service_w53fpdr', 'template_ynhq9ht', form.current, 'QR6Ghi73lFpWjvQzS')
+      .then((result) => {
+        console.log(result.text);
+        console.log('finally')
+      }, (error) => {
+        console.log(error.text);
+      });
+  };
+  console.log(form.current)
   return (
     <div className='flex-1' style={{ minHeight: '100%' }}>
       <div className='block-page-order'>
@@ -32,7 +55,7 @@ const Ambassadors = () => {
             </h1>
           </div>
           <div className='form-order'>
-            <form ref={form} onSubmit={sendEmail}>
+            <form ref={form} onSubmit={sendEmail} >
               <div className='row justify-content-center'>
                 <div className='col-lg-6 col-md-8'>
                   <h3>
@@ -43,21 +66,38 @@ const Ambassadors = () => {
                       <label htmlFor="person">
                         Кем вы являетесь?
                       </label>
-                      <input type="text" name="person" id="person" placeholder="Введите..." />
+                      <input
+                        onChange={(e) => setPerson(e.target.value)}
+                        type="text"
+                        name="person"
+                        id="person"
+                        placeholder="Введите..." />
                     </div>
                     <div className="form-field">
                       <label htmlFor="service">
                         Блог предлагаемого амбассадора
                       </label>
-                      <input type="text" name="service" id="service" placeholder="Введите..." />
+                      <input 
+                      onChange={(e)=>setService(e.target.value)}
+                      type="text"
+                       name="service" 
+                       id="service"
+                        placeholder="Введите..." />
                     </div>
                     <div className="form-field">
-                      <label htmlFor="name">
+                      <label htmlFor="">
                         Актуальные охваты в сторис (приложить фото)
                       </label>
                       <div className="field__wrapper">
-                        <input type="file" className="field field__file" id="file" name='file' onChange={selectFile} multiple />
-                        <label className="field__file-wrapper" for="file">
+                        <input
+                          type="file"
+                          className="field field__file"
+                          id="filename" name='filename'
+                          onChange={selectFile}
+                          multiple
+                         
+                        />
+                        <label className="field__file-wrapper" for="filename">
                           <div className="field__file-fake">
                             {
                               file.length == 0 ? <span>Файл не выбран</span>
@@ -74,19 +114,33 @@ const Ambassadors = () => {
                       <label htmlFor="name">
                         Ваше имя
                       </label>
-                      <input type="text" name="name" id="name" placeholder="Введите имя" />
+                      <input
+                       onChange={(e)=>setName(e.target.value)}
+                      type="text" name="name" id="name" placeholder="Введите имя" />
                     </div>
                     <div className="form-field">
                       <label htmlFor="phone">
                         Ваш телефон
                       </label>
-                      <input type="text" name="phone" id="phone" placeholder="Введите телефон" />
+                      <input
+                       onChange={(e)=>setPhone(e.target.value)}
+                       type="text" name="phone" id="phone" placeholder="Введите телефон" />
                     </div>
                     <div className="form-field">
                       <label htmlFor="email">
                         Ваш email
                       </label>
-                      <input type="text" name="email" id="email" placeholder="Введите email" />
+                      <input 
+                       onChange={(e)=>setEmail(e.target.value)}
+                      type="text" name="email" id="email" placeholder="Введите email" />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor="file">
+                        Ваш телефон
+                      </label>
+                      <input
+                       value={photo}
+                       type="text" name="file" id="file" placeholder="Введите телефон" />
                     </div>
                   </div>
 
@@ -117,6 +171,7 @@ const Ambassadors = () => {
                   <div className='text-center'>
                     <button type='submit'
                       className='btn'
+                            
                     >
                       Отправить заявку
                     </button>

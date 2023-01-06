@@ -29,8 +29,8 @@ const AllProductCatalog = ({setToast}) => {
     }, [])
 
     
-    console.log(basket.Basket,"basket");
-    console.log(basket.Price,"basket");
+    console.log(product);
+  
     return (
         <>
             <div className='block-catalog'>

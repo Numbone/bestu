@@ -93,6 +93,9 @@ const Login = () => {
   useEffect(() => {
     getUserContent()
   }, [])
+  useEffect(() => {
+    window.scrollTo(0, 10)
+}, [window.location])
   console.log(userData);
   return (
     <>
