@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import '../pages/css/Ambassador.css'
+import emailjs from '@emailjs/browser';
 const Ambassadors = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0)
@@ -9,7 +10,18 @@ const Ambassadors = () => {
   const selectFile = (e) => {
     setFile(e.target.files)
   }
-
+  const form = useRef()
+  const sendEmail = (e) => {
+      e.preventDefault();
+      emailjs.sendForm()
+      emailjs.sendForm('service_w53fpdr', 'template_ynhq9ht', form.current, 'QR6Ghi73lFpWjvQzS')
+          .then((result) => {
+              console.log(result.text);
+              console.log('finally')
+          }, (error) => {
+              console.log(error.text);
+          });
+  };
   return (
     <div className='flex-1' style={{ minHeight: '100%' }}>
       <div className='block-page-order'>
@@ -20,7 +32,7 @@ const Ambassadors = () => {
             </h1>
           </div>
           <div className='form-order'>
-            <form>
+            <form ref={form} onSubmit={sendEmail}>
               <div className='row justify-content-center'>
                 <div className='col-lg-6 col-md-8'>
                   <h3>
@@ -28,23 +40,23 @@ const Ambassadors = () => {
                   </h3>
                   <div className="box-form customer">
                     <div className="form-field">
-                      <label htmlFor="name">
+                      <label htmlFor="person">
                         Кем вы являетесь?
                       </label>
-                      <input type="text" name="name" id="name" placeholder="Введите..." />
+                      <input type="text" name="person" id="person" placeholder="Введите..." />
                     </div>
                     <div className="form-field">
-                      <label htmlFor="name">
+                      <label htmlFor="service">
                         Блог предлагаемого амбассадора
                       </label>
-                      <input type="text" name="name" id="name" placeholder="Введите..." />
+                      <input type="text" name="service" id="service" placeholder="Введите..." />
                     </div>
                     <div className="form-field">
                       <label htmlFor="name">
                         Актуальные охваты в сторис (приложить фото)
                       </label>
                       <div className="field__wrapper">
-                        <input type="file" className="field field__file" id="file" onChange={selectFile} multiple />
+                        <input type="file" className="field field__file" id="file" name='file' onChange={selectFile} multiple />
                         <label className="field__file-wrapper" for="file">
                           <div className="field__file-fake">
                             {
@@ -65,16 +77,16 @@ const Ambassadors = () => {
                       <input type="text" name="name" id="name" placeholder="Введите имя" />
                     </div>
                     <div className="form-field">
-                      <label htmlFor="name">
+                      <label htmlFor="phone">
                         Ваш телефон
                       </label>
-                      <input type="text" name="name" id="name" placeholder="Введите телефон" />
+                      <input type="text" name="phone" id="phone" placeholder="Введите телефон" />
                     </div>
                     <div className="form-field">
-                      <label htmlFor="name">
+                      <label htmlFor="email">
                         Ваш email
                       </label>
-                      <input type="text" name="name" id="name" placeholder="Введите email" />
+                      <input type="text" name="email" id="email" placeholder="Введите email" />
                     </div>
                   </div>
 

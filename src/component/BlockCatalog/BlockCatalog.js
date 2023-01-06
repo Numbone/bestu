@@ -49,7 +49,7 @@ const BlockCatalog = () => {
                                     backgroundImage: `url("${ps3}")`
                                 }}>
                                 <NavLink to='/spa' className='img d-flex justify-content-center align-items-center flex-column'>
-                                    <span className='block-catalog__item-title  notranslate' 
+                                    <span className='block-catalog__item-title  ' 
                                     style={{position:'relative',bottom:'60px'}}>
                                         SPA
                                     </span>
