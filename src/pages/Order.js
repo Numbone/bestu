@@ -166,8 +166,12 @@ const Order = () => {
       console.log(copy.basket, "copy");
 
       const data = !user.isAuth
-        ? await transactionCreate2(delivery, email, father_name, first_name, phone_number, copy.basket, promo_code, second_name, basket.Price)
-        : await transactionCreate(delivery, email, father_name, first_name, phone_number, copy.basket, promo_code, second_name, basket.Price)
+        ? await transactionCreate2(delivery,copy.basket,promo_code,basket.Price,
+          {"email":email,'father_name':father_name,"first_name":first_name,"phone_number":phone_number,
+        "second_name":second_name})
+        : await transactionCreate(delivery,copy.basket,promo_code,basket.Price,
+          {"email":email,'father_name':father_name,"first_name":first_name,"phone_number":phone_number,
+        "second_name":second_name})
       setData(data);
       console.log();
     } catch (error) {

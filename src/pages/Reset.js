@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { authChange } from '../api/auth'
+import { authChange, authLink } from '../api/auth'
 
 const Reset = () => {
     const [open, setOpen] = React.useState(false);
@@ -8,13 +8,33 @@ const Reset = () => {
         setOpen(!open);
     };
     const [password, setPassword] = useState()
+    const [change, setChange] = useState(false)
+    const [code,setCode]=useState("")
     const getPassword = async (e) => {
         e.preventDefault()
         try {
-            const data = await authChange(password)
+            const data = await authLink(password)
+            setChange(true)
+            console.log(data)
             return data
         } catch (error) {
             console.log(error)
+        } finally {
+
+        }
+
+    }
+    const getCode = async (e) => {
+        e.preventDefault()
+        try {
+            const data = await authChange(password,code)
+            setChange(true)
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        } finally {
+
         }
 
     }
@@ -67,47 +87,105 @@ const Reset = () => {
                         </div>
                     </div>
                 </div>
-                <div className='content'>
-                    <div className='container-fluid'>
-                        <div className='container'>
-                            <div className='row justify-content-center'>
-                                <div className='col-md-8'>
-                                    <div className='card'>
-                                        <div className='card-header'>
-                                            Восстановить пароль
-                                        </div>
-                                        <div className='card-body'>
-
-                                            <form>
-                                                <div className='form-group row'>
-                                                    <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
-                                                        Email
-                                                    </label>
-
-                                                    <div className='col-md-6'>
-                                                        <input className='form-control '
-                                                            id='email'
-                                                            type='email'
-                                                            onChange={(e) => setPassword(e.target.value)}></input>
-                                                    </div>
+                {
+                    !change ?
+                        <div className='content'>
+                            <div className='container-fluid'>
+                                <div className='container'>
+                                    <div className='row justify-content-center'>
+                                        <div className='col-md-8'>
+                                            <div className='card'>
+                                                <div className='card-header'>
+                                                    Восстановить пароль
                                                 </div>
+                                                <div className='card-body'>
 
-                                                <div className='form-group row mb-0'>
-                                                    <div className='col-md-8 offset-md-4'>
-                                                        <button onClick={getPassword} className='btn2 btn-primary'>
-                                                            Продолжить
-                                                        </button>
+                                                    <form>
+                                                        <div className='form-group row'>
+                                                            <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
+                                                                Email
+                                                            </label>
 
-                                                    </div>
+                                                            <div className='col-md-6'>
+                                                                <input className='form-control '
+                                                                    id='email'
+                                                                    type='email'
+                                                                    onChange={(e) => setPassword(e.target.value)}></input>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className='form-group row mb-0'>
+                                                            <div className='col-md-8 offset-md-4'>
+                                                                <button onClick={getPassword} className='btn2 btn-primary'>
+                                                                    Продолжить
+                                                                </button>
+
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        :
+                        <div className='content'>
+                            <div className='container-fluid'>
+                                <div className='container'>
+                                    <div className='row justify-content-center'>
+                                        <div className='col-md-8'>
+                                            <div className='card'>
+                                                <div className='card-header'>
+                                                    Восстановить аккаунт
+                                                </div>
+                                                <div className='card-body'>
+
+                                                    <form>
+                                                        <div className='form-group row'>
+                                                            <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
+                                                                Email
+                                                            </label>
+
+                                                            <div className='col-md-6'>
+                                                                <input className='form-control '
+                                                                    id='email'
+                                                                    type='email'
+                                                                    onChange={(e) => setPassword(e.target.value)}></input>
+                                                            </div>
+                                                        </div>
+                                                        <div className='form-group row'>
+                                                            <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
+                                                                Password
+                                                            </label>
+
+                                                            <div className='col-md-6'>
+                                                                <input className='form-control '
+                                                                    id='email'
+                                                                    type='password'
+                                                                    onChange={(e) => setCode(e.target.value)}></input>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className='form-group row mb-0'>
+                                                            <div className='col-md-8 offset-md-4'>
+                                                                <button onClick={getCode} className='btn2 btn-primary'>
+                                                                    Продолжить
+                                                                </button>
+
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                }
+
             </div>
         </>
     )

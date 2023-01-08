@@ -273,12 +273,12 @@ const ProductItem = () => {
 
                 data-max-height="621px" style={{ position: 'static', visibility: 'visible', display: 'block', transition: 'max-height 0.5s ease-in-out 0s', overflowY: 'hidden' }}>
                 <div>
-                {
-                modeOfApp === undefined ? null :
-                modeOfApp?.map(item =>
-                    <p>{item}</p>)
-              }
-                   </div>
+                  {
+                    modeOfApp === undefined ? null :
+                      modeOfApp?.map(item =>
+                        <p>{item}</p>)
+                  }
+                </div>
               </div>
               : null
           }
@@ -290,13 +290,13 @@ const ProductItem = () => {
             open1
               ? <div className="block-accordion__panel" data-max-height="430px" style={{ position: 'static', visibility: 'visible', display: 'block', transition: 'max-height 0.5s ease-in-out 0s', overflowY: 'hidden' }}>
                 <div>
-                {
-                contraindications === undefined ? null :
-                contraindications?.map(item =>
-                    <p>{item}</p>)
-              }
-                  
-                    </div>
+                  {
+                    contraindications === undefined ? null :
+                      contraindications?.map(item =>
+                        <p>{item}</p>)
+                  }
+
+                </div>
               </div>
               : null
           }

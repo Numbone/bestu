@@ -1,7 +1,7 @@
 import { instance } from "."
 
 export const productAll=async(lang)=>{
-    const data=await instance.get(`product/all?lang=${lang}`)
+    const data=await instance.get(`product/all?lang=${lang}`,)
     return data
 }
 export const productId=async(id)=>{
@@ -16,7 +16,7 @@ export const productCategory=async(category,lang)=>{
     const data=await instance.get(`product/category/${category}?lang=${lang}`)
     return data
 }
-export const productSearch=async(param)=>{
-    const data=await instance.get(`product/search?search=${(param)}`)
+export const productSearch=async(param,lang)=>{
+    const data=await instance.get(`product/search?lang=${lang}&search=${(param)}`)
     return data
 }

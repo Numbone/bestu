@@ -70,3 +70,11 @@ button:disabled{
     }
 } */
 
+.swiper-pagination-bullet-active{
+    background-color: #1c1c1c !important;
+}
+.swiper-pagination-bullet {
+    background-color: #1c1c1c;
+    border: 1px solid #1c1c1c;
+    opacity: 1;
+}

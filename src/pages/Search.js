@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
+import { Context } from '..';
 import { productSearch } from '../api/product';
 import Item from '../component/Item/Item';
 import search from "../img/icon-search.svg"
@@ -9,9 +10,10 @@ const Search = () => {
     const [product, setProduct] = useState()
     const prev = '<'
     const next = '>'
+    const {lang}=useContext(Context)
      const getProduct = async () => {
         try {
-            const { data } = await productSearch(world)
+            const { data } = await productSearch(world,lang.lang)
             setProduct(data.search_products)
         } catch (error) {
             console.log(error);

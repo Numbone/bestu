@@ -40,17 +40,36 @@ const Header = () => {
                   </button>
                 </div>
                 <div className='header_computer header__column header__column--first'>
-                  <div className='header__subtitle' data-da="header__column--center,last,768" data-da-index="0">
-                    Косметика <br></br> из натуральных масел
-                  </div>
+                  {
+                    lang.lang == 'ru'
+                      ?
+                      <div className='header__subtitle' data-da="header__column--center,last,768" data-da-index="0">
+                        Косметика <br></br> из натуральных масел
+                      </div>
+                      :
+                      <div className='header__subtitle' data-da="header__column--center,last,768" data-da-index="0">
+
+                        Cosmetics <br></br> from natural oils
+                      </div>
+                  }
                 </div>
                 <div className='header-mobile  header__column header__column--center text-center'>
                   <NavLink to='/' className='header__logo img' >
                     <img alt='props' src={logo}></img>
                   </NavLink>
-                  <div className='header__subtitle' data-da="header__column--center,last,768" data-da-index="0">
-                    Косметика  из натуральных масел
-                  </div>
+
+                  {
+                    lang.lang == 'ru'
+                      ?
+                      <div className='header__subtitle' data-da="header__column--center,last,768" data-da-index="0">
+                        Косметика <br></br> из натуральных масел
+                      </div>
+                      :
+                      <div className='header__subtitle' data-da="header__column--center,last,768" data-da-index="0">
+
+                        Cosmetics <br></br> from natural oils
+                      </div>
+                  }
                 </div>
                 <div className='header_computer header__column header__column--center text-center'>
                   <NavLink to='/' className='header__logo img' >
@@ -65,6 +84,17 @@ const Header = () => {
                         </img>
                       </NavLink>
                     </div>
+                    {
+                      lang1 == "en"
+                        ? <button style={{ display: 'flex', alignItems: 'center', fontSize: '16px', backgroundColor: 'transparent' }} className='search-button' onClick={() => changeLangRu()}>
+                          EN
+                        </button>
+                        : lang1 == "ru" ? <button style={{ display: 'flex', alignItems: 'center', fontSize: '16px', backgroundColor: 'transparent' }} className='search-button' onClick={() => changeLangEn()}>
+                          RU
+                        </button>
+                          : null
+                    }
+
                     <div className='cart-button'>
                       <NavLink to='/order' style={{ display: 'flex', alignItems: "flex-end" }}>
                         <img alt='props' src={cart}>
@@ -78,22 +108,14 @@ const Header = () => {
 
                       </NavLink>
                     </div>
-                    {
-                      lang1 == "en"
-                        ? <div style={{ display: 'flex', alignItems: 'center', fontSize: '16px' }} className='cart-button' onClick={() =>changeLangRu()}>
-                          EN
-                        </div>
-                          : lang1 == "ru" ? <div style={{ display: 'flex', alignItems: 'center', fontSize: '16px' }} className='cart-button' onClick={() => changeLangEn()}>
-                            RU
-                          </div>
-                        : null
-                    }
-  
+
+
                   </div>
 
                 </div>
                 <div className='header_computer header__column'>
                   <div className='header__buttons d-flex justify-content-end'>
+
                     <div className='search-button' data-da="header__column--first,first,768" data-da-index="1">
                       <button style={{ backgroundColor: 'transparent' }} onClick={() => setModal(true)}>
                         <img alt='props' src={search} >
@@ -106,6 +128,18 @@ const Header = () => {
                         </img>
                       </NavLink>
                     </div>
+                    {
+                      lang1 == "en"
+                        ? <button style={{ display: 'flex', alignItems: 'center', fontSize: '16px', backgroundColor: 'transparent' }} className='search-button' onClick={() => changeLangRu()}>
+                          EN
+                        </button>
+                        : lang1 == "ru" ? <button style={{ display: 'flex', alignItems: 'center', fontSize: '16px', backgroundColor: 'transparent' }} className='search-button' onClick={() => changeLangEn()}>
+                          RU
+                        </button>
+                          : null
+                    }
+
+
                     <div className='cart-button'>
                       <NavLink to='/order' style={{ display: 'flex', alignItems: "flex-end" }}>
                         <img alt='props' src={cart}>
@@ -119,16 +153,6 @@ const Header = () => {
 
                       </NavLink>
                     </div>
-                    {
-                      lang1 == "en"
-                        ? <div style={{ display: 'flex', alignItems: 'center', fontSize: '16px' }} className='cart-button' onClick={() =>changeLangRu()}>
-                          EN
-                        </div>
-                          : lang1 == "ru" ? <div style={{ display: 'flex', alignItems: 'center', fontSize: '16px' }} className='cart-button' onClick={() => changeLangEn()}>
-                            RU
-                          </div>
-                        : null
-                    }
 
                   </div>
                 </div>

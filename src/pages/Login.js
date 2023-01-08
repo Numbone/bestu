@@ -90,12 +90,19 @@ const Login = () => {
       setFormvalid(true)
     }
   }, [emailError, passwordError])
+
+  ///logout
+  const logout=()=>{
+    user.setIsAuth(false)
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
+  }
   useEffect(() => {
     getUserContent()
   }, [])
   useEffect(() => {
     window.scrollTo(0, 10)
-}, [window.location])
+  }, [window.location])
   console.log(userData);
   return (
     <>
@@ -107,25 +114,48 @@ const Login = () => {
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div className='navbar-collapse order-3 collapse'>
-            <ul className='navbar-nav'>
+          <div className='navbar-collapse order-3 collapse' >
+            <ul className='navbar-nav' style={{ width: '100%' }}>
               <li className='nav-item'>
                 <NavLink to='/' className='nav-link'>
                   Магазин
                 </NavLink>
               </li>
+
             </ul>
+            {
+                  user.isAuth 
+                  ? <button 
+                  onClick={()=>logout()}
+                  style={{ float: 'right', backgroundColor: 'transparent' }} 
+                  className='nav-link'>
+                    Выход
+                  </button>
+                  :null
+                }
           </div>
         </div>
         {
           open
-            ? <div>
+            ?
+            <div>
               <ul className='navbar-nav'>
                 <li className='nav-item'>
                   <NavLink to='/' className='nav-link'>
                     Магазин
                   </NavLink>
                 </li>
+                {
+                  user.isAuth 
+                  ? <button 
+                  onClick={()=>logout()}
+                  style={{ float: 'right', backgroundColor: 'transparent' }} 
+                  className='nav-link'>
+                    Выход
+                  </button>
+                  :null
+                }
+               
               </ul>
             </div>
             : null
@@ -279,7 +309,7 @@ const Login = () => {
                                 <th scope="row">{item.id}</th>
                                 <td>{item.total_cost}</td>
                                 <td><Moment format="DD/MM/YYYY HH:mm:ss">{item.date}</Moment></td>
-                                <td onClick={()=>openModalforOrder(index)}>Открыть статус заказа</td>
+                                <td onClick={() => openModalforOrder(index)}>Открыть статус заказа</td>
                               </tr>
 
                             </>

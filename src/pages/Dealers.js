@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import ModalSucces from '../component/ModalSuccess/ModalSucces'
+import emailjs from '@emailjs/browser';
 import '../pages/css/Dealers.css'
 const Dealers = () => {
     React.useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+    const form = useRef()
+    const [active, setActive] = useState(false)
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm('service_w53fpdr', 'template_ynhq9ht', form.current, 'QR6Ghi73lFpWjvQzS')
+            .then((result) => {
+                if (result.text = "OK") {
+                    setActive(true)
+                }
+            }, (error) => {
+                console.log(error.text);
+            });
+    };
     return (
         <div className='flex-1' style={{ minHeight: '100%' }}>
             <div className='block-page-order'>
@@ -15,7 +31,7 @@ const Dealers = () => {
                         </h1>
                     </div>
                     <div className='form-order'>
-                        <form>
+                        <form ref={form} onSubmit={sendEmail}>
                             <div className='row justify-content-center'>
                                 <div className='col-lg-6 col-md-8'>
                                     <h3>
@@ -30,28 +46,28 @@ const Dealers = () => {
                                         </div>
 
                                         <div className="form-field">
-                                            <label htmlFor="name">
+                                            <label htmlFor="phone">
                                                 Ваш телефон
                                             </label>
-                                            <input type="text" name="name" id="name" placeholder="Введите телефон " />
+                                            <input type="text" name="phone" id="phone" placeholder="Введите телефон " />
                                         </div>
                                         <div className="form-field">
-                                            <label htmlFor="name">
+                                            <label htmlFor="email">
                                                 Ваш email
                                             </label>
-                                            <input type="text" name="name" id="name" placeholder="Введите  email" />
+                                            <input type="text" name="email" id="email" placeholder="Введите  email" />
                                         </div>
                                         <div className="form-field">
-                                            <label htmlFor="name">
+                                            <label htmlFor="service">
                                                 Планируемая страна сотрудничества
                                             </label>
-                                            <input type="text" name="name" id="name" placeholder="Введите  страну" />
+                                            <input type="text" name="service" id="service" placeholder="Введите  страну" />
                                         </div>
                                         <div className="form-field">
-                                            <label htmlFor="name">
+                                            <label htmlFor="person">
                                                 Планируемый город сотрудничества
                                             </label>
-                                            <input type="text" name="name" id="name" placeholder="Введите город " />
+                                            <input type="text" name="person" id="person" placeholder="Введите город " />
                                         </div>
                                     </div>
 
@@ -92,6 +108,10 @@ const Dealers = () => {
                     </div>
                 </div>
             </div>
+            <ModalSucces
+                show={active}
+                onHide={() => setActive(false)}
+            />
         </div>
     )
 }

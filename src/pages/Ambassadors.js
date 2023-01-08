@@ -2,14 +2,15 @@ import React, { useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import '../pages/css/Ambassador.css'
 import emailjs from '@emailjs/browser';
+import ModalSucces from '../component/ModalSuccess/ModalSucces';
 const Ambassadors = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  const [file, setFile] = React.useState([])
-  const selectFile = (e) => {
-    setFile(e.target.files[0])
-  }
+  // const [file, setFile] = React.useState([])
+  // const selectFile = (e) => {
+  //   setFile(e.target.files[0])
+  // }
   const form = useRef()
   const [name, setName] = useState('')
   const [person, setPerson] = useState('')
@@ -17,29 +18,31 @@ const Ambassadors = () => {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
 
-  const convertBase64 = (file1) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file1);
+  // const convertBase64 = (file1) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file1);
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
 
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-  const [photo,setPhoto]=useState("")
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     };
+  //   });
+  // };
+  const [active,setActive]=useState(false)
   const sendEmail = async (e) => {
     e.preventDefault();
-    const test = await convertBase64(file)
-    setPhoto(test)
-    emailjs.sendForm('service_w53fpdr', 'template_ynhq9ht', form.current, 'QR6Ghi73lFpWjvQzS')
+    // const test = await convertBase64(file)
+    // setPhoto(test)
+   
+    emailjs.sendForm('service_w53fpdr', 'template_ynhq9ht',form.current, 'QR6Ghi73lFpWjvQzS')
       .then((result) => {
-        console.log(result.text);
-        console.log('finally')
+        if(result.text="OK"){
+          setActive(true)
+        }
       }, (error) => {
         console.log(error.text);
       });
@@ -84,7 +87,7 @@ const Ambassadors = () => {
                        id="service"
                         placeholder="Введите..." />
                     </div>
-                    <div className="form-field">
+                    {/* <div className="form-field">
                       <label htmlFor="">
                         Актуальные охваты в сторис (приложить фото)
                       </label>
@@ -109,7 +112,7 @@ const Ambassadors = () => {
                           </div>
                         </label>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="form-field">
                       <label htmlFor="name">
                         Ваше имя
@@ -134,14 +137,7 @@ const Ambassadors = () => {
                        onChange={(e)=>setEmail(e.target.value)}
                       type="text" name="email" id="email" placeholder="Введите email" />
                     </div>
-                    <div className="form-field">
-                      <label htmlFor="file">
-                        Ваш телефон
-                      </label>
-                      <input
-                       value={photo}
-                       type="text" name="file" id="file" placeholder="Введите телефон" />
-                    </div>
+                  
                   </div>
 
                   <hr></hr>
@@ -182,6 +178,10 @@ const Ambassadors = () => {
           </div>
         </div>
       </div>
+      <ModalSucces
+       show={active}
+       onHide={() => setActive(false)}
+      />
     </div>
   )
 }
