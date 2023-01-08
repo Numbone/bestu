@@ -78,7 +78,19 @@ const Header = () => {
 
                       </NavLink>
                     </div>
+                    {
+                      lang1 == "en"
+                        ? <div style={{ display: 'flex', alignItems: 'center', fontSize: '16px' }} className='cart-button' onClick={() =>changeLangRu()}>
+                          EN
+                        </div>
+                          : lang1 == "ru" ? <div style={{ display: 'flex', alignItems: 'center', fontSize: '16px' }} className='cart-button' onClick={() => changeLangEn()}>
+                            RU
+                          </div>
+                        : null
+                    }
+  
                   </div>
+
                 </div>
                 <div className='header_computer header__column'>
                   <div className='header__buttons d-flex justify-content-end'>

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import {  Pagination, Thumbs } from 'swiper'
 
 const ProductImages = props => {
-    console.log(props,"productimages")
+    
     return (
         <>
             <Swiper

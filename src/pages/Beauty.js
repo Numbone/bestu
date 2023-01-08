@@ -5,9 +5,10 @@ import btop from '../img/beautytop.jpg'
 import {Context} from "../"
 const Beauty = () => {
   const [product, setProduct] = useState({})
+  const {lang}=useContext(Context)
   const getAllProducts = async () => {
     try {
-      const { data } = await productCategory("beauty")
+      const { data } = await productCategory("beauty",lang.lang)
       setProduct(data.product)
     } catch (error) {
       console.log(error);

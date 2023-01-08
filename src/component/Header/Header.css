@@ -100,13 +100,15 @@ select {
 .box-order {
     font-size: 10px;
     position: relative;
-    right: 8px;
+    right: 12px;
     top: 5px;
     width: 15px;
     height: 15px;
     border-radius: 20px;
     background-color: #e7dbe2;
     align-items: center;
-    padding: 3px;
+    padding-left: 5px;
+    padding-top: 2px;
     color:black;
+    justify-content: center;
 }

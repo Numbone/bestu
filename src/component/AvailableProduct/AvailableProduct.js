@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../allProductCatalog/AllProductcatalog.css'
 
 import Item from '../Item/Item'
 import {  productAvailable } from '../../api/product'
 import { NavLink } from 'react-router-dom'
+import { Context } from '../..'
 
 
 const AvailableProduct = () => {
     const [product, setProduct] = useState({})
     const prev = '<'
     const next = '>'
+    const {lang}=useContext(Context)
     const getAllProducts = async () => {
         try {
-            const { data } = await productAvailable()   
+            const { data } = await productAvailable(lang.lang)   
             setProduct(data.product)
         } catch (error) {
             console.log(error);

@@ -5,9 +5,10 @@ import { productCategory } from '../api/product'
 import {Context} from "../"
 const Spa = () => {
     const [product, setProduct] = useState({})
+    const {lang}=useContext(Context)
     const getAllProducts = async () => {
         try {
-            const { data } = await productCategory("spa")
+            const { data } = await productCategory("spa",lang.lang)
             setProduct(data.product)
         } catch (error) {
             console.log(error);

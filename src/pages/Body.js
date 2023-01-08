@@ -6,9 +6,10 @@ import Item from '../component/Item/Item'
 import {Context} from "../"
 const Body = () => {
   const [product, setProduct] = useState({})
+  const {lang}=useContext(Context)
   const getAllProducts = async () => {
     try {
-      const { data } = await productCategory("body")
+      const { data } = await productCategory("body",lang.lang)
       setProduct(data.product)
     } catch (error) {
       console.log(error);
