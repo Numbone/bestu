@@ -10,7 +10,7 @@ const AllProductCatalog = ({setToast}) => {
     const [product, setProduct] = useState({})
     const prev = '<'
     const next = '>'
-    const { basket } = useContext(Context)
+    const { basket,lang } = useContext(Context)
     const [order, setOrder] = useState({})
     const clickOrder = (id) => {
         basket.setBasket(id)
@@ -18,7 +18,7 @@ const AllProductCatalog = ({setToast}) => {
     }
     const getAllProducts = async () => {
         try {
-            const { data } = await productAll()
+            const { data } = await productAll(lang.lang)
             setProduct(data.product)
         } catch (error) {
             console.log(error);
@@ -26,7 +26,7 @@ const AllProductCatalog = ({setToast}) => {
     }
     useEffect(() => {
         getAllProducts()
-    }, [])
+    }, [lang.lang])
 
     
     console.log(product);
@@ -36,8 +36,9 @@ const AllProductCatalog = ({setToast}) => {
             <div className='block-catalog'>
                 <div className='container'>
                     <div className='block__title text-center'>
-                        Каталог
+                        {lang.lang=="ru"? <span>Каталог</span> :<span>Catalog</span> }
                     </div>
+                   
                     <div className='block-catalog__items'>
                         <div className='row gy-4 gx-2 g-md-4'>
                             {product.length == undefined

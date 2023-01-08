@@ -1,7 +1,7 @@
 import { instance } from "."
 
-export const productAll=async()=>{
-    const data=await instance.get("product/all")
+export const productAll=async(lang)=>{
+    const data=await instance.get(`product/all?lang=${lang}`)
     return data
 }
 export const productId=async(id)=>{

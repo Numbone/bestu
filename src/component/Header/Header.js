@@ -11,11 +11,21 @@ import { useContext } from 'react'
 import { observer } from 'mobx-react-lite'
 const Header = () => {
   const navigation = useLocation()
-  const { basket } = useContext(Context)
+  const { basket, lang } = useContext(Context)
 
   const [modal, setModal] = useState(false)
   const navigate = useNavigate()
   const [search1, setSeacrh1] = useState("")
+  const [lang1, setLang] = useState("ru")
+  const changeLangEn = () => {
+    lang.setLang("en")
+    setLang('en')
+  }
+  const changeLangRu = () => {
+    lang.setLang("ru")
+    setLang("ru")
+  }
+  console.log(lang.lang);
   return (
     <div>
       {
@@ -97,6 +107,17 @@ const Header = () => {
 
                       </NavLink>
                     </div>
+                    {
+                      lang1 == "en"
+                        ? <div style={{ display: 'flex', alignItems: 'center', fontSize: '16px' }} className='cart-button' onClick={() =>changeLangRu()}>
+                          EN
+                        </div>
+                          : lang1 == "ru" ? <div style={{ display: 'flex', alignItems: 'center', fontSize: '16px' }} className='cart-button' onClick={() => changeLangEn()}>
+                            RU
+                          </div>
+                        : null
+                    }
+
                   </div>
                 </div>
               </div>
@@ -109,7 +130,7 @@ const Header = () => {
                       <input type='text' placeholder="Введите слово для поиска" onChange={(e) => setSeacrh1(e.target.value)}>
                       </input>
                       <NavLink to={"/search"} state={search1}  >
-                        <button className='btn-search' onClick={()=>setModal(false)}>
+                        <button className='btn-search' onClick={() => setModal(false)}>
                           <img alt='props' src={search}></img>
                         </button>
                         {/* onClick={()=>navigate(`search?wolrd=${search1}`)} */}
@@ -118,7 +139,7 @@ const Header = () => {
                     </div>
                   </form>
                   <button className='carousel__button is-close'
-                  onClick={()=>setModal(false)}
+                    onClick={() => setModal(false)}
                     style={{
                       fontSize: '34px',
                       color: 'white',

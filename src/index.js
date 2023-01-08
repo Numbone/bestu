@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import UserStore from './store/User';
 import BasketStore from './store/Basket';
+import LangStore from './store/Lang';
 
 
 
@@ -14,7 +15,8 @@ root.render(
     
         <Context.Provider value={{
             user: new UserStore(),
-            basket: new BasketStore()
+            basket: new BasketStore(),
+            lang:new LangStore()
         }}
         >
             <App />

@@ -1,40 +1,42 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { productImages, productImages1 } from '../../img'
 import ProductImages from '../SwiperCard/ProductImages'
 import { observer } from 'mobx-react-lite';
 import ModalItem from '../ModalItem/ModalItem';
 import './Item.css'
+import { Context } from '../..';
 const Item = (props) => {
     useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
+    }, [])
     const [active, setActive] = React.useState(false)
     const navigate = useNavigate()
+    const { lang } = useContext(Context)
     return (
         <div className='col-sm-6' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
             <ProductImages images={props.props.Images} />
             <div className='block-product__info flex-1 d-flex flex-column justify-content-between'
                 style={{
-                
+
                     flex: '1',
                     display: 'flex',
                     flex: 'column',
                     justifyContent: 'space-between'
                 }}>
-                <div>
+                <div style={{minHeight:'50px'}}>
                     <div className='block-product__name'
                         style={{
                             fontSize: '1.2em',
                             lineHeight: '1',
-
+                                
                         }}>
                         {props.props.Name}
 
                     </div>
                     <div className='block-product__volume'
                         style={{ fontSize: '.7em' }}>
-                        250мл (280г)
+                        {props.props.Weight} 
                     </div>
                 </div>
                 <div>
@@ -49,7 +51,12 @@ const Item = (props) => {
                             style={{
 
                             }}>
-                            {props.props.Price} руб.
+                            {props.props.Price} 
+                            {lang.lang == "ru"
+                                    ? <span> руб.</span>
+                                    : <span> ruble</span>
+                                }
+                            
                         </div>
                     </div>
                     <div className='block-product__btns row g-2'
@@ -73,7 +80,11 @@ const Item = (props) => {
                                     background: '#000',
                                     color: '#fff'
                                 }}>
-                                В корзину
+                                {lang.lang == "ru"
+                                    ? <span>В корзину</span>
+                                    : <span>Add to cart</span>
+                                }
+
                             </a>
                         </div>
                         <div className='col-6' onClick={() => navigate("/productitem/" + props.props.ID)} >
@@ -90,7 +101,11 @@ const Item = (props) => {
                                     padding: '0.7em 0.5em',
 
                                 }}>
-                                Читать подробнее
+                                    {lang.lang == "ru"
+                                    ? <span>  Читать подробнее</span>
+                                    : <span> Read more</span>
+                                }
+                               
                             </a>
                         </div>
                     </div>
@@ -101,16 +116,16 @@ const Item = (props) => {
                     <div className="toastjs success">
                         <p> {props.props.Name}</p>
                         <div className="d-flex">
-                           
-                                <button type="button" className="toastjs-btn toastjs-btn--custom" onClick={() => setActive(false)}>
-                                <NavLink to='/order' style={{color:'#fff'}}>Оформить заказ </NavLink>
-                                </button>
-                           
-                          
+
+                            <button type="button" className="toastjs-btn toastjs-btn--custom" onClick={() => setActive(false)}>
+                                <NavLink to='/order' style={{ color: '#fff' }}>Оформить заказ </NavLink>
+                            </button>
+
+
                             <button type="button" className="toastjs-btn toastjs-btn--close" onClick={() => setActive(false)}>
                                 Ок
                             </button>
-                            
+
                         </div>
                     </div>
                 </div>
