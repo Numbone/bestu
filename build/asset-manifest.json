@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.4f6058b4.css",
-    "main.js": "/static/js/main.08650f01.js",
+    "main.css": "/static/css/main.ea981f29.css",
+    "main.js": "/static/js/main.08c239e3.js",
     "static/media/chemodan.png": "/static/media/chemodan.61062e203540ce87c727.png",
     "static/media/block-top-768.jpg": "/static/media/block-top-768.efb9a9850375a1e21830.jpg",
     "static/media/assets.jpg": "/static/media/assets.f69cc9f43958fa8e21e0.jpg",
@@ -60,11 +60,11 @@
     "index.html": "/index.html",
     "static/media/icon-cart.svg": "/static/media/icon-cart.6dfcc156f882b52de6fbf25a9c897e77.svg",
     "static/media/icon-user.svg": "/static/media/icon-user.edb26af9f2f9e21041ab4e50d3f61621.svg",
-    "main.4f6058b4.css.map": "/static/css/main.4f6058b4.css.map",
-    "main.08650f01.js.map": "/static/js/main.08650f01.js.map"
+    "main.ea981f29.css.map": "/static/css/main.ea981f29.css.map",
+    "main.08c239e3.js.map": "/static/js/main.08c239e3.js.map"
   },
   "entrypoints": [
-    "static/css/main.4f6058b4.css",
-    "static/js/main.08650f01.js"
+    "static/css/main.ea981f29.css",
+    "static/js/main.08c239e3.js"
   ]
 }
