@@ -15,7 +15,7 @@
 .item-square:after {
     content: "";
     display: block;
-    padding-top: 100%;
+   
 }
 
 .block-catalog__item:after {

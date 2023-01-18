@@ -10,12 +10,17 @@ const Item = (props) => {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
-    const [active, setActive] = React.useState(false)
     const navigate = useNavigate()
     const { lang } = useContext(Context)
+    const clickIndex=()=>{
+        props.setActive(true)
+        props.setIndexPhoto(props.id)
+        props.clickOrder(props.props)
+    }
+   
     return (
         <div className='col-sm-6' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
-            <ProductImages images={props.props.Images} />
+            <ProductImages images={lang.lang === "ru" ? props.props.imagesRu : props.props.imagesEn} />
             <div className='block-product__info flex-1 d-flex flex-column justify-content-between'
                 style={{
 
@@ -24,19 +29,22 @@ const Item = (props) => {
                     flex: 'column',
                     justifyContent: 'space-between'
                 }}>
-                <div style={{minHeight:'50px'}}>
+                <div style={{ minHeight: '50px' }}>
                     <div className='block-product__name'
                         style={{
                             fontSize: '1.2em',
                             lineHeight: '1',
-                                
+
                         }}>
-                        {props.props.Name}
+                        {lang.lang === "ru" ?
+                            props.props.name_ru
+                            : props.props.name_en
+                        }
 
                     </div>
                     <div className='block-product__volume'
                         style={{ fontSize: '.7em' }}>
-                        {props.props.Weight} 
+                        {props.props.weight} {lang?.lang === "ru" ? "мл" : "ml"}
                     </div>
                 </div>
                 <div>
@@ -51,21 +59,21 @@ const Item = (props) => {
                             style={{
 
                             }}>
-                            {props.props.Price} 
+                            {props.props.price}
                             {lang.lang == "ru"
-                                    ? <span> руб.</span>
-                                    : <span> ruble</span>
-                                }
-                            
+                                ? <span> руб.</span>
+                                : <span> ruble</span>
+                            }
+
                         </div>
                     </div>
                     <div className='block-product__btns row g-2'
                         style={{
                             marginTop: '0.9em'
                         }}>
-                        <div className='col-6' onClick={() => setActive(true)} >
+                        <div className='col-6' onClick={() => clickIndex()} >
                             <a
-                                onClick={() => props.clickOrder(props.props)}
+                                
 
                                 className='custom-btn custom-btn-dark'
                                 style={{
@@ -87,7 +95,7 @@ const Item = (props) => {
 
                             </a>
                         </div>
-                        <div className='col-6' onClick={() => navigate("/productitem/" + props.props.ID)} >
+                        <div className='col-6' onClick={() => navigate("/productitem/" + props.props.id)} >
                             <a
                                 className='custom-btn'
                                 style={{
@@ -101,17 +109,17 @@ const Item = (props) => {
                                     padding: '0.7em 0.5em',
 
                                 }}>
-                                    {lang.lang == "ru"
+                                {lang.lang == "ru"
                                     ? <span>  Читать подробнее</span>
                                     : <span> Read more</span>
                                 }
-                               
+
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <ModalItem active={active} setActive={setActive}>
+            {/* <ModalItem active={active} setActive={setActive}>
                 <div className="toastjs-container">
                     <div className="toastjs success">
                         <p> {props.props.Name}</p>
@@ -130,7 +138,7 @@ const Item = (props) => {
                     </div>
                 </div>
 
-            </ModalItem>
+            </ModalItem> */}
         </div>
     )
 }

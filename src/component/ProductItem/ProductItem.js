@@ -10,6 +10,7 @@ import { RiStarSFill } from "react-icons/ri";
 import { reviewAdd } from '../../api/review';
 import ModalSucces from '../ModalSuccess/ModalSucces';
 const ProductItem = () => {
+  const { lang } = useContext(Context)
   const [open, setOpen] = React.useState(false);
   const [open1, setOpen1] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
@@ -43,7 +44,7 @@ const ProductItem = () => {
     const data = await reviewAdd(reviews, numberStar, id)
 
   }
-
+  const description_ru = data?.description_ru?.split(/\r\n/)
   const [modalShow, setModalShow] = React.useState(false);
   const action = data?.Action?.split(new RegExp("/n"))
   const compound = data?.Compound?.split(new RegExp("/n"))
@@ -51,7 +52,7 @@ const ProductItem = () => {
   const modeOfApp = data?.ModeOfApp?.split(new RegExp("/n"))
   useEffect(() => {
     getItem()
-  }, [])
+  }, [description_ru])
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -62,12 +63,15 @@ const ProductItem = () => {
       setActive(true)
     }
   }, [reviews, numberStar, id, data.Stars])
+
   console.log(data);
   return (
     <div className="flex-1" style={{ minHeight: '100vh' }}>
       <div className="product-top item-square"
         data-style-background-image={({ ph1 })}
-        style={data?.Images === undefined ? null : { backgroundImage: `url(${data?.Images[0]})` }}>
+
+        style={lang.lang === "ru" ? data?.imagesRu === undefined ? null : { backgroundImage: `url(${data?.imagesRu[0]})` }
+          : data?.imagesEn === undefined ? null : { backgroundImage: `url(${data?.imagesEn[0]})` }}>
         <div className="d-flex justify-content-center">
           <div className="container flex-1 d-flex flex-column justify-content-between">
             <div className="product-top__title -fill -light"><p>{data?.Name}</p></div>
@@ -82,16 +86,16 @@ const ProductItem = () => {
             </div>
             <div className="product-top__about-bottom d-flex justify-content-between align-items-end">
               <div>
-                <div className="product-top__volume">{data.Weight}  </div>
+                <div className="product-top__volume">{data.weight}  </div>
                 <div className="product-top__price-block d-flex align-items-center">
-                  <div className="product-top__price">{data.Price} руб.</div>
+                  <div className="product-top__price">{data.price} руб.</div>
                 </div>
               </div>
               <div>
                 <div style={{ fontSize: '1.8em' }} className="d-flex align-items-center">
                   <svg style={{ width: '1em', marginRight: '.2em' }} viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.04917 0.927067C7.34852 0.00575614 8.65193 0.00575656 8.95129 0.927067L10.0209 4.21886C10.1547 4.63089 10.5387 4.90985 10.9719 4.90985H14.4331C15.4018 4.90985 15.8046 6.14946 15.0209 6.71886L12.2207 8.75331C11.8702 9.00795 11.7236 9.45932 11.8575 9.87134L12.927 13.1631C13.2264 14.0844 12.1719 14.8506 11.3882 14.2812L8.58801 12.2467C8.23753 11.9921 7.76293 11.9921 7.41244 12.2467L4.61227 14.2812C3.82856 14.8506 2.77408 14.0844 3.07343 13.1631L4.143 9.87134C4.27688 9.45932 4.13022 9.00795 3.77973 8.75331L0.979561 6.71886C0.195848 6.14946 0.598623 4.90985 1.56735 4.90985H5.02855C5.46177 4.90985 5.84573 4.63089 5.9796 4.21886L7.04917 0.927067Z" fill="#1D1D1B" />
-                  </svg> {Math.floor(data.Stars)}
+                  </svg> {(data?.Stars?.aroma_stars + data?.Stars?.delivery_stars + data?.Stars?.effect_stars + data?.Stars?.quality_stars + data?.Stars?.texture_stars) / 5}
                 </div>
 
                 <div className="rating-line">
@@ -220,7 +224,21 @@ const ProductItem = () => {
           <div className="row g-0 gy-4">
             <div className="col-6">
               <div className="block-product-about__text p-3">
-                <p>{data?.Description}</p>
+
+                {
+                  lang.lang == 'ru'
+                    ? data?.descriptionRu?.split(/\r\n/)?.map(item =>
+                        <div>{item} </div>)
+                    
+                    : null
+                }
+                {
+                  lang.lang != 'ru'
+                    ? data?.descriptionEn?.split(/\r\n/)?.map(item =>
+                        <div>{item} </div>)
+                    
+                    : null
+                }
               </div>
             </div>
             <div className="col-6 position-relative">
@@ -250,11 +268,20 @@ const ProductItem = () => {
           <div className="block-how-it-works__title"><p>Действие</p></div>
           <div className="block-how-it-works__text">
             <ul>
-              {
-                action === undefined ? null :
-                  action?.map(item =>
-                    <li>{item}</li>)
-              }
+            {
+                  lang.lang == 'ru'
+                    ? data?.actionRu?.split(/\r\n/)?.map(item =>
+                        <div>{item} </div>)
+                    
+                    : null
+                }
+                {
+                  lang.lang != 'ru'
+                    ? data?.actionEn?.split(/\r\n/)?.map(item =>
+                        <div>{item} </div>)
+                    
+                    : null
+                }
 
             </ul>
           </div>
@@ -269,15 +296,26 @@ const ProductItem = () => {
             onClick={handleOpen}>Способ применения:</a>
           {
             open
-              ? <div className="block-accordion__panel"
+              ? 
+              <div className="block-accordion__panel"
 
                 data-max-height="621px" style={{ position: 'static', visibility: 'visible', display: 'block', transition: 'max-height 0.5s ease-in-out 0s', overflowY: 'hidden' }}>
                 <div>
-                  {
-                    modeOfApp === undefined ? null :
-                      modeOfApp?.map(item =>
-                        <p>{item}</p>)
-                  }
+                {
+                  lang.lang == 'ru'
+                    ? data?.modeOfAppRus?.split(/\r\n/)?.map(item =>
+                        <div>{item} </div>)
+                    
+                    : null
+                }
+                {
+                  lang.lang != 'ru'
+                    ? data?.modeOfAppEn?.split(/\r\n/)?.map(item =>
+                        <div>{item} </div>)
+                    
+                    : null
+                }
+
                 </div>
               </div>
               : null
@@ -290,11 +328,20 @@ const ProductItem = () => {
             open1
               ? <div className="block-accordion__panel" data-max-height="430px" style={{ position: 'static', visibility: 'visible', display: 'block', transition: 'max-height 0.5s ease-in-out 0s', overflowY: 'hidden' }}>
                 <div>
-                  {
-                    contraindications === undefined ? null :
-                      contraindications?.map(item =>
-                        <p>{item}</p>)
-                  }
+                {
+                  lang.lang == 'ru'
+                    ? data?.contraindicationsRu?.split(/\r\n/)?.map(item =>
+                        <div>{item} </div>)
+                    
+                    : null
+                }
+                {
+                  lang.lang != 'ru'
+                    ? data?.contraindicationsEn?.split(/\r\n/)?.map(item =>
+                        <div>{item} </div>)
+                    
+                    : null
+                }
 
                 </div>
               </div>
@@ -308,11 +355,20 @@ const ProductItem = () => {
             open2
               ? <div className="block-accordion__panel" data-max-height="296px" style={{ position: 'static', visibility: 'visible', display: 'block', transition: 'max-height 0.5s ease-in-out 0s', overflowY: 'hidden' }}>
                 <div>
-                  {
-                    compound === undefined ? null :
-                      compound?.map(item =>
-                        <p>{item}</p>)
-                  }
+                {
+                  lang.lang == 'ru'
+                    ? data?.compoundRu?.split(/\r\n/)?.map(item =>
+                        <div>{item} </div>)
+                    
+                    : null
+                }
+                {
+                  lang.lang != 'ru'
+                    ? data?.compoundEn?.split(/\r\n/)?.map(item =>
+                        <div>{item} </div>)
+                    
+                    : null
+                }
                 </div>
               </div>
               : null
@@ -320,13 +376,13 @@ const ProductItem = () => {
 
         </div>
       </div>
-      <div className="block-similar">
+      {/* <div className="block-similar">
         <div className="container">
           <div className="block__title">Похожие продукты</div>
 
 
         </div>
-      </div>
+      </div> */}
       <ModalComment
         show={modalShow}
         onHide={() => setModalShow(false)} />

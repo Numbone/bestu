@@ -12,8 +12,8 @@ export const productAvailable=async(lang)=>{
     const data=await instance.get(`product/available?lang=${lang}`)
     return data
 }
-export const productCategory=async(category,lang)=>{
-    const data=await instance.get(`product/category/${category}?lang=${lang}`)
+export const productCategory=async(category)=>{
+    const data=await instance.get(`product/category/${category}`)
     return data
 }
 export const productSearch=async(param,lang)=>{

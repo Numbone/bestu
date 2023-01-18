@@ -10,7 +10,6 @@ import AllProducts from './pages/AllProducts';
 import Ambassadors from './pages/Ambassadors';
 import AvailablePages from './pages/AvailablePages';
 import Beauty from './pages/Beauty';
-import Body from './pages/Body';
 import Certificates from './pages/Certificates';
 import Dealers from './pages/Dealers';
 import DelaersInfo from './pages/DelaersInfo';
@@ -27,6 +26,7 @@ import Vouchers from './pages/Vouchers';
 import { BrowserRouter } from 'react-router-dom';
 import Politika from './pages/Politika';
 import Oferta from './pages/Oferta';
+import CategoryId from './pages/CategoryId';
 function App() {
 
  const { user, basket } = useContext(Context);
@@ -68,7 +68,7 @@ function App() {
           <Route key={7} path='/dealers' element={<DelaersInfo />}></Route>
           <Route key={8} path='/stores' element={<Stores />}></Route>
           <Route key={9} path='/swiper' element={<SwiperCard />}></Route>
-          <Route key={10} path='/body' element={< Body />}></Route>
+          <Route key={10} path='/category/:id' element={< CategoryId />}></Route>
           <Route key={11} path='/beauty' element={< Beauty />}></Route>
           <Route key={12} path='/spa' element={< Spa />}></Route>
           <Route key={13} path='/vouchers' element={< Vouchers />}></Route>
