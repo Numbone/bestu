@@ -6,8 +6,10 @@ import './css/Login.css'
 import { observer } from 'mobx-react-lite';
 import { getUser } from '../api/user';
 import Moment from 'react-moment';
+
 import ModalForOrder from '../component/ModalForOrder/ModalForOrder';
 const Login = () => {
+  const { lang } = useContext(Context)
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(!open);
@@ -92,7 +94,7 @@ const Login = () => {
   }, [emailError, passwordError])
 
   ///logout
-  const logout=()=>{
+  const logout = () => {
     user.setIsAuth(false)
     localStorage.removeItem("access")
     localStorage.removeItem("refresh")
@@ -118,21 +120,31 @@ const Login = () => {
             <ul className='navbar-nav' style={{ width: '100%' }}>
               <li className='nav-item'>
                 <NavLink to='/' className='nav-link'>
-                  Магазин
+                  {
+                    lang?.lang === "ru"
+                      ? <>Магазин</>
+                      : <>Shop</>
+                  }
+
                 </NavLink>
               </li>
 
             </ul>
             {
-                  user.isAuth 
-                  ? <button 
-                  onClick={()=>logout()}
-                  style={{ float: 'right', backgroundColor: 'transparent' }} 
+              user.isAuth
+                ? <button
+                  onClick={() => logout()}
+                  style={{ float: 'right', backgroundColor: 'transparent' }}
                   className='nav-link'>
-                    Выход
-                  </button>
-                  :null
-                }
+                  {
+                    lang?.lang === "ru"
+                      ? <>Выход</>
+                      : <>Exit</>
+                  }
+
+                </button>
+                : null
+            }
           </div>
         </div>
         {
@@ -142,20 +154,28 @@ const Login = () => {
               <ul className='navbar-nav'>
                 <li className='nav-item'>
                   <NavLink to='/' className='nav-link'>
-                    Магазин
+                    {
+                      lang?.lang === "ru"
+                        ? <>Магазин</>
+                        : <>Shop</>
+                    }
                   </NavLink>
                 </li>
                 {
-                  user.isAuth 
-                  ? <button 
-                  onClick={()=>logout()}
-                  style={{ float: 'right', backgroundColor: 'transparent' }} 
-                  className='nav-link'>
-                    Выход
-                  </button>
-                  :null
+                  user.isAuth
+                    ? <button
+                      onClick={() => logout()}
+                      style={{ float: 'right', backgroundColor: 'transparent' }}
+                      className='nav-link'>
+                      {
+                        lang?.lang === "ru"
+                          ? <>Выход</>
+                          : <>Exit</>
+                      }
+                    </button>
+                    : null
                 }
-               
+
               </ul>
             </div>
             : null
@@ -185,11 +205,21 @@ const Login = () => {
                     <div className='col-md-8'>
                       <div className='card'>
                         <div className='card-header'>
-                          Вход в кабинет
+                          {
+                            lang?.lang === "ru"
+                              ? <> Вход в кабинет</>
+                              : <>Entrance to the office</>
+                          }
+
                         </div>
                         <div className='card-body'>
                           <p className='text-center mt-3'>
-                            Данные для входа были отправлены на ваш email, после оформления заказа
+                            {
+                              lang?.lang === "ru"
+                                ? <>   Данные для входа были отправлены на ваш email, после оформления заказа</>
+                                : <>Login information was sent to your email after placing an order</>
+                            }
+
                           </p>
                           <form>
                             <div className='form-group row'>
@@ -222,7 +252,12 @@ const Login = () => {
                             </div>
                             <div className='form-group row'>
                               <label htmlFor="password" className="col-md-4 col-form-label text-md-right">
-                                Пароль
+                                {
+                                  lang?.lang === "ru"
+                                    ? <>   Пароль</>
+                                    : <>Password</>
+                                }
+
                               </label>
 
                               <div className='col-md-6'>
@@ -249,10 +284,20 @@ const Login = () => {
                             <div className='form-group row mb-0'>
                               <div className='col-md-8 offset-md-4'>
                                 <button disabled={!formValid} onClick={getToken} className='btn2 btn-primary'>
-                                  Войти
+                                  {
+                                    lang?.lang === "ru"
+                                      ? <>   Войти</>
+                                      : <>Login</>
+                                  }
+
                                 </button>
                                 <NavLink to='/reset' className='btn2 btn-link' href='#'>
-                                  Не помню пароль
+                                  {
+                                    lang?.lang === "ru"
+                                      ? <>    Не помню пароль</>
+                                      : <>Forget password</>
+                                  }
+
                                 </NavLink>
                               </div>
                             </div>
@@ -273,7 +318,13 @@ const Login = () => {
                     <div className='row mb-2'>
                       <div className='col-sm-6'>
                         <div className='m-0'>
-                          <h3>Мои заказы</h3>
+                          <h3>
+                            {
+                              lang?.lang === "ru"
+                                ? <>   Мои заказы</>
+                                : <>My orders</>
+                            }
+                          </h3>
                         </div>
                       </div>
                     </div>
@@ -295,10 +346,33 @@ const Login = () => {
                     <table className="table-order table">
                       <thead>
                         <tr>
-                          <th scope="col">Номер заказа</th>
-                          <th scope="col">Сумма</th>
-                          <th scope="col">Дата</th>
-                          <th scope="col">Статус заказа</th>
+                          <th scope="col">
+                            {
+                              lang?.lang === "ru"
+                                ? <>   Номер заказа</>
+                                : <>Order number</>
+                            }
+                          </th>
+                          <th scope="col">
+                            {
+                              lang?.lang === "ru"
+                                ? <>   Сумма</>
+                                : <>Sum</>
+                            }
+                          </th>
+                          <th scope="col">
+                            {
+                              lang?.lang === "ru"
+                                ? <>   Дата</>
+                                : <>Date</>
+                            }
+                          </th>
+                          <th scope="col">
+                            {
+                              lang?.lang === "ru"
+                                ? <>   Статус заказа</>
+                                : <>Order status</>
+                            }</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -309,7 +383,12 @@ const Login = () => {
                                 <th scope="row">{item.id}</th>
                                 <td>{item.total_cost}</td>
                                 <td><Moment format="DD/MM/YYYY HH:mm:ss">{item.date}</Moment></td>
-                                <td onClick={() => openModalforOrder(index)}>Открыть статус заказа</td>
+                                <td onClick={() => openModalforOrder(index)}>
+                                  {
+                                    lang?.lang === "ru"
+                                      ? <>  Открыть статус заказа</>
+                                      : <>Open order status</>
+                                  }</td>
                               </tr>
 
                             </>

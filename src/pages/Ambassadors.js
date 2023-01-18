@@ -1,8 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import '../pages/css/Ambassador.css'
 import emailjs from '@emailjs/browser';
 import ModalSucces from '../component/ModalSuccess/ModalSucces';
+import { Context } from '..';
+import { observer } from 'mobx-react-lite';
 const Ambassadors = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0)
@@ -11,6 +13,7 @@ const Ambassadors = () => {
   // const selectFile = (e) => {
   //   setFile(e.target.files[0])
   // }
+  const { lang } = useContext(Context)
   const form = useRef()
   const [name, setName] = useState('')
   const [person, setPerson] = useState('')
@@ -32,15 +35,15 @@ const Ambassadors = () => {
   //     };
   //   });
   // };
-  const [active,setActive]=useState(false)
+  const [active, setActive] = useState(false)
   const sendEmail = async (e) => {
     e.preventDefault();
     // const test = await convertBase64(file)
     // setPhoto(test)
-   
-    emailjs.sendForm('service_w53fpdr', 'template_ynhq9ht',form.current, 'QR6Ghi73lFpWjvQzS')
+
+    emailjs.sendForm('service_w53fpdr', 'template_ynhq9ht', form.current, 'QR6Ghi73lFpWjvQzS')
       .then((result) => {
-        if(result.text="OK"){
+        if (result.text = "OK") {
           setActive(true)
         }
       }, (error) => {
@@ -54,7 +57,12 @@ const Ambassadors = () => {
         <div className="container">
           <div className='text-center'>
             <h1>
-              Анкета для амбассадоров
+              {
+                lang.lang === "ru"
+                  ? <> Анкета для амбассадоров</>
+                  : <>Questionnaire for ambassadors</>
+              }
+
             </h1>
           </div>
           <div className='form-order'>
@@ -62,12 +70,22 @@ const Ambassadors = () => {
               <div className='row justify-content-center'>
                 <div className='col-lg-6 col-md-8'>
                   <h3>
-                    Заполните анкету и наш менеджер ответит на все Ваши вопросы
+                    {
+                      lang.lang === "ru"
+                        ? <> Заполните анкету и наш менеджер ответит на все Ваши вопросы</>
+                        : <>Fill out the form and our manager will answer all your questions</>
+                    }
+
                   </h3>
                   <div className="box-form customer">
                     <div className="form-field">
                       <label htmlFor="person">
-                        Кем вы являетесь?
+                        {
+                          lang.lang === "ru"
+                            ? <>  Кем вы являетесь?</>
+                            : <>Who are you?</>
+                        }
+
                       </label>
                       <input
                         onChange={(e) => setPerson(e.target.value)}
@@ -78,13 +96,18 @@ const Ambassadors = () => {
                     </div>
                     <div className="form-field">
                       <label htmlFor="service">
-                        Блог предлагаемого амбассадора
+                        {
+                          lang.lang === "ru"
+                            ? <> Блог предлагаемого амбассадора</>
+                            : <>Proposed Ambassador Blog</>
+                        }
+
                       </label>
-                      <input 
-                      onChange={(e)=>setService(e.target.value)}
-                      type="text"
-                       name="service" 
-                       id="service"
+                      <input
+                        onChange={(e) => setService(e.target.value)}
+                        type="text"
+                        name="service"
+                        id="service"
                         placeholder="Введите..." />
                     </div>
                     {/* <div className="form-field">
@@ -115,29 +138,45 @@ const Ambassadors = () => {
                     </div> */}
                     <div className="form-field">
                       <label htmlFor="name">
-                        Ваше имя
+                        {
+                          lang.lang === "ru"
+                            ? <>  Ваше имя</>
+                            : <>Your first name</>
+                        }
+
                       </label>
                       <input
-                       onChange={(e)=>setName(e.target.value)}
-                      type="text" name="name" id="name" placeholder="Введите имя" />
+                        onChange={(e) => setName(e.target.value)}
+                        type="text" name="name" id="name" placeholder="Введите имя" />
                     </div>
                     <div className="form-field">
                       <label htmlFor="phone">
-                        Ваш телефон
+                        {
+                          lang.lang === "ru"
+                            ? <>   Ваш телефон</>
+                            : <>Your phone</>
+                        }
+
                       </label>
                       <input
-                       onChange={(e)=>setPhone(e.target.value)}
-                       type="text" name="phone" id="phone" placeholder="Введите телефон" />
+                        onChange={(e) => setPhone(e.target.value)}
+                        type="text" name="phone" id="phone" placeholder="Введите телефон" />
                     </div>
                     <div className="form-field">
                       <label htmlFor="email">
-                        Ваш email
+                        {
+                          lang.lang === "ru"
+                            ? <>
+                              Ваш email</>
+                            : <>Your email</>
+                        }
+
                       </label>
-                      <input 
-                       onChange={(e)=>setEmail(e.target.value)}
-                      type="text" name="email" id="email" placeholder="Введите email" />
+                      <input
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="text" name="email" id="email" placeholder="Введите email" />
                     </div>
-                  
+
                   </div>
 
                   <hr></hr>
@@ -152,11 +191,23 @@ const Ambassadors = () => {
                           form='order' />
 
                         <label htmlFor="politika">
-
-                          <span> Я соглашаюсь с условиями
-                            политики обработки </span>
-                          <NavLink to='/politicapage'>
-                            персональных данных
+                         
+                          <span>  
+                            {
+                            lang.lang === "ru"
+                              ? <>
+                               Я соглашаюсь с условиями
+                            политики обработки</>
+                              : <>I agree to the terms
+                              processing policies</>
+                          } </span>
+                          <NavLink to='/politicapage'>{
+                            lang.lang === "ru"
+                              ? <>
+                               персональных данных</>
+                              : <>personal data</>
+                          }
+                           
                           </NavLink>
 
                         </label>
@@ -167,9 +218,14 @@ const Ambassadors = () => {
                   <div className='text-center'>
                     <button type='submit'
                       className='btn'
-                            
-                    >
-                      Отправить заявку
+
+                    >{
+                      lang.lang === "ru"
+                        ? <>
+                         Отправить заявку</>
+                        : <>Submit an application</>
+                    }
+                     
                     </button>
                   </div>
                 </div>
@@ -179,11 +235,11 @@ const Ambassadors = () => {
         </div>
       </div>
       <ModalSucces
-       show={active}
-       onHide={() => setActive(false)}
+        show={active}
+        onHide={() => setActive(false)}
       />
     </div>
   )
 }
 
-export default Ambassadors
+export default observer(Ambassadors) 

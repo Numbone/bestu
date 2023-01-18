@@ -7,7 +7,7 @@ import './css/Order.css'
 import ModalSucces from '../component/ModalSuccess/ModalSucces';
 import ModalError from '../component/ModalError/ModalError';
 const Order = () => {
-  const { basket, user } = useContext(Context)
+  const { basket, user,lang } = useContext(Context)
   const [rerender, setRerender] = useState(Boolean);
 
   /// dropdown component 
@@ -248,15 +248,15 @@ const Order = () => {
                     <tbody id="table-cart">
                       {basket.Basket.map(item =>
                         <tr className="item" data-price={1790} data-product={2} data-shipping={1}>
-                          <td><span className="cart-item__name">{item.Name} </span><br /><span style={{ fontSize: '.8em' }}>Артикул: scrub-ld</span></td>
+                          <td><span className="cart-item__name">{lang?.lang==="ru"?item?.name_ru:item?.name_en} </span><br /><span style={{ fontSize: '.8em' }}>Артикул: scrub-ld</span></td>
                           <td className="d-none d-sm-table-cell">
-                            {item.Price} руб.
+                            {item.price} руб.
                           </td>
                           <td>
                             <div className="d-flex justify-content-center align-items-center box-quantity" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-                              <a onClick={() => basket.setCountDevice(item.ID, "-")} className="minus" />
-                              <div type="text" name="quantity" className="quantity" style={{ paddingLeft: 0, paddingRight: 0 }} >{item.count}</div>
-                              <a onClick={() => basket.setCountDevice(item.ID, "+")} className="plus" />
+                              <a onClick={() => basket.setCountDevice(item.id, "-")} className="minus" />
+                              <div type="text" name="quantity" className="quantity" style={{ paddingLeft: 0, paddingRight: 0 }} >{item?.count}</div>
+                              <a onClick={() => basket.setCountDevice(item.id, "+")} className="plus" />
                             </div>
                           </td>
                           <td>

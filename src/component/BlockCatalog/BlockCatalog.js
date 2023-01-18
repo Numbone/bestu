@@ -17,7 +17,7 @@ const BlockCatalog = () => {
         const { data } = await getCategories()
         setCategories(data?.all_category)
     }
-  
+
     useEffect(() => {
         getAllCategory()
     }, [])
@@ -45,58 +45,61 @@ const BlockCatalog = () => {
                 <div className='block-catalog__items'>
                     <div className='row g-2 g-md-4'>
                         {
-                            categories?.map((item,index) =>
+                            categories?.map((item, index) =>
                                 <div className='col-sm-6'>
                                     <div className='block-catalog__item  item item-square d-block'
                                         style={lang.lang == 'ru' ?
                                             {
-                                                backgroundImage: `url("${item.ImagesRu==undefined ? null :item?.ImagesRu[0]}")`
+                                                backgroundImage: `url("${item.ImagesRu == undefined ? null : item?.ImagesRu[0]}")`
                                             }
                                             :
                                             {
-                                                backgroundImage: `url("${item.ImagesEn==undefined ? null :item?.ImagesEn[0]}")`
+                                                backgroundImage: `url("${item.ImagesEn == undefined ? null : item?.ImagesEn[0]}")`
                                             }
                                         }>
-                                        <NavLink to={'/category/'+item?.name_en} state={categories[index]} className='img d-flex justify-content-center align-items-center flex-column'>
+                                        <NavLink to={'/category/' + item?.name_en} state={categories[index]} className='img d-flex justify-content-center align-items-center flex-column'>
 
                                             {
                                                 lang.lang == 'ru'
                                                     ?
-                                                    <span className='block-catalog__item-title  '
-                                                        style={item?.cursive==="1"?
-                                                            { position: 'relative', bottom: '0.2em' , fontFamily:'Betmo, sans-serif'}
-                                                        :
-                                                        {position: 'relative', bottom: '0.2em' , fontFamily:'none'}}
-                                                        >
+                                                    <div className='block-catalog__item-title  '
+                                                        style={item?.cursive === "1" ?
+                                                            { position: 'relative', bottom: '0.2em', fontFamily: 'Betmo, sans-serif' }
+                                                            :
+                                                            { position: 'relative', bottom: '0.2em', fontFamily: 'Montserrat,Tahoma,sans-serif' }}
+                                                    >
 
                                                         {item?.name_ru}
-                                                    </span>
+                                                    </div>
                                                     :
-                                                    <span className='block-catalog__item-title  '
-                                                        style={{ position: 'relative', bottom: '0.2em' }}
-                                                        >
+                                                    <div className={item?.cursive === "1" ?"block-catalog__item-title" :"block-catalog__item-title block-catalog__item-title--montserrat"}
+                                                        style={item?.cursive === "1" ?
+                                                            { position: 'relative', bottom: '0.2em', fontFamily: 'Betmo, sans-serif' }
+                                                            :
+                                                            { position: 'relative', bottom: '0.2em', fontFamily: 'Montserrat,Tahoma,sans-serif',textTransform:'uppercase' }}
+                                                    >
 
                                                         {item?.name_en}
-                                                    </span>
+                                                    </div>
                                             }
 
                                             {
-                                                lang.lang == 'ru' && item?.description_ru !=""
-                                                    ? <span className='block-catalog__item-subtitle' 
+                                                lang.lang == 'ru' && item?.description_ru != ""
+                                                    ? <div className={item?.cursive === "1" ?"block-catalog__item-title" :"block-catalog__item-title block-catalog__item-title--montserrat"}
                                                     >
-                                                       {item?.description_ru?.split(/\r\n/)?.map(item=>
-                                                        <div>{item}</div>)}
-                                                    </span>
-                                                    :null
+                                                        {item?.description_ru?.split(/\r\n/)?.map(item =>
+                                                            <div>{item}</div>)}
+                                                    </div>
+                                                    : null
                                             }
                                             {
-                                                lang.lang == 'en' && item?.description_en !=""
-                                                    ? <span className='block-catalog__item-subtitle'
+                                                lang.lang == 'en' && item?.description_en != ""
+                                                    ? <div className={item?.cursive === "1" ?"block-catalog__item-title" :"block-catalog__item-title block-catalog__item-title--montserrat"}
                                                     >
-                                                        {item?.description_en?.split(/\r\n/)?.map(item=>
-                                                        <div>{item}</div>)}
-                                                    </span>
-                                                    :null
+                                                        {item?.description_en?.split(/\r\n/)?.map(item =>
+                                                            <div>{item}</div>)}
+                                                    </div>
+                                                    : null
                                             }
 
 

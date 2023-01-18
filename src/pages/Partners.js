@@ -1,8 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import emailjs from '@emailjs/browser';
 import ModalSucces from '../component/ModalSuccess/ModalSucces';
+import { Context } from '..';
+import { observer } from 'mobx-react-lite';
 const Partners = () => {
+    const { lang } = useContext(Context)
     React.useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -25,8 +28,13 @@ const Partners = () => {
             <div className='block-page-order'>
                 <div className='container'>
                     <div className='text-center'>
-                        <h1>
-                            Анкета для дилеров
+                        <h1>{
+                            lang.lang === "ru"
+                                ? <>  Анкета для дилеров</>
+                                : <>Questionnaire for dealers</>
+                        }
+
+
                         </h1>
                     </div>
 
@@ -35,36 +43,62 @@ const Partners = () => {
                             <div className='row justify-content-center'>
                                 <div className='col-lg-6 col-md-8'>
                                     <h3>
-                                        Заполните анкету и наш менеджер ответит на все Ваши вопросы
+                                        {
+                                            lang.lang === "ru"
+                                                ? <> Заполните анкету и наш менеджер ответит на все Ваши вопросы</>
+                                                : <>Fill out the form and our manager will answer all your questions</>
+                                        }
                                     </h3>
                                     <div className="box-form customer">
                                         <div className="form-field">
                                             <label htmlFor="person">
-                                                Кем вы являетесь?
+                                                {
+                                                    lang.lang === "ru"
+                                                        ? <>  Кем вы являетесь?</>
+                                                        : <>Who are you?</>
+                                                }
                                             </label>
                                             <input type="text" name="person" id="person" placeholder='Введите...' />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="service">
-                                                Опишите вашу услугу
+                                                {
+                                                    lang.lang === "ru"
+                                                        ? <>   Опишите вашу услугу</>
+                                                        : <>Describe your service</>
+                                                }
+
                                             </label>
                                             <input type="text" name="service" id="service" placeholder='Введите услуги' />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="name">
-                                                Ваше имя
+                                                {
+                                                    lang.lang === "ru"
+                                                        ? <>  Ваше имя</>
+                                                        : <>Your first name</>
+                                                }
                                             </label>
                                             <input type="text" name="name" id="name" placeholder='Введите имя' />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="phone">
-                                                Ваш телефон
+                                                {
+                                                    lang.lang === "ru"
+                                                        ? <>   Ваш телефон</>
+                                                        : <>Your phone</>
+                                                }
                                             </label>
                                             <input type="text" name="phone" id="phone" placeholder='Введите телефон' />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="email">
-                                                Ваш email
+                                                {
+                                                    lang.lang === "ru"
+                                                        ? <>
+                                                            Ваш email</>
+                                                        : <>Your email</>
+                                                }
                                             </label>
                                             <input type="text" name="email" id="email" placeholder='Введите email' />
                                         </div>
@@ -83,10 +117,21 @@ const Partners = () => {
 
                                                 <label htmlFor="politika">
 
-                                                    <span> Я соглашаюсь с условиями
-                                                        политики обработки </span>
+                                                    <span>  {
+                                                        lang.lang === "ru"
+                                                            ? <>
+                                                                Я соглашаюсь с условиями
+                                                                политики обработки</>
+                                                            : <>I agree to the terms
+                                                                processing policies</>
+                                                    } </span>
                                                     <NavLink to='/politicapage'>
-                                                        персональных данных
+                                                        {
+                                                            lang.lang === "ru"
+                                                                ? <>
+                                                                    персональных данных</>
+                                                                : <>personal data</>
+                                                        }
                                                     </NavLink>
 
                                                 </label>
@@ -116,4 +161,4 @@ const Partners = () => {
     )
 }
 
-export default Partners
+export default observer(Partners) 

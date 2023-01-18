@@ -1,8 +1,13 @@
-import React from 'react'
+import { observer } from 'mobx-react-lite'
+import React, { useContext } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import { Context } from '../..'
 import "../Footer/Footer.css"
+import ozon from "../../img/ozon.png"
+import wild from "../../img/wildberries.png"
 const Footer = () => {
     const navi = useLocation()
+    const { lang } = useContext(Context)
     return (
         <>
             {
@@ -19,12 +24,17 @@ const Footer = () => {
                                                     href='https://www.ozon.ru/seller/le-mousse-337461/products/?miniapp=seller_337461'
                                                     target='_blank'
                                                     rel="noreferrer">
-                                                    <img src='https://thebestforyourself.ru/img/ozon.png' alt='props' style={{ width: '40px' }}>
+                                                    <img src={ozon} alt='props' style={{ width: '40px' }}>
                                                     </img>
                                                 </a>
                                                 <a target='_blank' rel="noreferrer"
                                                     href='https://www.ozon.ru/seller/le-mousse-337461/products/?miniapp=seller_337461'>
-                                                    Мы на Ozon
+                                                    {
+                                                        lang?.lang === "ru"
+                                                            ? <>Мы на Ozon</>
+                                                            : <>We are on Ozon</>
+                                                    }
+
                                                 </a>
 
                                             </div>
@@ -38,36 +48,90 @@ const Footer = () => {
                                                 </a>
                                                 <a target='_blank' rel="noreferrer"
                                                     href='https://www.wildberries.ru/brands/le-mousse'>
-                                                    Мы на Wildberries
+                                                    {
+                                                        lang?.lang === "ru"
+                                                            ? <> Мы на Wildberries</>
+                                                            : <>We are on Wildberries</>
+                                                    }
+
                                                 </a>
 
+
                                             </div>
-                                            ИП Нечаева Ольга Андреевна
-                                            <br></br>
-                                            ОГРН 320344300076171, ИНН 344115294608
-                                            <br></br>
-                                            <br></br>
-                                            Самовывоз: г.Волгоград, пр. Жукова 100б (Вход через магнит)
-                                            <br></br>
-                                            <br></br>
-                                            По вопросам самовывоза:
-                                            <br></br>
-                                            +79023125532
-                                            <br></br>
-                                            <br></br>
-                                            Телефон доступен в рабочее время с 9:00 до 18:00 (по Московскому времени)
+                                            {
+                                                lang.lang === "ru"
+                                                    ?
+                                                    <>
+                                                        ИП Нечаева Ольга Андреевна
+                                                        <br></br>
+                                                        ОГРН 320344300076171, ИНН 344115294608
+                                                        <br></br>
+                                                        <br></br>
+                                                        Самовывоз: г.Волгоград, пр. Жукова 100б (Вход через магнит)
+                                                        <br></br>
+                                                        <br></br>
+                                                        По вопросам самовывоза:
+                                                        <br></br>
+                                                        +79023125532
+                                                        <br></br>
+                                                        <br></br>
+                                                        Телефон доступен в рабочее время с 9:00 до 18:00 (по Московскому времени)
+                                                    </>
+                                                    :
+                                                    <>
+                                                       SP Ovchinnikova Julia Igorevna
+                                                        <br></br>
+                                                        PSRN 321344300027087, TIN 344103083881
+                                                        <br></br>
+                                                        <br></br>
+                                                        Pickup: Volgograd, Zhukov Ave. 100b (Entrance through a magnit shop)
+                                                        <br></br>
+                                                        <br></br>
+                                                        For pickup questions:
+                                                        <br></br>
+                                                        +79023125532
+                                                        <br></br>
+                                                        <br></br>
+                                                        The phone is available during business hours from 9:00 to 18:00 (Moscow time)
+                                                    </>
+                                            }
+
+
                                         </div>
                                     </div>
-                                    <div className='col-md-6'>
-                                        По вопросам качества продукции:
-                                        <br></br>
-                                        +79375599919
-                                        <br></br>
-                                    </div>
+                                    {
+                                        lang.lang === "ru"
+                                            ?
+                                            <div className='col-md-6'>
+                                                По вопросам качества продукции:
+                                                <br></br>
+                                                +79375599919
+                                                <br></br>
+                                            </div>
+                                            :
+                                            <div className='col-md-6'>
+                                                For product quality questions:
+                                                <br></br>
+                                                +79375599919
+                                                <br></br>
+                                            </div>
+                                    }
+
                                     <div className='col-lg-7 mt-4'>
                                         <div className='item'
                                             style={{ fontSize: '1.2em' }}>
-                                            Техническая поддержка:
+                                                {
+                                                    lang?.lang==="ru"
+                                                    ?
+                                                    <>
+                                                     Техническая поддержка:
+                                                    </>
+                                                    :
+                                                    <>
+                                                    Technical support:
+                                                   </>
+                                                }
+                                           
                                             <br></br>
                                             <a href='https://t.me/thebestforyourself_bot'>
                                                 t.me/thebestforyourself_bot
@@ -80,19 +144,34 @@ const Footer = () => {
                                         <div className='item'>
                                             <NavLink to='/ofertapage'
                                                 style={{ textDecoration: 'underline' }}>
-                                                Публичная оферта
+                                                    {
+                                                            lang.lang==="ru"
+                                                            ?<>Публичная оферта</>
+                                                            :<>Public offer</>
+                                                    }
+                                             
                                             </NavLink>
                                             <br></br>
                                             <br></br>
                                             <NavLink to="/politicapage"
                                                 style={{ textDecoration: 'underline' }}>
-                                                Политика обработки персональных данных
+                                                     {
+                                                            lang.lang==="ru"
+                                                            ?<>  Политика обработки персональных данных</>
+                                                            :<>Personal data processing policy</>
+                                                    }
+                                              
                                             </NavLink>
                                             <br></br>
                                             <br></br>
                                             <NavLink to='/login'
                                                 style={{ textDecoration: 'underline' }}>
-                                                Личный кабинет
+                                                     {
+                                                            lang.lang==="ru"
+                                                            ?<> Личный кабинет</>
+                                                            :<>Private office</>
+                                                    }
+                                               
                                             </NavLink>
                                         </div>
                                     </div>
@@ -108,4 +187,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default observer(Footer)

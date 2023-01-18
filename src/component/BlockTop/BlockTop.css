@@ -50,16 +50,7 @@
         display: block;
         
     }
-    .block-top:not(.category):before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 40%;
-        right: 0;
-        background: linear-gradient(270deg, #fefefe, #fefefe 38.86%, hsla(0, 0%, 99.6%, .76) 65.12%, hsla(0, 0%, 99.6%, 0));
-    }
+  
 }
 
 
@@ -80,7 +71,7 @@
         left: 0;
         top: 0;
         bottom: 0;
-        background: linear-gradient(-43deg, rgba(22, 31, 38, 0), #161f26);
+       
     }
 }
 @media only screen and (max-width: 768px) {

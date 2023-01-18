@@ -15,12 +15,12 @@ const BlockTop = () => {
                             lang.lang == 'ru'
                                 ?
                                 <div className='block-top__badge'>
-                                    Позвольте себе ощутить истинное наслаждение с косметикой из ценных натуральных масел. Ваша кожа ещё никогда не была такой увлажненной и напитанной
+                                    Позвольте себе ощутить истинное наслаждение с косметикой из ценных натуральных масел. Ваша кожа ещё никогда не была такой увлажненной и напитанной.
 
                                 </div>
                                 :
                                 <div className='block-top__badge'>
-                                    Let yourself experience true pleasure with cosmetics made from precious natural oils. Your skin has never been so hydrated and nourished
+                                    Let yourself experience true pleasure with cosmetics made from precious natural oils. Your skin has never been so hydrated and nourished.
                                 </div>
                         }
 
