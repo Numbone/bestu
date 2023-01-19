@@ -42,7 +42,7 @@ const BlockCatalog = () => {
                             <NavLink to='/available'>Available in stock</NavLink>
                     }
                 </div>
-                <div className='block-catalog__items' style={{color:"white !important" }}>
+                <div className='block-catalog__items' style={{ color: "white !important" }}>
                     <div className='row g-2 g-md-4'>
                         {
                             categories?.map((item, index) =>
@@ -50,13 +50,13 @@ const BlockCatalog = () => {
                                     <div className='block-catalog__item  item item-square d-block'
                                         style={lang.lang == 'ru' ?
                                             {
-                                             
-                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(125, 167, 200, 0.35)), url("${item.ImagesRu == undefined ? null : item?.ImagesRu[0]}")`
+
+                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(227, 233, 238, 0.35)),  url("${item.ImagesRu == undefined ? null : item?.ImagesRu[0]}")`
                                             }
                                             :
                                             {
-                                               
-                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(125, 167, 200, 0.35)), url("${item.ImagesEn == undefined ? null : item?.ImagesEn[0]}")`
+
+                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(227, 233, 238, 0.35)), url("${item.ImagesEn == undefined ? null : item?.ImagesEn[0]}")`
                                             }
                                         }>
                                         <NavLink to={'/category/' + item?.name_en} state={categories[index]} className='img d-flex justify-content-center align-items-center flex-column'>
@@ -64,21 +64,22 @@ const BlockCatalog = () => {
                                             {
                                                 lang.lang == 'ru'
                                                     ?
-                                                    <div className='block-catalog__item-title  '
+                                                    <div className={item?.cursive === "1" ? "block-catalog__item-title" : "block-catalog__item-title block-catalog__item-title--montserrat"}
                                                         style={item?.cursive === "1" ?
                                                             { position: 'relative', bottom: '0.2em', fontFamily: 'Betmo, sans-serif' }
                                                             :
-                                                            { position: 'relative', bottom: '0.2em', fontFamily: 'Montserrat,Tahoma,sans-serif' }}
+                                                            { position: 'relative', bottom: '0.2em', fontFamily: 'Montserrat,Tahoma,sans-serif', textTransform: 'uppercase' }}
                                                     >
 
                                                         {item?.name_ru}
                                                     </div>
                                                     :
-                                                    <div className={item?.cursive === "1" ?"block-catalog__item-title" :"block-catalog__item-title block-catalog__item-title--montserrat"}
+                                                    <div className={item?.cursive === "1" ? "block-catalog__item-title" : "block-catalog__item-title block-catalog__item-title--montserrat"}
                                                         style={item?.cursive === "1" ?
                                                             { position: 'relative', bottom: '0.2em', fontFamily: 'Betmo, sans-serif' }
                                                             :
-                                                            { position: 'relative', bottom: '0.2em', fontFamily: 'Montserrat,Tahoma,sans-serif',textTransform:'uppercase' }}
+                                                            { position: 'relative', bottom: '0.2em', fontFamily: 'Montserrat,Tahoma,sans-serif', textTransform: 'uppercase' }
+                                                        }
                                                     >
 
                                                         {item?.name_en}
@@ -87,19 +88,21 @@ const BlockCatalog = () => {
 
                                             {
                                                 lang.lang == 'ru' && item?.description_ru != ""
-                                                    ? <div className={item?.cursive === "1" ?"block-catalog__item-title" :"block-catalog__item-title block-catalog__item-title--montserrat"}
+                                                    ? <div className={".block-catalog__item-subtitle"}
+                                                        style={{ color: 'rgb(255, 255, 255)' }}
                                                     >
                                                         {item?.description_ru?.split(/\r\n/)?.map(item =>
-                                                            <div>{item}</div>)}
+                                                            <span className='block-catalog__item-subtitle'>{item}</span>)}
                                                     </div>
                                                     : null
                                             }
                                             {
                                                 lang.lang == 'en' && item?.description_en != ""
-                                                    ? <div className={item?.cursive === "1" ?"block-catalog__item-title" :"block-catalog__item-title block-catalog__item-title--montserrat"}
+                                                    ? <div className={".block-catalog__item-subtitle"}
+                                                        style={{ color: 'rgb(255, 255, 255)' }}
                                                     >
                                                         {item?.description_en?.split(/\r\n/)?.map(item =>
-                                                            <div>{item}</div>)}
+                                                            <span className='block-catalog__item-subtitle'>{item}</span>)}
                                                     </div>
                                                     : null
                                             }

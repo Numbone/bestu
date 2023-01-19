@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { Context } from '../..';
 import Item from '../Item/Item';
 import './ModalForOrder.css'
 const ModalForOrder = (props) => {
-    console.log(props)
+    const {lang}=useContext(Context)
     return (
         <Modal
             {...props}
@@ -32,7 +33,7 @@ const ModalForOrder = (props) => {
                         {
                             props?.data?.map(item =>
                                 <tr className="" data-price={1790} data-product={2} data-shipping={1}>
-                                    <td><span className="cart-item__name">{item?.name} (250мл (280г))</span><br /><span style={{ fontSize: '.8em' }}></span></td>
+                                    <td><span className="cart-item__name">{lang.lang=="ru"?item?.nameRu:item?.nameEn} (250мл (280г))</span><br /><span style={{ fontSize: '.8em' }}></span></td>
                                     <td className="d-sm-table-cell">
                                         {item?.price} руб.
                                     </td>

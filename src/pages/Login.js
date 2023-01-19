@@ -20,12 +20,14 @@ const Login = () => {
   const [userData, setUserData] = useState()
   const [modalShow, setModalShow] = useState(false);
   const { user } = useContext(Context)
-  const getToken = async () => {
+  const getToken = async (e) => {
+    e.preventDefault()
     const { data } = await authSignin(username, password)
     setData(data)
     user.setIsAuth(true)
     localStorage.setItem("access", data.access_token)
     localStorage.setItem("refresh", data.refresh_token)
+
   }
   const getUserContent = async () => {
     try {
@@ -37,6 +39,7 @@ const Login = () => {
 
 
   }
+  
 
   ///// validation //// 
   const [emailValidation, setEmailValidation] = useState("")
@@ -216,12 +219,12 @@ const Login = () => {
                           <p className='text-center mt-3'>
                             {
                               lang?.lang === "ru"
-                                ? <>   Данные для входа были отправлены на ваш email, после оформления заказа</>
+                                ? <>Данные для входа были отправлены на ваш email, после оформления заказа</>
                                 : <>Login information was sent to your email after placing an order</>
                             }
 
                           </p>
-                          <form>
+                          
                             <div className='form-group row'>
 
 
@@ -231,12 +234,11 @@ const Login = () => {
 
                               <div className='col-md-6'>
                                 <input className='form-control'
-                                  onBlur={e => blurHandler(e)}
-                                  name='emailValidation'
-                                  value={username}
-                                  onChange={(e) => emailHandler(e)}
-                                  placeholder="Введите email">
 
+                                  name='emailValidation'
+
+                                  onChange={(e) => setUser(e.target.value)}
+                                  placeholder="Введите email">
                                 </input>
                               </div>
                               {(emailDirty && emailError) &&
@@ -254,7 +256,7 @@ const Login = () => {
                               <label htmlFor="password" className="col-md-4 col-form-label text-md-right">
                                 {
                                   lang?.lang === "ru"
-                                    ? <>   Пароль</>
+                                    ? <>Пароль</>
                                     : <>Password</>
                                 }
 
@@ -262,12 +264,10 @@ const Login = () => {
 
                               <div className='col-md-6'>
                                 <input className='form-control '
-                                  onBlur={e => blurHandler(e)}
                                   name='passwordValidation'
-                                  value={password}
                                   type='password'
                                   placeholder='Введите пароль'
-                                  onChange={(e) => passwordHandler(e)}></input>
+                                  onChange={(e) => setPassword(e.target.value)}></input>
                               </div>
                               {(passwordDirty && passwordError) &&
                                 <>
@@ -283,10 +283,10 @@ const Login = () => {
 
                             <div className='form-group row mb-0'>
                               <div className='col-md-8 offset-md-4'>
-                                <button disabled={!formValid} onClick={getToken} className='btn2 btn-primary'>
+                                <button onClick={(e)=>getToken(e)} className='btn2 btn-primary'>
                                   {
                                     lang?.lang === "ru"
-                                      ? <>   Войти</>
+                                      ? <>Войти</>
                                       : <>Login</>
                                   }
 
@@ -294,14 +294,14 @@ const Login = () => {
                                 <NavLink to='/reset' className='btn2 btn-link' href='#'>
                                   {
                                     lang?.lang === "ru"
-                                      ? <>    Не помню пароль</>
+                                      ? <>Не помню пароль</>
                                       : <>Forget password</>
                                   }
 
                                 </NavLink>
                               </div>
                             </div>
-                          </form>
+                          
                         </div>
                       </div>
                     </div>

@@ -241,9 +241,14 @@ const ProductItem = () => {
                 }
               </div>
             </div>
-            <div className="col-6 position-relative">
+            <div className="col-6 position-relative" style={{minHeight:"500px"}}>
               <div className="img d-block block-product-about__img -right">
-                <img src={data?.Images === undefined ? null : data?.Images[1]} alt="images" />
+                {
+                  lang.lang=="ru"
+                  ? <img src={data?.imagesRu === undefined ? null : data?.imagesRu[1]} alt="images" />
+                  :<img src={data?.imagesEn === undefined ? null : data?.imagesEn[1]} alt="images" />
+                }
+               
               </div>
             </div>
           </div>
@@ -256,7 +261,11 @@ const ProductItem = () => {
               <div className="swiper-slide block-photo__slide position-relative swiper-slide-active" role="group" aria-label="1 / 1">
                 <div className="swipre-slide__text"><span>Косметика, которую <br /> выбирают звезды</span></div>
                 <div className="img d-block">
-                  <img src={data?.Images === undefined ? null : data?.Images[2]} alt className="loaded" data-was-processed="true" />
+                {
+                  lang.lang=="ru"
+                  ? <img src={data?.imagesRu === undefined ? null : data?.imagesRu[2]} alt="images" />
+                  :<img src={data?.imagesEn === undefined ? null : data?.imagesEn[2]} alt="images" />
+                }
                 </div>
               </div>
             </div>
@@ -287,7 +296,11 @@ const ProductItem = () => {
           </div>
         </div>
         <div className="block-how-it-works__img img d-block">
-          <img src={data?.Images === undefined ? null : data?.Images[3]} alt className="loaded" data-was-processed="true" />
+        {
+                  lang.lang=="ru"
+                  ? <img src={data?.imagesRu === undefined ? null : data?.imagesRu[3]} alt="images" />
+                  :<img src={data?.imagesEn === undefined ? null : data?.imagesEn[3]} alt="images" />
+                }
         </div>
       </div>
       <div className="block-accordion">

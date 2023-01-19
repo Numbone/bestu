@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Context } from '..'
 import { transactionCreate, transactionCreate2 } from '../api/transaction'
 import { observer } from 'mobx-react-lite';
@@ -13,7 +13,8 @@ const Order = () => {
   /// dropdown component 
   const [open, setOpen] = React.useState(false);
 
-
+  ////navigate 
+  const navigate =useNavigate()
 
   //state for api
   const [delivery, setDelivery] = useState("")
@@ -148,28 +149,20 @@ const Order = () => {
         basket: (JSON.parse(localStorage.getItem("basket")))
       }
       var copy = JSON.parse(JSON.stringify(object))
-      copy.basket.map(item => (delete item.Action,
-        delete item.Category,
-        delete item.Compound,
-        delete item.Contraindications,
+      copy.basket.map(item => (item.count=item.Count,
+        delete item.id,
+        delete item.weight,
         delete item.Count,
-        delete item.Description,
-        delete item.Files,
-        delete item.ID,
-        delete item.Images,
-        delete item.ModeOfApp,
-        delete item.Name,
-        delete item.Price,
-        delete item.Reviews,
-        delete item.Stars,
-        delete item.Weight))
+        delete item.imagesEn,
+        delete item.imagesRu,
+        delete item.name_ru,
+        delete item.name_en))
       console.log(copy.basket, "copy");
-
       const data = !user.isAuth
-        ? await transactionCreate2(delivery,copy.basket,promo_code,basket.Price,
+        ? await transactionCreate2(delivery,0,copy.basket,promo_code,basket.Price,
           {"email":email,'father_name':father_name,"first_name":first_name,"phone_number":phone_number,
         "second_name":second_name})
-        : await transactionCreate(delivery,copy.basket,promo_code,basket.Price,
+        : await transactionCreate(delivery,0,copy.basket,promo_code,basket.Price,
           {"email":email,'father_name':father_name,"first_name":first_name,"phone_number":phone_number,
         "second_name":second_name})
       setData(data);
@@ -177,12 +170,7 @@ const Order = () => {
     } catch (error) {
       console.log(error, "///////////error//////////////");
     } finally {
-      console.log(data1);
-      if (data1?.status == 200) {
-        setActive(true)
-      } else if (data1?.status != 200) {
-        setActiveError(true)
-      }
+      navigate("/login")
     }
 
   }
@@ -230,18 +218,50 @@ const Order = () => {
           ? <div className="block-page-order">
             <div className="container">
               <div className="text-center">
-                <h2 className="block__title">Оформление заказа</h2>
+                {
+                  lang?.lang=="ru"?
+                  <h2 className="block__title">Оформление заказа</h2>
+                  :<h2 className="block__title">Checkout</h2>
+                }
+               
               </div>
               <div className="block-cart">
-                <h3 className="block__title">Корзина</h3>
+              {
+                  lang?.lang=="ru"?
+                  <h3 className="block__title">Корзина</h3>
+                  : <h3 className="block__title">Basket</h3>
+                }
+               
+               
                 <div className="table-responsive">
                   <table style={{ width: '100%', maxWidth: 'none' }}>
                     <thead>
                       <tr>
-                        <th style={{ width: '50%' }}>Наименование</th>
-                        <th className="d-none d-sm-table-cell">Цена</th>
-                        <th>Количество</th>
-                        <th>Сумма</th>
+                        {
+                          lang.lang=="ru"
+                          ? <th style={{ width: '50%' }}>
+                          Наименование</th>
+                          : <th style={{ width: '50%' }}>
+                          Designation</th>
+                        }
+                        {
+                          lang.lang=="ru"
+                          ?<th className="d-none d-sm-table-cell">Цена</th>
+                          :<th className="d-none d-sm-table-cell">Price</th>
+                        }
+                       {
+                        lang.lang=="ru"
+                        ?<th>Количество</th>
+                        :<th>Quantity</th>
+                       }
+                        
+                        {
+                          lang.lang=="ru"
+                          ? <th>Сумма</th>
+                          : <th>Sum</th>
+
+                        }
+                       
                         <th className="d-none d-sm-table-cell" />
                       </tr>
                     </thead>
@@ -250,18 +270,18 @@ const Order = () => {
                         <tr className="item" data-price={1790} data-product={2} data-shipping={1}>
                           <td><span className="cart-item__name">{lang?.lang==="ru"?item?.name_ru:item?.name_en} </span><br /><span style={{ fontSize: '.8em' }}>Артикул: scrub-ld</span></td>
                           <td className="d-none d-sm-table-cell">
-                            {item.price} руб.
+                            {item.price}  {lang?.lang=="ru"?<>руб</>:<>rub</>}
                           </td>
                           <td>
                             <div className="d-flex justify-content-center align-items-center box-quantity" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
                               <a onClick={() => basket.setCountDevice(item.id, "-")} className="minus" />
-                              <div type="text" name="quantity" className="quantity" style={{ paddingLeft: 0, paddingRight: 0 }} >{item?.count}</div>
+                              <div type="text" name="quantity" className="quantity" style={{ paddingLeft: 0, paddingRight: 0 }} >{item?.Count}</div>
                               <a onClick={() => basket.setCountDevice(item.id, "+")} className="plus" />
                             </div>
                           </td>
                           <td>
                             <span className="item-total">
-                              {item.count * item.Price}
+                              {item.Count * item.price}
                             </span>
                           </td>
                           <td className=" d-sm-table-cell">
@@ -277,10 +297,10 @@ const Order = () => {
               <div className="form-order">
                 <div className="row justify-content-center">
                   <div className="col-lg-6 col-md-8">
-                    <h3 className="block__title">Покупатель</h3>
+                    <h3 className="block__title">  {lang?.lang=="ru"?<>Покупатель</>:<>Customer</>}</h3>
                     <div className="box-form customer">
                       <div className="form-field">
-                        <label htmlFor="last_name">Ваша фамилия</label>
+                        <label htmlFor="last_name"> {lang?.lang=="ru"?<>Ваша фамилия</>:<>Ваша фамилия</>}</label>
                         <input
                           onChange={(e) => Father_nameHandler(e)}
                           type="text"
@@ -295,7 +315,7 @@ const Order = () => {
                         }
                       </div>
                       <div className="form-field">
-                        <label htmlFor="first_name">Ваше имя</label>
+                        <label htmlFor="first_name">{lang?.lang=="ru"?<>Ваше имя</>:<>Your name</>}</label>
                         <input
                           onChange={(e) => First_nameHandler(e)}
                           type="text"
@@ -309,7 +329,7 @@ const Order = () => {
                         }
                       </div>
                       <div className="form-field">
-                        <label htmlFor="second_name">Ваше отечество</label>
+                        <label htmlFor="second_name">{lang?.lang=="ru"?<>Ваше отечество</>:<>Your fatherland</>}</label>
                         <input
                           onChange={(e) => Second_nameHandler(e)}
                           type="text"
