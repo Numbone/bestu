@@ -50,7 +50,7 @@ const Ambassadors = () => {
         console.log(error.text);
       });
   };
-  console.log(form.current)
+ 
   return (
     <div className='flex-1' style={{ minHeight: '100%' }}>
       <div className='block-page-order'>
