@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Context } from '../..';
 import { productId } from '../../api/product';
 import ph1 from '../../img/assets.jpg'
@@ -9,11 +9,13 @@ import './ProductItem.css'
 import { RiStarSFill } from "react-icons/ri";
 import { reviewAdd } from '../../api/review';
 import ModalSucces from '../ModalSuccess/ModalSucces';
+import ModalSendProductStars from '../ModalSendProductStars/ModalSendProductStars';
 const ProductItem = () => {
-  const { lang } = useContext(Context)
+  const { lang ,user} = useContext(Context)
   const [open, setOpen] = React.useState(false);
   const [open1, setOpen1] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
+  const navigate=useNavigate()
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -38,7 +40,15 @@ const ProductItem = () => {
 
   }
   const [reviews, setReviews] = useState("")
+  const [reviews2, setReviews2] = useState("")
+  const [reviews3, setReviews3] = useState("")
+  const [reviews4, setReviews4] = useState("")
+  const [reviews5, setReviews5] = useState("")
   const [numberStar, setNumberStars] = useState(0)
+  const [numberStar2, setNumberStars2] = useState(0)
+  const [numberStar3, setNumberStars3] = useState(0)
+  const [numberStar4, setNumberStars4] = useState(0)
+  const [numberStar5, setNumberStars5] = useState(0)
 
   const sendReviewStar = async () => {
     const data = await reviewAdd(reviews, numberStar, id)
@@ -46,25 +56,32 @@ const ProductItem = () => {
   }
   const description_ru = data?.description_ru?.split(/\r\n/)
   const [modalShow, setModalShow] = React.useState(false);
-  const action = data?.Action?.split(new RegExp("/n"))
-  const compound = data?.Compound?.split(new RegExp("/n"))
-  const contraindications = data?.Contraindications?.split(new RegExp("/n"))
-  const modeOfApp = data?.ModeOfApp?.split(new RegExp("/n"))
   useEffect(() => {
     getItem()
   }, [description_ru])
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+
   const [active, setActive] = useState(false)
   useEffect(() => {
-    if (numberStar != 0) {
-      sendReviewStar()
+    if ((numberStar != 0) &&
+      (numberStar2 != 0) &&
+      (numberStar3 != 0) &&
+      (numberStar4 != 0) &&
+      (numberStar5 != 0) &&
+      (user?.isAuth==true)){
       setActive(true)
     }
-  }, [reviews, numberStar, id, data.Stars])
+    if ((numberStar != 0) &&
+      (numberStar2 != 0) &&
+      (numberStar3 != 0) &&
+      (numberStar4 != 0) &&
+      (numberStar5 != 0) &&
+      (user?.isAuth==false)){
+        navigate('/login')
+    }
+  }, [numberStar,numberStar2,numberStar3,numberStar4,numberStar5])
 
-  console.log(data);
+  
+  console.log(data, "data");
   return (
     <div className="flex-1" style={{ minHeight: '100vh' }}>
       <div className="product-top item-square"
@@ -124,95 +141,107 @@ const ProductItem = () => {
             <div className="box-rating" style={{ marginTop: '1em' }}>
               <div className="d-flex justify-content-center">
                 <div>
-                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("product_quality")}>
+                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("quality_stars")}>
                     <div>Качество продукта: </div>
                     <div className="rating-stars">
                       <div className='d-flex'>
-                        <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "product_quality"
+                        <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5)
                           ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(1)} />
-                        <RiStarSFill style={(numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "product_quality"
+                        <RiStarSFill style={(numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5)
                           ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(2)} />
-                        <RiStarSFill style={(numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "product_quality"
+                        <RiStarSFill style={(numberStar == 3 || numberStar == 4 || numberStar == 5)
                           ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(3)} />
-                        <RiStarSFill style={(numberStar == 4 || numberStar == 5) && reviews === "product_quality"
+                        <RiStarSFill style={(numberStar == 4 || numberStar == 5)
                           ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(4)} />
-                        <RiStarSFill style={(numberStar == 5) && reviews === "product_quality"
+                        <RiStarSFill style={(numberStar == 5)
                           ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(5)} />
                       </div>
                     </div>
                   </div>
-                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("aromat")}>
+                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews2("aroma_stars")}>
                     <div>Аромат: </div>
                     <div className="rating-stars">
                       <div className='d-flex'>
-                        <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "aromat"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(1)} />
-                        <RiStarSFill style={(numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "aromat"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(2)} />
-                        <RiStarSFill style={(numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "aromat"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(3)} />
-                        <RiStarSFill style={(numberStar == 4 || numberStar == 5) && reviews === "aromat"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(4)} />
-                        <RiStarSFill style={(numberStar == 5) && reviews === "aromat"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(5)} />
+                        <RiStarSFill style={(numberStar2 == 1 || numberStar2 == 2 || numberStar2 == 3 || numberStar2 == 4 || numberStar2 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars2(1)} />
+                        <RiStarSFill style={(numberStar2 == 2 || numberStar2 == 3 || numberStar2 == 4 || numberStar2 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars2(2)} />
+                        <RiStarSFill style={(numberStar2 == 3 || numberStar2 == 4 || numberStar2 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars2(3)} />
+                        <RiStarSFill style={(numberStar2 == 4 || numberStar2 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars2(4)} />
+                        <RiStarSFill style={(numberStar2 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars2(5)} />
                       </div>
                     </div>
                   </div>
-                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("texttura")}>
+                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews3("texture_stars")}>
                     <div>Текстура: </div>
                     <div className="rating-stars">
                       <div className='d-flex'>
-                        <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "texttura"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(1)} />
-                        <RiStarSFill style={(numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "texttura"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(2)} />
-                        <RiStarSFill style={(numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "texttura"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(3)} />
-                        <RiStarSFill style={(numberStar == 4 || numberStar == 5) && reviews === "texttura"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(4)} />
-                        <RiStarSFill style={(numberStar == 5) && reviews === "texttura"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(5)} />
+                        <RiStarSFill style={(numberStar3 == 1 || numberStar3 == 2 || numberStar3 == 3 || numberStar3 == 4 || numberStar3 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars3(1)} />
+                        <RiStarSFill style={(numberStar3 == 2 || numberStar3 == 3 || numberStar3 == 4 || numberStar3 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars3(2)} />
+                        <RiStarSFill style={(numberStar3 == 3 || numberStar3 == 4 || numberStar3 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars3(3)} />
+                        <RiStarSFill style={(numberStar3 == 4 || numberStar3 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars3(4)} />
+                        <RiStarSFill style={(numberStar3 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars3(5)} />
                       </div>
                     </div>
                   </div>
-                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("effect_product")}>
+                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews4("effect_stars")}>
                     <div>Эффект от продукта: </div>
                     <div className="rating-stars">
                       <div className='d-flex'>
-                        <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "effect_product"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(1)} />
-                        <RiStarSFill style={(numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "effect_product"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(2)} />
-                        <RiStarSFill style={(numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "effect_product"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(3)} />
-                        <RiStarSFill style={(numberStar == 4 || numberStar == 5) && reviews === "effect_product"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(4)} />
-                        <RiStarSFill style={(numberStar == 5) && reviews === "effect_product"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(5)} />
+                        <RiStarSFill style={(numberStar4 == 1 || numberStar4 == 2 || numberStar4 == 3 || numberStar4 == 4 || numberStar4 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars4(1)} />
+                        <RiStarSFill style={(numberStar4 == 2 || numberStar4 == 3 || numberStar4 == 4 || numberStar4 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars4(2)} />
+                        <RiStarSFill style={(numberStar4 == 3 || numberStar4 == 4 || numberStar4 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars4(3)} />
+                        <RiStarSFill style={(numberStar4 == 4 || numberStar4 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars4(4)} />
+                        <RiStarSFill style={(numberStar4 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars4(5)} />
                       </div>
                     </div>
                   </div>
-                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("deliver_quality")}>
+                  <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews5("delivery_stars")}>
                     <div>Качество доставки: </div>
                     <div className="rating-stars">
                       <div className='d-flex'>
-                        <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "deliver_quality"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(1)} />
-                        <RiStarSFill style={(numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "deliver_quality"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(2)} />
-                        <RiStarSFill style={(numberStar == 3 || numberStar == 4 || numberStar == 5) && reviews === "deliver_quality"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(3)} />
-                        <RiStarSFill style={(numberStar == 4 || numberStar == 5) && reviews === "deliver_quality"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(4)} />
-                        <RiStarSFill style={(numberStar == 5) && reviews === "deliver_quality"
-                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars(5)} />
+                        <RiStarSFill style={(numberStar5 == 1 || numberStar5 == 2 || numberStar5 == 3 || numberStar5 == 4 || numberStar5 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars5(1)} />
+                        <RiStarSFill style={(numberStar5 == 2 || numberStar5 == 3 || numberStar5 == 4 || numberStar5 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars5(2)} />
+                        <RiStarSFill style={(numberStar5 == 3 || numberStar5 == 4 || numberStar5 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars5(3)} />
+                        <RiStarSFill style={(numberStar5 == 4 || numberStar5 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars5(4)} />
+                        <RiStarSFill style={(numberStar5 == 5)
+                          ? { color: 'yellow' } : null} className='icon_star' onClick={() => setNumberStars5(5)} />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <ModalSucces
+              <ModalSendProductStars
+               setNumberStars={ setNumberStars}
+               setNumberStars2={ setNumberStars2}
+               setNumberStars3={ setNumberStars3}
+               setNumberStars4={ setNumberStars4}
+               setNumberStars5={ setNumberStars5}
+                id={data?.ID}
+                aroma_stars={numberStar2}
+                delivery_stars={numberStar5}
+                effect_stars={numberStar4}
+                quality_stars={numberStar}
+                texture_stars={numberStar3}
                 show={active}
+                setActive={setActive}
                 onHide={() => setActive(false)} />
             </div>
           </div>
@@ -228,27 +257,27 @@ const ProductItem = () => {
                 {
                   lang.lang == 'ru'
                     ? data?.descriptionRu?.split(/\r\n/)?.map(item =>
-                        <div>{item} </div>)
-                    
+                      <div>{item} </div>)
+
                     : null
                 }
                 {
                   lang.lang != 'ru'
                     ? data?.descriptionEn?.split(/\r\n/)?.map(item =>
-                        <div>{item} </div>)
-                    
+                      <div>{item} </div>)
+
                     : null
                 }
               </div>
             </div>
-            <div className="col-6 position-relative" style={{minHeight:"500px"}}>
+            <div className="col-6 position-relative" style={{ minHeight: "500px" }}>
               <div className="img d-block block-product-about__img -right">
                 {
-                  lang.lang=="ru"
-                  ? <img src={data?.imagesRu === undefined ? null : data?.imagesRu[1]} alt="images" />
-                  :<img src={data?.imagesEn === undefined ? null : data?.imagesEn[1]} alt="images" />
+                  lang.lang == "ru"
+                    ? <img src={data?.imagesRu === undefined ? null : data?.imagesRu[1]} alt="images" />
+                    : <img src={data?.imagesEn === undefined ? null : data?.imagesEn[1]} alt="images" />
                 }
-               
+
               </div>
             </div>
           </div>
@@ -261,11 +290,11 @@ const ProductItem = () => {
               <div className="swiper-slide block-photo__slide position-relative swiper-slide-active" role="group" aria-label="1 / 1">
                 <div className="swipre-slide__text"><span>Косметика, которую <br /> выбирают звезды</span></div>
                 <div className="img d-block">
-                {
-                  lang.lang=="ru"
-                  ? <img src={data?.imagesRu === undefined ? null : data?.imagesRu[2]} alt="images" />
-                  :<img src={data?.imagesEn === undefined ? null : data?.imagesEn[2]} alt="images" />
-                }
+                  {
+                    lang.lang == "ru"
+                      ? <img src={data?.imagesRu === undefined ? null : data?.imagesRu[2]} alt="images" />
+                      : <img src={data?.imagesEn === undefined ? null : data?.imagesEn[2]} alt="images" />
+                  }
                 </div>
               </div>
             </div>
@@ -277,30 +306,30 @@ const ProductItem = () => {
           <div className="block-how-it-works__title"><p>Действие</p></div>
           <div className="block-how-it-works__text">
             <ul>
-            {
-                  lang.lang == 'ru'
-                    ? data?.actionRu?.split(/\r\n/)?.map(item =>
-                        <div>{item} </div>)
-                    
-                    : null
-                }
-                {
-                  lang.lang != 'ru'
-                    ? data?.actionEn?.split(/\r\n/)?.map(item =>
-                        <div>{item} </div>)
-                    
-                    : null
-                }
+              {
+                lang.lang == 'ru'
+                  ? data?.actionRu?.split(/\r\n/)?.map(item =>
+                    <div>{item} </div>)
+
+                  : null
+              }
+              {
+                lang.lang != 'ru'
+                  ? data?.actionEn?.split(/\r\n/)?.map(item =>
+                    <div>{item} </div>)
+
+                  : null
+              }
 
             </ul>
           </div>
         </div>
         <div className="block-how-it-works__img img d-block">
-        {
-                  lang.lang=="ru"
-                  ? <img src={data?.imagesRu === undefined ? null : data?.imagesRu[3]} alt="images" />
-                  :<img src={data?.imagesEn === undefined ? null : data?.imagesEn[3]} alt="images" />
-                }
+          {
+            lang.lang == "ru"
+              ? <img src={data?.imagesRu === undefined ? null : data?.imagesRu[3]} alt="images" />
+              : <img src={data?.imagesEn === undefined ? null : data?.imagesEn[3]} alt="images" />
+          }
         </div>
       </div>
       <div className="block-accordion">
@@ -309,25 +338,25 @@ const ProductItem = () => {
             onClick={handleOpen}>Способ применения:</a>
           {
             open
-              ? 
+              ?
               <div className="block-accordion__panel"
 
                 data-max-height="621px" style={{ position: 'static', visibility: 'visible', display: 'block', transition: 'max-height 0.5s ease-in-out 0s', overflowY: 'hidden' }}>
                 <div>
-                {
-                  lang.lang == 'ru'
-                    ? data?.modeOfAppRus?.split(/\r\n/)?.map(item =>
+                  {
+                    lang.lang == 'ru'
+                      ? data?.modeOfAppRus?.split(/\r\n/)?.map(item =>
                         <div>{item} </div>)
-                    
-                    : null
-                }
-                {
-                  lang.lang != 'ru'
-                    ? data?.modeOfAppEn?.split(/\r\n/)?.map(item =>
+
+                      : null
+                  }
+                  {
+                    lang.lang != 'ru'
+                      ? data?.modeOfAppEn?.split(/\r\n/)?.map(item =>
                         <div>{item} </div>)
-                    
-                    : null
-                }
+
+                      : null
+                  }
 
                 </div>
               </div>
@@ -341,20 +370,20 @@ const ProductItem = () => {
             open1
               ? <div className="block-accordion__panel" data-max-height="430px" style={{ position: 'static', visibility: 'visible', display: 'block', transition: 'max-height 0.5s ease-in-out 0s', overflowY: 'hidden' }}>
                 <div>
-                {
-                  lang.lang == 'ru'
-                    ? data?.contraindicationsRu?.split(/\r\n/)?.map(item =>
+                  {
+                    lang.lang == 'ru'
+                      ? data?.contraindicationsRu?.split(/\r\n/)?.map(item =>
                         <div>{item} </div>)
-                    
-                    : null
-                }
-                {
-                  lang.lang != 'ru'
-                    ? data?.contraindicationsEn?.split(/\r\n/)?.map(item =>
+
+                      : null
+                  }
+                  {
+                    lang.lang != 'ru'
+                      ? data?.contraindicationsEn?.split(/\r\n/)?.map(item =>
                         <div>{item} </div>)
-                    
-                    : null
-                }
+
+                      : null
+                  }
 
                 </div>
               </div>
@@ -368,20 +397,20 @@ const ProductItem = () => {
             open2
               ? <div className="block-accordion__panel" data-max-height="296px" style={{ position: 'static', visibility: 'visible', display: 'block', transition: 'max-height 0.5s ease-in-out 0s', overflowY: 'hidden' }}>
                 <div>
-                {
-                  lang.lang == 'ru'
-                    ? data?.compoundRu?.split(/\r\n/)?.map(item =>
+                  {
+                    lang.lang == 'ru'
+                      ? data?.compoundRu?.split(/\r\n/)?.map(item =>
                         <div>{item} </div>)
-                    
-                    : null
-                }
-                {
-                  lang.lang != 'ru'
-                    ? data?.compoundEn?.split(/\r\n/)?.map(item =>
+
+                      : null
+                  }
+                  {
+                    lang.lang != 'ru'
+                      ? data?.compoundEn?.split(/\r\n/)?.map(item =>
                         <div>{item} </div>)
-                    
-                    : null
-                }
+
+                      : null
+                  }
                 </div>
               </div>
               : null

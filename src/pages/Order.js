@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, redirect, useNavigate } from 'react-router-dom'
 import { Context } from '..'
 import { transactionCreate, transactionCreate2 } from '../api/transaction'
 import { observer } from 'mobx-react-lite';
@@ -27,7 +27,7 @@ const Order = () => {
   const [second_name, setSecond_name] = useState("")
   const [total_cost, setTotal_cost] = useState(0)
   const [count, setCount] = useState(0)
-  const [data1, setData] = useState({})
+  const [data1, setData] = useState("")
   //api for transaction/create
 
   const [active, setActive] = useState(false)
@@ -142,7 +142,7 @@ const Order = () => {
     }
   }
 
-
+  const [checkerTrans,setCheckerTrans]=useState(false)
   const sendTransaction = async () => {
     try {
       const object = {
@@ -158,23 +158,23 @@ const Order = () => {
         delete item.name_ru,
         delete item.name_en))
       console.log(copy.basket, "copy");
-      const data = !user.isAuth
+      const {data} = !user.isAuth
         ? await transactionCreate2(delivery,0,copy.basket,promo_code,basket.Price,
           {"email":email,'father_name':father_name,"first_name":first_name,"phone_number":phone_number,
         "second_name":second_name})
         : await transactionCreate(delivery,0,copy.basket,promo_code,basket.Price,
           {"email":email,'father_name':father_name,"first_name":first_name,"phone_number":phone_number,
         "second_name":second_name})
-      setData(data);
+      setData(data?.message);
       console.log();
     } catch (error) {
       console.log(error, "///////////error//////////////");
     } finally {
-      navigate("/login")
+      setCheckerTrans(true)
     }
 
   }
-
+  
 
   const reRender = () => {
     setRerender(!rerender);
@@ -208,8 +208,12 @@ const Order = () => {
     }
   }, [checkerpolitica, checkOferta, emailError, first_nameError, second_nameError, father_nameError, phone_numberError, repeatError,])
 
-
-
+  useEffect(()=>{
+    if (checkerTrans){
+      window.location.replace(data1)
+    }
+  },[checkerTrans])
+  
 
   return (
     <div className='flex-1' style={{ minHeight: '100vh' }}>
@@ -328,7 +332,7 @@ const Order = () => {
                           <label className='label_check'>{first_nameError}</label>
                         }
                       </div>
-                      <div className="form-field">
+                      {/* <div className="form-field">
                         <label htmlFor="second_name">{lang?.lang=="ru"?<>Ваше отечество</>:<>Your fatherland</>}</label>
                         <input
                           onChange={(e) => Second_nameHandler(e)}
@@ -341,7 +345,7 @@ const Order = () => {
                         {(second_nameDirty && second_nameError) &&
                           <label className='label_check'>{second_nameError}</label>
                         }
-                      </div>
+                      </div> */}
                       <div className="form-field">
                         <label htmlFor="phone_number">Ваш телефон</label>
                         <input
@@ -407,7 +411,7 @@ const Order = () => {
                     <div className="shipping-choose">
                       <div className="box-form">
                         <div className="form-field" onClick={() => setDelivery('Самовывоз в Волгограде')}>
-                          <input type="checkbox" name="shipping-method" id="pickup" className="input-radio" onClick={changeSelfDelivery} />
+                          <input type="checkbox" name="shipping-method" id="pickup" className="input-checkbox" onClick={changeSelfDelivery} />
                           <label htmlFor="pickup">Самовывоз в Волгограде</label>
                         </div>
 
@@ -533,8 +537,8 @@ const Order = () => {
                             onClick={(e) => setCheckOferta(e.target.checked)} /><label htmlFor="oferta">
                             <span>Я принимаю условия </span>
                             <NavLink to='/ofertapage'>
-                              публичной оферты</NavLink
-                            >
+                              публичной оферты
+                              </NavLink>
                           </label>
                         </div>
                       </div>
@@ -542,10 +546,10 @@ const Order = () => {
                         <div style={{ position: 'relative' }}>
                           <input type="checkbox" name="politika" id="politika" className="input-checkbox" defaultValue={1} form="order"
                             onClick={(e) => setCheckerpolitika(e.target.checked)} />
-                          <label htmlFor="politika"><span>Я соглашаюсь с условиями </span>
+                          <label htmlFor="politika"><span>Я соглашаюсь с условиями  политики обработки  </span>
                             <NavLink to="/politicapage" >
-                              политики обработки
                               персональных данных
+                             
                             </NavLink>
                           </label>
                         </div>

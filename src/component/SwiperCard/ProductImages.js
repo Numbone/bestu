@@ -20,8 +20,8 @@ const ProductImages = props => {
                         <SwiperSlide>
                             <img src={item} style={{
                                 objectFit: "cover",
-                                width: "100%",
-                                height:"100%",
+                                width: "26em",
+                                height:"26em",
                                 
                                 
                             }} alt="SliderImage"></img>

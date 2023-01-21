@@ -27,6 +27,8 @@ import { BrowserRouter } from 'react-router-dom';
 import Politika from './pages/Politika';
 import Oferta from './pages/Oferta';
 import CategoryId from './pages/CategoryId';
+import AuthRobo from './pages/AuthRobo';
+import AuthRoboFail from './pages/AuthRoboFail';
 function App() {
 
  const { user, basket } = useContext(Context);
@@ -81,6 +83,8 @@ function App() {
           <Route key={19} path='/search' element={<Search />}></Route>
           <Route key={20} path='/politicapage' element={<Politika />}></Route>
           <Route key={21} path='/ofertapage' element={<Oferta />}></Route>
+          <Route key={22} path='/robokassa/success' element={<AuthRobo />}></Route>
+          <Route key={23} path='/authrobofail' element={<AuthRoboFail />}></Route>
         </Routes>
 
         <Footer />

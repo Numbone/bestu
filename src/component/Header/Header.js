@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <div>
       {
-        navigation.pathname !== "/login" && navigation.pathname !== "/reset" ?
+        navigation.pathname !== "/login" && navigation.pathname !== "/reset"&& navigation.pathname !== "/authrobo"  && navigation.pathname !== "/authrobofail" ?
           <header className="header d-flex align-items-center" >
             <div className="container container-xxl">
               <div className=' d-flex justify-content-between align-items-center'>

@@ -1,0 +1,303 @@
+.header_auth {
+    height: 88px;
+    background: linear-gradient(0deg, #fff, #fff), #F3F7FA;
+    border-bottom: 1px solid #EAF0F7;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    transition: all 500ms ease;
+}
+
+@media screen and (max-width: 767px) and (orientation: portrait),
+screen and (max-device-width: 767px) and (orientation: landscape) {
+    .header_auth.testmodeheader {
+        top: 30px;
+    }
+}
+
+
+.section_robo {
+    position: relative;
+}
+
+.section_robo {
+    width: 800px;
+    margin: 0 auto;
+}
+
+
+
+.leftSection {
+    float: left;
+}
+
+
+@media screen and (max-width: 413px) {
+    .header_auth .leftSection {
+        width: calc(100% - 30px);
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+
+.svgArrow {
+    width: 7px;
+    height: 14px;
+    display: inline;
+}
+
+.shopName {
+    margin-top: 18px;
+    cursor: pointer;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+
+@media screen and (max-width: 767px) and (orientation: portrait),
+screen and (max-device-width: 767px) and (orientation: landscape) {
+    .svgArrow1 {
+        display: none !important;
+    }
+
+    .leftSection .svgArrow {
+        display: block !important;
+    }
+}
+
+.leftSection .svgArrow {
+    display: none;
+}
+
+.shopName svg {
+    margin-right: 4px;
+}
+
+.shopTittle {
+    display: inline-block;
+    height: 16px;
+    top: 17px;
+    left: 17px;
+    position: absolute;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.mainText {
+    font-size: 28px;
+    line-height: 33px;
+    color: #202A2F;
+    font-weight: 700;
+    display: block;
+}
+
+.priceOrder {
+    position: absolute;
+    top: 42px;
+}
+
+.rightSection {
+    float: right;
+}
+
+.header_auth .formcontrol {
+    position: relative;
+    width: 136px;
+    height: 48px;
+    background: rgba(241, 246, 255, 0.9);
+    border: none;
+    margin-top: 20px;
+    box-shadow: none;
+}
+
+.formcontrol {
+    display: block;
+    width: 100%;
+    height: 60px;
+    font-size: 19px;
+    line-height: 22px;
+    color: #202A2F;
+    background-image: none;
+    border: 1px solid #D8E7ED;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.btn-secondary_robo.orderDetails {
+    height: 48px;
+    font-size: 15px;
+    line-height: 18px;
+    width: 148px;
+    right: 12px;
+}
+
+.btn-secondary_robo {
+    height: 60px;
+    width: 100%;
+    background: rgba(241, 246, 255, 0.9);
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 22px;
+    color: #2D87F2;
+}
+
+.btn_robo {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    border-radius: 12px;
+    user-select: none;
+    position: relative;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.section_content {
+    background-color: #FBFBFC;
+    height: 100vh;
+    width: 100vw;
+    padding-top: calc(124px + 32px);
+}
+
+.aliasText {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    max-width: 220px;
+    padding-top: 4px;
+    padding-right: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: rgb(148, 148, 163)
+}
+
+.leftSideContainer {
+    margin-top: 13px;
+    margin-bottom: 44px;
+    display: inline-block;
+}
+
+.methodContainer {
+    border-radius: 14px;
+    padding: 4px;
+    margin-bottom: 12px;
+    background-color: #EBEFF3;
+}
+
+.methodsInner {
+    display: flex;
+  
+}
+
+.logoContainer {
+    background: white;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+}
+
+.mainText {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    font-size: 19px;
+    line-height: 22px;
+    padding-top: 4px;
+    color: #202A2F;
+    font-weight: 700;
+}
+
+.aliasText {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    max-width: 220px;
+    padding-top: 4px;
+    font-size: 15px;
+}
+.methodContainer.block_qiwi{
+    background-color: inherit !important;
+}
+.logoContainer.logo_qiwi{
+    background-color: rgb(254, 241, 226);;
+}
+.rightSection1{
+    height: 614px;
+    width: 460px;
+    background: linear-gradient(0deg, #fff, #fff),#F3F7FA;
+    border: 1px solid #EAF0F7;
+    box-sizing: border-box;
+    box-shadow: 0px 15px 50px -20px rgba(39,99,158,0.4);
+    border-radius: 14px;
+    padding: 20px 36px 36px 36px;
+    float: right;
+    -moz-transition: height 250ms ease-in-out;
+    -ms-transition: height 250ms ease-in-out;
+    -o-transition: height 250ms ease-in-out;
+    -webkit-transition: height 250ms ease-in-out;
+    transition: height 250ms ease-in-out;
+  
+}
+.success_robo{
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ margin-top: 20px;
+}
+.img_container_svg{
+    width: 100%;
+}
+.img_container_svg img{
+    height: 200px;
+    width: 100%;
+    object-fit: contain;
+}
+.success_text{
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.success_button_robo{
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: none;
+}
+.robo_btn{
+    background-color: none;
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 20px;
+}
+.robo_container{
+    margin-top: 40px;
+}

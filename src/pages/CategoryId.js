@@ -21,7 +21,7 @@ const CategoryId = () => {
       console.log(error);
     }
   }
-  console.log(product);
+  console.log(locate,"locate");
   useEffect(() => {
     lang.lang == "ru" ?
       getAllProducts()
@@ -37,11 +37,12 @@ const CategoryId = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  
+  console.log(product,"product")
   return (
     <>
       <div>
-        <div className='block-top category' style={{ backgroundImage: `url(${btop})` }}>
+        <div className='block-top category' style={locate?.state?.imagesRu === undefined? null : { backgroundImage: `url(${ locate?.state?.imagesRu[1]})` }
+          }>
           <div className='d-flex justify-content-center'>
             <div className='container'>
               <div className='block-top__big-name'>
@@ -68,6 +69,7 @@ const CategoryId = () => {
                       setIndexPhoto={setIndexPhoto}
                       active={active}
                       setActive={setActive}
+                      index={index}
                     />)
                 }
               </div>
@@ -76,7 +78,12 @@ const CategoryId = () => {
               <div className="toastjs-container">
                 <div className="toastjs success">
                   <p>
-                    {indexPhoto[0] ===undefined ? null :product[indexPhoto]?.name_ru}
+                    {
+                      product===null 
+                      ?null
+                      :product[indexPhoto] ===undefined  ? null :product[indexPhoto]?.name_ru
+                    }
+                    
                   </p>
                   <div className="d-flex">
 

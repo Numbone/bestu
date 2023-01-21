@@ -50,10 +50,10 @@ h3 {
     content: "";
     position: absolute;
     top: 50%;
-    margin-top: -8px;
-    left: 8px;
-    width: 16px;
-    height: 16px;
+    margin-top: -9px;
+    left: 4px;
+    width: 21px;
+    height: 21px;
     border-radius: 10em;
     background-color: transparent;
     border: 1px solid #424242;
@@ -63,10 +63,10 @@ h3 {
     content: "";
     position: absolute;
     top: 50%;
-    left: 11px;
+    left: 9px;
     width: 10px;
     height: 10px;
-    margin-top: -5px;
+    margin-top: -4px;
     opacity: 0;
     background: #b38b8a;
     border: none;

@@ -11,7 +11,7 @@ const Footer = () => {
     return (
         <>
             {
-                navi.pathname !== "/login" && navi.pathname !== "/reset" ?
+                navi.pathname !== "/login" && navi.pathname !== "/reset"&& navi.pathname !== "/authrobo" && navi.pathname !== "/authrobofail" ?
                     <div>
 
                         <footer className='footer'>
@@ -181,7 +181,8 @@ const Footer = () => {
 
 
                     </div>
-                    : <div style={{ height: '100vh', backgroundColor: '#E7DBE2' }}></div>
+                    : navi.pathname !== "/authrobo" &&  navi.pathname !== "/login" && navi.pathname !== "/reset" && navi.pathname !== "/authrobofail" ? 
+                    <div style={{ height: '100vh', backgroundColor: '#E7DBE2' }}></div>:null
             }
         </>
     )

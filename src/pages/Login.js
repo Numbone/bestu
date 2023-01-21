@@ -104,7 +104,7 @@ const Login = () => {
   }
   useEffect(() => {
     getUserContent()
-  }, [])
+  }, [user.isAuth])
   useEffect(() => {
     window.scrollTo(0, 10)
   }, [window.location])
@@ -189,7 +189,7 @@ const Login = () => {
 
       {
         !user.isAuth
-          ? <div className='content-wrapper'>
+          ? <div className='content-wrapper' style={{height:"100vh"}}>
             <div className='content-header'>
               <div className='container-fluid'>
                 <div className='row mb-2'>
@@ -311,7 +311,7 @@ const Login = () => {
             </div>
           </div>
           : <>
-            <div className='content-wrapper'>
+            <div className='content-wrapper' style={{height:"100vh"}}>
               <div className='content-header'>
                 <div className='container-fluid'>
                   <div className='container'>
