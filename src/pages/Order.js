@@ -587,16 +587,16 @@ const Order = () => {
                             onClick={(e) => setCheckerpolitika(e.target.checked)} />
                           {
                             lang.lang == "ru"
-                              ? <label htmlFor="politika"><span>Я соглашаюсь с условиями  политики обработки  </span>
+                              ? <label htmlFor="politika"><span>Я соглашаюсь с условиями  политики обработки персональных </span>
                                 <NavLink to="/politicapage" >
-                                  персональных данных
+                                   данных
 
                                 </NavLink>
                               </label>
-                              : <label htmlFor="politika"><span>I agree to the terms of the processing policy  </span>
+                              : <label htmlFor="politika"><span>I agree to the terms of the processing policy   personal </span>
                                 <NavLink to="/politicapage" >
 
-                                  personal data
+                                 data
 
                                 </NavLink>
                               </label>
