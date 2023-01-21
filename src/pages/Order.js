@@ -170,10 +170,12 @@ const Order = () => {
             "second_name": second_name
           })
       setData(data?.message);
+      
       console.log();
     } catch (error) {
       console.log(error, "///////////error//////////////");
     } finally {
+      localStorage.removeItem("basket")
       setCheckerTrans(true)
     }
 
