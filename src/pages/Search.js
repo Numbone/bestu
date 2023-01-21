@@ -61,7 +61,7 @@ const Search = () => {
                     </div>
                 </div>
             </div>
-            <div className='container'>
+            {/* <div className='container'>
                 <nav>
                     <ul className='pagination'>
                         <li className='page-item'>
@@ -78,7 +78,7 @@ const Search = () => {
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div> */}
         </>
            
         </div>
