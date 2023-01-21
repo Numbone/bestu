@@ -58,7 +58,8 @@ const Partners = () => {
                                                         : <>Who are you?</>
                                                 }
                                             </label>
-                                            <input type="text" name="person" id="person" placeholder='Введите...' />
+                                            <input type="text" name="person" id="person"
+                                                placeholder={lang.lang == "ru" ? "Введите..." : "Enter..."} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="service">
@@ -69,7 +70,8 @@ const Partners = () => {
                                                 }
 
                                             </label>
-                                            <input type="text" name="service" id="service" placeholder='Введите услуги' />
+                                            <input type="text" name="service" id="service"
+                                                placeholder={lang.lang == "ru" ? 'Введите услуги' : "Enter Services"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="name">
@@ -79,7 +81,8 @@ const Partners = () => {
                                                         : <>Your first name</>
                                                 }
                                             </label>
-                                            <input type="text" name="name" id="name" placeholder='Введите имя' />
+                                            <input type="text" name="name" id="name"
+                                                placeholder={lang.lang == "ru" ? "Введите имя" : "Enter name"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="phone">
@@ -89,7 +92,8 @@ const Partners = () => {
                                                         : <>Your phone</>
                                                 }
                                             </label>
-                                            <input type="text" name="phone" id="phone" placeholder='Введите телефон' />
+                                            <input type="text" name="phone" id="phone"
+                                                placeholder={lang.lang == "ru" ? "Введите телефон" : "Enter phone"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="email">
@@ -100,7 +104,8 @@ const Partners = () => {
                                                         : <>Your email</>
                                                 }
                                             </label>
-                                            <input type="text" name="email" id="email" placeholder='Введите email' />
+                                            <input type="text" name="email" id="email"
+                                                placeholder={lang.lang == "ru" ? "Введите email" : "Enter email"} />
                                         </div>
                                     </div>
 
@@ -143,7 +148,13 @@ const Partners = () => {
                                         <button type="submit" value="Send"
                                             className='btn'
                                         >
-                                            Отправить заявку
+                                            {
+                                                lang.lang === "ru"
+                                                    ? <>
+                                                        Отправить заявку</>
+                                                    : <>Submit an application</>
+                                            }
+
                                         </button>
                                     </div>
                                 </div>

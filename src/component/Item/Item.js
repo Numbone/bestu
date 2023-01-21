@@ -12,29 +12,29 @@ const Item = (props) => {
     }, [])
     const navigate = useNavigate()
     const { lang } = useContext(Context)
-    const clickIndex=()=>{
+    const clickIndex = () => {
         props.setActive(true)
         props.setIndexPhoto(props.index)
         props.clickOrder(props.props)
     }
-    console.log(props)
+ 
     return (
         <div className='col-sm-6' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
             <ProductImages images={lang.lang === "ru" ? props.props.imagesRu : props.props.imagesEn} />
             <div className='block-product__info flex-1 d-flex flex-column justify-content-between'
                 style={{
-
+                    // height:"7em",
                     flex: '1',
                     display: 'flex',
                     flex: 'column',
                     justifyContent: 'space-between'
                 }}>
-                <div style={{ minHeight: '50px' }}>
+                <div style={{ minHeight: '1.4em' }}>
                     <div className='block-product__name'
                         style={{
-                            fontSize: '1.2em',
+                           
                             lineHeight: '1',
-
+                            minHeight: '0.2em'
                         }}>
                         {lang.lang === "ru" ?
                             props.props.name_ru
@@ -73,7 +73,7 @@ const Item = (props) => {
                         }}>
                         <div className='col-6' onClick={() => clickIndex()} >
                             <a
-                                
+
 
                                 className='custom-btn custom-btn-dark'
                                 style={{

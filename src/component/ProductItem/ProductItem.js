@@ -11,11 +11,11 @@ import { reviewAdd } from '../../api/review';
 import ModalSucces from '../ModalSuccess/ModalSucces';
 import ModalSendProductStars from '../ModalSendProductStars/ModalSendProductStars';
 const ProductItem = () => {
-  const { lang ,user} = useContext(Context)
+  const { lang, user } = useContext(Context)
   const [open, setOpen] = React.useState(false);
   const [open1, setOpen1] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -36,7 +36,19 @@ const ProductItem = () => {
 
   const { basket } = useContext(Context)
   const clickOrder = () => {
-    basket.setBasket(id)
+    basket.setBasket({
+      "product_id": data?.ID,
+      "Count": 1,
+      "nameEn": data?.nameEn,
+      "nameRu": data.nameRu,
+      "id": data?.ID,
+      "name_ru": data.nameRu,
+      "name_en": data?.nameEn,
+      "article": data?.article,
+      "count": data?.count,
+      "price": data?.price,
+      "weight": data?.weight
+    })
 
   }
   const [reviews, setReviews] = useState("")
@@ -67,7 +79,7 @@ const ProductItem = () => {
       (numberStar3 != 0) &&
       (numberStar4 != 0) &&
       (numberStar5 != 0) &&
-      (user?.isAuth==true)){
+      (user?.isAuth == true)) {
       setActive(true)
     }
     if ((numberStar != 0) &&
@@ -75,12 +87,12 @@ const ProductItem = () => {
       (numberStar3 != 0) &&
       (numberStar4 != 0) &&
       (numberStar5 != 0) &&
-      (user?.isAuth==false)){
-        navigate('/login')
+      (user?.isAuth == false)) {
+      navigate('/login')
     }
-  }, [numberStar,numberStar2,numberStar3,numberStar4,numberStar5])
+  }, [numberStar, numberStar2, numberStar3, numberStar4, numberStar5])
 
-  
+
   console.log(data, "data");
   return (
     <div className="flex-1" style={{ minHeight: '100vh' }}>
@@ -128,21 +140,37 @@ const ProductItem = () => {
           <div className="product-buttons__btns">
             <div className="row g-2">
               <div className="col-6">
-                <a className="custom-btn custom-btn-dark" onClick={clickOrder}>В корзину</a>
+                {
+                  lang.lang == "ru"
+                    ? <a className="custom-btn custom-btn-dark" onClick={clickOrder}>В корзину</a>
+                    : <a className="custom-btn custom-btn-dark" onClick={clickOrder}>
+                      Add to cart</a>
+                }
+
               </div>
               <div className="col-6">
                 <a className="custom-btn" data-type="iframe"
-                  onClick={() => setModalShow(true)}>Читать все отзывы</a>
+                  onClick={() => setModalShow(true)}>
+                  {
+                    lang.lang == "ru" ? <>Читать все отзывы</> : <>Read all reviews</>
+                  }
+                </a>
               </div>
             </div>
           </div>
           <div className="text-center">
-            <a className="Tenor-Sans-link">Оставить отзыв</a>
+            <a className="Tenor-Sans-link">{lang.lang === "ru" ? <>Оставить отзыв</> : <>Give feedback</>}</a>
             <div className="box-rating" style={{ marginTop: '1em' }}>
               <div className="d-flex justify-content-center">
                 <div>
                   <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews("quality_stars")}>
-                    <div>Качество продукта: </div>
+                    {
+                      lang.lang == "ru"
+                        ? <div>Качество продукта: </div>
+                        : <div>Product quality:</div>
+
+                    }
+
                     <div className="rating-stars">
                       <div className='d-flex'>
                         <RiStarSFill style={(numberStar == 1 || numberStar == 2 || numberStar == 3 || numberStar == 4 || numberStar == 5)
@@ -159,7 +187,12 @@ const ProductItem = () => {
                     </div>
                   </div>
                   <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews2("aroma_stars")}>
-                    <div>Аромат: </div>
+                    {
+                      lang.lang === "ru"
+                        ? <div>Аромат: </div>
+                        : <div>Aroma: </div>
+                    }
+
                     <div className="rating-stars">
                       <div className='d-flex'>
                         <RiStarSFill style={(numberStar2 == 1 || numberStar2 == 2 || numberStar2 == 3 || numberStar2 == 4 || numberStar2 == 5)
@@ -176,7 +209,12 @@ const ProductItem = () => {
                     </div>
                   </div>
                   <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews3("texture_stars")}>
-                    <div>Текстура: </div>
+                    {
+                      lang.lang == "ru"
+                        ? <div>Текстура: </div>
+                        : <div>Texture: </div>
+                    }
+
                     <div className="rating-stars">
                       <div className='d-flex'>
                         <RiStarSFill style={(numberStar3 == 1 || numberStar3 == 2 || numberStar3 == 3 || numberStar3 == 4 || numberStar3 == 5)
@@ -193,7 +231,12 @@ const ProductItem = () => {
                     </div>
                   </div>
                   <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews4("effect_stars")}>
-                    <div>Эффект от продукта: </div>
+                    {
+                      lang.lang == "ru"
+                        ? <div>Эффект от продукта: </div>
+                        : <div>Product effect: </div>
+                    }
+
                     <div className="rating-stars">
                       <div className='d-flex'>
                         <RiStarSFill style={(numberStar4 == 1 || numberStar4 == 2 || numberStar4 == 3 || numberStar4 == 4 || numberStar4 == 5)
@@ -210,7 +253,13 @@ const ProductItem = () => {
                     </div>
                   </div>
                   <div className="d-flex justify-content-end align-items-center" onClick={() => setReviews5("delivery_stars")}>
-                    <div>Качество доставки: </div>
+                    {
+                      lang.lang == "ru"
+                        ? <div>Качество доставки: </div>
+                        : <div>
+                          Delivery quality: </div>
+                    }
+
                     <div className="rating-stars">
                       <div className='d-flex'>
                         <RiStarSFill style={(numberStar5 == 1 || numberStar5 == 2 || numberStar5 == 3 || numberStar5 == 4 || numberStar5 == 5)
@@ -229,11 +278,11 @@ const ProductItem = () => {
                 </div>
               </div>
               <ModalSendProductStars
-               setNumberStars={ setNumberStars}
-               setNumberStars2={ setNumberStars2}
-               setNumberStars3={ setNumberStars3}
-               setNumberStars4={ setNumberStars4}
-               setNumberStars5={ setNumberStars5}
+                setNumberStars={setNumberStars}
+                setNumberStars2={setNumberStars2}
+                setNumberStars3={setNumberStars3}
+                setNumberStars4={setNumberStars4}
+                setNumberStars5={setNumberStars5}
                 id={data?.ID}
                 aroma_stars={numberStar2}
                 delivery_stars={numberStar5}
@@ -249,7 +298,12 @@ const ProductItem = () => {
       </div>
       <div className="block-product-about">
         <div className="container p-0">
-          <div className="block__title ps-3">Описание</div>
+          {
+            lang.lang == "ru"
+              ? <div className="block__title ps-3">Описание</div>
+              : <div className="block__title ps-3">Description</div>
+          }
+
           <div className="row g-0 gy-4">
             <div className="col-6">
               <div className="block-product-about__text p-3">
@@ -288,7 +342,14 @@ const ProductItem = () => {
           <div className="swiper block-photo__swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-css-mode">
             <div className="swiper-wrapper" id="swiper-wrapper-ef3489dd3e63b1db" aria-live="polite">
               <div className="swiper-slide block-photo__slide position-relative swiper-slide-active" role="group" aria-label="1 / 1">
-                <div className="swipre-slide__text"><span>Косметика, которую <br /> выбирают звезды</span></div>
+                <div className="swipre-slide__text">
+                  {
+                    lang.lang == "ru"
+                      ? <span>Косметика, которую <br /> выбирают звезды</span>
+                      : <span>Cosmetics chosen <br /> by stars</span>
+                  }
+
+                </div>
                 <div className="img d-block">
                   {
                     lang.lang == "ru"
@@ -303,7 +364,14 @@ const ProductItem = () => {
       </div>
       <div className="block-how-it-works">
         <div className="container">
-          <div className="block-how-it-works__title"><p>Действие</p></div>
+          <div className="block-how-it-works__title">
+            {
+              lang.lang === "ru"
+                ? <p>Действие</p>
+                : <p>Action</p>
+            }
+
+          </div>
           <div className="block-how-it-works__text">
             <ul>
               {
@@ -335,7 +403,12 @@ const ProductItem = () => {
       <div className="block-accordion">
         <div className="container p-0">
           <a className="block-accordion__item d-block"
-            onClick={handleOpen}>Способ применения:</a>
+            onClick={handleOpen}>
+            {
+              lang.lang == "ru" ? <>Способ применения:</>
+                : <>
+                  Mode of application:</>
+            }</a>
           {
             open
               ?
@@ -365,7 +438,11 @@ const ProductItem = () => {
 
           <a
             onClick={handleOpen1}
-            className="block-accordion__item d-block">Противопоказания:</a>
+            className="block-accordion__item d-block">
+            {
+              lang.lang == "ru" ? <>Противопоказания:</>
+                : <>Contraindications:</>
+            }</a>
           {
             open1
               ? <div className="block-accordion__panel" data-max-height="430px" style={{ position: 'static', visibility: 'visible', display: 'block', transition: 'max-height 0.5s ease-in-out 0s', overflowY: 'hidden' }}>
@@ -392,7 +469,13 @@ const ProductItem = () => {
 
           <a
             onClick={handleOpen2}
-            className="block-accordion__item d-block">Состав:</a>
+            className="block-accordion__item d-block">
+            {
+              lang.lang == "ru" ?
+                <>Состав:</> :
+                <>Compound</>
+            }
+          </a>
           {
             open2
               ? <div className="block-accordion__panel" data-max-height="296px" style={{ position: 'static', visibility: 'visible', display: 'block', transition: 'max-height 0.5s ease-in-out 0s', overflowY: 'hidden' }}>

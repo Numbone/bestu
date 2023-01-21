@@ -37,11 +37,17 @@ const CategoryId = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  console.log(product,"product")
+  const stylang=lang.lang
+  console.log(locate.state,"product")
   return (
     <>
       <div>
-        <div className='block-top category' style={locate?.state?.imagesRu === undefined? null : { backgroundImage: `url(${ locate?.state?.imagesRu[1]})` }
+        <div className='block-top category' 
+        
+        style={ stylang==="ru"?
+          // locate?.state?.ImagesRu === undefined? null : { backgroundImage: `url(${ locate?.state?.ImagesRu[1]})` }
+           { backgroundImage: `url(${ locate?.state?.ImagesRu[1]})` }
+           : { backgroundImage: `url(${ locate?.state?.ImagesEn[1]})` }
           }>
           <div className='d-flex justify-content-center'>
             <div className='container'>
@@ -79,16 +85,24 @@ const CategoryId = () => {
                 <div className="toastjs success">
                   <p>
                     {
-                      product===null 
-                      ?null
+                      lang.lang==="ru"?
+                      product===null ?null
                       :product[indexPhoto] ===undefined  ? null :product[indexPhoto]?.name_ru
+                      :
+                      product===null ?null
+                      :product[indexPhoto] ===undefined  ? null :product[indexPhoto]?.name_en
                     }
                     
                   </p>
                   <div className="d-flex">
 
                     <button type="button" className="toastjs-btn toastjs-btn--custom" onClick={() => setActive(false)}>
-                      <NavLink to='/order' style={{ color: '#fff' }}>Оформить заказ </NavLink>
+                      <NavLink to='/order' style={{ color: '#fff' }}>  {
+                        lang.lang==="ru"
+                        ?<>Оформить заказ </>
+                        :<>
+                        Checkout</>
+                      }</NavLink>
                     </button>
 
 

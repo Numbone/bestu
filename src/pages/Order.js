@@ -7,14 +7,14 @@ import './css/Order.css'
 import ModalSucces from '../component/ModalSuccess/ModalSucces';
 import ModalError from '../component/ModalError/ModalError';
 const Order = () => {
-  const { basket, user,lang } = useContext(Context)
+  const { basket, user, lang } = useContext(Context)
   const [rerender, setRerender] = useState(Boolean);
 
   /// dropdown component 
   const [open, setOpen] = React.useState(false);
 
   ////navigate 
-  const navigate =useNavigate()
+  const navigate = useNavigate()
 
   //state for api
   const [delivery, setDelivery] = useState("")
@@ -142,14 +142,14 @@ const Order = () => {
     }
   }
 
-  const [checkerTrans,setCheckerTrans]=useState(false)
+  const [checkerTrans, setCheckerTrans] = useState(false)
   const sendTransaction = async () => {
     try {
       const object = {
         basket: (JSON.parse(localStorage.getItem("basket")))
       }
       var copy = JSON.parse(JSON.stringify(object))
-      copy.basket.map(item => (item.count=item.Count,
+      copy.basket.map(item => (item.count = item.Count,
         delete item.id,
         delete item.weight,
         delete item.Count,
@@ -158,13 +158,17 @@ const Order = () => {
         delete item.name_ru,
         delete item.name_en))
       console.log(copy.basket, "copy");
-      const {data} = !user.isAuth
-        ? await transactionCreate2(delivery,0,copy.basket,promo_code,basket.Price,
-          {"email":email,'father_name':father_name,"first_name":first_name,"phone_number":phone_number,
-        "second_name":second_name})
-        : await transactionCreate(delivery,0,copy.basket,promo_code,basket.Price,
-          {"email":email,'father_name':father_name,"first_name":first_name,"phone_number":phone_number,
-        "second_name":second_name})
+      const { data } = !user.isAuth
+        ? await transactionCreate2(delivery, 0, copy.basket, promo_code, basket.Price,
+          {
+            "email": email, 'father_name': father_name, "first_name": first_name, "phone_number": phone_number,
+            "second_name": second_name
+          })
+        : await transactionCreate(delivery, 0, copy.basket, promo_code, basket.Price,
+          {
+            "email": email, 'father_name': father_name, "first_name": first_name, "phone_number": phone_number,
+            "second_name": second_name
+          })
       setData(data?.message);
       console.log();
     } catch (error) {
@@ -174,7 +178,7 @@ const Order = () => {
     }
 
   }
-  
+
 
   const reRender = () => {
     setRerender(!rerender);
@@ -201,19 +205,19 @@ const Order = () => {
   const [checkOferta, setCheckOferta] = useState(false)
   const [formValid, setFormvalid] = useState(false)
   useEffect(() => {
-    if (!checkerpolitica || !checkOferta || emailError || first_nameError  || father_nameError || phone_numberError || repeatError) {
+    if (!checkerpolitica || !checkOferta || emailError || first_nameError || father_nameError || phone_numberError || repeatError) {
       setFormvalid(false)
     } else {
       setFormvalid(true)
     }
   }, [checkerpolitica, checkOferta, emailError, first_nameError, father_nameError, phone_numberError, repeatError,])
 
-  useEffect(()=>{
-    if (checkerTrans){
+  useEffect(() => {
+    if (checkerTrans) {
       window.location.replace(data1)
     }
-  },[checkerTrans])
-  
+  }, [checkerTrans])
+
 
   return (
     <div className='flex-1' style={{ minHeight: '100vh' }}>
@@ -223,58 +227,59 @@ const Order = () => {
             <div className="container">
               <div className="text-center">
                 {
-                  lang?.lang=="ru"?
-                  <h2 className="block__title">Оформление заказа</h2>
-                  :<h2 className="block__title">Checkout</h2>
+                  lang?.lang == "ru" ?
+                    <h2 className="block__title">Оформление заказа</h2>
+                    : <h2 className="block__title">Checkout</h2>
                 }
-               
+
               </div>
               <div className="block-cart">
-              {
-                  lang?.lang=="ru"?
-                  <h3 className="block__title">Корзина</h3>
-                  : <h3 className="block__title">Basket</h3>
+                {
+                  lang?.lang == "ru" ?
+                    <h3 className="block__title">Корзина</h3>
+                    : <h3 className="block__title">Basket</h3>
                 }
-               
-               
+
+
                 <div className="table-responsive">
                   <table style={{ width: '100%', maxWidth: 'none' }}>
                     <thead>
                       <tr>
                         {
-                          lang.lang=="ru"
-                          ? <th style={{ width: '50%' }}>
-                          Наименование</th>
-                          : <th style={{ width: '50%' }}>
-                          Designation</th>
+                          lang.lang == "ru"
+                            ? <th style={{ width: '50%' }}>
+                              Наименование</th>
+                            : <th style={{ width: '50%' }}>
+                              Designation</th>
                         }
                         {
-                          lang.lang=="ru"
-                          ?<th className="d-none d-sm-table-cell">Цена</th>
-                          :<th className="d-none d-sm-table-cell">Price</th>
+                          lang.lang == "ru"
+                            ? <th className="d-none d-sm-table-cell">Цена</th>
+                            : <th className="d-none d-sm-table-cell">Price</th>
                         }
-                       {
-                        lang.lang=="ru"
-                        ?<th>Количество</th>
-                        :<th>Quantity</th>
-                       }
-                        
                         {
-                          lang.lang=="ru"
-                          ? <th>Сумма</th>
-                          : <th>Sum</th>
+                          lang.lang == "ru"
+                            ? <th>Количество</th>
+                            : <th>Quantity</th>
+                        }
+
+                        {
+                          lang.lang == "ru"
+                            ? <th>Сумма</th>
+                            : <th>Sum</th>
 
                         }
-                       
+
                         <th className="d-none d-sm-table-cell" />
                       </tr>
                     </thead>
                     <tbody id="table-cart">
                       {basket.Basket.map(item =>
                         <tr className="item" data-price={1790} data-product={2} data-shipping={1}>
-                          <td><span className="cart-item__name">{lang?.lang==="ru"?item?.name_ru:item?.name_en} </span><br /><span style={{ fontSize: '.8em' }}>Артикул: scrub-ld</span></td>
+                          <td><span className="cart-item__name">{lang?.lang === "ru" ? item?.name_ru : item?.name_en} </span><br /><span style={{ fontSize: '.8em' }}>
+                            {lang.lang == "ru" ? <>Артикул</> : <>Article</>} {item?.article}</span></td>
                           <td className="d-none d-sm-table-cell">
-                            {item.price}  {lang?.lang=="ru"?<>руб</>:<>rub</>}
+                            {item.price}  {lang?.lang == "ru" ? <>руб</> : <>rub</>}
                           </td>
                           <td>
                             <div className="d-flex justify-content-center align-items-center box-quantity" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
@@ -301,10 +306,10 @@ const Order = () => {
               <div className="form-order">
                 <div className="row justify-content-center">
                   <div className="col-lg-6 col-md-8">
-                    <h3 className="block__title">  {lang?.lang=="ru"?<>Покупатель</>:<>Customer</>}</h3>
+                    <h3 className="block__title">  {lang?.lang == "ru" ? <>Покупатель</> : <>Customer</>}</h3>
                     <div className="box-form customer">
                       <div className="form-field">
-                        <label htmlFor="last_name"> {lang?.lang=="ru"?<>Ваша фамилия</>:<>Ваша фамилия</>}</label>
+                        <label htmlFor="last_name"> {lang?.lang == "ru" ? <>Ваша фамилия</> : <>Your surname</>}</label>
                         <input
                           onChange={(e) => Father_nameHandler(e)}
                           type="text"
@@ -312,14 +317,14 @@ const Order = () => {
                           id="last_name"
                           onBlur={e => blurHandler(e)}
                           value={father_name}
-                          placeholder='Напишите фамилию'
+                          placeholder={lang.lang === "ru" ? 'Напишите фамилию' : "Enter surname"}
                         />
                         {(father_nameDirty && father_nameError) &&
                           <label className='label_check'>{father_nameError}</label>
                         }
                       </div>
                       <div className="form-field">
-                        <label htmlFor="first_name">{lang?.lang=="ru"?<>Ваше имя</>:<>Your name</>}</label>
+                        <label htmlFor="first_name">{lang?.lang == "ru" ? <>Ваше имя</> : <>Your name</>}</label>
                         <input
                           onChange={(e) => First_nameHandler(e)}
                           type="text"
@@ -327,7 +332,7 @@ const Order = () => {
                           id="first_name"
                           value={first_name}
                           onBlur={e => blurHandler(e)}
-                          placeholder='Напишите имя' />
+                          placeholder={lang.lang === "ru" ? 'Напишите имя' : "Enter name"} />
                         {(first_nameDirty && first_nameError) &&
                           <label className='label_check'>{first_nameError}</label>
                         }
@@ -347,7 +352,7 @@ const Order = () => {
                         }
                       </div> */}
                       <div className="form-field">
-                        <label htmlFor="phone_number">Ваш телефон</label>
+                        <label htmlFor="phone_number">{lang?.lang == "ru" ? <>Ваш телефон</> : <>Enter your phone number</>}</label>
                         <input
                           onChange={(e) => Phone_numberHandler(e)}
                           type="text"
@@ -355,13 +360,13 @@ const Order = () => {
                           id="phone_number"
                           value={phone_number}
                           onBlur={e => blurHandler(e)}
-                          placeholder='Напишите номер телефона' />
+                          placeholder={lang.lang == "ru" ? 'Напишите телефон' : "Enter phone number"} />
                         {(phone_numberDirty && phone_numberError) &&
                           <label className='label_check'>{phone_numberError}</label>
                         }
                       </div>
                       <div className="form-field">
-                        <label htmlFor="email">Ваш email</label>
+                        <label htmlFor="email"> {lang?.lang == "ru" ? <>Ваш email</> : <>Enter your email</>}</label>
                         <input
                           type="text"
                           name="email"
@@ -369,18 +374,18 @@ const Order = () => {
                           onBlur={e => blurHandler(e)}
                           value={email}
                           onChange={(e) => emailHandler(e)}
-                          placeholder="Введите email" />
+                          placeholder={lang.lang == "ru" ? 'Напишите email' : "Enter email"} />
                         {(emailDirty && emailError) &&
                           <label className='label_check'>{emailError}</label>
                         }
                       </div>
                       <div className="form-field">
-                        <label htmlFor="repeat">Повторите email</label>
+                        <label htmlFor="repeat"> {lang?.lang == "ru" ? <> Повторите email</> : <>Repeat email </>}</label>
                         <input
                           onBlur={e => blurHandler(e)}
                           value={repeat}
                           onChange={e => RepeatHandler(e)}
-                          placeholder='Повторите введенный email'
+                          placeholder={lang.lang == "ru" ? 'Повторите введенный email' : "Repeat email"}
                           type="text"
                           name="repeat"
                           id="repeat"
@@ -390,7 +395,7 @@ const Order = () => {
                         }
                       </div>
                     </div>
-                    <h3 className="block__title">Доставка</h3>
+                    <h3 className="block__title">  {lang?.lang == "ru" ? <> Доставка</> : <>Choose delivery </>}</h3>
                     {/* <div className="shipping-country mb-4">
                       <div className="box-form">
                         <div className="form-field">
@@ -412,7 +417,7 @@ const Order = () => {
                       <div className="box-form">
                         <div className="form-field" onClick={() => setDelivery('Самовывоз в Волгограде')}>
                           <input type="checkbox" name="shipping-method" id="pickup" className="input-checkbox" onClick={changeSelfDelivery} />
-                          <label htmlFor="pickup">Самовывоз в Волгограде</label>
+                          <label htmlFor="pickup"> {lang?.lang == "ru" ? <> Самовывоз в Волгограде</> : <>Pickup in Volgograd </>} </label>
                         </div>
 
 
@@ -422,7 +427,15 @@ const Order = () => {
                     {
                       checkSelfDelivey
                         ? <div id="shipping-info" style={{ padding: 20, border: '2px solid rgb(179, 139, 138)', margin: 20, textAlign: 'center', display: 'block' }}>
-                          <span id="info-pvz-address">Самовывоз по адресу: г. Волгоград, пр. Жукова 100б (вход через магазин "магнит")<br />Тел. +7 902 312-55-32</span>
+
+                          {
+                            lang.lang === "ru" ?
+                              <span id="info-pvz-address">
+                                Самовывоз по адресу: г. Волгоград, пр. Жукова 100б (вход через магазин "магнит")<br />Тел. +7 902 312-55-32</span>
+                              : <span id="info-pvz-address">
+                                Pickup at the address: Volgograd, Zhukov Ave. 100b (entrance through the store "magnet")<br />Tel. +7 902 312-55-32</span>
+                          }
+
                         </div>
                         : null
                     }
@@ -481,12 +494,14 @@ const Order = () => {
                     <div className="box-form">
                       <div className="text-center mt-2 d-flex">
                         <div style={{ position: 'relative' }}>
-                          <input type="checkbox" name="promo" id="promo-field-voucher" className="input-checkbox" onChange={setGiftTic} />
-                          <label htmlFor="promo-field-voucher">
-                            Использовать подарочный
-                            сертификат
-                          </label>
+                          <input type="checkbox" id="1" className="input-checkbox" onChange={setGiftTic} />
+                          <label htmlFor="1">
+                            {lang.lang == "ru" ? <> Использовать подарочный
+                              сертификат</> : <>Use gift
+                                certificate</>
+                            }
 
+                          </label>
                         </div>
                       </div>
                     </div>
@@ -494,7 +509,10 @@ const Order = () => {
                       checkGift
                         ? <div className="box-form" id="box-field-voucher" >
                           <div className="form-field">
-                            <label htmlFor="voucher">Подарочный сертификат</label>
+                            <label htmlFor="voucher"> {lang.lang == "ru" ? <>Подарочный сертификат</> : <>Gift Certificate</>
+                            }</label>
+
+
                             <input onChange={(e) => setPromo_code(e.target.value)} type="text" name="voucher" id="voucher" form="order" />
                           </div>
                         </div>
@@ -506,7 +524,12 @@ const Order = () => {
                       <div id="total-block">
                         <table className="table" style={{ width: '100%' }}>
                           <tbody><tr>
-                            <td width="60%" id="cart-total">Товары в корзине</td>
+                            {
+                              lang.lang === "ru"
+                                ? <td width="60%" id="cart-total">Товары в корзине</td>
+                                : <td width="60%" id="cart-total">Items in the cart</td>
+                            }
+
                             <td>{basket.Price}</td>
                           </tr>
                             <tr>
@@ -514,7 +537,13 @@ const Order = () => {
                               <td id="delprice" />
                             </tr>
                             <tr id="total-tr" style={{ fontWeight: 'bold', marginTop: '.5em' }}>
-                              <td width="60%">Итого к оплате</td>
+                              {
+                                lang.lang === "ru"
+                                  ? <td width="60%">Итого к оплате</td>
+                                  : <td width="60%">
+                                    Total payable</td>
+                              }
+
                               <td id="total">
                                 {basket.Price}
                               </td>
@@ -535,10 +564,20 @@ const Order = () => {
                             defaultValue={1}
                             form="order"
                             onClick={(e) => setCheckOferta(e.target.checked)} /><label htmlFor="oferta">
-                            <span>Я принимаю условия </span>
+                            {
+                              lang.lang === "ru"
+                                ? <span>Я принимаю условия </span>
+                                : <span>I accept the terms </span>
+                            }
+
                             <NavLink to='/ofertapage'>
-                              публичной оферты
-                              </NavLink>
+                              {
+                                lang.lang === "ru"
+                                  ? <>публичной оферты</>
+                                  : <>public offer</>
+                              }
+
+                            </NavLink>
                           </label>
                         </div>
                       </div>
@@ -546,12 +585,23 @@ const Order = () => {
                         <div style={{ position: 'relative' }}>
                           <input type="checkbox" name="politika" id="politika" className="input-checkbox" defaultValue={1} form="order"
                             onClick={(e) => setCheckerpolitika(e.target.checked)} />
-                          <label htmlFor="politika"><span>Я соглашаюсь с условиями  политики обработки  </span>
-                            <NavLink to="/politicapage" >
-                              персональных данных
-                             
-                            </NavLink>
-                          </label>
+                          {
+                            lang.lang == "ru"
+                              ? <label htmlFor="politika"><span>Я соглашаюсь с условиями  политики обработки  </span>
+                                <NavLink to="/politicapage" >
+                                  персональных данных
+
+                                </NavLink>
+                              </label>
+                              : <label htmlFor="politika"><span>I agree to the terms of the processing policy  </span>
+                                <NavLink to="/politicapage" >
+
+                                  personal data
+
+                                </NavLink>
+                              </label>
+                          }
+
                         </div>
                       </div>
 
@@ -559,7 +609,10 @@ const Order = () => {
                     </div>
                     <div id="error-message" style={{ color: 'red', marginBottom: 15 }} />
                     <div className="text-center" onClick={sendTransaction}>
-                      <button disabled={!formValid} type="submit" form="order" className="btn" id="submit">К оплате</button>
+                      <button disabled={!formValid} type="submit" form="order" className="btn" id="submit">
+                        {lang.lang === "ru"
+                          ? <>К оплате</>
+                          : <>To pay</>}</button>
                     </div>
                   </div>
                 </div>

@@ -92,7 +92,7 @@ const Ambassadors = () => {
                         type="text"
                         name="person"
                         id="person"
-                        placeholder="Введите..." />
+                        placeholder={lang.lang=="ru"?"Введите...":"Enter..."} />
                     </div>
                     <div className="form-field">
                       <label htmlFor="service">
@@ -108,7 +108,7 @@ const Ambassadors = () => {
                         type="text"
                         name="service"
                         id="service"
-                        placeholder="Введите..." />
+                        placeholder={lang.lang=="ru"?"Введите...":"Enter..."}/>
                     </div>
                     {/* <div className="form-field">
                       <label htmlFor="">
@@ -147,7 +147,8 @@ const Ambassadors = () => {
                       </label>
                       <input
                         onChange={(e) => setName(e.target.value)}
-                        type="text" name="name" id="name" placeholder="Введите имя" />
+                        type="text" name="name" id="name" 
+                        placeholder={lang.lang=="ru"?"Введите имя":"Enter name"}/>
                     </div>
                     <div className="form-field">
                       <label htmlFor="phone">
@@ -160,7 +161,8 @@ const Ambassadors = () => {
                       </label>
                       <input
                         onChange={(e) => setPhone(e.target.value)}
-                        type="text" name="phone" id="phone" placeholder="Введите телефон" />
+                        type="text" name="phone" id="phone"
+                         placeholder={lang.lang=="ru"?"Введите телефон":"Enter phone"} />
                     </div>
                     <div className="form-field">
                       <label htmlFor="email">
@@ -174,7 +176,8 @@ const Ambassadors = () => {
                       </label>
                       <input
                         onChange={(e) => setEmail(e.target.value)}
-                        type="text" name="email" id="email" placeholder="Введите email" />
+                        type="text" name="email" id="email" 
+                        placeholder={lang.lang=="ru"?"Введите email":"Enter email"} />
                     </div>
 
                   </div>

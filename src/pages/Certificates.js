@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import '../pages/css/Certificate.css'
 import ph from '../img/background.jpg'
 import ph1 from '../img/img-01.jpg'
@@ -24,8 +24,12 @@ import ph20 from '../img/img-20.jpg'
 import ph21 from '../img/img-21.jpg'
 import ph22 from '../img/img-22.jpg'
 import ph23 from '../img/img-23.jpg'
+import LangStore from '../store/Lang'
+import { Context } from '..'
+import { observer } from 'mobx-react-lite'
 
 const Certificates = () => {
+    const { lang } = useContext(Context)
     React.useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -44,7 +48,12 @@ const Certificates = () => {
                 <div className='container'>
                     <div className='block-title my-4'>
                         <h2 style={{ fontSize: '1.5em' }}>
-                            Сертификаты и декларации качества
+                            {
+                                lang.lang == "ru" ? <>Сертификаты и декларации качества</>
+                                    : <>
+                                        Certificates and declarations of quality</>
+                            }
+
                         </h2>
                     </div>
                     <div className='catalog'>
@@ -291,4 +300,4 @@ const Certificates = () => {
     )
 }
 
-export default Certificates
+export default  observer(Certificates) 

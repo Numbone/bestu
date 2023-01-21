@@ -1,16 +1,24 @@
-import React from 'react'
+import { observer } from 'mobx-react-lite'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { Context } from '..'
 
 const DelaersInfo = () => {
+    const { lang } = useContext(Context)
     React.useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
+    }, [])
     return (
         <div className='block-page-order'>
             <div className='container'>
                 <div>
                     <div className='text-center mb-5'>
-                        <h2>Список дилеров</h2>
+                        {
+                            lang.lang == "ru"
+                                ? <h2>Список дилеров</h2>
+                                : <h2>List of dealers</h2>
+                        }
+
                     </div>
                     <ul className='dealers'>
                         <li>
@@ -384,7 +392,7 @@ const DelaersInfo = () => {
                             le__mousse_orenburg
                         </li>
                         <li>
-                        - ПЕНЗА, РФ (Проспект Победы 96 Е)
+                            - ПЕНЗА, РФ (Проспект Победы 96 Е)
                             <br></br>
                             ID 26082022
                             <br></br>
@@ -395,7 +403,7 @@ const DelaersInfo = () => {
                             le.mousse.penza
                         </li>
                         <li>
-                        - ПЕТРОПАВЛОВСК, Казахстан (ул. Зайцева д.9)
+                            - ПЕТРОПАВЛОВСК, Казахстан (ул. Зайцева д.9)
                             <br></br>
                             ID 24032022
                             <br></br>
@@ -406,7 +414,7 @@ const DelaersInfo = () => {
                             le_mousse_petropavlovsk
                         </li>
                         <li>
-                        - ПЕТРОПАВЛОВСК-КАМЧАТСКИЙ, РФ (ул.50 лет Октября 7/1, каб. 10)
+                            - ПЕТРОПАВЛОВСК-КАМЧАТСКИЙ, РФ (ул.50 лет Октября 7/1, каб. 10)
                             <br></br>
                             ID 17102022
                             <br></br>
@@ -417,7 +425,7 @@ const DelaersInfo = () => {
                             le_mousse_kamchatka
                         </li>
                         <li>
-                        - САНКТ-ПЕТЕРБУРГ, РФ (ул. Новосмоленкая набережная, д.1)
+                            - САНКТ-ПЕТЕРБУРГ, РФ (ул. Новосмоленкая набережная, д.1)
                             <br></br>
                             ID 31082022
                             <br></br>
@@ -428,7 +436,7 @@ const DelaersInfo = () => {
                             le_mousse_spb
                         </li>
                         <li>
-                        - САРАНСК, РФ (ул. Большевистская д. 30, кв./оф. 301)
+                            - САРАНСК, РФ (ул. Большевистская д. 30, кв./оф. 301)
                             <br></br>
                             ID 03082022
                             <br></br>
@@ -439,7 +447,7 @@ const DelaersInfo = () => {
                             @le_mousse_saransk
                         </li>
                         <li>
-                        - САРОВ, РФ (ул.Курчатова, 12)  
+                            - САРОВ, РФ (ул.Курчатова, 12)
                             <br></br>
                             ID 09092022
                             <br></br>
@@ -450,7 +458,7 @@ const DelaersInfo = () => {
                             +7(950)604-96-65
                         </li>
                         <li>
-                        - СОЧИ, РФ (ул. Макаренко 8б)
+                            - СОЧИ, РФ (ул. Макаренко 8б)
                             <br></br>
                             ID 15042022
                             <br></br>
@@ -461,7 +469,7 @@ const DelaersInfo = () => {
                             le_mousse_sochi
                         </li>
                         <li>
-                        - СТАВРОПОЛЬСКИЙ КРАЙ: ЕССЕНТУКИ, ПЯТИГОРСК, ЖЕЛЕЗНОВОДСК, МИНЕРАЛЬНЫЕ ВОДЫ, КИСЛОВОДСК (ул. Катыхина, 179)
+                            - СТАВРОПОЛЬСКИЙ КРАЙ: ЕССЕНТУКИ, ПЯТИГОРСК, ЖЕЛЕЗНОВОДСК, МИНЕРАЛЬНЫЕ ВОДЫ, КИСЛОВОДСК (ул. Катыхина, 179)
                             <br></br>
                             ID 1102022
                             <br></br>
@@ -472,7 +480,7 @@ const DelaersInfo = () => {
                             le_mousse_kmv
                         </li>
                         <li>
-                        - СУРГУТ, РФ (Проспект Пролетарский 7, кабинет 3)
+                            - СУРГУТ, РФ (Проспект Пролетарский 7, кабинет 3)
                             <br></br>
                             ID 03102022
                             <br></br>
@@ -482,8 +490,8 @@ const DelaersInfo = () => {
                             <br></br>
                             le_mousse_surgut_
                         </li>
-                         <li>
-                         - ТОМСК, РФ (ул. Проспект Ленина 104, этаж 4, кабинет 407)
+                        <li>
+                            - ТОМСК, РФ (ул. Проспект Ленина 104, этаж 4, кабинет 407)
                             <br></br>
                             ID 15082022
                             <br></br>
@@ -494,7 +502,7 @@ const DelaersInfo = () => {
                             le_mousse_tomsk
                         </li>
                         <li>
-                        - ТЮМЕНЬ, РФ (ул.50 лет октября 1а,напротив ТЦ "Мегаллан")
+                            - ТЮМЕНЬ, РФ (ул.50 лет октября 1а,напротив ТЦ "Мегаллан")
                             <br></br>
                             ID 09072022
                             <br></br>
@@ -507,7 +515,7 @@ const DelaersInfo = () => {
                             https://vk.com/le_mousse_tyumen
                         </li>
                         <li>
-                        - УФА, Башкортостан, РФ (Верхнеторговая площадь 4, офис 716)
+                            - УФА, Башкортостан, РФ (Верхнеторговая площадь 4, офис 716)
                             <br></br>
                             ID 26062022
                             <br></br>
@@ -518,7 +526,7 @@ const DelaersInfo = () => {
                             le.mousse.ufa
                         </li>
                         <li>
-                        - ХАБАРОВСК, РФ (ул.Герцена, 7а)
+                            - ХАБАРОВСК, РФ (ул.Герцена, 7а)
                             <br></br>
                             ID 25082022
                             <br></br>
@@ -529,7 +537,7 @@ const DelaersInfo = () => {
                             le_mousse_khv
                         </li>
                         <li>
-                        - ЧЕБОКСАРЫ, РФ (Проспект Ленина 7б, офис 08)
+                            - ЧЕБОКСАРЫ, РФ (Проспект Ленина 7б, офис 08)
                             <br></br>
                             ID 18102022
                             <br></br>
@@ -540,7 +548,7 @@ const DelaersInfo = () => {
                             le_mousse_cheb21
                         </li>
                         <li>
-                        - ЮЖНО-САХАЛИНСК, РФ (ул. Ленина 196)
+                            - ЮЖНО-САХАЛИНСК, РФ (ул. Ленина 196)
                             <br></br>
                             ID 24082022
                             <br></br>
@@ -562,4 +570,4 @@ const DelaersInfo = () => {
     )
 }
 
-export default DelaersInfo
+export default observer(DelaersInfo) 

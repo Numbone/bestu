@@ -1,6 +1,9 @@
-import React from 'react'
+import { observer } from 'mobx-react-lite'
+import React, { useContext, useState } from 'react'
+import { Context } from '..'
 
 const Stores = () => {
+    const {lang}=useContext(Context)
     React.useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
@@ -8,7 +11,12 @@ const Stores = () => {
         <div className='block-page-order'>
             <div className='container'>
                 <div className='text-center mb-5'>
-                    <h2>Наши магазины</h2>
+                    {
+                        lang.lang=="ru"
+                        ? <h2>Наши магазины</h2>
+                        :<h2>Our stores</h2>
+                    }
+                   
                 </div>
                 <ul className='dealers'>
                     <li>
@@ -71,4 +79,4 @@ const Stores = () => {
     )
 }
 
-export default Stores
+export default observer(Stores) 

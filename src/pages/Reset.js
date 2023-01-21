@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { Context } from '..'
 import { authChange, authLink } from '../api/auth'
 
 const Reset = () => {
+    const { lang } = useContext(Context)
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(!open);
     };
     const [password, setPassword] = useState()
     const [change, setChange] = useState(false)
-    const [code,setCode]=useState("")
+    const [code, setCode] = useState("")
+    const [checker,setChecker]=useState(false)
     const getPassword = async (e) => {
         e.preventDefault()
         try {
@@ -20,14 +23,14 @@ const Reset = () => {
         } catch (error) {
             console.log(error)
         } finally {
-
+            setChecker(true)
         }
 
     }
     const getCode = async (e) => {
         e.preventDefault()
         try {
-            const data = await authChange(password,code)
+            const data = await authChange(password, code)
             setChange(true)
             console.log(data)
             return data
@@ -51,7 +54,10 @@ const Reset = () => {
                         <ul className='navbar-nav'>
                             <li className='nav-item'>
                                 <NavLink to='/' className='nav-link'>
-                                    Магазин
+                                    {
+                                        lang.lang == "ru" ? <>Магазин</> : <>Stores</>
+                                    }
+
                                 </NavLink>
                             </li>
                         </ul>
@@ -63,7 +69,10 @@ const Reset = () => {
                             <ul className='navbar-nav'>
                                 <li className='nav-item'>
                                     <NavLink to='/' className='nav-link'>
-                                        Магазин
+                                        {
+                                            lang.lang == "ru" ? <>Магазин</> : <>Stores</>
+                                        }
+
                                     </NavLink>
                                 </li>
                             </ul>
@@ -75,7 +84,7 @@ const Reset = () => {
 
 
 
-            <div className='content-wrapper'>
+            <div className='content-wrapper ' style={{ height: "100vh" }}>
                 <div className='content-header'>
                     <div className='container-fluid'>
                         <div className='row mb-2'>
@@ -96,7 +105,12 @@ const Reset = () => {
                                         <div className='col-md-8'>
                                             <div className='card'>
                                                 <div className='card-header'>
-                                                    Восстановить пароль
+                                                    {
+                                                        lang.lang == "ru" ? <>Восстановить пароль</> : <>
+                                                            Restore password</>
+                                                    }
+
+
                                                 </div>
                                                 <div className='card-body'>
 
@@ -113,11 +127,36 @@ const Reset = () => {
                                                                     onChange={(e) => setPassword(e.target.value)}></input>
                                                             </div>
                                                         </div>
+                                                        {
+                                                            checker?
+                                                            <div className='form-group row'>
+                                                            <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
+                                                             
+                                                            </label>
 
+                                                            <div className='col-md-6'>
+                                                            
+                                                            {
+                                                                lang.lang=="ru"?
+                                                                <>Такого пользователя нет базе </>
+                                                                :<>This user does not exist in the database.</>
+                                                            }
+                                                               
+                                                            </div>
+                                                        </div>
+                                                        :null
+                                                        }
+                                                        
+                                                    
                                                         <div className='form-group row mb-0'>
                                                             <div className='col-md-8 offset-md-4'>
                                                                 <button onClick={getPassword} className='btn2 btn-primary'>
-                                                                    Продолжить
+                                                                    {
+                                                                        lang.lang=="ru"?
+                                                                        <>Продолжить</>
+                                                                        :<>Continue</>
+                                                                    }
+                                                                    
                                                                 </button>
 
                                                             </div>
@@ -138,7 +177,12 @@ const Reset = () => {
                                         <div className='col-md-8'>
                                             <div className='card'>
                                                 <div className='card-header'>
-                                                    Восстановить аккаунт
+                                                    {
+                                                        lang.lang?<>Восстановить аккаунт</>
+                                                        :<>
+                                                        Recover account</>
+                                                    }
+                                                    
                                                 </div>
                                                 <div className='card-body'>
 
@@ -171,7 +215,11 @@ const Reset = () => {
                                                         <div className='form-group row mb-0'>
                                                             <div className='col-md-8 offset-md-4'>
                                                                 <button onClick={getCode} className='btn2 btn-primary'>
-                                                                    Продолжить
+                                                                {
+                                                                        lang.lang=="ru"?
+                                                                        <>Продолжить</>
+                                                                        :<>Continue</>
+                                                                    }
                                                                 </button>
 
                                                             </div>

@@ -6,7 +6,7 @@
     min-height: 0;
     position: relative;
     padding: 0;
-    height: 600.297px;
+    height: 35em;
 }
 
 .block-top>* {
@@ -74,14 +74,14 @@
        
     }
 }
-@media only screen and (max-width: 768px) {
-.block-top {
-    background-image: url(../../img/block-top-768.jpg)!important;
-   
-}
-}
+
 @media only screen and (max-width: 575px){
     .block-top .block-top__badge-box .block-top__badge {
         max-width: 65%;
+    }
+}
+@media only screen and (max-width: 575px){
+    .block-top .block-top__badge-box .block-top__badge {
+       font-size: 0.88em;
     }
 }

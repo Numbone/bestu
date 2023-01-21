@@ -5,12 +5,16 @@ import Item from '../Item/Item'
 import { productAll } from '../../api/product'
 import { Context } from '../..'
 import { observer } from 'mobx-react-lite';
+import ModalItem from '../ModalItem/ModalItem'
+import { NavLink } from 'react-router-dom'
 
-const AllProductCatalog = ({setToast}) => {
+const AllProductCatalog = ({ setToast }) => {
+    const [active, setActive] = React.useState(false)
+    const [indexPhoto, setIndexPhoto] = useState(0)
     const [product, setProduct] = useState({})
     const prev = '<'
     const next = '>'
-    const { basket,lang } = useContext(Context)
+    const { basket, lang } = useContext(Context)
     const [order, setOrder] = useState({})
     const clickOrder = (id) => {
         basket.setBasket(id)
@@ -28,29 +32,68 @@ const AllProductCatalog = ({setToast}) => {
         getAllProducts()
     }, [lang.lang])
 
-    
-    console.log(product);
-  
+
+
+
     return (
         <>
             <div className='block-catalog'>
                 <div className='container'>
                     <div className='block__title text-center'>
-                        {lang.lang=="ru"? <span>Каталог</span> :<span>Catalog</span> }
+                        {lang.lang == "ru" ? <span>Каталог</span> : <span>Catalog</span>}
                     </div>
-                   
+
                     <div className='block-catalog__items'>
                         <div className='row gy-4 gx-2 g-md-4'>
                             {product.length == undefined
                                 ? <div></div>
                                 : product.map((item, index) =>
-                                    <Item props={item} key={index} clickOrder={clickOrder}  />)
+                                    <Item
+                                        props={item}
+                                        key={index}
+                                        id={item.id}
+                                        clickOrder={clickOrder}
+                                        setIndexPhoto={setIndexPhoto}
+                                        active={active}
+                                        setActive={setActive}
+                                        index={index}
+                                    />)
                             }
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='container'>
+            <ModalItem active={active} setActive={setActive}>
+              <div className="toastjs-container">
+                <div className="toastjs success">
+                  <p>
+                  {
+                      lang.lang==="ru"?
+                      product===null ?null
+                      :product[indexPhoto] ===undefined  ? null :product[indexPhoto]?.name_ru
+                      :
+                      product===null ?null
+                      :product[indexPhoto] ===undefined  ? null :product[indexPhoto]?.name_en
+                    }
+                    
+                  </p>
+                  <div className="d-flex">
+
+                    <button type="button" className="toastjs-btn toastjs-btn--custom" onClick={() => setActive(false)}>
+                      <NavLink to='/order' style={{ color: '#fff' }}>Оформить заказ </NavLink>
+                    </button>
+
+
+                    <button type="button" className="toastjs-btn toastjs-btn--close" onClick={() => setActive(false)}>
+                      Ок
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+
+            </ModalItem>
+            {/* <div className='container'>
                 <nav>
                     <ul className='pagination'>
                         <li className='page-item'>
@@ -67,7 +110,7 @@ const AllProductCatalog = ({setToast}) => {
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div> */}
         </>
     )
 }

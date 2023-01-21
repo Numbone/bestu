@@ -8,7 +8,9 @@ import { getUser } from '../api/user';
 import Moment from 'react-moment';
 
 import ModalForOrder from '../component/ModalForOrder/ModalForOrder';
+
 const Login = () => {
+  const [checker,setChecker]=useState(false)
   const { lang } = useContext(Context)
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -21,12 +23,19 @@ const Login = () => {
   const [modalShow, setModalShow] = useState(false);
   const { user } = useContext(Context)
   const getToken = async (e) => {
-    e.preventDefault()
-    const { data } = await authSignin(username, password)
-    setData(data)
-    user.setIsAuth(true)
-    localStorage.setItem("access", data.access_token)
-    localStorage.setItem("refresh", data.refresh_token)
+    try {
+      e.preventDefault()
+      const { data } = await authSignin(username, password)
+      setData(data)
+      user.setIsAuth(true)
+      localStorage.setItem("access", data.access_token)
+      localStorage.setItem("refresh", data.refresh_token)
+    } catch (error) {
+      
+    }finally{
+      setChecker(true)
+    }
+   
 
   }
   const getUserContent = async () => {
@@ -39,7 +48,7 @@ const Login = () => {
 
 
   }
-  
+
 
   ///// validation //// 
   const [emailValidation, setEmailValidation] = useState("")
@@ -189,7 +198,7 @@ const Login = () => {
 
       {
         !user.isAuth
-          ? <div className='content-wrapper' style={{height:"100vh"}}>
+          ? <div className='content-wrapper' style={{ height: "100vh" }}>
             <div className='content-header'>
               <div className='container-fluid'>
                 <div className='row mb-2'>
@@ -224,84 +233,106 @@ const Login = () => {
                             }
 
                           </p>
+
+                          <div className='form-group row'>
+
+
+                            <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
+                              Email
+                            </label>
+
+                            <div className='col-md-6'>
+                              <input className='form-control'
+
+                                name='emailValidation'
+
+                                onChange={(e) => setUser(e.target.value)}
+                                placeholder={lang.lang === "ru" ? "Введите email" : "Enter email"}>
+                              </input>
+                            </div>
+                            {(emailDirty && emailError) &&
+                              <>
+                                <div className='col-md-4 col-form-label text-md-right'>
+
+                                </div>
+                                <div className='col-md-6 ' style={{ color: 'red' }}>
+                                  {emailError}
+                                </div>
+                              </>
+                            }
+                          </div>
                           
-                            <div className='form-group row'>
+                         
+
+                          <div className='form-group row'>
+                            <label htmlFor="password" className="col-md-4 col-form-label text-md-right">
+                              {
+                                lang?.lang === "ru"
+                                  ? <>Пароль</>
+                                  : <>Password</>
+                              }
+
+                            </label>
+
+                            <div className='col-md-6'>
+                              <input className='form-control '
+                                name='passwordValidation'
+                                type='password'
+                                placeholder={lang.lang === "ru" ? 'Введите пароль' : "Enter password"}
+                                onChange={(e) => setPassword(e.target.value)}></input>
+                            </div>
+                            {(passwordDirty && passwordError) &&
+                              <>
+                                <div className='col-md-4 col-form-label text-md-right'>
+
+                                </div>
+                                <div className='col-md-6 ' style={{ color: 'red' }}>
+                                  {passwordError}
+                                </div>
+                              </>
+                            }
+                          </div>
+                          {
+                            checker
+                            ? <div className='form-group row'>
 
 
-                              <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
-                                Email
-                              </label>
+                            <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
 
-                              <div className='col-md-6'>
-                                <input className='form-control'
+                            </label>
 
-                                  name='emailValidation'
-
-                                  onChange={(e) => setUser(e.target.value)}
-                                  placeholder="Введите email">
-                                </input>
-                              </div>
-                              {(emailDirty && emailError) &&
-                                <>
-                                  <div className='col-md-4 col-form-label text-md-right'>
-
-                                  </div>
-                                  <div className='col-md-6 ' style={{ color: 'red' }}>
-                                    {emailError}
-                                  </div>
-                                </>
+                            <div className='col-md-6'>
+                              {
+                                lang.lang == "ru" ?
+                                  <>Неправильный пароль или email </>
+                                  : <>Incorrect password or email</>
                               }
                             </div>
-                            <div className='form-group row'>
-                              <label htmlFor="password" className="col-md-4 col-form-label text-md-right">
+                          </div>
+                          :null
+                          }
+
+                          <div className='form-group row mb-0'>
+                            <div className='col-md-8 offset-md-4'>
+                              <button onClick={(e) => getToken(e)} className='btn2 btn-primary'>
                                 {
                                   lang?.lang === "ru"
-                                    ? <>Пароль</>
-                                    : <>Password</>
+                                    ? <>Войти</>
+                                    : <>Login</>
                                 }
 
-                              </label>
+                              </button>
+                              <NavLink to='/reset' className='btn2 btn-link' href='#'>
+                                {
+                                  lang?.lang === "ru"
+                                    ? <>Не помню пароль</>
+                                    : <>Forget password</>
+                                }
 
-                              <div className='col-md-6'>
-                                <input className='form-control '
-                                  name='passwordValidation'
-                                  type='password'
-                                  placeholder='Введите пароль'
-                                  onChange={(e) => setPassword(e.target.value)}></input>
-                              </div>
-                              {(passwordDirty && passwordError) &&
-                                <>
-                                  <div className='col-md-4 col-form-label text-md-right'>
-
-                                  </div>
-                                  <div className='col-md-6 ' style={{ color: 'red' }}>
-                                    {passwordError}
-                                  </div>
-                                </>
-                              }
+                              </NavLink>
                             </div>
+                          </div>
 
-                            <div className='form-group row mb-0'>
-                              <div className='col-md-8 offset-md-4'>
-                                <button onClick={(e)=>getToken(e)} className='btn2 btn-primary'>
-                                  {
-                                    lang?.lang === "ru"
-                                      ? <>Войти</>
-                                      : <>Login</>
-                                  }
-
-                                </button>
-                                <NavLink to='/reset' className='btn2 btn-link' href='#'>
-                                  {
-                                    lang?.lang === "ru"
-                                      ? <>Не помню пароль</>
-                                      : <>Forget password</>
-                                  }
-
-                                </NavLink>
-                              </div>
-                            </div>
-                          
                         </div>
                       </div>
                     </div>
@@ -311,7 +342,7 @@ const Login = () => {
             </div>
           </div>
           : <>
-            <div className='content-wrapper' style={{height:"100vh"}}>
+            <div className='content-wrapper' style={{ height: "100vh" }}>
               <div className='content-header'>
                 <div className='container-fluid'>
                   <div className='container'>

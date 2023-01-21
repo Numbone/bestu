@@ -35,16 +35,9 @@ const AuthRobo = () => {
                             <img src={ph} alt="" />
                         </div>
                         <div className="success_text">
-                            <span style={{ marginRight: "5px" }}>NAME </span  >
-                            Вы успешно внесли по оплата за курс
-                            <span style={{ padding: " 0 5px" }}>Target_NAME</span>
-                            в размере
-                            <span style={{ padding: " 0 5px" }}> NUmber</span>
-                            рублей
+                            Вы успешно внесли по оплата 
                         </div>
-                        <div className="success_text">
-                            Номер вашей оплаты NUmber
-                        </div>
+                       
                         <div className='success_button_robo'>
                             <NavLink to="/" className='robo_btn'>
                                 На главную
@@ -59,16 +52,10 @@ const AuthRobo = () => {
                                 <img src={ph1} alt="" />
                             </div>
                             <div className="success_text">
-                                <span style={{ marginRight: "5px" }}>NAME </span  >
-                                Ваша по оплата за курс
-                                <span style={{ padding: " 0 5px" }}>
-                                    Target_NAME</span> в размере
-                                <span style={{ padding: " 0 5px" }}> NUmber</span>
+                                Ваша по оплата 
                                 рублей не прошла
                             </div>
-                            <div className="success_text">
-                                Номер вашей оплаты NUmber
-                            </div>
+                       
                             <div className='success_button_robo'>
                                 <NavLink to="/" className='robo_btn'>
                                     На главную

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { Context } from '../..';
 
 const ModalSucces = (props) => {
+    const {lang}=useContext(Context)
     return (
         <Modal
             {...props}
@@ -12,7 +14,12 @@ const ModalSucces = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Ваш запрос отправлен
+                    {
+                        lang.lang=="ru"
+                        ?<> Ваш запрос отправлен</>
+                        :<>Your request has been sent </>
+                    }
+                   
                 </Modal.Title>
             </Modal.Header>
         

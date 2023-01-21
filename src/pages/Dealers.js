@@ -23,6 +23,7 @@ const Dealers = () => {
             }, (error) => {
                 console.log(error.text);
             });
+        document.getElementById("form").reset()
     };
     return (
         <div className='flex-1' style={{ minHeight: '100%' }}>
@@ -38,7 +39,7 @@ const Dealers = () => {
                         </h1>
                     </div>
                     <div className='form-order'>
-                        <form ref={form} onSubmit={sendEmail}>
+                        <form ref={form} onSubmit={sendEmail} id="form">
                             <div className='row justify-content-center'>
                                 <div className='col-lg-6 col-md-8'>
                                     <h3>{
@@ -57,7 +58,7 @@ const Dealers = () => {
                                                         : <>Your first name</>
                                                 }
                                             </label>
-                                            <input type="text" name="name" id="name" placeholder="Введите имя" />
+                                            <input type="text" name="name" id="name" placeholder={lang.lang=="ru" ?"Введите имя" : "Enter your name"} />
                                         </div>
 
                                         <div className="form-field">
@@ -68,7 +69,7 @@ const Dealers = () => {
                                                         : <>Your phone</>
                                                 }
                                             </label>
-                                            <input type="text" name="phone" id="phone" placeholder="Введите телефон " />
+                                            <input type="text" name="phone" id="phone" placeholder={lang.lang=="ru"?"Введите телефон" :"Enter phone"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="email">
@@ -79,7 +80,7 @@ const Dealers = () => {
                                                         : <>Your email</>
                                                 }
                                             </label>
-                                            <input type="text" name="email" id="email" placeholder="Введите  email" />
+                                            <input type="text" name="email" id="email" placeholder={lang.lang=="ru"?"Введите  email":"Enter email"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="service">
@@ -91,7 +92,7 @@ const Dealers = () => {
                                                 }
 
                                             </label>
-                                            <input type="text" name="service" id="service" placeholder="Введите  страну" />
+                                            <input type="text" name="service" id="service" placeholder={lang.lang=="ru"?"Введите  страну":"Enter country"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="person">    {
@@ -102,7 +103,7 @@ const Dealers = () => {
                                             }
 
                                             </label>
-                                            <input type="text" name="person" id="person" placeholder="Введите город " />
+                                            <input type="text" name="person" id="person" placeholder={lang.lang=="ru"?"Введите город ":"Enter city"} />
                                         </div>
                                     </div>
 
@@ -145,7 +146,13 @@ const Dealers = () => {
                                         <button type='submit'
                                             className='btn'
                                         >
-                                            Отправить заявку
+                                            {
+                                                        lang.lang === "ru"
+                                                            ? <>
+                                                                 Отправить заявку</>
+                                                            : <>Submit an applications</>
+                                                    }
+                                          
                                         </button>
                                     </div>
                                 </div>
