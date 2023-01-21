@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { Context } from '../..';
 import { productId } from '../../api/product';
 import ph1 from '../../img/assets.jpg'
@@ -10,6 +10,7 @@ import { RiStarSFill } from "react-icons/ri";
 import { reviewAdd } from '../../api/review';
 import ModalSucces from '../ModalSuccess/ModalSucces';
 import ModalSendProductStars from '../ModalSendProductStars/ModalSendProductStars';
+import ModalItem from '../ModalItem/ModalItem';
 const ProductItem = () => {
   const { lang, user } = useContext(Context)
   const [open, setOpen] = React.useState(false);
@@ -49,6 +50,7 @@ const ProductItem = () => {
       "price": data?.price,
       "weight": data?.weight
     })
+    setActiveModal(true)
 
   }
   const [reviews, setReviews] = useState("")
@@ -73,6 +75,7 @@ const ProductItem = () => {
   }, [description_ru])
 
   const [active, setActive] = useState(false)
+  const [activeModal,setActiveModal]=useState(false)
   useEffect(() => {
     if ((numberStar != 0) &&
       (numberStar2 != 0) &&
@@ -511,6 +514,41 @@ const ProductItem = () => {
       <ModalComment
         show={modalShow}
         onHide={() => setModalShow(false)} />
+        <ModalItem active={activeModal} setActive={setActiveModal}>
+              <div className="toastjs-container">
+                <div className="toastjs success">
+                  <p>
+                    {
+                      lang.lang==="ru"?
+                      data===null ?null
+                      :data ===undefined  ? null :data?.nameRu
+                      :
+                      data===null ?null
+                      :data ===undefined  ? null :data?.nameEn
+                    }
+                    
+                  </p>
+                  <div className="d-flex">
+
+                    <button type="button" className="toastjs-btn toastjs-btn--custom" onClick={() => setActiveModal(false)}>
+                      <NavLink to='/order' style={{ color: '#fff' }}>  {
+                        lang.lang==="ru"
+                        ?<>Оформить заказ </>
+                        :<>
+                        Checkout</>
+                      }</NavLink>
+                    </button>
+
+
+                    <button type="button" className="toastjs-btn toastjs-btn--close" onClick={() => setActiveModal(false)}>
+                      Ок
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+
+            </ModalItem>
     </div>
 
 
