@@ -201,12 +201,12 @@ const Order = () => {
   const [checkOferta, setCheckOferta] = useState(false)
   const [formValid, setFormvalid] = useState(false)
   useEffect(() => {
-    if (!checkerpolitica || !checkOferta || emailError || first_nameError || second_nameError || father_nameError || phone_numberError || repeatError) {
+    if (!checkerpolitica || !checkOferta || emailError || first_nameError  || father_nameError || phone_numberError || repeatError) {
       setFormvalid(false)
     } else {
       setFormvalid(true)
     }
-  }, [checkerpolitica, checkOferta, emailError, first_nameError, second_nameError, father_nameError, phone_numberError, repeatError,])
+  }, [checkerpolitica, checkOferta, emailError, first_nameError, father_nameError, phone_numberError, repeatError,])
 
   useEffect(()=>{
     if (checkerTrans){

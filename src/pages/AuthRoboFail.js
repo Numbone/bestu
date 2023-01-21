@@ -1,12 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import ph from "../img/fail.svg"
+import ph1 from "../img/fail.svg"
 const AuthRoboFail = () => {
     return (
         <div className='success_robo'>
             <div className="robo_container">
                 <div className="img_container_svg">
-                    <img src={ph} alt="" />
+                    <img src={ph1} alt="" />
                 </div>
                 <div className="success_text">
                     <span style={{ marginRight: "5px" }}>NAME </span  >
