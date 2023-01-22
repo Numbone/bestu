@@ -17,7 +17,7 @@ const Item = (props) => {
         props.setIndexPhoto(props.index)
         props.clickOrder(props.props)
     }
- 
+    console.log(props.props.count, "data")
     return (
         <div className='col-sm-6' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
             <ProductImages images={lang.lang === "ru" ? props.props.imagesRu : props.props.imagesEn} />
@@ -32,7 +32,7 @@ const Item = (props) => {
                 <div style={{ minHeight: '1.4em' }}>
                     <div className='block-product__name'
                         style={{
-                           
+
                             lineHeight: '1',
                             minHeight: '0.2em'
                         }}>
@@ -67,34 +67,63 @@ const Item = (props) => {
 
                         </div>
                     </div>
+
                     <div className='block-product__btns row g-2'
                         style={{
                             marginTop: '0.9em'
                         }}>
-                        <div className='col-6' onClick={() => clickIndex()} >
-                            <a
+                        {
+                            props?.props.count != 0
+                                ? <div className='col-6' onClick={() => clickIndex()} >
+                                    <a
 
 
-                                className='custom-btn custom-btn-dark'
-                                style={{
-                                    display: 'inline-block',
-                                    border: '1px solid #000',
-                                    width: '100%',
-                                    color: '#000',
-                                    textDecoration: 'none',
-                                    textAlign: 'center',
-                                    fontSize: '0.9em',
-                                    padding: '0.7em 0.5em',
-                                    background: '#000',
-                                    color: '#fff'
-                                }}>
-                                {lang.lang == "ru"
-                                    ? <span>В корзину</span>
-                                    : <span>Add to cart</span>
-                                }
+                                        className='custom-btn custom-btn-dark'
+                                        style={{
+                                            display: 'inline-block',
+                                            border: '1px solid #000',
+                                            width: '100%',
+                                            color: '#000',
+                                            textDecoration: 'none',
+                                            textAlign: 'center',
+                                            fontSize: '0.9em',
+                                            padding: '0.7em 0.5em',
+                                            background: '#000',
+                                            color: '#fff'
+                                        }}>
+                                        {lang.lang == "ru"
+                                            ? <span>В корзину</span>
+                                            : <span>Add to cart</span>
+                                        }
 
-                            </a>
-                        </div>
+                                    </a>
+                                </div>
+                                : <div className='col-6'  >
+                                    <a
+
+
+                                        className='custom-btn custom-btn-dark'
+                                        style={{
+                                            display: 'inline-block',
+                                            border: '1px solid #000',
+                                            width: '100%',
+                                            color: '#fff',
+                                            textDecoration: 'none',
+                                            textAlign: 'center',
+                                            fontSize: '0.9em',
+                                            padding: '0.7em 0.5em',
+                                            background: '#172027',
+                                            color: '#fff'
+                                        }}>
+                                        {lang.lang == "ru"
+                                            ? <span>Продано</span>
+                                            : <span>Sold out</span>
+                                        }
+
+                                    </a>
+                                </div>
+                        }
+
                         <div className='col-6' onClick={() => navigate("/productitem/" + props.props.id)} >
                             <a
                                 className='custom-btn'
