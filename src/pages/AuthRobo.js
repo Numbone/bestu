@@ -20,9 +20,11 @@ const AuthRobo = () => {
     const sendRobokassa = async () => {
         const { data } = await Robokassa(OutSum, InvId, SignatureValue)
         console.log(data, "////Result????/")
+        localStorage.removeItem("basket")
         setChecker(data?.message)
     }
     useEffect(() => {
+        
         sendRobokassa()
     }, [])
     console.log(checker)

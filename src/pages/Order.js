@@ -107,11 +107,15 @@ const Order = () => {
   const Phone_numberHandler = (e) => {
     setPhone_number(e.target.value)
     if (e.target.value.length < 7) {
-      setPhone_numberError({"ru":'Телефон номер не может быть меньше 7 символов',
-    "en":"Phone number cannot be less than 7 characters"})
+      setPhone_numberError({
+        "ru": 'Телефон номер не может быть меньше 7 символов',
+        "en": "Phone number cannot be less than 7 characters"
+      })
       if (!e.target.value) {
-        setPhone_numberError({"ru":'Телефон номер не может быть меньше 7 символов',
-        "en":"Phone number cannot be less than 7 characters"})
+        setPhone_numberError({
+          "ru": 'Телефон номер не может быть меньше 7 символов',
+          "en": "Phone number cannot be less than 7 characters"
+        })
       }
     } else {
       setPhone_numberError('')
@@ -127,8 +131,10 @@ const Order = () => {
     setEmail(e.target.value)
     const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (!re.test(String(e.target.value).toLowerCase())) {
-      setEmailError({"ru":'Некорректный email',
-    "en":"Incorrect email"})
+      setEmailError({
+        "ru": 'Некорректный email',
+        "en": "Incorrect email"
+      })
     } else {
       setEmailError("")
     }
@@ -143,8 +149,10 @@ const Order = () => {
   const RepeatHandler = (e) => {
     setRepeat(e.target.value)
     if (email != String(e.target.value)) {
-      setRepeatError({"ru":'Email не совпадает',
-    "en":"Email does not match"})
+      setRepeatError({
+        "ru": 'Email не совпадает',
+        "en": "Email does not match"
+      })
     } else {
       setRepeatError("")
     }
@@ -172,7 +180,7 @@ const Order = () => {
         break
     }
   }
-  const [checkerError,setCheckerError]=useState(false)
+  const [checkerError, setCheckerError] = useState(false)
   const [checkerTrans, setCheckerTrans] = useState(false)
   const sendTransaction = async () => {
     try {
@@ -200,16 +208,17 @@ const Order = () => {
             "email": email, 'father_name': father_name, "first_name": first_name, "phone_number": phone_number,
             "second_name": second_name
           })
+      localStorage.removeItem("basket")
       console.log(data?.message, "/////////500");
       setData(data?.message);
-      localStorage.removeItem("basket")
+
       setCheckerTrans(true)
-      
+
     } catch (error) {
       console.log(error?.response?.status, "///////////error//////////////");
-      setCheckerError(true)
+
     } finally {
-      
+      setCheckerError(true)
 
     }
 
@@ -236,20 +245,21 @@ const Order = () => {
   const setGiftTic = (e) => {
     setcheckGift(e.target.checked)
   }
+  const [checkerDelivery, setCheckerDelivery] = useState(false)
   const [checkerpolitica, setCheckerpolitika] = useState(false)
-  console.log(checkerpolitica, "checkpolitika");
   const [checkOferta, setCheckOferta] = useState(false)
   const [formValid, setFormvalid] = useState(false)
   useEffect(() => {
-    if (!checkerpolitica || !checkOferta || emailError || first_nameError || father_nameError || phone_numberError || repeatError) {
+    if (!checkerpolitica || !checkOferta || emailError || first_nameError || father_nameError || phone_numberError || repeatError || !checkSelfDelivey) {
       setFormvalid(false)
     } else {
       setFormvalid(true)
     }
-  }, [checkerpolitica, checkOferta, emailError, first_nameError, father_nameError, phone_numberError, repeatError,])
+  }, [checkerpolitica, checkOferta, emailError, first_nameError, father_nameError, phone_numberError, repeatError, checkSelfDelivey])
 
   useEffect(() => {
     if (checkerTrans) {
+      localStorage.removeItem("basket")
       window.location.replace(data1)
     }
   }, [checkerTrans, first_nameError, father_nameError, lang.lang])
@@ -398,7 +408,7 @@ const Order = () => {
                           onBlur={e => blurHandler(e)}
                           placeholder={lang.lang == "ru" ? 'Напишите телефон' : "Enter phone number"} />
                         {(phone_numberDirty && phone_numberError) &&
-                          <label className='label_check'>{lang.lang==="ru"?phone_numberError.ru:phone_numberError.en}</label>
+                          <label className='label_check'>{lang.lang === "ru" ? phone_numberError.ru : phone_numberError.en}</label>
                         }
                       </div>
                       <div className="form-field">
@@ -412,7 +422,7 @@ const Order = () => {
                           onChange={(e) => emailHandler(e)}
                           placeholder={lang.lang == "ru" ? 'Напишите email' : "Enter email"} />
                         {(emailDirty && emailError) &&
-                          <label className='label_check'>{lang.lang==="ru"?emailError.ru:emailError.en}</label>
+                          <label className='label_check'>{lang.lang === "ru" ? emailError.ru : emailError.en}</label>
                         }
                       </div>
                       <div className="form-field">
@@ -427,7 +437,7 @@ const Order = () => {
                           id="repeat"
                           required />
                         {(repeatDirty && repeatError) &&
-                          <label className='label_check'>{lang.lang==="ru"?repeatError.ru:repeatError.en}</label>
+                          <label className='label_check'>{lang.lang === "ru" ? repeatError.ru : repeatError.en}</label>
                         }
                       </div>
                     </div>
@@ -652,12 +662,12 @@ const Order = () => {
                     </div>
                     {
                       checkerError
-                      ?  <div style={{marginTop:"10px",color:"red"}}>
-                        {lang.lang==="ru"?<>Проверьте правильность заполнение формы или такой пользователь существует</>
-                    :<>Check if the form is filled out correctly or such user exists</>} </div>
-                      :  null
+                        ? <div style={{ marginTop: "10px", color: "red" }}>
+                          {lang.lang === "ru" ? <>Проверьте правильность заполнение формы или такой пользователь существует</>
+                            : <>Check if the form is filled out correctly or such user exists</>} </div>
+                        : null
                     }
-                  
+
                   </div>
                 </div>
               </div>

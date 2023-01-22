@@ -7,6 +7,7 @@ import { Context } from '..';
 import { observer } from 'mobx-react-lite';
 const Dealers = () => {
     const { lang } = useContext(Context)
+    const [checker, setChecker] = useState(false)
     React.useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -58,7 +59,7 @@ const Dealers = () => {
                                                         : <>Your first name</>
                                                 }
                                             </label>
-                                            <input type="text" name="name" id="name" placeholder={lang.lang=="ru" ?"Введите имя" : "Enter your name"} />
+                                            <input type="text" name="name" id="name" placeholder={lang.lang == "ru" ? "Введите имя" : "Enter your name"} />
                                         </div>
 
                                         <div className="form-field">
@@ -69,7 +70,7 @@ const Dealers = () => {
                                                         : <>Your phone</>
                                                 }
                                             </label>
-                                            <input type="text" name="phone" id="phone" placeholder={lang.lang=="ru"?"Введите телефон" :"Enter phone"} />
+                                            <input type="text" name="phone" id="phone" placeholder={lang.lang == "ru" ? "Введите телефон" : "Enter phone"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="email">
@@ -80,7 +81,7 @@ const Dealers = () => {
                                                         : <>Your email</>
                                                 }
                                             </label>
-                                            <input type="text" name="email" id="email" placeholder={lang.lang=="ru"?"Введите  email":"Enter email"} />
+                                            <input type="text" name="email" id="email" placeholder={lang.lang == "ru" ? "Введите  email" : "Enter email"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="service">
@@ -92,7 +93,7 @@ const Dealers = () => {
                                                 }
 
                                             </label>
-                                            <input type="text" name="service" id="service" placeholder={lang.lang=="ru"?"Введите  страну":"Enter country"} />
+                                            <input type="text" name="service" id="service" placeholder={lang.lang == "ru" ? "Введите  страну" : "Enter country"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="person">    {
@@ -103,7 +104,7 @@ const Dealers = () => {
                                             }
 
                                             </label>
-                                            <input type="text" name="person" id="person" placeholder={lang.lang=="ru"?"Введите город ":"Enter city"} />
+                                            <input type="text" name="person" id="person" placeholder={lang.lang == "ru" ? "Введите город " : "Enter city"} />
                                         </div>
                                     </div>
 
@@ -116,24 +117,27 @@ const Dealers = () => {
                                                     id='politika'
                                                     className='input-checkbox'
                                                     value='1'
-                                                    form='order' />
+                                                    form='order'
+                                                    onChange={(e) => setChecker(e.target.checked)} />
 
                                                 <label htmlFor="politika">
 
-                                                    <span> {
-                                                        lang.lang === "ru"
-                                                            ? <>
-                                                                Я соглашаюсь с условиями
-                                                                политики обработки</>
-                                                            : <>I agree to the terms
-                                                                processing policies</>
-                                                    }</span>
+                                                    <span>
+                                                        {
+                                                            lang.lang === "ru"
+                                                                ? <span style={{ marginRight: "5px" }}>
+                                                                    Я соглашаюсь с условиями
+                                                                    политики обработки персональных</span>
+                                                                : <span style={{ marginRight: "5px" }}>I agree to the terms
+                                                                    processing policies  personal  </span>
+                                                        }
+                                                    </span>
                                                     <NavLink to='/politicapage'>
                                                         {
                                                             lang.lang === "ru"
-                                                                ? <>
-                                                                    персональных данных</>
-                                                                : <>personal data</>
+                                                                ? <span style= {{ paddingLeft: "15px" }} >
+                                                                    данных</span>
+                                                                : <span style= {{ paddingLeft: "15px" }}>     data</span>
                                                         }
                                                     </NavLink>
 
@@ -145,14 +149,15 @@ const Dealers = () => {
                                     <div className='text-center'>
                                         <button type='submit'
                                             className='btn'
+                                            disabled={!checker}
                                         >
                                             {
-                                                        lang.lang === "ru"
-                                                            ? <>
-                                                                 Отправить заявку</>
-                                                            : <>Submit an applications</>
-                                                    }
-                                          
+                                                lang.lang === "ru"
+                                                    ? <>
+                                                        Отправить заявку</>
+                                                    : <>Submit an applications</>
+                                            }
+
                                         </button>
                                     </div>
                                 </div>

@@ -9,6 +9,7 @@ const Partners = () => {
     React.useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+    const [checker, setChecker] = useState(false)
     const form = useRef()
     const [active, setActive] = useState(false)
     const sendEmail = (e) => {
@@ -118,24 +119,27 @@ const Partners = () => {
                                                     id='politika'
                                                     className='input-checkbox'
                                                     value='1'
-                                                    form='order' />
+                                                    form='order'
+                                                    onChange={(e) => setChecker(e.target.checked)} />
 
                                                 <label htmlFor="politika">
 
-                                                    <span>  {
-                                                        lang.lang === "ru"
-                                                            ? <>
-                                                                Я соглашаюсь с условиями
-                                                                политики обработки</>
-                                                            : <>I agree to the terms
-                                                                processing policies</>
-                                                    } </span>
+                                                    <span>
+                                                        {
+                                                            lang.lang === "ru"
+                                                                ? <span style={{ marginRight: "15px" }}>
+                                                                    Я соглашаюсь с условиями
+                                                                    политики обработки персональных</span>
+                                                                : <span style={{ marginRight: "15px" }}>I agree to the terms
+                                                                    processing policies  personal  </span>
+                                                        }
+                                                    </span>
                                                     <NavLink to='/politicapage'>
                                                         {
                                                             lang.lang === "ru"
-                                                                ? <>
-                                                                    персональных данных</>
-                                                                : <>personal data</>
+                                                                ? <span style={{ paddingLeft: "5px" }} >
+                                                                    данных</span>
+                                                                : <span style={{ paddingLeft: "5px" }}>     data</span>
                                                         }
                                                     </NavLink>
 
@@ -147,6 +151,7 @@ const Partners = () => {
                                     <div className='text-center'>
                                         <button type="submit" value="Send"
                                             className='btn'
+                                            disabled={!checker}
                                         >
                                             {
                                                 lang.lang === "ru"

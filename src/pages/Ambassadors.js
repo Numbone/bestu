@@ -13,6 +13,7 @@ const Ambassadors = () => {
   // const selectFile = (e) => {
   //   setFile(e.target.files[0])
   // }
+  const [checker, setChecker] = useState(false)
   const { lang } = useContext(Context)
   const form = useRef()
   const [name, setName] = useState('')
@@ -50,7 +51,7 @@ const Ambassadors = () => {
         console.log(error.text);
       });
   };
- 
+  console.log(checker, "amva")
   return (
     <div className='flex-1' style={{ minHeight: '100%' }}>
       <div className='block-page-order'>
@@ -92,7 +93,7 @@ const Ambassadors = () => {
                         type="text"
                         name="person"
                         id="person"
-                        placeholder={lang.lang=="ru"?"Введите...":"Enter..."} />
+                        placeholder={lang.lang == "ru" ? "Введите..." : "Enter..."} />
                     </div>
                     <div className="form-field">
                       <label htmlFor="service">
@@ -108,7 +109,7 @@ const Ambassadors = () => {
                         type="text"
                         name="service"
                         id="service"
-                        placeholder={lang.lang=="ru"?"Введите...":"Enter..."}/>
+                        placeholder={lang.lang == "ru" ? "Введите..." : "Enter..."} />
                     </div>
                     {/* <div className="form-field">
                       <label htmlFor="">
@@ -147,8 +148,8 @@ const Ambassadors = () => {
                       </label>
                       <input
                         onChange={(e) => setName(e.target.value)}
-                        type="text" name="name" id="name" 
-                        placeholder={lang.lang=="ru"?"Введите имя":"Enter name"}/>
+                        type="text" name="name" id="name"
+                        placeholder={lang.lang == "ru" ? "Введите имя" : "Enter name"} />
                     </div>
                     <div className="form-field">
                       <label htmlFor="phone">
@@ -162,7 +163,7 @@ const Ambassadors = () => {
                       <input
                         onChange={(e) => setPhone(e.target.value)}
                         type="text" name="phone" id="phone"
-                         placeholder={lang.lang=="ru"?"Введите телефон":"Enter phone"} />
+                        placeholder={lang.lang == "ru" ? "Введите телефон" : "Enter phone"} />
                     </div>
                     <div className="form-field">
                       <label htmlFor="email">
@@ -176,8 +177,8 @@ const Ambassadors = () => {
                       </label>
                       <input
                         onChange={(e) => setEmail(e.target.value)}
-                        type="text" name="email" id="email" 
-                        placeholder={lang.lang=="ru"?"Введите email":"Enter email"} />
+                        type="text" name="email" id="email"
+                        placeholder={lang.lang == "ru" ? "Введите email" : "Enter email"} />
                     </div>
 
                   </div>
@@ -191,26 +192,28 @@ const Ambassadors = () => {
                           id='politika'
                           className='input-checkbox'
                           value='1'
-                          form='order' />
+                          form='order'
+                          onChange={(e) => setChecker(e.target.checked)} />
 
                         <label htmlFor="politika">
-                         
-                          <span>  
+
+                          <span>
                             {
-                            lang.lang === "ru"
-                              ? <>
-                               Я соглашаюсь с условиями
-                            политики обработки</>
-                              : <>I agree to the terms
-                              processing policies</>
-                          } </span>
-                          <NavLink to='/politicapage'>{
-                            lang.lang === "ru"
-                              ? <>
-                               персональных данных</>
-                              : <>personal data</>
-                          }
-                           
+                              lang.lang === "ru"
+                                ? <span style={{ marginRight: "5px" }}>
+                                  Я соглашаюсь с условиями
+                                  политики обработки персональных</span>
+                                : <span style={{ marginRight: "5px" }}>I agree to the terms
+                                  processing policies  personal  </span>
+                            }
+                          </span>
+                          <NavLink to='/politicapage'>
+                            {
+                              lang.lang === "ru"
+                                ? <span style={{ paddingLeft: "15px" }} >
+                                  данных</span>
+                                : <span style={{ paddingLeft: "15px" }}>     data</span>
+                            }
                           </NavLink>
 
                         </label>
@@ -219,16 +222,16 @@ const Ambassadors = () => {
                     </div>
                   </div>
                   <div className='text-center'>
-                    <button type='submit'
+                    <button disabled={!checker} type='submit'
                       className='btn'
 
                     >{
-                      lang.lang === "ru"
-                        ? <>
-                         Отправить заявку</>
-                        : <>Submit an application</>
-                    }
-                     
+                        lang.lang === "ru"
+                          ? <>
+                            Отправить заявку</>
+                          : <>Submit an application</>
+                      }
+
                     </button>
                   </div>
                 </div>
