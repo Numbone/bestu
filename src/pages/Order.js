@@ -24,7 +24,7 @@ const Order = () => {
   const [phone_number, setPhone_number] = useState("")
   const [products, setProducts] = useState([])
   const [promo_code, setPromo_code] = useState("")
-  const [second_name, setSecond_name] = useState("")
+  const [second_name, setSecond_name] = useState("secondname")
   const [total_cost, setTotal_cost] = useState(0)
   const [count, setCount] = useState(0)
   const [data1, setData] = useState("")
@@ -37,14 +37,23 @@ const Order = () => {
 
 
   /////validator first name 
-  const [first_nameError, setFirst_nameError] = useState("Заполните поле")
+  const [first_nameError, setFirst_nameError] = useState({
+    "ru": "Заполните поле",
+    "en": "Fill in the field"
+  })
   const [first_nameDirty, setFirst_nameDirty] = useState(false)
   const First_nameHandler = (e) => {
     setFirst_name(e.target.value)
     if (e.target.value.length < 3) {
-      setFirst_nameError('Имя не может быть меньше 3 символов')
+      setFirst_nameError({
+        "ru": 'Имя не может быть меньше 3 символов',
+        "en": "Name cannot be less than 3 characters"
+      })
       if (!e.target.value) {
-        setFirst_nameError('Имя не может быть меньше 3 символов')
+        setFirst_nameError({
+          "ru": 'Имя не может быть меньше 3 символов',
+          "en": "Name cannot be less than 3 characters"
+        })
       }
     } else {
       setFirst_nameError('')
@@ -52,14 +61,23 @@ const Order = () => {
   }
 
   ///validator father name
-  const [father_nameError, setFather_nameError] = useState("Заполните поле")
+  const [father_nameError, setFather_nameError] = useState({
+    "ru": "Заполните поле",
+    "en": "Fill in the field"
+  })
   const [father_nameDirty, setFather_nameDirty] = useState(false)
   const Father_nameHandler = (e) => {
     setFather_name(e.target.value)
     if (e.target.value.length < 3) {
-      setFather_nameError('Фамилия не может быть меньше 3 символов')
+      setFather_nameError({
+        "ru": 'Фамилия не может быть меньше 3 символов',
+        "en": "Last name cannot be less than 3 characters"
+      })
       if (!e.target.value) {
-        setFather_nameError('Фамилия не может быть меньше 3 символов')
+        setFather_nameError({
+          "ru": 'Фамилия не может быть меньше 3 символов',
+          "en": "Last name cannot be less than 3 characters"
+        })
       }
     } else {
       setFather_nameError('')
@@ -81,14 +99,19 @@ const Order = () => {
   }
 
   //// validator phone
-  const [phone_numberError, setPhone_numberError] = useState("Заполните поле")
+  const [phone_numberError, setPhone_numberError] = useState({
+    "ru": "Заполните поле",
+    "en": "Fill in the field"
+  })
   const [phone_numberDirty, setPhone_numberDirty] = useState(false)
   const Phone_numberHandler = (e) => {
     setPhone_number(e.target.value)
     if (e.target.value.length < 7) {
-      setPhone_numberError('Телефон номер не может быть меньше 7 символов')
+      setPhone_numberError({"ru":'Телефон номер не может быть меньше 7 символов',
+    "en":"Phone number cannot be less than 7 characters"})
       if (!e.target.value) {
-        setPhone_numberError('Телефон номер не может быть меньше 7 символов')
+        setPhone_numberError({"ru":'Телефон номер не может быть меньше 7 символов',
+        "en":"Phone number cannot be less than 7 characters"})
       }
     } else {
       setPhone_numberError('')
@@ -96,12 +119,16 @@ const Order = () => {
   }
   /////validator email///
   const [emailDirty, setEmailDirty] = useState(false)
-  const [emailError, setEmailError] = useState("Заполните поле")
+  const [emailError, setEmailError] = useState({
+    "ru": "Заполните поле",
+    "en": "Fill in the field"
+  })
   const emailHandler = (e) => {
     setEmail(e.target.value)
     const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (!re.test(String(e.target.value).toLowerCase())) {
-      setEmailError('Некорректный email')
+      setEmailError({"ru":'Некорректный email',
+    "en":"Incorrect email"})
     } else {
       setEmailError("")
     }
@@ -109,11 +136,15 @@ const Order = () => {
   ////repeat email///
   const [repeat, setRepeat] = useState("")
   const [repeatDirty, setRepeatDirty] = useState(false)
-  const [repeatError, setRepeatError] = useState("Заполните поле")
+  const [repeatError, setRepeatError] = useState({
+    "ru": "Заполните поле",
+    "en": "Fill in the field"
+  })
   const RepeatHandler = (e) => {
     setRepeat(e.target.value)
     if (email != String(e.target.value)) {
-      setRepeatError('Email не совпадает')
+      setRepeatError({"ru":'Email не совпадает',
+    "en":"Email does not match"})
     } else {
       setRepeatError("")
     }
@@ -141,7 +172,7 @@ const Order = () => {
         break
     }
   }
-
+  const [checkerError,setCheckerError]=useState(false)
   const [checkerTrans, setCheckerTrans] = useState(false)
   const sendTransaction = async () => {
     try {
@@ -169,14 +200,17 @@ const Order = () => {
             "email": email, 'father_name': father_name, "first_name": first_name, "phone_number": phone_number,
             "second_name": second_name
           })
+      console.log(data?.message, "/////////500");
       setData(data?.message);
-      
-      console.log();
-    } catch (error) {
-      console.log(error, "///////////error//////////////");
-    } finally {
       localStorage.removeItem("basket")
       setCheckerTrans(true)
+      
+    } catch (error) {
+      console.log(error?.response?.status, "///////////error//////////////");
+      setCheckerError(true)
+    } finally {
+      
+
     }
 
   }
@@ -218,7 +252,7 @@ const Order = () => {
     if (checkerTrans) {
       window.location.replace(data1)
     }
-  }, [checkerTrans])
+  }, [checkerTrans, first_nameError, father_nameError, lang.lang])
 
 
   return (
@@ -322,7 +356,7 @@ const Order = () => {
                           placeholder={lang.lang === "ru" ? 'Напишите фамилию' : "Enter surname"}
                         />
                         {(father_nameDirty && father_nameError) &&
-                          <label className='label_check'>{father_nameError}</label>
+                          <label className='label_check'>{lang.lang === "ru" ? father_nameError.ru : father_nameError.en} </label>
                         }
                       </div>
                       <div className="form-field">
@@ -336,7 +370,7 @@ const Order = () => {
                           onBlur={e => blurHandler(e)}
                           placeholder={lang.lang === "ru" ? 'Напишите имя' : "Enter name"} />
                         {(first_nameDirty && first_nameError) &&
-                          <label className='label_check'>{first_nameError}</label>
+                          <label className='label_check'>{lang.lang === "ru" ? first_nameError.ru : first_nameError.en}</label>
                         }
                       </div>
                       {/* <div className="form-field">
@@ -364,7 +398,7 @@ const Order = () => {
                           onBlur={e => blurHandler(e)}
                           placeholder={lang.lang == "ru" ? 'Напишите телефон' : "Enter phone number"} />
                         {(phone_numberDirty && phone_numberError) &&
-                          <label className='label_check'>{phone_numberError}</label>
+                          <label className='label_check'>{lang.lang==="ru"?phone_numberError.ru:phone_numberError.en}</label>
                         }
                       </div>
                       <div className="form-field">
@@ -378,7 +412,7 @@ const Order = () => {
                           onChange={(e) => emailHandler(e)}
                           placeholder={lang.lang == "ru" ? 'Напишите email' : "Enter email"} />
                         {(emailDirty && emailError) &&
-                          <label className='label_check'>{emailError}</label>
+                          <label className='label_check'>{lang.lang==="ru"?emailError.ru:emailError.en}</label>
                         }
                       </div>
                       <div className="form-field">
@@ -393,7 +427,7 @@ const Order = () => {
                           id="repeat"
                           required />
                         {(repeatDirty && repeatError) &&
-                          <label className='label_check'>{repeatError}</label>
+                          <label className='label_check'>{lang.lang==="ru"?repeatError.ru:repeatError.en}</label>
                         }
                       </div>
                     </div>
@@ -591,14 +625,14 @@ const Order = () => {
                             lang.lang == "ru"
                               ? <label htmlFor="politika"><span>Я соглашаюсь с условиями  политики обработки персональных </span>
                                 <NavLink to="/politicapage" >
-                                   данных
+                                  данных
 
                                 </NavLink>
                               </label>
                               : <label htmlFor="politika"><span>I agree to the terms of the processing policy   personal </span>
                                 <NavLink to="/politicapage" >
 
-                                 data
+                                  data
 
                                 </NavLink>
                               </label>
@@ -616,6 +650,14 @@ const Order = () => {
                           ? <>К оплате</>
                           : <>To pay</>}</button>
                     </div>
+                    {
+                      checkerError
+                      ?  <div style={{marginTop:"10px",color:"red"}}>
+                        {lang.lang==="ru"?<>Проверьте правильность заполнение формы или такой пользователь существует</>
+                    :<>Check if the form is filled out correctly or such user exists</>} </div>
+                      :  null
+                    }
+                  
                   </div>
                 </div>
               </div>
