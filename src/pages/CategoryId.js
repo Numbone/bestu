@@ -60,7 +60,12 @@ const CategoryId = () => {
         <div className='block-catalog'>
           <div className='container'>
             <div className='block__title text-center'>
-              <p>Каталог</p>
+              {
+                lang.lang==="ru"
+                ? <p>Каталог</p>
+                :  <p>Сatalog</p>
+              }
+             
             </div>
             <div className='block-catalog__items'>
               <div className='row g-2 g-md-4'>

@@ -105,14 +105,14 @@ const Footer = () => {
                                             <div className='col-md-6'>
                                                 По вопросам качества продукции:
                                                 <br></br>
-                                                +79375599919
+                                                8(8442)52-48-48
                                                 <br></br>
                                             </div>
                                             :
                                             <div className='col-md-6'>
                                                 For product quality questions:
                                                 <br></br>
-                                                +79375599919
+                                                8(8442)52-48-48
                                                 <br></br>
                                             </div>
                                     }

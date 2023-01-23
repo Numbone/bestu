@@ -682,11 +682,21 @@ const Order = () => {
           </div>
           : <div className='block-page-order'>
             <div className='text-center mb-5' style={{ fontSize: '14px' }}>
-              В корзине нет ни одного товара. Добавьте товар из каталога
+              {
+                lang.lang ==="ru"
+                ?<> В корзине нет ни одного товара. Добавьте товар из каталога</>
+                :<>There are no items in the cart. Add a product from the catalog</>
+              }
+             
             </div>
             <div className='text-center'>
               <NavLink to="/" className='btn'>
-                Перейти в каталог
+                {
+                  lang.lang==="ru"
+                  ?<>Go to catalog</>
+                  :<></>
+                }
+                
               </NavLink>
             </div>
           </div>

@@ -16,16 +16,18 @@ const Header = () => {
   const [modal, setModal] = useState(false)
   const navigate = useNavigate()
   const [search1, setSeacrh1] = useState("")
-  const [lang1, setLang] = useState("ru")
+  const [lang1, setLang] = useState(localStorage.getItem('lang'))
   const changeLangEn = () => {
+    localStorage.setItem("lang","en")
     lang.setLang("en")
     setLang('en')
   }
   const changeLangRu = () => {
+    localStorage.setItem("lang","ru")
     lang.setLang("ru")
     setLang("ru")
   }
-  console.log(lang.lang);
+  console.log(localStorage.getItem('lang'));
   return (
     <div>
       {
