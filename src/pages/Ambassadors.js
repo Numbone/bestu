@@ -207,14 +207,14 @@ const Ambassadors = () => {
                                   processing policies  personal  </span>
                             }
                           </span>
-                          <NavLink to='/politicapage'>
+                          <div to='/politicapage'>
                             {
                               lang.lang === "ru"
                                 ? <span style={{ paddingLeft: "15px" }} >
                                   данных</span>
                                 : <span style={{ paddingLeft: "15px" }}>     data</span>
                             }
-                          </NavLink>
+                          </div>
 
                         </label>
 

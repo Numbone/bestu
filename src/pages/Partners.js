@@ -134,14 +134,14 @@ const Partners = () => {
                                                                     processing policies  personal  </span>
                                                         }
                                                     </span>
-                                                    <NavLink to='/politicapage'>
+                                                    <div to='/politicapage'>
                                                         {
                                                             lang.lang === "ru"
                                                                 ? <span style={{ paddingLeft: "5px" }} >
                                                                     данных</span>
                                                                 : <span style={{ paddingLeft: "5px" }}>     data</span>
                                                         }
-                                                    </NavLink>
+                                                    </div>
 
                                                 </label>
 
