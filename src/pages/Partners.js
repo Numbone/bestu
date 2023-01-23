@@ -127,21 +127,14 @@ const Partners = () => {
                                                     <span>
                                                         {
                                                             lang.lang === "ru"
-                                                                ? <span style={{ marginRight: "15px" }}>
+                                                                ? <span >
                                                                     Я соглашаюсь с условиями
-                                                                    политики обработки персональных</span>
-                                                                : <span style={{ marginRight: "15px" }}>I agree to the terms
-                                                                    processing policies  personal  </span>
+                                                                    политики обработки персональных данных</span>
+                                                                : <span >I agree to the terms
+                                                                    processing policies  personal data  </span>
                                                         }
                                                     </span>
-                                                    <div to='/politicapage'>
-                                                        {
-                                                            lang.lang === "ru"
-                                                                ? <span style={{ paddingLeft: "5px" }} >
-                                                                    данных</span>
-                                                                : <span style={{ paddingLeft: "5px" }}>     data</span>
-                                                        }
-                                                    </div>
+                                                   
 
                                                 </label>
 

@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.6411bae6.css",
-    "main.js": "/static/js/main.a7b2086e.js",
+    "main.js": "/static/js/main.d024c6f9.js",
     "static/media/chemodan.png": "/static/media/chemodan.61062e203540ce87c727.png",
     "static/media/assets.jpg": "/static/media/assets.f69cc9f43958fa8e21e0.jpg",
     "static/media/chemodan1.png": "/static/media/chemodan1.ec214138ff7dbc1f4c55.png",
@@ -62,10 +62,10 @@
     "static/media/fail.svg": "/static/media/fail.83964e19c971e3fa02b053468bbed401.svg",
     "static/media/svg.svg": "/static/media/svg.2822d5c741dcf24e136036beb70c2cee.svg",
     "main.6411bae6.css.map": "/static/css/main.6411bae6.css.map",
-    "main.a7b2086e.js.map": "/static/js/main.a7b2086e.js.map"
+    "main.d024c6f9.js.map": "/static/js/main.d024c6f9.js.map"
   },
   "entrypoints": [
     "static/css/main.6411bae6.css",
-    "static/js/main.a7b2086e.js"
+    "static/js/main.d024c6f9.js"
   ]
 }
