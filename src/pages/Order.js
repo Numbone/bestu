@@ -264,7 +264,7 @@ const Order = () => {
     }
   }, [checkerTrans, first_nameError, father_nameError, lang.lang])
 
-  console.log(user.isAuth)
+
   return (
     <div className='flex-1' style={{ minHeight: '100vh' }}>
       {
