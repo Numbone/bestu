@@ -29,11 +29,18 @@ import Oferta from './pages/Oferta';
 import CategoryId from './pages/CategoryId';
 import AuthRobo from './pages/AuthRobo';
 import AuthRoboFail from './pages/AuthRoboFail';
+
+
+
 if (localStorage.getItem("lang")===null){
   localStorage.setItem("lang","ru")
 }
-function App() {
 
+
+
+function App() {
+ 
+ 
  const { user, basket } = useContext(Context);
   if ((localStorage.getItem("access")?.length > 0)) {
     user.setIsAuth(true)
@@ -42,7 +49,8 @@ function App() {
   console.log(localStorage.getItem("lang"),"APP")
   //Loading Basket
   useEffect(() => {
-    
+  
+ 
     if (user.isAuth === false) {
       basket.setDeleteAllDeviceFromBasket();
       const savedBasket = JSON.parse(localStorage.getItem("basket"));

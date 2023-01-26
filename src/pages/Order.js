@@ -6,7 +6,13 @@ import { observer } from 'mobx-react-lite';
 import './css/Order.css'
 import ModalSucces from '../component/ModalSuccess/ModalSucces';
 import ModalError from '../component/ModalError/ModalError';
+
+
+import ModalForCountry from '../component/ModalForCountry/ModalForCountry';
+import CdekCountry from '../component/CdekCountry/CdekCountry';
+
 const Order = () => {
+
   const { basket, user, lang } = useContext(Context)
   const [rerender, setRerender] = useState(Boolean);
 
@@ -33,7 +39,7 @@ const Order = () => {
   const [active, setActive] = useState(false)
   const [activeError, setActiveError] = useState(false)
 
-
+  const [modalCountry,setModalCountry]=useState(false)
 
 
   /////validator first name 
@@ -225,9 +231,8 @@ const Order = () => {
   }
 
 
-  const reRender = () => {
-    setRerender(!rerender);
-  }
+  //////////////////////////////CDEK
+  const [counrtyCode,setCountryCode]=useState("RU")
 
   const handleOpen = () => {
     if (count % 2 == 0) {
@@ -242,7 +247,16 @@ const Order = () => {
   }
 
   const [checkGift, setcheckGift] = useState(false)
+  const [coupon, setCoupon] = useState(false)
+  const [gift, setGift] = useState(false)
   const setGiftTic = (e) => {
+    setCoupon(false)
+    setGift(true)
+    setcheckGift(e.target.checked)
+  }
+  const setGiftTic2 = (e) => {
+    setGift(false)
+    setCoupon(true)
     setcheckGift(e.target.checked)
   }
   const [checkerDelivery, setCheckerDelivery] = useState(false)
@@ -264,7 +278,9 @@ const Order = () => {
     }
   }, [checkerTrans, first_nameError, father_nameError, lang.lang])
 
-
+  console.log(gift, "gift")
+  console.log(coupon, "coupon")
+  console.log(counrtyCode,"countryCode")
   return (
     <div className='flex-1' style={{ minHeight: '100vh' }}>
       {
@@ -400,11 +416,14 @@ const Order = () => {
                       <div className="form-field">
                         <label htmlFor="phone_number">{lang?.lang == "ru" ? <>Ваш телефон</> : <>Enter your phone number</>}</label>
                         <input
+                          value={phone_number}
                           onChange={(e) => Phone_numberHandler(e)}
-                          type="text"
+                          type="tel"
+                          pattern="7-[0-9]{3}-[0-9]{4}"
+                          required
                           name="phone_number"
                           id="phone_number"
-                          value={phone_number}
+                          // value={phone_number}
                           onBlur={e => blurHandler(e)}
                           placeholder={lang.lang == "ru" ? 'Напишите телефон' : "Enter phone number"} />
                         {(phone_numberDirty && phone_numberError) &&
@@ -442,36 +461,45 @@ const Order = () => {
                       </div>
                     </div>
                     <h3 className="block__title">  {lang?.lang == "ru" ? <> Доставка</> : <>Choose delivery </>}</h3>
-                    {/* <div className="shipping-country mb-4">
+                    <div className="shipping-country mb-4">
                       <div className="box-form">
                         <div className="form-field">
                           <label htmlFor="country">Страна</label>
                           <label htmlFor="country" className="box-select">
                             <select name="country" id="country">
-                              <option value="-">Выберите страну</option>
-                              <option value={5}>Армения</option>
-                              <option value={6}>Беларусь</option>
-                              <option value={22}>Казахстан</option>
-                              <option value={27}>Кыргызстан</option>
-                              <option value={0} selected>Россия</option>
+                              <option value="RU">Выберите страну</option>
+                              <option onClick={()=>setCountryCode("AM")}>Армения</option>
+                              <option onClick={()=>setCountryCode("BY")}>Беларусь</option>
+                              <option onClick={()=>setCountryCode("KZ")}>Казахстан</option>
+                              <option onClick={()=>setCountryCode("KG")}>Кыргызстан</option>
+                              <option onClick={()=>setCountryCode("RU")} selected>Россия</option>
                             </select>
                           </label>
                         </div>
                       </div>
-                    </div> */}
+                    </div>
                     <div className="shipping-choose">
                       <div className="box-form">
+                        <div className="form-field" onClick={() => setDelivery('Доставка СДЕК')}>
+                          <input type="radio" name="shipping-method" id="pickup1" className="input-checkbox" onChange={(e)=>setModalCountry(e.target.checked)} />
+                          <label htmlFor="pickup1"> {lang?.lang == "ru" ? <> СДЭК до пункта выдачи</> : <>CDEK to the point of issue </>} </label>
+                        </div>
+
+
+
+                      </div>
+                      <div className="box-form">
                         <div className="form-field" onClick={() => setDelivery('Самовывоз в Волгограде')}>
-                          <input type="checkbox" name="shipping-method" id="pickup" className="input-checkbox" onClick={changeSelfDelivery} />
+                          <input type="radio" name="shipping-method" id="pickup" className="input-checkbox" onClick={changeSelfDelivery} />
                           <label htmlFor="pickup"> {lang?.lang == "ru" ? <> Самовывоз в Волгограде</> : <>Pickup in Volgograd </>} </label>
                         </div>
 
 
 
-                      </div>
+                      </div>  
                     </div>
                     {
-                      checkSelfDelivey
+                      delivery==="Самовывоз в Волгограде"
                         ? <div id="shipping-info" style={{ padding: 20, border: '2px solid rgb(179, 139, 138)', margin: 20, textAlign: 'center', display: 'block' }}>
 
                           {
@@ -540,8 +568,21 @@ const Order = () => {
                     <div className="box-form">
                       <div className="text-center mt-2 d-flex">
                         <div style={{ position: 'relative' }}>
-                          <input type="checkbox" id="1" className="input-checkbox" onChange={setGiftTic} />
+                          <input type="radio" id="1" name="coupon" className="input-checkbox" onChange={setGiftTic2} />
                           <label htmlFor="1">
+                            {lang.lang == "ru" ? <> Использовать промокод или купон</> : <>Use promocode or coupon</>
+                            }
+
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="box-form">
+                      <div className="text-center mt-2 d-flex">
+                        <div style={{ position: 'relative' }}>
+                          <input type="radio" id="2" name="coupon" className="input-checkbox" onChange={setGiftTic} />
+                          <label htmlFor="2">
                             {lang.lang == "ru" ? <> Использовать подарочный
                               сертификат</> : <>Use gift
                                 certificate</>
@@ -555,7 +596,8 @@ const Order = () => {
                       checkGift
                         ? <div className="box-form" id="box-field-voucher" >
                           <div className="form-field">
-                            <label htmlFor="voucher"> {lang.lang == "ru" ? <>Подарочный сертификат</> : <>Gift Certificate</>
+                            <label htmlFor="voucher"> {lang.lang == "ru" && gift ? <>Подарочный сертификат</> : lang.lang === "ru" && coupon ? <>Промокод</>
+                              : lang.lang === "en" && gift ? <>Gift certificates</> : lang.lang === "en" && coupon ? <>Promocode</> : null
                             }</label>
 
 
@@ -672,6 +714,15 @@ const Order = () => {
                 </div>
               </div>
             </div>
+            <ModalForCountry
+            active={modalCountry}
+            setActive={setModalCountry}
+            >
+             <CdekCountry
+             counrtyCode={counrtyCode}
+             active={modalCountry}
+             setActive={setModalCountry}/>
+            </ModalForCountry>
             <ModalSucces
               show={active}
               onHide={() => setActive(false)} />
@@ -683,20 +734,20 @@ const Order = () => {
           : <div className='block-page-order'>
             <div className='text-center mb-5' style={{ fontSize: '14px' }}>
               {
-                lang.lang ==="ru"
-                ?<> В корзине нет ни одного товара. Добавьте товар из каталога</>
-                :<>There are no items in the cart. Add a product from the catalog</>
+                lang.lang === "ru"
+                  ? <> В корзине нет ни одного товара. Добавьте товар из каталога</>
+                  : <>There are no items in the cart. Add a product from the catalog</>
               }
-             
+
             </div>
             <div className='text-center'>
               <NavLink to="/" className='btn'>
                 {
-                  lang.lang==="ru"
-                  ?<>Go to catalog</>
-                  :<></>
+                  lang.lang === "ru"
+                    ? <>Перейти каталогу</>
+                    : <>Go to catalog</>
                 }
-                
+
               </NavLink>
             </div>
           </div>

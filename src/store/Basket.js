@@ -14,6 +14,9 @@ export default class BasketStore {
             this._basket.forEach(device => totalPrice += Number(device.price * device.Count));
             this._totalPrice = totalPrice;
         }
+        // if(checkDeviceInBasket>0){
+        //     this._basket=[]
+        // }
         if (!isAuth) {
             localStorage.setItem("basket", JSON.stringify(this._basket));
         }

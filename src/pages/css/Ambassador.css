@@ -9,12 +9,6 @@
     visibility: hidden;
     position: absolute;
 }
-.form-field label {
-    font-size: 1.25em;
-    display: block;
-    font-weight: 400;
-    margin-bottom: 0.5em;
-}
 .field__file-wrapper {
     width: 100%;
     display: -webkit-box;

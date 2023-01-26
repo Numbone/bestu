@@ -80,9 +80,9 @@ a {
     transform: translateY(-50%);
 }
 
-.form-field:last-child {
+/* .form-field:last-child {
     margin-bottom: 0;
-}
+} */
 
 input[type=email],
 input[type=password],

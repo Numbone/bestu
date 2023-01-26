@@ -1,0 +1,13 @@
+.box_container {
+    padding: 15px;
+}
+
+.country_text {
+    width: 100%;
+}
+
+.country_text h3 {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.4;
+}

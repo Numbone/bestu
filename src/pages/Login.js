@@ -10,7 +10,7 @@ import Moment from 'react-moment';
 import ModalForOrder from '../component/ModalForOrder/ModalForOrder';
 
 const Login = () => {
-  const [checker,setChecker]=useState(false)
+  const [checker, setChecker] = useState(false)
   const { lang } = useContext(Context)
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -31,11 +31,11 @@ const Login = () => {
       localStorage.setItem("access", data.access_token)
       localStorage.setItem("refresh", data.refresh_token)
     } catch (error) {
-      
-    }finally{
+
+    } finally {
       setChecker(true)
     }
-   
+
 
   }
   const getUserContent = async () => {
@@ -261,8 +261,8 @@ const Login = () => {
                               </>
                             }
                           </div>
-                          
-                         
+
+
 
                           <div className='form-group row'>
                             <label htmlFor="password" className="col-md-4 col-form-label text-md-right">
@@ -294,22 +294,22 @@ const Login = () => {
                           </div>
                           {
                             checker
-                            ? <div className='form-group row'>
+                              ? <div className='form-group row'>
 
 
-                            <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
+                                <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
 
-                            </label>
+                                </label>
 
-                            <div className='col-md-6'>
-                              {
-                                lang.lang == "ru" ?
-                                  <>Неправильный пароль или email </>
-                                  : <>Incorrect password or email</>
-                              }
-                            </div>
-                          </div>
-                          :null
+                                <div className='col-md-6'>
+                                  {
+                                    lang.lang == "ru" ?
+                                      <>Неправильный пароль или email </>
+                                      : <>Incorrect password or email</>
+                                  }
+                                </div>
+                              </div>
+                              : null
                           }
 
                           <div className='form-group row mb-0'>
@@ -366,7 +366,19 @@ const Login = () => {
                 <div className='container-fluid'>
                   <div className='container'>
                     <div className="bd-example">
-
+                      <h4 style={{fontWeight:"600"}}>Срок хранение заказов</h4>
+                      <div className='mt-2'>
+                        Почта России -14 дней
+                      </div>
+                      <div className='mt-2'>
+                        Boxberry -14 дней
+                      </div>
+                      <div className='mt-2'>
+                        CDEK ПВЗ -14 дней
+                      </div>
+                      <div className='mt-2'>
+                        CDEK Постамат -14 дней
+                      </div>
                     </div>
                   </div>
                 </div>

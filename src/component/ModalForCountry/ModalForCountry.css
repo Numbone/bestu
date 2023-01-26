@@ -1,0 +1,33 @@
+.modal2 {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+    
+}
+
+.modal2.active {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 999;
+}
+
+.modalCountry {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+    transform: scale(0.9);
+    transition: 0.4s all;
+}
+.modalCountry.active{
+    width: 100%;
+    z-index: 999;
+}

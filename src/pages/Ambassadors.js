@@ -9,10 +9,10 @@ const Ambassadors = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  // const [file, setFile] = React.useState([])
-  // const selectFile = (e) => {
-  //   setFile(e.target.files[0])
-  // }
+  const [file, setFile] = React.useState([])
+  const selectFile = (e) => {
+    setFile(e.target.files[0])
+  }
   const [checker, setChecker] = useState(false)
   const { lang } = useContext(Context)
   const form = useRef()
@@ -111,7 +111,7 @@ const Ambassadors = () => {
                         id="service"
                         placeholder={lang.lang == "ru" ? "Введите..." : "Enter..."} />
                     </div>
-                    {/* <div className="form-field">
+                    <div className="form-field">
                       <label htmlFor="">
                         Актуальные охваты в сторис (приложить фото)
                       </label>
@@ -136,7 +136,7 @@ const Ambassadors = () => {
                           </div>
                         </label>
                       </div>
-                    </div> */}
+                    </div>
                     <div className="form-field">
                       <label htmlFor="name">
                         {
