@@ -10,12 +10,35 @@ import ModalError from '../component/ModalError/ModalError';
 
 import ModalForCountry from '../component/ModalForCountry/ModalForCountry';
 import CdekCountry from '../component/CdekCountry/CdekCountry';
+import { getPromocode } from '../api/promocode';
+import { cdekCalc } from '../api/cdek';
 
 const Order = () => {
 
   const { basket, user, lang } = useContext(Context)
-  const [rerender, setRerender] = useState(Boolean);
+  const [cdek, setCdek] = useState();
+  const [cdekSum, setCdekSum] = useState(0)
+  const [promocode, setPromocode] = useState(undefined)
+  const getDataPromocode = async () => {
+    try {
+      const { data } = await getPromocode(promo_code)
+      setPromocode(data)
+    } catch (error) {
+      setPromocode(undefined)
+    }
+  }
+  const getCalcCdek = async () => {
+    try {
+      if (delivery === "Доставка СДЕК") {
+        const { data } = await cdekCalc(cdek?.city_code)
+        setCdekSum(data?.total_sum)
+      }
 
+    } catch (error) {
+      setCdekSum(0)
+    }
+
+  }
   /// dropdown component 
   const [open, setOpen] = React.useState(false);
 
@@ -39,7 +62,7 @@ const Order = () => {
   const [active, setActive] = useState(false)
   const [activeError, setActiveError] = useState(false)
 
-  const [modalCountry,setModalCountry]=useState(false)
+  const [modalCountry, setModalCountry] = useState(false)
 
 
   /////validator first name 
@@ -203,13 +226,19 @@ const Order = () => {
         delete item.name_ru,
         delete item.name_en))
       console.log(copy.basket, "copy");
+      let basketPrice
+      basketPrice = promocode === undefined ? basket.Price + cdekSum
+        : promocode?.type === "Скидка в процентах на корзину" ? basket.Price - (basket.Price * promocode?.discount / 100) + cdekSum
+          : promocode?.type === "Скидка в рублях на корзину" ? basket.Price - promocode?.discount + cdekSum
+            : promocode?.type === "Скидка в процентах на один товар" && basket.Basket.length === 1 && basket.Basket[0].Count === 1 ? basket.Price - (basket.Price * promocode?.discount / 100) + cdekSum
+              : basket.Pricee + cdekSum
       const { data } = !user.isAuth
-        ? await transactionCreate2(delivery, 0, copy.basket, promo_code, basket.Price,
+        ? await transactionCreate2(delivery, cdekSum, copy.basket, promo_code, basket.Price,
           {
             "email": email, 'father_name': father_name, "first_name": first_name, "phone_number": phone_number,
             "second_name": second_name
           })
-        : await transactionCreate(delivery, 0, copy.basket, promo_code, basket.Price,
+        : await transactionCreate(delivery, cdekSum, copy.basket, promo_code, basket.Price,
           {
             "email": email, 'father_name': father_name, "first_name": first_name, "phone_number": phone_number,
             "second_name": second_name
@@ -232,7 +261,7 @@ const Order = () => {
 
 
   //////////////////////////////CDEK
-  const [counrtyCode,setCountryCode]=useState("RU")
+  const [counrtyCode, setCountryCode] = useState("RU")
 
   const handleOpen = () => {
     if (count % 2 == 0) {
@@ -278,9 +307,17 @@ const Order = () => {
     }
   }, [checkerTrans, first_nameError, father_nameError, lang.lang])
 
-  console.log(gift, "gift")
-  console.log(coupon, "coupon")
-  console.log(counrtyCode,"countryCode")
+  useEffect(() => {
+    getDataPromocode()
+  }, [promo_code])
+  useEffect(() => {
+    getCalcCdek()
+    if (delivery != "Доставка СДЕК") {
+      setCdekSum(0)
+    }
+
+  }, [cdek, delivery])
+  console.log(cdek, "cdek")
   return (
     <div className='flex-1' style={{ minHeight: '100vh' }}>
       {
@@ -468,11 +505,11 @@ const Order = () => {
                           <label htmlFor="country" className="box-select">
                             <select name="country" id="country">
                               <option value="RU">Выберите страну</option>
-                              <option onClick={()=>setCountryCode("AM")}>Армения</option>
-                              <option onClick={()=>setCountryCode("BY")}>Беларусь</option>
-                              <option onClick={()=>setCountryCode("KZ")}>Казахстан</option>
-                              <option onClick={()=>setCountryCode("KG")}>Кыргызстан</option>
-                              <option onClick={()=>setCountryCode("RU")} selected>Россия</option>
+                              <option onClick={() => setCountryCode("AM")}>Армения</option>
+                              <option onClick={() => setCountryCode("BY")}>Беларусь</option>
+                              <option onClick={() => setCountryCode("KZ")}>Казахстан</option>
+                              <option onClick={() => setCountryCode("KG")}>Кыргызстан</option>
+                              <option onClick={() => setCountryCode("RU")} selected>Россия</option>
                             </select>
                           </label>
                         </div>
@@ -481,7 +518,7 @@ const Order = () => {
                     <div className="shipping-choose">
                       <div className="box-form">
                         <div className="form-field" onClick={() => setDelivery('Доставка СДЕК')}>
-                          <input type="radio" name="shipping-method" id="pickup1" className="input-checkbox" onChange={(e)=>setModalCountry(e.target.checked)} />
+                          <input type="radio" name="shipping-method" id="pickup1" className="input-checkbox" onChange={(e) => setModalCountry(e.target.checked)} />
                           <label htmlFor="pickup1"> {lang?.lang == "ru" ? <> СДЭК до пункта выдачи</> : <>CDEK to the point of issue </>} </label>
                         </div>
 
@@ -496,10 +533,10 @@ const Order = () => {
 
 
 
-                      </div>  
+                      </div>
                     </div>
                     {
-                      delivery==="Самовывоз в Волгограде"
+                      delivery === "Самовывоз в Волгограде"
                         ? <div id="shipping-info" style={{ padding: 20, border: '2px solid rgb(179, 139, 138)', margin: 20, textAlign: 'center', display: 'block' }}>
 
                           {
@@ -611,19 +648,45 @@ const Order = () => {
                     <div className="box-form">
                       <div id="total-block">
                         <table className="table" style={{ width: '100%' }}>
-                          <tbody><tr>
+                          <tbody>
+                            <tr>
+                              {
+                                lang.lang === "ru"
+                                  ? <td width="60%" id="cart-total">Товары в корзине</td>
+                                  : <td width="60%" id="cart-total">Items in the cart</td>
+                              }
+
+                              <td>{basket.Price}</td>
+                            </tr>
                             {
-                              lang.lang === "ru"
-                                ? <td width="60%" id="cart-total">Товары в корзине</td>
-                                : <td width="60%" id="cart-total">Items in the cart</td>
+                              cdek != undefined && delivery === "Доставка СДЕК"
+                                ? <tr>
+                                  {
+                                    lang.lang === "ru"
+                                      ? <td width="60%" id="cart-total">Доставка СДЭК</td>
+                                      : <td width="60%" id="cart-total">Delivery CDEK </td>
+                                  }
+
+                                  <td>{cdekSum}</td>
+                                </tr>
+                                : null
                             }
 
-                            <td>{basket.Price}</td>
-                          </tr>
-                            <tr>
-                              <td width="60%" id="delname" />
-                              <td id="delprice" />
-                            </tr>
+                            {
+                              promocode != undefined
+                                ? <tr>
+                                  {
+                                    lang.lang === "ru"
+                                      ? <td width="60%" id="cart-total">Промокоды</td>
+                                      : <td width="60%" id="cart-total">Promocode</td>
+                                  }
+
+                                  <td>{promocode?.discount}</td>
+                                </tr>
+                                : null
+                            }
+
+
                             <tr id="total-tr" style={{ fontWeight: 'bold', marginTop: '.5em' }}>
                               {
                                 lang.lang === "ru"
@@ -633,7 +696,11 @@ const Order = () => {
                               }
 
                               <td id="total">
-                                {basket.Price}
+                                {promocode === undefined ? basket.Price + cdekSum
+                                  : promocode?.type === "Скидка в процентах на корзину" ? basket.Price - (basket.Price * promocode?.discount / 100) + cdekSum
+                                    : promocode?.type === "Скидка в рублях на корзину" ? basket.Price - promocode?.discount + cdekSum
+                                      : promocode?.type === "Скидка в процентах на один товар" && basket.Basket.length === 1 && basket.Basket[0].Count === 1 ? basket.Price - (basket.Price * promocode?.discount / 100) + cdekSum
+                                        : basket.Pricee + cdekSum}
                               </td>
                             </tr>
                           </tbody></table>
@@ -715,13 +782,14 @@ const Order = () => {
               </div>
             </div>
             <ModalForCountry
-            active={modalCountry}
-            setActive={setModalCountry}
+              active={modalCountry}
+              setActive={setModalCountry}
             >
-             <CdekCountry
-             counrtyCode={counrtyCode}
-             active={modalCountry}
-             setActive={setModalCountry}/>
+              <CdekCountry
+                counrtyCode={counrtyCode}
+                active={modalCountry}
+                setActive={setModalCountry}
+                setCdek={setCdek} />
             </ModalForCountry>
             <ModalSucces
               show={active}

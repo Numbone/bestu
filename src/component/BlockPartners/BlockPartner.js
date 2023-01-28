@@ -9,7 +9,7 @@ const BlockPartner = () => {
         <div className='block-partners'>
             <div className='container'>
                 <div className='row g-4 align-items-center justify-content-center'>
-                    <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
+                    {/* <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
                         {
                             lang.lang == 'ru'
                                 ? <NavLink to='/dealers_form' className='btn'>
@@ -45,7 +45,7 @@ const BlockPartner = () => {
                                     Other collaborations
                                 </NavLink>
                         }
-                    </div>
+                    </div> */}
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
                         {
                             lang.lang == 'ru'
@@ -59,7 +59,7 @@ const BlockPartner = () => {
                                 </NavLink>
                         }
                     </div>
-                    <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
+                    {/* <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
                         {
                             lang.lang == 'ru'
                                 ?
@@ -71,7 +71,7 @@ const BlockPartner = () => {
                                     Dealers
                                 </NavLink>
                         }
-                    </div>
+                    </div> */}
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
                     {
                             lang.lang == 'ru'

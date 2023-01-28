@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react'
 import { cdekCities, cdekOffice, cdekRegions } from '../../api/cdek'
 import './CdekCountry.css'
 import { AiOutlineClose } from "react-icons/ai"
-const CdekCountry = ({ counrtyCode,active,setActive }) => {
+const CdekCountry = ({ counrtyCode,active,setActive,setCdek }) => {
     const [cdekRegion, setCdekRegion] = useState([])
     const [regionCode, setRegionCode] = useState(0)
     const [getRegionData, setGetRegionData] = useState([])
     const [cityCode, setCityCode] = useState(0)
     const [getOffice, setGetOffice] = useState([])
-    const [allData, setAllData] = useState()
+    const [allData, setAllData] = useState(undefined)
     const getCdekRegion = async () => {
         const { data } = await cdekRegions(counrtyCode)
         setCdekRegion(data)
@@ -22,6 +22,7 @@ const CdekCountry = ({ counrtyCode,active,setActive }) => {
     const getCdekOffice = async () => {
         const { data } = await cdekOffice(cityCode)
         setGetOffice(data)
+        
     }
     const defaultState = {
         center: [55.751574, 37.573856],
@@ -35,7 +36,10 @@ const CdekCountry = ({ counrtyCode,active,setActive }) => {
         if (cityCode != 0) {
             getCdekOffice()
         }
-    }, [counrtyCode, regionCode, cityCode])
+        if(allData!=undefined){
+            setCdek(allData)
+        }
+    }, [counrtyCode, regionCode, cityCode,allData])
     console.log(allData, "////Alldata")
     return (
         <div className='box_container'>
@@ -106,7 +110,7 @@ const CdekCountry = ({ counrtyCode,active,setActive }) => {
                     ? <YMaps>
                         <Map defaultState={{
                             center: [55.751574, 37.573856],
-                            zoom: 2,
+                            zoom: 4,
                         }}
                             width={"85vw"}
                             height={400}>

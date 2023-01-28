@@ -15,3 +15,7 @@ export const cdekOffice=async (regionCode)=>{
     const data =await instance.get(`cdek/office?city=${regionCode}`)
     return data
 }
+export const cdekCalc=async (calc)=>{
+    const data =await instance.post(`cdek/calc?city=${calc}`)
+    return data
+}
