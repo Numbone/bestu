@@ -78,3 +78,6 @@ button:disabled{
     border: 1px solid #1c1c1c;
     opacity: 1;
 }
+.background-pink{
+    background-color: #e7dbe2;
+}

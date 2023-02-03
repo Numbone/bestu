@@ -11,7 +11,7 @@ const Footer = () => {
     return (
         <>
             {
-                navi.pathname !== "/login" && navi.pathname !== "/reset"&& navi.pathname !== "/robokassa/success" && navi.pathname !== "/authrobofail" ?
+                navi.pathname !== "/login" && navi.pathname !== "/reset" && navi.pathname !== "/robokassa/success" && navi.pathname !== "/authrobofail" && navi.pathname != "/commentary" ?
                     <div>
 
                         <footer className='footer'>
@@ -79,7 +79,7 @@ const Footer = () => {
                                                     </>
                                                     :
                                                     <>
-                                                       SP Ovchinnikova Julia Igorevna
+                                                        SP Ovchinnikova Julia Igorevna
                                                         <br></br>
                                                         PSRN 321344300027087, TIN 344103083881
                                                         <br></br>
@@ -120,18 +120,18 @@ const Footer = () => {
                                     <div className='col-lg-7 mt-4'>
                                         <div className='item'
                                             style={{ fontSize: '1.2em' }}>
-                                                {
-                                                    lang?.lang==="ru"
+                                            {
+                                                lang?.lang === "ru"
                                                     ?
                                                     <>
-                                                     Техническая поддержка:
+                                                        Техническая поддержка:
                                                     </>
                                                     :
                                                     <>
-                                                    Technical support:
-                                                   </>
-                                                }
-                                           
+                                                        Technical support:
+                                                    </>
+                                            }
+
                                             <br></br>
                                             <a href='https://t.me/thebestforyourself_bot'>
                                                 t.me/thebestforyourself_bot
@@ -144,34 +144,34 @@ const Footer = () => {
                                         <div className='item'>
                                             <NavLink to='/ofertapage'
                                                 style={{ textDecoration: 'underline' }}>
-                                                    {
-                                                            lang.lang==="ru"
-                                                            ?<>Публичная оферта</>
-                                                            :<>Public offer</>
-                                                    }
-                                             
+                                                {
+                                                    lang.lang === "ru"
+                                                        ? <>Публичная оферта</>
+                                                        : <>Public offer</>
+                                                }
+
                                             </NavLink>
                                             <br></br>
                                             <br></br>
                                             <NavLink to="/politicapage"
                                                 style={{ textDecoration: 'underline' }}>
-                                                     {
-                                                            lang.lang==="ru"
-                                                            ?<>  Политика обработки персональных данных</>
-                                                            :<>Personal data processing policy</>
-                                                    }
-                                              
+                                                {
+                                                    lang.lang === "ru"
+                                                        ? <>  Политика обработки персональных данных</>
+                                                        : <>Personal data processing policy</>
+                                                }
+
                                             </NavLink>
                                             <br></br>
                                             <br></br>
                                             <NavLink to='/login'
                                                 style={{ textDecoration: 'underline' }}>
-                                                     {
-                                                            lang.lang==="ru"
-                                                            ?<> Личный кабинет</>
-                                                            :<>Private office</>
-                                                    }
-                                               
+                                                {
+                                                    lang.lang === "ru"
+                                                        ? <> Личный кабинет</>
+                                                        : <>Private office</>
+                                                }
+
                                             </NavLink>
                                         </div>
                                     </div>
@@ -181,8 +181,8 @@ const Footer = () => {
 
 
                     </div>
-                    : navi.pathname !== "/robokassa/success" &&  navi.pathname !== "/login" && navi.pathname !== "/reset" && navi.pathname !== "/authrobofail" ? 
-                    <div style={{ height: '100vh', backgroundColor: '#E7DBE2' }}></div>:null
+                    : navi.pathname !== "/robokassa/success" && navi.pathname !== "/login" && navi.pathname !== "/reset" && navi.pathname !== "/authrobofail" ?
+                        <div style={{ height: '100vh', backgroundColor: '#E7DBE2' }}></div> : null
             }
         </>
     )

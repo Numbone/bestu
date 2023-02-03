@@ -94,7 +94,7 @@ const CdekCountry = ({ counrtyCode,active,setActive,setCdek }) => {
                             <option disabled="true" selected="true">Выбрать...</option>
                             {
                                 getOffice?.map(item =>
-                                    <option onClick={() => setAllData(item?.location)}>
+                                    <option onClick={() => setAllData(item)}>
                                         {item?.name}
                                     </option>
                                 )
@@ -114,7 +114,7 @@ const CdekCountry = ({ counrtyCode,active,setActive,setCdek }) => {
                         }}
                             width={"85vw"}
                             height={400}>
-                            <Placemark geometry={[allData?.latitude, allData?.longitude]} />
+                            <Placemark geometry={[allData?.location?.latitude, allData?.location?.longitude]} />
                         </Map>
                     </YMaps>
                     : null

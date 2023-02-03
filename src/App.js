@@ -29,6 +29,7 @@ import Oferta from './pages/Oferta';
 import CategoryId from './pages/CategoryId';
 import AuthRobo from './pages/AuthRobo';
 import AuthRoboFail from './pages/AuthRoboFail';
+import Commentary from './component/Commentary/Commentary';
 
 
 
@@ -98,6 +99,7 @@ function App() {
           <Route key={21} path='/ofertapage' element={<Oferta />}></Route>
           <Route key={22} path='/robokassa/success' element={<AuthRobo />}></Route>
           <Route key={23} path='/authrobofail' element={<AuthRoboFail />}></Route>
+          <Route key={24} path='/commentary' element={<Commentary />}></Route>
         </Routes>
 
         <Footer />

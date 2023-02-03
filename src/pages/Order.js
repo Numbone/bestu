@@ -30,7 +30,7 @@ const Order = () => {
   const getCalcCdek = async () => {
     try {
       if (delivery === "Доставка СДЕК") {
-        const { data } = await cdekCalc(cdek?.city_code)
+        const { data } = await cdekCalc(cdek?.location?.city_code)
         setCdekSum(data?.total_sum)
       }
 
@@ -53,7 +53,7 @@ const Order = () => {
   const [phone_number, setPhone_number] = useState("")
   const [products, setProducts] = useState([])
   const [promo_code, setPromo_code] = useState("")
-  const [second_name, setSecond_name] = useState("secondname")
+  const [second_name, setSecond_name] = useState("")
   const [total_cost, setTotal_cost] = useState(0)
   const [count, setCount] = useState(0)
   const [data1, setData] = useState("")
@@ -113,14 +113,23 @@ const Order = () => {
     }
   }
   /// validator second name
-  const [second_nameError, setSecond_nameError] = useState("Заполните поле")
+  const [second_nameError, setSecond_nameError] = useState({
+    "ru": "Заполните поле",
+    "en": "Fill in the field"
+  })
   const [second_nameDirty, setSecond_nameDirty] = useState(false)
   const Second_nameHandler = (e) => {
     setSecond_name(e.target.value)
     if (e.target.value.length < 3) {
-      setSecond_nameError('Отечество не может быть меньше 3 символов')
+      setSecond_nameError({
+        "ru": 'Отечество номер не может быть меньше 7 символов',
+        "en": "Fatherland number cannot be less than 7 characters"
+      })
       if (!e.target.value) {
-        setSecond_nameError('Отечество не может быть меньше 3 символов')
+        setSecond_nameError({
+          "ru": 'Отечество номер не может быть меньше 7 символов',
+          "en": "Fatherland number cannot be less than 7 characters"
+        })
       }
     } else {
       setSecond_nameError('')
@@ -233,12 +242,22 @@ const Order = () => {
             : promocode?.type === "Скидка в процентах на один товар" && basket.Basket.length === 1 && basket.Basket[0].Count === 1 ? basket.Price - (basket.Price * promocode?.discount / 100) + cdekSum
               : basket.Pricee + cdekSum
       const { data } = !user.isAuth
-        ? await transactionCreate2(delivery, cdekSum, copy.basket, promo_code, basket.Price,
+        ? await transactionCreate2({
+          "delivery_address":!checkSelfDelivey ? cdek?.location?.address_full :"г. Волгоград, пр. Жукова 100б ",
+          "delivery_commpany":!checkSelfDelivey  ? "CDEK" :"Самовызов Волгограде",
+          "delivery_cost": cdekSum,
+          "delivery_point": !checkSelfDelivey ?  cdek?.code : "Самовызов Волгограде"
+        }, copy.basket, promo_code, basket.Price,
           {
             "email": email, 'father_name': father_name, "first_name": first_name, "phone_number": phone_number,
             "second_name": second_name
           })
-        : await transactionCreate(delivery, cdekSum, copy.basket, promo_code, basket.Price,
+        : await transactionCreate({
+          "delivery_address":!checkSelfDelivey  ? cdek?.location?.address_full :"г. Волгоград, пр. Жукова 100б ",
+          "delivery_commpany":!checkSelfDelivey ? "CDEK" :"Самовызов Волгограде",
+          "delivery_cost": cdekSum,
+          "delivery_point": !checkSelfDelivey  ?  cdek?.code : "Самовызов Волгограде"
+        }, copy.basket, promo_code, basket.Price,
           {
             "email": email, 'father_name': father_name, "first_name": first_name, "phone_number": phone_number,
             "second_name": second_name
@@ -293,12 +312,12 @@ const Order = () => {
   const [checkOferta, setCheckOferta] = useState(false)
   const [formValid, setFormvalid] = useState(false)
   useEffect(() => {
-    if (!checkerpolitica || !checkOferta || emailError || first_nameError || father_nameError || phone_numberError || repeatError || !checkSelfDelivey) {
+    if (!checkerpolitica || !checkOferta || emailError || first_nameError || father_nameError || phone_numberError || repeatError ) {
       setFormvalid(false)
     } else {
       setFormvalid(true)
     }
-  }, [checkerpolitica, checkOferta, emailError, first_nameError, father_nameError, phone_numberError, repeatError, checkSelfDelivey])
+  }, [checkerpolitica, checkOferta, emailError, first_nameError, father_nameError, phone_numberError, repeatError])
 
   useEffect(() => {
     if (checkerTrans) {
@@ -318,6 +337,7 @@ const Order = () => {
 
   }, [cdek, delivery])
   console.log(cdek, "cdek")
+  console.log(cdekSum, "cdekSum")
   return (
     <div className='flex-1' style={{ minHeight: '100vh' }}>
       {
@@ -436,7 +456,7 @@ const Order = () => {
                           <label className='label_check'>{lang.lang === "ru" ? first_nameError.ru : first_nameError.en}</label>
                         }
                       </div>
-                      {/* <div className="form-field">
+                      <div className="form-field">
                         <label htmlFor="second_name">{lang?.lang=="ru"?<>Ваше отечество</>:<>Your fatherland</>}</label>
                         <input
                           onChange={(e) => Second_nameHandler(e)}
@@ -445,11 +465,11 @@ const Order = () => {
                           id="second_name"
                           value={second_name}
                           onBlur={e => blurHandler(e)}
-                          placeholder='Напишите отечество' />
+                          placeholder={lang.lang === "ru" ? 'Напишите отечество': "Write the fatherland"} />
                         {(second_nameDirty && second_nameError) &&
-                          <label className='label_check'>{second_nameError}</label>
+                          <label className='label_check'>{lang.lang === "ru" ? second_nameError.ru : second_nameError.en}</label>
                         }
-                      </div> */}
+                      </div>
                       <div className="form-field">
                         <label htmlFor="phone_number">{lang?.lang == "ru" ? <>Ваш телефон</> : <>Enter your phone number</>}</label>
                         <input

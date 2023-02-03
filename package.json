@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.0",
     "bootstrap": "^5.2.2",
+    "date-fns": "^2.29.3",
     "emailjs-com": "^3.2.0",
     "mobx": "^6.7.0",
     "mobx-react-lite": "^3.4.0",

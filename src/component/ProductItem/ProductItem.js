@@ -162,7 +162,7 @@ const ProductItem = () => {
             </div>
           </div>
           <div className="text-center">
-            <a className="Tenor-Sans-link">{lang.lang === "ru" ? <>Оставить отзыв</> : <>Give feedback</>}</a>
+            <NavLink to="/commentary" className="Tenor-Sans-link">{lang.lang === "ru" ? <>Оставить отзыв</> : <>Give feedback</>}</NavLink>
             <div className="box-rating" style={{ marginTop: '1em' }}>
               <div className="d-flex justify-content-center">
                 <div>
@@ -513,7 +513,8 @@ const ProductItem = () => {
       </div> */}
       <ModalComment
         show={modalShow}
-        onHide={() => setModalShow(false)} />
+        onHide={() => setModalShow(false)} 
+        data={data?.reviews}/>
         <ModalItem active={activeModal} setActive={setActiveModal}>
               <div className="toastjs-container">
                 <div className="toastjs success">
