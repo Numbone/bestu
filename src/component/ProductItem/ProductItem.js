@@ -504,13 +504,7 @@ const ProductItem = () => {
 
         </div>
       </div>
-      {/* <div className="block-similar">
-        <div className="container">
-          <div className="block__title">Похожие продукты</div>
-
-
-        </div>
-      </div> */}
+   
       <ModalComment
         show={modalShow}
         onHide={() => setModalShow(false)} 
