@@ -19,7 +19,7 @@ const Footer = () => {
                                 <div className='row'>
                                     <div className='col-md-6'>
                                         <div className='mb-4'>
-                                            <div className='d-flex align-items-center m-3'>
+                                            {/* <div className='d-flex align-items-center m-3'>
                                                 <a className='img me-4'
                                                     href='https://www.ozon.ru/seller/le-mousse-337461/products/?miniapp=seller_337461'
                                                     target='_blank'
@@ -57,7 +57,7 @@ const Footer = () => {
                                                 </a>
 
 
-                                            </div>
+                                            </div> */}
                                             {
                                                 lang.lang === "ru"
                                                     ?

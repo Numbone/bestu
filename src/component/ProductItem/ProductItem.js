@@ -68,7 +68,7 @@ const ProductItem = () => {
     const data = await reviewAdd(reviews, numberStar, id)
 
   }
-  const description_ru = data?.description_ru?.split(/\r\n/)
+  const description_ru = data?.description_ru?.split(/\n/)
   const [modalShow, setModalShow] = React.useState(false);
   useEffect(() => {
     getItem()
@@ -95,7 +95,9 @@ const ProductItem = () => {
     }
   }, [numberStar, numberStar2, numberStar3, numberStar4, numberStar5])
 
-
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   console.log(data, "data");
   return (
     <div className="flex-1" style={{ minHeight: '100vh' }}>
@@ -162,7 +164,7 @@ const ProductItem = () => {
             </div>
           </div>
           <div className="text-center">
-            <NavLink to="/commentary" className="Tenor-Sans-link">{lang.lang === "ru" ? <>Оставить отзыв</> : <>Give feedback</>}</NavLink>
+            {/* <NavLink to="/commentary" className="Tenor-Sans-link">{lang.lang === "ru" ? <>Оставить отзыв</> : <>Give feedback</>}</NavLink> */}
             <div className="box-rating" style={{ marginTop: '1em' }}>
               <div className="d-flex justify-content-center">
                 <div>
@@ -313,14 +315,14 @@ const ProductItem = () => {
 
                 {
                   lang.lang == 'ru'
-                    ? data?.descriptionRu?.split(/\r\n/)?.map(item =>
+                    ? data?.descriptionRu?.split(/\n/)?.map(item =>
                       <div>{item} </div>)
 
                     : null
                 }
                 {
                   lang.lang != 'ru'
-                    ? data?.descriptionEn?.split(/\r\n/)?.map(item =>
+                    ? data?.descriptionEn?.split(/\n/)?.map(item =>
                       <div>{item} </div>)
 
                     : null
@@ -379,14 +381,14 @@ const ProductItem = () => {
             <ul>
               {
                 lang.lang == 'ru'
-                  ? data?.actionRu?.split(/\r\n/)?.map(item =>
+                  ? data?.actionRu?.split(/\n/)?.map(item =>
                     <div>{item} </div>)
 
                   : null
               }
               {
                 lang.lang != 'ru'
-                  ? data?.actionEn?.split(/\r\n/)?.map(item =>
+                  ? data?.actionEn?.split(/\n/)?.map(item =>
                     <div>{item} </div>)
 
                   : null
@@ -421,14 +423,14 @@ const ProductItem = () => {
                 <div>
                   {
                     lang.lang == 'ru'
-                      ? data?.modeOfAppRus?.split(/\r\n/)?.map(item =>
+                      ? data?.modeOfAppRus?.split(/\n/)?.map(item =>
                         <div>{item} </div>)
 
                       : null
                   }
                   {
                     lang.lang != 'ru'
-                      ? data?.modeOfAppEn?.split(/\r\n/)?.map(item =>
+                      ? data?.modeOfAppEn?.split(/\n/)?.map(item =>
                         <div>{item} </div>)
 
                       : null
@@ -452,14 +454,14 @@ const ProductItem = () => {
                 <div>
                   {
                     lang.lang == 'ru'
-                      ? data?.contraindicationsRu?.split(/\r\n/)?.map(item =>
+                      ? data?.contraindicationsRu?.split(/\n/)?.map(item =>
                         <div>{item} </div>)
 
                       : null
                   }
                   {
                     lang.lang != 'ru'
-                      ? data?.contraindicationsEn?.split(/\r\n/)?.map(item =>
+                      ? data?.contraindicationsEn?.split(/\n/)?.map(item =>
                         <div>{item} </div>)
 
                       : null
@@ -485,14 +487,14 @@ const ProductItem = () => {
                 <div>
                   {
                     lang.lang == 'ru'
-                      ? data?.compoundRu?.split(/\r\n/)?.map(item =>
+                      ? data?.compoundRu?.split(/\n/)?.map(item =>
                         <div>{item} </div>)
 
                       : null
                   }
                   {
                     lang.lang != 'ru'
-                      ? data?.compoundEn?.split(/\r\n/)?.map(item =>
+                      ? data?.compoundEn?.split(/\n/)?.map(item =>
                         <div>{item} </div>)
 
                       : null

@@ -29,7 +29,7 @@ const Item = (props) => {
                     flex: 'column',
                     justifyContent: 'space-between'
                 }}>
-                <div style={{ minHeight: '1.4em' }}>
+                <div style={{ minHeight: '3em' }}>
                     <div className='block-product__name'
                         style={{
 
