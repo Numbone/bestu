@@ -17,7 +17,7 @@ const Item = (props) => {
         props.setIndexPhoto(props.index)
         props.clickOrder(props.props)
     }
-    console.log(props.props.count, "data")
+  
     return (
         <div className='col-sm-6' style={{ fontSize: 'calc(var(--index))', fontFamily: 'Tenor Sans,san-serif' }}>
             <ProductImages images={lang.lang === "ru" ? props.props.imagesRu : props.props.imagesEn} />
