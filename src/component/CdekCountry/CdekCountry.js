@@ -38,6 +38,7 @@ const CdekCountry = ({ counrtyCode,active,setActive,setCdek }) => {
         }
         if(allData!=undefined){
             setCdek(allData)
+           setActive(false)
         }
     }, [counrtyCode, regionCode, cityCode,allData])
     console.log(allData, "////Alldata")

@@ -457,7 +457,7 @@ const Order = () => {
                         }
                       </div>
                       <div className="form-field">
-                        <label htmlFor="second_name">{lang?.lang=="ru"?<>Ваше отечество</>:<>Your fatherland</>}</label>
+                        <label htmlFor="second_name">{lang?.lang=="ru"?<>Ваше отчество</>:<>Your fatherland</>}</label>
                         <input
                           onChange={(e) => Second_nameHandler(e)}
                           type="text"
@@ -465,7 +465,7 @@ const Order = () => {
                           id="second_name"
                           value={second_name}
                           onBlur={e => blurHandler(e)}
-                          placeholder={lang.lang === "ru" ? 'Напишите отечество': "Write the fatherland"} />
+                          placeholder={lang.lang === "ru" ? 'Напишите отчество': "Write the fatherland"} />
                         {(second_nameDirty && second_nameError) &&
                           <label className='label_check'>{lang.lang === "ru" ? second_nameError.ru : second_nameError.en}</label>
                         }
