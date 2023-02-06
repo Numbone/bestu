@@ -538,7 +538,7 @@ const Order = () => {
                     <div className="shipping-choose">
                       <div className="box-form">
                         <div className="form-field" onClick={() => setDelivery('Доставка СДЕК')}>
-                          <input type="radio" name="shipping-method" id="pickup1" className="input-checkbox" onChange={(e) => setModalCountry(e.target.checked)} />
+                          <input type="radio" name="shipping-method" id="pickup1" className="input-checkbox" onClick={() => setModalCountry(true)} />
                           <label htmlFor="pickup1"> {lang?.lang == "ru" ? <> СДЭК до пункта выдачи</> : <>CDEK to the point of issue </>} </label>
                         </div>
 
