@@ -3,7 +3,8 @@ import { all } from 'axios'
 import React, { useEffect, useState } from 'react'
 import { cdekCities, cdekOffice, cdekRegions } from '../../api/cdek'
 import './CdekCountry.css'
-import { AiOutlineClose } from "react-icons/ai"
+import { AiOutlineClose } from "react-icons/ai";
+import Select from "react-select";
 const CdekCountry = ({ counrtyCode,active,setActive,setCdek }) => {
     const [cdekRegion, setCdekRegion] = useState([])
     const [regionCode, setRegionCode] = useState(0)
@@ -41,7 +42,7 @@ const CdekCountry = ({ counrtyCode,active,setActive,setCdek }) => {
            setActive(false)
         }
     }, [counrtyCode, regionCode, cityCode,allData])
-    console.log(allData, "////Alldata")
+    console.log(allData, "////allData")
     return (
         <div className='box_container'>
             <div style={{display:'flex',justifyContent:'space-between'}}>
@@ -54,35 +55,84 @@ const CdekCountry = ({ counrtyCode,active,setActive,setCdek }) => {
             </div>
 
             <div className="form-field mt-3">
-                <label for="cdek-region" class="label-input mb-2" >Регион</label>
-                <select id='cdek-region' class="form-select">
-                    <option disabled="true" selected="true">Выбрать...</option>
-                    {
-                        cdekRegion?.map(item =>
-                            <option onClick={() => setRegionCode(item?.region_code)}>
-                                {item?.region}
-                            </option>
-                        )
-                    }
-
-                </select>
+                <label for="cdek-region" className="label-input mb-2" >Регион</label>
+                <Select
+                          placeholder={""}
+                          options={cdekRegion}
+                          onChange={(e) => setRegionCode(e?.region_code)}
+                          getOptionLabel={(status) => status?.region }
+                          getOptionValue={(status) => status?.region_code }
+                          theme={(theme) => ({
+                            ...theme,
+                            borderRadius: "4px",
+                            colors: {
+                              ...theme.colors,
+                              primary25: "#e7dbe2",
+                              primary: "black",
+                            },
+                          })}
+                          styles={{
+                            container: (base) => ({
+                              ...base,
+                              height: "48px",
+                              marginTop:"20px"
+                            }),
+                            control: (base, { isFocused }) => ({
+                              ...base,
+                              height: "48px",
+                              border: isFocused && "inherit",
+                            }),
+                            valueContainer: (base) => ({
+                              ...base,
+                              height: "48px",
+                            }),
+                            indicatorsContainer:(base)=>({
+                              display:'none'
+                            })
+                          }}
+                        />
+                      
             </div>
             {
                 regionCode != 0
                     ?
                     <div className="form-field mt-3">
-                        <label for="cdek-region" class="label-input mb-2" >Город</label>
-                        <select id='cdek-region' class="form-select">
-                            <option disabled="true" selected="true">Выбрать...</option>
-                            {
-                                getRegionData?.map(item =>
-                                    <option onClick={() => setCityCode(item?.code)} >
-                                        {item?.city}
-                                    </option>
-                                )
-                            }
-
-                        </select>
+                        <label htmlFor='1' className="label-input mb-2" >Город</label>
+                        <Select
+                          placeholder={""}
+                          options={getRegionData}
+                          onChange={(e) => setCityCode(e?.code)}
+                          getOptionLabel={(status) => status?.city }
+                          getOptionValue={(status) => status?.code }
+                          theme={(theme) => ({
+                            ...theme,
+                            borderRadius: "4px",
+                            colors: {
+                              ...theme.colors,
+                              primary25: "#e7dbe2",
+                              primary: "black",
+                            },
+                          })}
+                          styles={{
+                            container: (base) => ({
+                              ...base,
+                              height: "48px",
+                              marginTop:"20px"
+                            }),
+                            control: (base, { isFocused }) => ({
+                              ...base,
+                              height: "48px",
+                              border: isFocused && "inherit",
+                            }),
+                            valueContainer: (base) => ({
+                              ...base,
+                              height: "48px",
+                            }),
+                            indicatorsContainer:(base)=>({
+                              display:'none'
+                            })
+                          }}
+                        />
                     </div>
                     : null
             }
@@ -90,18 +140,43 @@ const CdekCountry = ({ counrtyCode,active,setActive,setCdek }) => {
                 cityCode != 0
                     ?
                     <div className="form-field mt-3">
-                        <label for="cdek-region" class="label-input mb-2" >Пункт самовывоза</label>
-                        <select id='cdek-region' class="form-select">
-                            <option disabled="true" selected="true">Выбрать...</option>
-                            {
-                                getOffice?.map(item =>
-                                    <option onClick={() => setAllData(item)}>
-                                        {item?.name}
-                                    </option>
-                                )
-                            }
-
-                        </select>
+                        <label for="cdek-region" className="label-input mb-2" >Пункт самовывоза</label>
+                        <Select
+                          placeholder={""}
+                          options={getOffice}
+                          onChange={(e) => setAllData(e)}
+                          getOptionLabel={(status) => status?.name }
+                          getOptionValue={(status) => status?.name }
+                          theme={(theme) => ({
+                            ...theme,
+                            borderRadius: "4px",
+                            colors: {
+                              ...theme.colors,
+                              primary25: "#e7dbe2",
+                              primary: "black",
+                            },
+                          })}
+                          styles={{
+                            container: (base) => ({
+                              ...base,
+                              height: "48px",
+                              marginTop:"20px"
+                            }),
+                            control: (base, { isFocused }) => ({
+                              ...base,
+                              height: "48px",
+                              border: isFocused && "inherit",
+                            }),
+                            valueContainer: (base) => ({
+                              ...base,
+                              height: "48px",
+                            }),
+                            indicatorsContainer:(base)=>({
+                              display:'none'
+                            })
+                          }}
+                        />
+                       
                     </div>
                     :
                     null
@@ -111,7 +186,7 @@ const CdekCountry = ({ counrtyCode,active,setActive,setCdek }) => {
                     ? <YMaps>
                         <Map defaultState={{
                             center: [55.751574, 37.573856],
-                            zoom: 4,
+                            zoom: 2,
                         }}
                             width={"85vw"}
                             height={400}>
