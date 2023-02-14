@@ -13,7 +13,7 @@ const ModalSendProductStars = (props) => {
         props.setNumberStars5(0)
         props.setActive(false)
        const data = await reviewAdd(props?.id,props?.aroma_stars,props?.delivery_stars,props?.effect_stars,props?.quality_stars,review_text,props?.texture_stars)
-     
+        
        
       }
     return (

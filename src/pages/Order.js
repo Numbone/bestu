@@ -604,6 +604,12 @@ const Order = () => {
                         )}
                       </label>
                       <input
+                        onInput={(e) =>
+                          (e.target.value = e.target.value
+                            .replace(/[^0-9.]/g, "")
+                            .replace(/(\..*?)\..*/g, "$1")
+                            .replace(/^0[^.]/, "0"))
+                        }
                         value={phone_number}
                         onChange={(e) => Phone_numberHandler(e)}
                         type="tel"
@@ -698,6 +704,7 @@ const Order = () => {
                         <Select
                           placeholder={""}
                           options={options}
+                          defaultValue={options[4]}
                           onChange={(e) => setCountryCode(e?.value)}
                           theme={(theme) => ({
                             ...theme,
@@ -712,7 +719,7 @@ const Order = () => {
                             container: (base) => ({
                               ...base,
                               height: "48px",
-                              marginTop:"20px"
+                              marginTop: "20px",
                             }),
                             control: (base, { isFocused }) => ({
                               ...base,
@@ -722,13 +729,13 @@ const Order = () => {
                             valueContainer: (base) => ({
                               ...base,
                               height: "48px",
+                              padding:"0 3px"
                             }),
-                            indicatorsContainer:(base)=>({
-                              display:'none'
-                            })
+                            indicatorsContainer: (base) => ({
+                              display: "none",
+                            }),
                           }}
                         />
-                      
                       </div>
                     </div>
                   </div>

@@ -38,7 +38,7 @@ const CategoryId = () => {
     window.scrollTo(0, 0)
   }, [])
   const stylang=lang.lang
-  console.log(locate.state,"product")
+  console.log(product,"product")
   return (
     <>
       <div>

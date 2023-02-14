@@ -30,6 +30,7 @@ import CategoryId from './pages/CategoryId';
 import AuthRobo from './pages/AuthRobo';
 import AuthRoboFail from './pages/AuthRoboFail';
 import Commentary from './component/Commentary/Commentary';
+import Article from './pages/Article';
 
 
 
@@ -100,6 +101,7 @@ function App() {
           <Route key={22} path='/robokassa/success' element={<AuthRobo />}></Route>
           <Route key={23} path='/authrobofail' element={<AuthRoboFail />}></Route>
           <Route key={24} path='/commentary' element={<Commentary />}></Route>
+          <Route key={25} path='/product/article' element={<Article />}></Route>
         </Routes>
 
         <Footer />

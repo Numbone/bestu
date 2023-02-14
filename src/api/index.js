@@ -20,7 +20,27 @@ const authInterceptor = config => {
     return config
 }
 $authHost.interceptors.request.use(authInterceptor)
-
+$authHost.interceptors.response.use(
+        (config)=>{
+            return config
+        },
+        async (error)=>{
+            if (error.response.status=401){
+                const originalRequest=error.config
+                try {
+                    const {data}=await $authHost.post('auth/refresh',{"token_value":localStorage.getItem('refresh')},{withCredentials:true})
+                    localStorage.setItem('access',data.access_token)
+                    localStorage.setItem('refresh',data.refresh_token)
+                    return $authHost.request(originalRequest)
+                } catch (error) {
+                   window.location("/login")
+                    console.log('not auth')
+                    
+                }
+                 
+            }
+        }
+    )
 export {
     instance,
     $authHost

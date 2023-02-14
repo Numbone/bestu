@@ -20,3 +20,7 @@ export const productSearch=async(param,lang)=>{
     const data=await instance.get(`product/search?lang=${lang}&search=${(param)}`)
     return data
 }
+export const productSimilar=async()=>{
+    const data=await instance.get(`product/similar`)
+    return data
+}

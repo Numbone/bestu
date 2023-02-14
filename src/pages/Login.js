@@ -28,6 +28,7 @@ const Login = () => {
       const { data } = await authSignin(username, password)
       setData(data)
       user.setIsAuth(true)
+    
       localStorage.setItem("access", data.access_token)
       localStorage.setItem("refresh", data.refresh_token)
     } catch (error) {
@@ -42,6 +43,8 @@ const Login = () => {
     try {
       const data = await getUser(username, password)
       setUserData(data)
+      user.setUserName(data?.User)
+      console.log(data?.User)
     } catch (error) {
 
     }
