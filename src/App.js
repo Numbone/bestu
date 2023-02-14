@@ -31,6 +31,7 @@ import AuthRobo from './pages/AuthRobo';
 import AuthRoboFail from './pages/AuthRoboFail';
 import Commentary from './component/Commentary/Commentary';
 import Article from './pages/Article';
+import UpdatePassword from './pages/UpdatePassword';
 
 
 
@@ -107,6 +108,7 @@ function App() {
           <Route key={23} path='/authrobofail' element={<AuthRoboFail />}></Route>
           <Route key={24} path='/commentary' element={<Commentary />}></Route>
           <Route key={25} path='/product/article' element={<Article />}></Route>
+          <Route key={26} path='/updatepassword' element={<UpdatePassword />}></Route>
         </Routes>
 
         <Footer />

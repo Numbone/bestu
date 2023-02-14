@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Context } from '..'
 import { authChange, authLink } from '../api/auth'
 
-const Reset = () => {
+const UpdatePassword = () => {
     const { lang } = useContext(Context)
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(!open);
     };
+   const navigate=useNavigate()
     const [password, setPassword] = useState()
     const [change, setChange] = useState(false)
     const [code, setCode] = useState("")
@@ -37,7 +38,7 @@ const Reset = () => {
         } catch (error) {
             console.log(error)
         } finally {
-
+            navigate("/login")
         }
 
     }
@@ -97,6 +98,8 @@ const Reset = () => {
                     </div>
                 </div>
            
+                        
+                        
                         <div className='content'>
                             <div className='container-fluid'>
                                 <div className='container'>
@@ -105,11 +108,11 @@ const Reset = () => {
                                             <div className='card'>
                                                 <div className='card-header'>
                                                     {
-                                                        lang.lang == "ru" ? <>Восстановить пароль</> : <>
-                                                            Restore password</>
+                                                        lang.lang?<>Восстановить аккаунт</>
+                                                        :<>
+                                                        Recover account</>
                                                     }
-
-
+                                                    
                                                 </div>
                                                 <div className='card-body'>
 
@@ -126,36 +129,27 @@ const Reset = () => {
                                                                     onChange={(e) => setPassword(e.target.value)}></input>
                                                             </div>
                                                         </div>
-                                                        {
-                                                            checker?
-                                                            <div className='form-group row'>
+                                                        <div className='form-group row'>
                                                             <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
-                                                             
+                                                                Password
                                                             </label>
 
                                                             <div className='col-md-6'>
-                                                            
-                                                            {
-                                                                lang.lang=="ru"?
-                                                                <>Такого пользователя нет базе </>
-                                                                :<>This user does not exist in the database.</>
-                                                            }
-                                                               
+                                                                <input className='form-control '
+                                                                    id='email'
+                                                                    type='password'
+                                                                    onChange={(e) => setCode(e.target.value)}></input>
                                                             </div>
                                                         </div>
-                                                        :null
-                                                        }
-                                                        
-                                                    
+
                                                         <div className='form-group row mb-0'>
                                                             <div className='col-md-8 offset-md-4'>
-                                                                <button onClick={getPassword} className='btn2 btn-primary'>
-                                                                    {
+                                                                <button onClick={getCode} className='btn2 btn-primary'>
+                                                                {
                                                                         lang.lang=="ru"?
                                                                         <>Продолжить</>
                                                                         :<>Continue</>
                                                                     }
-                                                                    
                                                                 </button>
 
                                                             </div>
@@ -168,13 +162,11 @@ const Reset = () => {
                                 </div>
                             </div>
                         </div>
-                        
-                      
-                        
+                
 
             </div>
         </>
     )
 }
 
-export default Reset
+export default UpdatePassword
