@@ -46,6 +46,8 @@ function App() {
  const { user, basket } = useContext(Context);
   if ((localStorage.getItem("access")?.length > 0)) {
     user.setIsAuth(true)
+  }else{
+    user.setIsAuth(false)
   }
   
   console.log(localStorage.getItem("lang"),"APP")

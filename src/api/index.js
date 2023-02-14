@@ -1,5 +1,6 @@
 import axios from "axios"
 
+
 export const API_URL="https://back.lemousse.beauty/"
 
 const instance= axios.create({
@@ -19,6 +20,7 @@ const authInterceptor = config => {
     config.headers.Authorization = `Bearer ${localStorage.getItem('access')}`
     return config
 }
+
 $authHost.interceptors.request.use(authInterceptor)
 $authHost.interceptors.response.use(
         (config)=>{
@@ -33,7 +35,9 @@ $authHost.interceptors.response.use(
                     localStorage.setItem('refresh',data.refresh_token)
                     return $authHost.request(originalRequest)
                 } catch (error) {
-                   window.location("/login")
+                    localStorage.removeItem('access');
+                    localStorage.removeItem('refresh');
+
                     console.log('not auth')
                     
                 }
