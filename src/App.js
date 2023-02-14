@@ -44,11 +44,14 @@ function App() {
  
  
  const { user, basket } = useContext(Context);
+ useEffect(()=>{
   if ((localStorage.getItem("access")?.length > 0)) {
     user.setIsAuth(true)
   }else{
     user.setIsAuth(false)
   }
+ },[localStorage.getItem("access")])
+ 
   
   console.log(localStorage.getItem("lang"),"APP")
   //Loading Basket

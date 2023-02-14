@@ -28,16 +28,20 @@ $authHost.interceptors.response.use(
         },
         async (error)=>{
             if (error.response.status=401){
+                
                 const originalRequest=error.config
+                if (originalRequest?.url==="auth/refresh"){
+                    return
+                }
                 try {
-                    const {data}=await $authHost.post('auth/refresh',{"token_value":localStorage.getItem('refresh')},{withCredentials:true})
+                    const {data}=await $authHost.post('auth/refresh',{"token_value":localStorage.getItem('refresh')})
                     localStorage.setItem('access',data.access_token)
                     localStorage.setItem('refresh',data.refresh_token)
                     return $authHost.request(originalRequest)
                 } catch (error) {
                     localStorage.removeItem('access');
                     localStorage.removeItem('refresh');
-
+                    window.location("/userasdsad")
                     console.log('not auth')
                     
                 }
