@@ -369,18 +369,43 @@ const Login = () => {
                 <div className='container-fluid'>
                   <div className='container'>
                     <div className="bd-example">
-                      <h4 style={{fontWeight:"600"}}>Срок хранение заказов</h4>
+                      <h4 style={{fontWeight:"600"}}> {
+                              lang?.lang === "ru"
+                                ? <>  Срок хранение заказов</>
+                                : <>Lead time for orderss</>
+                            }</h4>
                       <div className='mt-2'>
-                        Почта России -14 дней
+                      {
+                              lang?.lang === "ru"
+                                ? <>   Почта России -14 дней</>
+                                : <>Russian Post -14 days</>
+                            }
+                       
                       </div>
                       <div className='mt-2'>
-                        Boxberry -14 дней
+                      {
+                              lang?.lang === "ru"
+                                ? <>     Boxberry -14 дней</>
+                                : <> Boxberry -14 days</>
+                            }
+                      
                       </div>
                       <div className='mt-2'>
-                        CDEK ПВЗ -14 дней
+                      {
+                              lang?.lang === "ru"
+                                ? <>      CDEK ПВЗ -14 дней</>
+                                : <> CDEK PVZ -14 dayss</>
+                            }
+                       
                       </div>
                       <div className='mt-2'>
-                        CDEK Постамат -14 дней
+                      {
+                              lang?.lang === "ru"
+                                ? <>       CDEK Постамат -3 дней</>
+                                : <>CDEK Postamat -3 days</>
+                            }
+                       
+                       
                       </div>
                     </div>
                   </div>
@@ -446,7 +471,7 @@ const Login = () => {
                           onHide={() => setModalShow(false)}
                           data={userData?.Transactions[modalIndex]?.products}
                           totalCosts={userData?.Transactions[modalIndex]?.total_cost}
-                          status={userData?.Transactions[modalIndex]?.status[0]?.status_text} />
+                          status={userData?.Transactions[modalIndex]?.status[userData?.Transactions[modalIndex]?.status.length-1]?.status_text} />
 
 
 

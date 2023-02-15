@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 import "./css/Order.css";
 import ModalSucces from "../component/ModalSuccess/ModalSucces";
 import ModalError from "../component/ModalError/ModalError";
-
+import { getUser } from "../api/user";
 import ModalForCountry from "../component/ModalForCountry/ModalForCountry";
 import CdekCountry from "../component/CdekCountry/CdekCountry";
 import { getPromocode } from "../api/promocode";
@@ -14,11 +14,11 @@ import { cdekCalc } from "../api/cdek";
 import Select from "react-select";
 
 const options = [
-  { value: "AM", label: "Армения" },
-  { value: "BY", label: "Беларусь" },
-  { value: "KZ", label: "Казахстан" },
-  { value: "KG", label: "Кыргызстан" },
-  { value: "RU", label: "Россия" },
+  { value: "AM", label: "Армения" ,en:"Armenia"},
+  { value: "BY", label: "Беларусь",en:"Belarus" },
+  { value: "KZ", label: "Казахстан",en:"Kazakhstan" },
+  { value: "KG", label: "Кыргызстан",en:"Kyrgyzstan" },
+  { value: "RU", label: "Россия",en:"Russia" },
 ];
 const Order = () => {
   const { basket, user, lang } = useContext(Context);
@@ -349,6 +349,26 @@ const Order = () => {
   const [checkerpolitica, setCheckerpolitika] = useState(false);
   const [checkOferta, setCheckOferta] = useState(false);
   const [formValid, setFormvalid] = useState(false);
+
+  const[auth,setAuth]=useState({})
+  const getUserData=async()=>{
+    try {
+      const data=await getUser()
+      setAuth(data?.User)
+      setEmail(data?.User?.email)
+      setFather_name(data?.User.father_name)
+      setFirst_name(data?.User?.first_name)
+      setPhone_number(data?.User?.phone_number)
+      setSecond_name(data?.User?.second_name)
+      setRepeat(data?.User?.email)
+    } catch (error) {
+      
+    }
+   
+  }
+  useEffect(()=>{
+    getUserData()
+  },[])
   useEffect(() => {
     if (
       !checkerpolitica ||
@@ -372,7 +392,7 @@ const Order = () => {
     phone_numberError,
     repeatError,
   ]);
-
+  
   useEffect(() => {
     if (checkerTrans) {
       localStorage.removeItem("basket");
@@ -389,7 +409,10 @@ const Order = () => {
       setCdekSum(0);
     }
   }, [cdek, delivery]);
-  console.log(counrtyCode, "counrtyCode");
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  console.log(auth, "Useranme");
   console.log(cdekSum, "cdekSum");
   return (
     <div className="flex-1" style={{ minHeight: "100vh" }}>
@@ -704,6 +727,7 @@ const Order = () => {
                         <Select
                           placeholder={""}
                           options={options}
+                          getOptionLabel={(status) =>lang.lang==="ru"? status?.label :status?.en}
                           defaultValue={options[4]}
                           onChange={(e) => setCountryCode(e?.value)}
                           theme={(theme) => ({
@@ -729,10 +753,16 @@ const Order = () => {
                             valueContainer: (base) => ({
                               ...base,
                               height: "48px",
-                              padding:"0 3px"
+                              padding: "0 3px",
                             }),
                             indicatorsContainer: (base) => ({
                               display: "none",
+                            }),
+                            input: (base) => ({
+                              ...base,
+                              margin: "0",
+                              paddingBottom: "0",
+                              paddingTop: "0",
                             }),
                           }}
                         />

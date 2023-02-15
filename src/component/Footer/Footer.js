@@ -1,25 +1,28 @@
-import { observer } from 'mobx-react-lite'
-import React, { useContext } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
-import { Context } from '../..'
-import "../Footer/Footer.css"
-import ozon from "../../img/ozon.png"
-import wild from "../../img/wildberries.png"
+import { observer } from "mobx-react-lite";
+import React, { useContext } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { Context } from "../..";
+import "../Footer/Footer.css";
+import ozon from "../../img/ozon.png";
+import wild from "../../img/wildberries.png";
 const Footer = () => {
-    const navi = useLocation()
-    const { lang } = useContext(Context)
-    return (
-        <>
-            {
-                navi.pathname !== "/login" && navi.pathname !== "/reset" && navi.pathname !== "/robokassa/success" && navi.pathname !== "/authrobofail" && navi.pathname != "/commentary" ?
-                    <div>
-
-                        <footer className='footer'>
-                            <div className='container'>
-                                <div className='row'>
-                                    <div className='col-md-6'>
-                                        <div className='mb-4'>
-                                            {/* <div className='d-flex align-items-center m-3'>
+  const navi = useLocation();
+  const { lang } = useContext(Context);
+  return (
+    <>
+      {navi.pathname !== "/login" &&
+      navi.pathname !== "/reset" &&
+      navi.pathname !== "/robokassa/success" &&
+      navi.pathname !== "/authrobofail" &&
+      navi.pathname != "/commentary" &&
+      navi.pathname!="/updatepassword" ? (
+        <div>
+          <footer className="footer">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="mb-4">
+                    {/* <div className='d-flex align-items-center m-3'>
                                                 <a className='img me-4'
                                                     href='https://www.ozon.ru/seller/le-mousse-337461/products/?miniapp=seller_337461'
                                                     target='_blank'
@@ -58,134 +61,130 @@ const Footer = () => {
 
 
                                             </div> */}
-                                            {
-                                                lang.lang === "ru"
-                                                    ?
-                                                    <>
-                                                        ИП Нечаева Ольга Андреевна
-                                                        <br></br>
-                                                        ОГРН 320344300076171, ИНН 344115294608
-                                                        <br></br>
-                                                        <br></br>
-                                                        Самовывоз: г.Волгоград, пр. Жукова 100б (Вход через магнит)
-                                                        <br></br>
-                                                        <br></br>
-                                                        По вопросам самовывоза:
-                                                        <br></br>
-                                                        +79023125532
-                                                        <br></br>
-                                                        <br></br>
-                                                        Телефон доступен в рабочее время с 9:00 до 18:00 (по Московскому времени)
-                                                    </>
-                                                    :
-                                                    <>
-                                                        SP Ovchinnikova Julia Igorevna
-                                                        <br></br>
-                                                        PSRN 321344300027087, TIN 344103083881
-                                                        <br></br>
-                                                        <br></br>
-                                                        Pickup: Volgograd, Zhukov Ave. 100b (Entrance through a magnit shop)
-                                                        <br></br>
-                                                        <br></br>
-                                                        For pickup questions:
-                                                        <br></br>
-                                                        +79023125532
-                                                        <br></br>
-                                                        <br></br>
-                                                        The phone is available during business hours from 9:00 to 18:00 (Moscow time)
-                                                    </>
-                                            }
+                    {lang.lang === "ru" ? (
+                      <>
+                        ИП Нечаева Ольга Андреевна
+                        <br></br>
+                        ОГРН 320344300076171, ИНН 344115294608
+                        <br></br>
+                        <br></br>
+                        Самовывоз: г.Волгоград, пр. Жукова 100б (Вход через
+                        магнит)
+                        <br></br>
+                        <br></br>
+                        По вопросам самовывоза:
+                        <br></br>
+                        +79023125532
+                        <br></br>
+                        <br></br>
+                        Телефон доступен в рабочее время с 9:00 до 18:00 (по
+                        Московскому времени)
+                      </>
+                    ) : (
+                      <>
+                        SP Ovchinnikova Julia Igorevna
+                        <br></br>
+                        PSRN 321344300027087, TIN 344103083881
+                        <br></br>
+                        <br></br>
+                        Pickup: Volgograd, Zhukov Ave. 100b (Entrance through a
+                        magnit shop)
+                        <br></br>
+                        <br></br>
+                        For pickup questions:
+                        <br></br>
+                        +79023125532
+                        <br></br>
+                        <br></br>
+                        The phone is available during business hours from 9:00
+                        to 18:00 (Moscow time)
+                      </>
+                    )}
+                  </div>
+                </div>
+                {lang.lang === "ru" ? (
+                  <div className="col-md-6">
+                    По вопросам качества продукции:
+                    <br></br>
+                    8(8442)52-48-48
+                    <br></br>
+                  </div>
+                ) : (
+                  <div className="col-md-6">
+                    For product quality questions:
+                    <br></br>
+                    8(8442)52-48-48
+                    <br></br>
+                  </div>
+                )}
 
+                <div className="col-lg-7 mt-4">
+                  <div className="item" style={{ fontSize: "1.2em" }}>
+                    {lang?.lang === "ru" ? (
+                      <>Техническая поддержка:</>
+                    ) : (
+                      <>Technical support:</>
+                    )}
 
-                                        </div>
-                                    </div>
-                                    {
-                                        lang.lang === "ru"
-                                            ?
-                                            <div className='col-md-6'>
-                                                По вопросам качества продукции:
-                                                <br></br>
-                                                8(8442)52-48-48
-                                                <br></br>
-                                            </div>
-                                            :
-                                            <div className='col-md-6'>
-                                                For product quality questions:
-                                                <br></br>
-                                                8(8442)52-48-48
-                                                <br></br>
-                                            </div>
-                                    }
+                    <br></br>
+                    <a href="https://t.me/thebestforyourself_bot">
+                      t.me/thebestforyourself_bot
+                    </a>
+                    <br></br>
+                    <br></br>
+                  </div>
+                </div>
+                <div className="col-lg-7 order-last order-lg-0">
+                  <div className="item">
+                    <NavLink
+                      to="/ofertapage"
+                      style={{ textDecoration: "underline" }}
+                    >
+                      {lang.lang === "ru" ? (
+                        <>Публичная оферта</>
+                      ) : (
+                        <>Public offer</>
+                      )}
+                    </NavLink>
+                    <br></br>
+                    <br></br>
+                    <NavLink
+                      to="/politicapage"
+                      style={{ textDecoration: "underline" }}
+                    >
+                      {lang.lang === "ru" ? (
+                        <> Политика обработки персональных данных</>
+                      ) : (
+                        <>Personal data processing policy</>
+                      )}
+                    </NavLink>
+                    <br></br>
+                    <br></br>
+                    <NavLink
+                      to="/login"
+                      style={{ textDecoration: "underline" }}
+                    >
+                      {lang.lang === "ru" ? (
+                        <> Личный кабинет</>
+                      ) : (
+                        <>Private office</>
+                      )}
+                    </NavLink>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      ) : navi.pathname !== "/robokassa/success" &&
+        navi.pathname !== "/login" &&
+        navi.pathname !== "/reset" &&
+        navi.pathname !== "/authrobofail"&&
+        navi.pathname!="/updatepassword" ? (
+        <div style={{ height: "100vh", backgroundColor: "#E7DBE2" }}></div>
+      ) : null}
+    </>
+  );
+};
 
-                                    <div className='col-lg-7 mt-4'>
-                                        <div className='item'
-                                            style={{ fontSize: '1.2em' }}>
-                                            {
-                                                lang?.lang === "ru"
-                                                    ?
-                                                    <>
-                                                        Техническая поддержка:
-                                                    </>
-                                                    :
-                                                    <>
-                                                        Technical support:
-                                                    </>
-                                            }
-
-                                            <br></br>
-                                            <a href='https://t.me/thebestforyourself_bot'>
-                                                t.me/thebestforyourself_bot
-                                            </a>
-                                            <br></br>
-                                            <br></br>
-                                        </div>
-                                    </div>
-                                    <div className='col-lg-7 order-last order-lg-0'>
-                                        <div className='item'>
-                                            <NavLink to='/ofertapage'
-                                                style={{ textDecoration: 'underline' }}>
-                                                {
-                                                    lang.lang === "ru"
-                                                        ? <>Публичная оферта</>
-                                                        : <>Public offer</>
-                                                }
-
-                                            </NavLink>
-                                            <br></br>
-                                            <br></br>
-                                            <NavLink to="/politicapage"
-                                                style={{ textDecoration: 'underline' }}>
-                                                {
-                                                    lang.lang === "ru"
-                                                        ? <>  Политика обработки персональных данных</>
-                                                        : <>Personal data processing policy</>
-                                                }
-
-                                            </NavLink>
-                                            <br></br>
-                                            <br></br>
-                                            <NavLink to='/login'
-                                                style={{ textDecoration: 'underline' }}>
-                                                {
-                                                    lang.lang === "ru"
-                                                        ? <> Личный кабинет</>
-                                                        : <>Private office</>
-                                                }
-
-                                            </NavLink>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </footer>
-
-
-                    </div>
-                    : navi.pathname !== "/robokassa/success" && navi.pathname !== "/login" && navi.pathname !== "/reset" && navi.pathname !== "/authrobofail" ?
-                        <div style={{ height: '100vh', backgroundColor: '#E7DBE2' }}></div> : null
-            }
-        </>
-    )
-}
-
-export default observer(Footer)
+export default observer(Footer);

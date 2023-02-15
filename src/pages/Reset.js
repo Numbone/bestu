@@ -137,8 +137,8 @@ const Reset = () => {
                                                             
                                                             {
                                                                 lang.lang=="ru"?
-                                                                <>Такого пользователя нет базе </>
-                                                                :<>This user does not exist in the database.</>
+                                                                <>На ваш email отправлено сообщение </>
+                                                                :<>A message has been sent to your email</>
                                                             }
                                                                
                                                             </div>

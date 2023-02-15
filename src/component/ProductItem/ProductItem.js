@@ -219,9 +219,17 @@ const ProductItem = () => {
             </div>
           </div>
           <div className="text-center">
-            <NavLink to="/commentary" state={data} className="Tenor-Sans-link">
+            {
+              user.isAuth
+              ?<NavLink to="/commentary" state={data} className="Tenor-Sans-link">
               {lang.lang === "ru" ? <>Оставить отзыв</> : <>Give feedback</>}
             </NavLink>
+            :<NavLink to="/login" state={data} className="Tenor-Sans-link">
+            {lang.lang === "ru" ? <>Оставить отзыв</> : <>Give feedback</>}
+          </NavLink>
+
+            }
+            
             <div className="box-rating" style={{ marginTop: "1em" }}>
               <div className="d-flex justify-content-center">
                 <div>

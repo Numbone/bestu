@@ -1,11 +1,16 @@
 import React, { useContext, useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { Context } from '..'
 import { authChange, authLink } from '../api/auth'
 
 const UpdatePassword = () => {
     const { lang } = useContext(Context)
     const [open, setOpen] = React.useState(false);
+    const {search}=useLocation()
+    const location=search.split("code=")[1]
+    const email=search.split("code=")[0].split("=")[1].replace("&","")
+    console.log(location)
+    console.log((email));
     const handleOpen = () => {
         setOpen(!open);
     };
@@ -31,7 +36,7 @@ const UpdatePassword = () => {
     const getCode = async (e) => {
         e.preventDefault()
         try {
-            const data = await authChange(password, code)
+            const data = await authChange(email, location,password)
             setChange(true)
             console.log(data)
             return data
@@ -108,7 +113,7 @@ const UpdatePassword = () => {
                                             <div className='card'>
                                                 <div className='card-header'>
                                                     {
-                                                        lang.lang?<>Восстановить аккаунт</>
+                                                        lang.lang==="ru"?<>Восстановить аккаунт</>
                                                         :<>
                                                         Recover account</>
                                                     }
@@ -119,29 +124,21 @@ const UpdatePassword = () => {
                                                     <form>
                                                         <div className='form-group row'>
                                                             <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
-                                                                Email
-                                                            </label>
-
-                                                            <div className='col-md-6'>
-                                                                <input className='form-control '
-                                                                    id='email'
-                                                                    type='email'
-                                                                    onChange={(e) => setPassword(e.target.value)}></input>
-                                                            </div>
-                                                        </div>
-                                                        <div className='form-group row'>
-                                                            <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
-                                                                Password
+                                                            {
+                                                                        lang.lang=="ru"?
+                                                                        <>Пароль</>
+                                                                        :<>Password</>
+                                                                    }
                                                             </label>
 
                                                             <div className='col-md-6'>
                                                                 <input className='form-control '
                                                                     id='email'
                                                                     type='password'
-                                                                    onChange={(e) => setCode(e.target.value)}></input>
+                                                                    onChange={(e) => setPassword(e.target.value)}></input>
                                                             </div>
                                                         </div>
-
+                                                        
                                                         <div className='form-group row mb-0'>
                                                             <div className='col-md-8 offset-md-4'>
                                                                 <button onClick={getCode} className='btn2 btn-primary'>
