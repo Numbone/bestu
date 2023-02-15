@@ -1113,7 +1113,7 @@ const Order = () => {
                   />
                   <div className="text-center" onClick={sendTransaction}>
                     <button
-                      disabled={!formValid}
+                      
                       type="submit"
                       form="order"
                       className="btn"
