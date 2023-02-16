@@ -11,6 +11,7 @@ import { reviewAdd } from "../../api/review";
 import ModalSucces from "../ModalSuccess/ModalSucces";
 import ModalSendProductStars from "../ModalSendProductStars/ModalSendProductStars";
 import ModalItem from "../ModalItem/ModalItem";
+import ModalItem2 from "../ModalItem2/ModalItem2";
 import Item from "../Item/Item";
 const ProductItem = () => {
   const { lang, user } = useContext(Context);
@@ -63,8 +64,8 @@ const ProductItem = () => {
   const [numberStar3, setNumberStars3] = useState(0);
   const [numberStar4, setNumberStars4] = useState(0);
   const [numberStar5, setNumberStars5] = useState(0);
-  const [active1, setActive1] = React.useState(false)
-  const [indexPhoto, setIndexPhoto] = useState(0)
+  const [active1, setActive1] = React.useState(false);
+  const [indexPhoto, setIndexPhoto] = useState(0);
 
   const sendReviewStar = async () => {
     const data = await reviewAdd(reviews, numberStar, id);
@@ -78,11 +79,19 @@ const ProductItem = () => {
     setSimilarProduct(data);
   };
   useEffect(() => {
+    window.scrollTo(0, 0);
     getItem();
-  }, [description_ru]);
+  }, [description_ru,id]);
 
   const [active, setActive] = useState(false);
   const [activeModal, setActiveModal] = useState(false);
+  const [activeModal1, setActiveModal1] = useState(false);
+  const clickOrder1 = (id) => {
+    basket.setBasket(id);
+    
+  };
+
+  const [indexPhoto1, setIndexPhoto1] = useState(0);
   useEffect(() => {
     if (
       numberStar != 0 &&
@@ -219,17 +228,20 @@ const ProductItem = () => {
             </div>
           </div>
           <div className="text-center">
-            {
-              user.isAuth
-              ?<NavLink to="/commentary" state={data} className="Tenor-Sans-link">
-              {lang.lang === "ru" ? <>Оставить отзыв</> : <>Give feedback</>}
-            </NavLink>
-            :<NavLink to="/login" state={data} className="Tenor-Sans-link">
-            {lang.lang === "ru" ? <>Оставить отзыв</> : <>Give feedback</>}
-          </NavLink>
+            {user.isAuth ? (
+              <NavLink
+                to="/commentary"
+                state={data}
+                className="Tenor-Sans-link"
+              >
+                {lang.lang === "ru" ? <>Оставить отзыв</> : <>Give feedback</>}
+              </NavLink>
+            ) : (
+              <NavLink to="/login" state={data} className="Tenor-Sans-link">
+                {lang.lang === "ru" ? <>Оставить отзыв</> : <>Give feedback</>}
+              </NavLink>
+            )}
 
-            }
-            
             <div className="box-rating" style={{ marginTop: "1em" }}>
               <div className="d-flex justify-content-center">
                 <div>
@@ -813,23 +825,66 @@ const ProductItem = () => {
       <div className="block-similar">
         <div className="container">
           <div className="block__title">Похожие продукты</div>
-          <div className="row" style={{flexWrap:"nowrap",overflowY:"scroll"}}>
-           
-              {similarProduct?.map((item, index) => (
-               
+          <div
+            className="row"
+            style={{ flexWrap: "nowrap", overflowY: "scroll" }}
+          >
+            {similarProduct?.map((item, index) => (
+              <>
                 <Item
                   props={item}
                   key={index}
                   id={item.id}
-                  clickOrder={clickOrder}
-                  setIndexPhoto={setIndexPhoto}
-                  active={active1}
-                  setActive={setActive1}
+                  clickOrder={clickOrder1}
+                  setIndexPhoto={setIndexPhoto1}
+                  active={activeModal1}
+                  setActive={setActiveModal1}
                   index={index}
                 />
                
-              ))} 
-            
+              </>
+            ))}
+             <ModalItem2 active={activeModal1} setActive={setActiveModal1}>
+                  <div className="toastjs-container">
+                    <div className="toastjs success">
+                      <p>
+                      {
+                      lang.lang==="ru"?
+                      similarProduct===null ?null
+                      :similarProduct[indexPhoto1] ===undefined  ? null :similarProduct[indexPhoto1]?.name_ru
+                      :
+                      similarProduct===null ?null
+                      :similarProduct[indexPhoto1] ===undefined  ? null :similarProduct[indexPhoto1]?.name_en
+                    }
+                    
+                      </p>
+                      <div className="d-flex">
+                        <button
+                          type="button"
+                          className="toastjs-btn toastjs-btn--custom"
+                          onClick={() => setActiveModal1(false)}
+                        >
+                          <NavLink to="/order" style={{ color: "#fff" }}>
+                            {" "}
+                            {lang.lang === "ru" ? (
+                              <>Оформить заказ </>
+                            ) : (
+                              <>Checkout</>
+                            )}
+                          </NavLink>
+                        </button>
+
+                        <button
+                          type="button"
+                          className="toastjs-btn toastjs-btn--close"
+                          onClick={() => setActiveModal1(false)}
+                        >
+                          Ок
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </ModalItem2>
           </div>
         </div>
       </div>
@@ -838,6 +893,7 @@ const ProductItem = () => {
         onHide={() => setModalShow(false)}
         data={data?.reviews}
       />
+
       <ModalItem active={activeModal} setActive={setActiveModal}>
         <div className="toastjs-container">
           <div className="toastjs success">

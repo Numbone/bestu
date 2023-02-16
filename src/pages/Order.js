@@ -21,6 +21,7 @@ const options = [
   { value: "RU", label: "Россия",en:"Russia" },
 ];
 const Order = () => {
+ 
   const { basket, user, lang } = useContext(Context);
   const [cdek, setCdek] = useState();
   const [cdekSum, setCdekSum] = useState(0);
@@ -366,6 +367,9 @@ const Order = () => {
     }
    
   }
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(()=>{
     getUserData()
   },[])
@@ -409,9 +413,7 @@ const Order = () => {
       setCdekSum(0);
     }
   }, [cdek, delivery]);
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+ 
   console.log(auth, "Useranme");
   console.log(cdekSum, "cdekSum");
   return (
@@ -829,7 +831,7 @@ const Order = () => {
                       {lang.lang === "ru" ? (
                         <span id="info-pvz-address">
                           Самовывоз по адресу: г. Волгоград, пр. Жукова 100б
-                          (вход через магазин "магнит")
+                          (вход через магазин "Магнит")
                           <br />
                           Тел. +7 902 312-55-32
                         </span>
