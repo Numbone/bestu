@@ -8,6 +8,7 @@ import { getUser } from '../api/user';
 import Moment from 'react-moment';
 
 import ModalForOrder from '../component/ModalForOrder/ModalForOrder';
+import { format } from 'date-fns';
 
 const Login = () => {
   const [checker, setChecker] = useState(false)
@@ -42,6 +43,16 @@ const Login = () => {
   const getUserContent = async () => {
     try {
       const data = await getUser(username, password)
+      for (let i = 0; i < data?.Transactions.length; i++) {
+        let element = data?.Transactions[i];
+        console.log(element,"element")
+        const date = new Date(element?.date);
+      
+        date.setHours(date.getHours() - 6);
+        console.log(date,"date")
+        const formattedDate = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS");
+        element.date=formattedDate
+      }
       setUserData(data)
       user.setUserName(data?.User)
       console.log(data?.User)
@@ -453,7 +464,7 @@ const Login = () => {
                               <tr>
                                 <th scope="row">{item.id}</th>
                                 <td>{item.total_cost}</td>
-                                <td><Moment format="DD/MM/YYYY HH:mm:ss">{item.date}</Moment></td>
+                                <td><Moment format="DD/MM/YYYY HH:mm:ss" locale='kz'>{item.date}</Moment></td>
                                 <td onClick={() => openModalforOrder(index)}>
                                   {
                                     lang?.lang === "ru"
