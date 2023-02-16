@@ -131,7 +131,7 @@ const Login = () => {
   useEffect(() => {
     window.scrollTo(0, 10)
   }, [window.location])
-  console.log(userData);
+  
   return (
     <>
       <nav className='main-header navbar navbar-expand-md navbar-light navbar-white' style={{ minHeight: '100%' }}>
