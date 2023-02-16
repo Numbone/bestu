@@ -286,7 +286,7 @@ const Order = () => {
             {
               delivery_address: !checkSelfDelivey
                 ? cdek?.location?.address_full
-                : "г. Волгоград, пр. Жукова 100б ",
+                : "Самовызов Волгограде",
               delivery_commpany: !checkSelfDelivey
                 ? "CDEK"
                 : "Самовызов Волгограде",
