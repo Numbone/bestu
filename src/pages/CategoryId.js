@@ -46,8 +46,8 @@ const CategoryId = () => {
         
         style={ stylang==="ru"?
           // locate?.state?.ImagesRu === undefined? null : { backgroundImage: `url(${ locate?.state?.ImagesRu[1]})` }
-           { backgroundImage: `url(${ locate?.state?.ImagesRu[1]})` }
-           : { backgroundImage: `url(${ locate?.state?.ImagesEn[1]})` }
+           { backgroundImage: `url(${ locate?.state?.ImagesRu?.[1]})` }
+           : { backgroundImage: `url(${ locate?.state?.ImagesEn?.[1]})` }
           }>
           <div className='d-flex justify-content-center'>
             <div className='container'>
