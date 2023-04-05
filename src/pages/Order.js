@@ -273,6 +273,9 @@ const Order = () => {
             },
             copy.basket,
             promo_code,
+            !checkSelfDelivey
+                ? cdek?.phones?.[0]?.number
+                : "Самовызов Волгограде ",
             basket.Price,
             {
               email: email,
@@ -297,6 +300,9 @@ const Order = () => {
             },
             copy.basket,
             promo_code,
+            !checkSelfDelivey
+                ? cdek?.phones?.[0]?.number
+                : "Самовызов Волгограде ",
             basket.Price,
             {
               email: email,
@@ -414,7 +420,7 @@ const Order = () => {
     }
   }, [cdek, delivery]);
  
-  console.log(auth, "Useranme");
+  console.log(cdek, "cdek");
   console.log(cdekSum, "cdekSum");
   return (
     <div className="flex-1" style={{ minHeight: "100vh" }}>

@@ -1,12 +1,17 @@
 import { Map, ObjectManager, Placemark, YMaps } from "@pbe/react-yandex-maps";
 import { all } from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { cdekCities, cdekOffice, cdekRegions } from "../../api/cdek";
 import "./CdekCountry.css";
+import { observer } from "mobx-react-lite";
 import { AiOutlineClose } from "react-icons/ai";
 import Select from "react-select";
-import ph from "../../img/button.png"
+import ph from "../../img/button.png";
+import { Context } from "../..";
+
 const CdekCountry = ({ counrtyCode, active, setActive, setCdek }) => {
+  const { lang } = useContext(Context);
+  const serverLang=lang.lang==="ru"?"rus":"eng"
   const [cdekRegion, setCdekRegion] = useState([]);
   const [regionCode, setRegionCode] = useState(0);
   const [getRegionData, setGetRegionData] = useState([]);
@@ -14,36 +19,38 @@ const CdekCountry = ({ counrtyCode, active, setActive, setCdek }) => {
   const [getOffice, setGetOffice] = useState([]);
   const [allData, setAllData] = useState(undefined);
   const [map, setMap] = useState([55.75, 37.57]);
-  const getCdekRegion = async () => {
-    const { data } = await cdekRegions(counrtyCode);
+  const getCdekRegion = useCallback(async () => {
+    const { data } = await cdekRegions(counrtyCode,serverLang);
     setCdekRegion(data);
-  };
-  const getCdekCities = async () => {
-    const { data } = await cdekCities(regionCode);
+  }, [counrtyCode, serverLang]);
+
+  const getCdekCities = useCallback(async () => {
+    const { data } = await cdekCities(regionCode,serverLang);
     setGetRegionData(data);
     setMap([data?.[0]?.latitude?.toFixed(2), data?.[0]?.longitude?.toFixed(2)]);
-  };
-  const getCdekOffice = async () => {
-    const { data } = await cdekOffice(cityCode);
+  }, [regionCode,serverLang]);
+  const getCdekOffice = useCallback(async () => {
+    const { data } = await cdekOffice(cityCode,serverLang);
     setGetOffice(data);
-  };
+  }, [cityCode,serverLang]);
   const defaultState = {
     center: [55.751574, 37.573856],
     zoom: 5,
   };
   useEffect(() => {
     getCdekRegion();
-    if (regionCode != 0) {
+    if (regionCode !== 0) {
       getCdekCities();
     }
-    if (cityCode != 0) {
+    if (cityCode !== 0) {
       getCdekOffice();
     }
-    if (allData != undefined) {
+    if (allData !== undefined) {
       setCdek(allData);
       setActive(false);
     }
   }, [counrtyCode, regionCode, cityCode, allData]);
+  console.log(cdekRegion, "////cdekRegion");
   console.log(getOffice, "////getOffice");
   console.log(getRegionData, "////getRegionData");
   return (
@@ -181,58 +188,54 @@ const CdekCountry = ({ counrtyCode, active, setActive, setCdek }) => {
           />
         </div>
       ) : null}
-      <div style={{display:'flex',justifyContent:'center',width:'100%'}}>
+      <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+        {getOffice.length != 0 ? (
+          <YMaps>
+            <Map
+              defaultState={{
+                center: map,
+                zoom: 11,
+              }}
+              width={534}
+              height={400}
+            >
+              {getOffice.map((item) => (
+                <>
+                  <Placemark
+                    onClick={() => console.log(item?.code)}
+                    geometry={[
+                      item?.location?.latitude,
+                      item?.location?.longitude,
+                    ]}
+                    options={{
+                      balloonMinWidth: 40,
+                      balloonAutoPanMargin: 10,
+                    }}
+                    // options={
+                    //   {
+                    //     balloonContent: "Это красивая метка",
 
-      
-      {getOffice.length != 0 ? (
-        <YMaps>
-          <Map
-            defaultState={{
-              center: map,
-              zoom: 11,
-            }}
-            width={534}
-            height={400}
-          >
-            {getOffice.map((item) => (
-              <>
-                <Placemark
-                  onClick={() => console.log(item?.code)}
-                  geometry={[
-                    item?.location?.latitude,
-                    item?.location?.longitude,
-                  ]}
-                  options={
-                    {
-                      balloonMinWidth:40,
-                      balloonAutoPanMargin:10
-                    }
-                  }
-                  // options={
-                  //   {
-                  //     balloonContent: "Это красивая метка",
-                  
-                  //     // Опции.
-                  //     // Необходимо указать данный тип макета.
-                  //     // iconLayout: "default#image",
-                  //     // Своё изображение иконки метки.
-                  //     // iconImageHref: {ph},
-                  //     // Размеры метки.
-                  //     // iconImageSize: [30, 42],
-                  //     // Смещение левого верхнего угла иконки относительно
-                  //     // её "ножки" (точки привязки).
-                  //     // iconImageOffset: [-5, -38],
-                  //   }
-                  // }
-                />
-              </>
-            ))}
-          </Map>
-        </YMaps>
-      ) : null}
+                    //     // Опции.
+                    //     // Необходимо указать данный тип макета.
+                    //     // iconLayout: "default#image",
+                    //     // Своё изображение иконки метки.
+                    //     // iconImageHref: {ph},
+                    //     // Размеры метки.
+                    //     // iconImageSize: [30, 42],
+                    //     // Смещение левого верхнего угла иконки относительно
+                    //     // её "ножки" (точки привязки).
+                    //     // iconImageOffset: [-5, -38],
+                    //   }
+                    // }
+                  />
+                </>
+              ))}
+            </Map>
+          </YMaps>
+        ) : null}
       </div>
     </div>
   );
 };
 
-export default CdekCountry;
+export default observer(CdekCountry);
