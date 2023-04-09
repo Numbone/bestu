@@ -17,11 +17,11 @@ const ProductImages = props => {
                 {
                     props.images==undefined?<div></div>
                     :props.images.map((item,index)=>(
-                        <SwiperSlide>
+                        <SwiperSlide >
                             <img src={item} style={{
-                                objectFit: "cover",
+                                objectFit: "fill",
                                 width: "100%",
-                                height:"100%",
+                                height:"20em",
                                 
                                 
                             }} alt="SliderImage"></img>
