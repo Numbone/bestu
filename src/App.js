@@ -54,7 +54,7 @@ function App() {
  },[localStorage.getItem("access")])
  
   
-  console.log(localStorage.getItem("lang"),"APP")
+ 
   //Loading Basket
   useEffect(() => {
   

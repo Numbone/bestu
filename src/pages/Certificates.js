@@ -49,7 +49,7 @@ const Certificates = () => {
                     <div className='block-title my-4'>
                         <h2 style={{ fontSize: '1.5em' }}>
                             {
-                                lang.lang == "ru" ? <>Сертификаты и декларации качества</>
+                                lang.lang === "ru" ? <>Сертификаты и декларации качества</>
                                     : <>
                                         Certificates and declarations of quality</>
                             }

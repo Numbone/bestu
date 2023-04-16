@@ -59,7 +59,7 @@ const Dealers = () => {
                                                         : <>Your first name</>
                                                 }
                                             </label>
-                                            <input type="text" name="name" id="name" placeholder={lang.lang == "ru" ? "Введите имя" : "Enter your name"} />
+                                            <input type="text" name="name" id="name" placeholder={lang.lang === "ru" ? "Введите имя" : "Enter your name"} />
                                         </div>
 
                                         <div className="form-field">
@@ -70,7 +70,7 @@ const Dealers = () => {
                                                         : <>Your phone</>
                                                 }
                                             </label>
-                                            <input type="text" name="phone" id="phone" placeholder={lang.lang == "ru" ? "Введите телефон" : "Enter phone"} />
+                                            <input type="text" name="phone" id="phone" placeholder={lang.lang === "ru" ? "Введите телефон" : "Enter phone"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="email">
@@ -81,7 +81,7 @@ const Dealers = () => {
                                                         : <>Your email</>
                                                 }
                                             </label>
-                                            <input type="text" name="email" id="email" placeholder={lang.lang == "ru" ? "Введите  email" : "Enter email"} />
+                                            <input type="text" name="email" id="email" placeholder={lang.lang === "ru" ? "Введите  email" : "Enter email"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="service">
@@ -93,7 +93,7 @@ const Dealers = () => {
                                                 }
 
                                             </label>
-                                            <input type="text" name="service" id="service" placeholder={lang.lang == "ru" ? "Введите  страну" : "Enter country"} />
+                                            <input type="text" name="service" id="service" placeholder={lang.lang === "ru" ? "Введите  страну" : "Enter country"} />
                                         </div>
                                         <div className="form-field">
                                             <label htmlFor="person">    {
@@ -104,7 +104,7 @@ const Dealers = () => {
                                             }
 
                                             </label>
-                                            <input type="text" name="person" id="person" placeholder={lang.lang == "ru" ? "Введите город " : "Enter city"} />
+                                            <input type="text" name="person" id="person" placeholder={lang.lang === "ru" ? "Введите город " : "Enter city"} />
                                         </div>
                                     </div>
 

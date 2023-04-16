@@ -50,9 +50,7 @@ const CdekCountry = ({ counrtyCode, active, setActive, setCdek }) => {
       setActive(false);
     }
   }, [counrtyCode, regionCode, cityCode, allData]);
-  console.log(cdekRegion, "////cdekRegion");
-  console.log(getOffice, "////getOffice");
-  console.log(getRegionData, "////getRegionData");
+
   return (
     <div className="box_container">
       <div style={{ display: "flex", justifyContent: "space-between" }}>

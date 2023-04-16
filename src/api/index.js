@@ -42,7 +42,7 @@ $authHost.interceptors.response.use(
                     localStorage.removeItem('access');
                     localStorage.removeItem('refresh');
                     window.location("/userasdsad")
-                    console.log('not auth')
+                    
                     
                 }
                  

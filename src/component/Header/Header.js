@@ -27,7 +27,7 @@ const Header = () => {
     lang.setLang("ru");
     setLang("ru");
   };
-  console.log(localStorage.getItem("lang"));
+ 
   return (
     <div>
       {navigation.pathname !== "/login" &&
@@ -48,7 +48,7 @@ const Header = () => {
                 </button>
               </div>
               <div className="header_computer header__column header__column--first">
-                {lang.lang == "ru" ? (
+                {lang.lang === "ru" ? (
                   <div
                     className="header__subtitle"
                     data-da="header__column--center,last,768"
@@ -71,7 +71,7 @@ const Header = () => {
                   <img alt="props" src={logo}></img>
                 </NavLink>
 
-                {lang.lang == "ru" ? (
+                {lang.lang === "ru" ? (
                   <div
                     className="header__subtitle"
                     data-da="header__column--center,last,768"
@@ -101,7 +101,7 @@ const Header = () => {
                       <img alt="props" src={cabinet}></img>
                     </NavLink>
                   </div>
-                  {lang1 == "en" ? (
+                  {lang1 === "en" ? (
                     <button
                       style={{
                         display: "flex",
@@ -114,7 +114,7 @@ const Header = () => {
                     >
                       EN
                     </button>
-                  ) : lang1 == "ru" ? (
+                  ) : lang1 === "ru" ? (
                     <button
                       style={{
                         display: "flex",
@@ -163,7 +163,7 @@ const Header = () => {
                       <img alt="props" src={cabinet}></img>
                     </NavLink>
                   </div>
-                  {lang1 == "en" ? (
+                  {lang1 === "en" ? (
                     <button
                       style={{
                         display: "flex",
@@ -176,7 +176,7 @@ const Header = () => {
                     >
                       EN
                     </button>
-                  ) : lang1 == "ru" ? (
+                  ) : lang1 === "ru" ? (
                     <button
                       style={{
                         display: "flex",

@@ -12,7 +12,7 @@ const Stores = () => {
             <div className='container'>
                 <div className='text-center mb-5'>
                     {
-                        lang.lang=="ru"
+                        lang.lang==="ru"
                         ? <h2>Наши магазины</h2>
                         :<h2>Our stores</h2>
                     }

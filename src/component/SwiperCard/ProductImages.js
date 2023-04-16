@@ -15,7 +15,7 @@ const ProductImages = props => {
             grabCursor={true}
             >
                 {
-                    props.images==undefined?<div></div>
+                    props.images===undefined?<div></div>
                     :props.images.map((item,index)=>(
                         <SwiperSlide >
                             <img src={item} style={{

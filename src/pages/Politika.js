@@ -13,14 +13,14 @@ const Politika = () => {
             <div class="page">
                 <div class="container">
                     {
-                        lang.lang == "ru"
+                        lang.lang === "ru"
                             ? <h1>Политика конфиденциальности</h1>
                             : <h1>Privacy Policy </h1>
                     }
 
                     <div className="mt-4">
                         {
-                            lang.lang == "ru"
+                            lang.lang === "ru"
                                 ?
                                 <div className="mt-4">
                                     <p>

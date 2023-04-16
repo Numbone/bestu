@@ -15,7 +15,7 @@ const ModalSucces = (props) => {
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     {
-                        lang.lang=="ru"
+                        lang.lang==="ru"
                         ?<> Ваш запрос отправлен</>
                         :<>Your request has been sent </>
                     }

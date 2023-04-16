@@ -11,7 +11,7 @@ const BlockPartner = () => {
                 <div className='row g-4 align-items-center justify-content-center'>
                     {/* <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
                         {
-                            lang.lang == 'ru'
+                            lang.lang === 'ru'
                                 ? <NavLink to='/dealers_form' className='btn'>
                                     Заявка для дилеров
                                 </NavLink>
@@ -23,7 +23,7 @@ const BlockPartner = () => {
                     </div>
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
                         {
-                            lang.lang == 'ru'
+                            lang.lang === 'ru'
                                 ?
                                 <NavLink to='/ambassadors' className='btn'>
                                     Заявка для амбассадоров
@@ -35,7 +35,7 @@ const BlockPartner = () => {
                     </div>
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
                         {
-                            lang.lang == 'ru'
+                            lang.lang === 'ru'
                                 ?
                                 <NavLink to='/partners' className='btn'>
                                     Прочее сотрудничество
@@ -48,7 +48,7 @@ const BlockPartner = () => {
                     </div> */}
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
                         {
-                            lang.lang == 'ru'
+                            lang.lang === 'ru'
                                 ?
                                 <NavLink to='/certificates' className='btn'>
                                     Сертификаты
@@ -61,7 +61,7 @@ const BlockPartner = () => {
                     </div>
                     {/* <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
                         {
-                            lang.lang == 'ru'
+                            lang.lang === 'ru'
                                 ?
                                 <NavLink to='/dealers' className='btn'>
                                     Дилеры
@@ -74,7 +74,7 @@ const BlockPartner = () => {
                     </div> */}
                     <div className='col-sm-6 col-md-4 col-lg-3 text-center'>
                     {
-                            lang.lang == 'ru'
+                            lang.lang === 'ru'
                                 ?
                         <NavLink to='/stores' className='btn'>
                             Наши магазины

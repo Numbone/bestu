@@ -55,7 +55,7 @@ const Reset = () => {
                             <li className='nav-item'>
                                 <NavLink to='/' className='nav-link'>
                                     {
-                                        lang.lang == "ru" ? <>Магазин</> : <>Stores</>
+                                        lang.lang === "ru" ? <>Магазин</> : <>Stores</>
                                     }
 
                                 </NavLink>
@@ -70,7 +70,7 @@ const Reset = () => {
                                 <li className='nav-item'>
                                     <NavLink to='/' className='nav-link'>
                                         {
-                                            lang.lang == "ru" ? <>Магазин</> : <>Stores</>
+                                            lang.lang === "ru" ? <>Магазин</> : <>Stores</>
                                         }
 
                                     </NavLink>
@@ -105,7 +105,7 @@ const Reset = () => {
                                             <div className='card'>
                                                 <div className='card-header'>
                                                     {
-                                                        lang.lang == "ru" ? <>Восстановить пароль</> : <>
+                                                        lang.lang === "ru" ? <>Восстановить пароль</> : <>
                                                             Restore password</>
                                                     }
 
@@ -136,7 +136,7 @@ const Reset = () => {
                                                             <div className='col-md-6'>
                                                             
                                                             {
-                                                                lang.lang=="ru"?
+                                                                lang.lang==="ru"?
                                                                 <>На ваш email отправлено сообщение </>
                                                                 :<>A message has been sent to your email</>
                                                             }
@@ -151,7 +151,7 @@ const Reset = () => {
                                                             <div className='col-md-8 offset-md-4'>
                                                                 <button onClick={getPassword} className='btn2 btn-primary'>
                                                                     {
-                                                                        lang.lang=="ru"?
+                                                                        lang.lang==="ru"?
                                                                         <>Продолжить</>
                                                                         :<>Continue</>
                                                                     }

@@ -11,7 +11,7 @@ const Article = () => {
     const twenty=divide[1].split(",")
     const result=twenty.map(s => s.replace('%20', ' '));
     const res=result.map(s=>s[0]===" "? s.replace(" ",""):s)
-    console.log(res)
+  
     const { lang, user } = useContext(Context);
     const { basket } = useContext(Context)
     const clickOrder = (id) => {
@@ -25,8 +25,7 @@ const Article = () => {
             const { data } = await productAll("ru")
            for (let i = 0; i < res.length; i++) {
             const element = res[i];
-            console.log(data?.product)
-            console.log(element)
+          
             data?.product.filter(item=>item?.article===element && setProduct(s=>[...s,item]))
            }
         } catch (error) {

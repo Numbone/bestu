@@ -13,13 +13,11 @@ const AuthRobo = () => {
     const InvId = PreInvId.split("=")[1]
     const PreSignatureValue = location.search.split("&")[2]
     const SignatureValue = PreSignatureValue.split("=")[1]
-    console.log(OutSum, "OutSum")
-    console.log(InvId, "InvId")
-    console.log(SignatureValue, "SignatureValue")
+    
     const [checker, setChecker] = useState("")
     const sendRobokassa = async () => {
         const { data } = await Robokassa(OutSum, InvId, SignatureValue)
-        console.log(data, "////Result????/")
+        
         localStorage.removeItem("basket")
         setChecker(data?.message)
     }
@@ -27,11 +25,11 @@ const AuthRobo = () => {
         
         sendRobokassa()
     }, [])
-    console.log(checker)
+   
     return (
         <>
             {
-                checker == "ok"
+                checker === "ok"
                     ? <div className="robo_container">
                         <div className="img_container_svg">
                             <img src={ph} alt="" />

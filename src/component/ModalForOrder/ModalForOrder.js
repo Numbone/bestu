@@ -16,7 +16,7 @@ const ModalForOrder = (props) => {
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     {
-                        lang.lang=="ru"?
+                        lang.lang==="ru"?
                         <> Статус заказа : {props.status}</>
                         :<> Status order : {props.status} </>
                     }
@@ -30,26 +30,26 @@ const ModalForOrder = (props) => {
                            
                             <th style={{ width: '50%' }}>
                             {
-                                lang.lang=="ru"
+                                lang.lang==="ru"
                                 ?<>Наименование</>
                                 :<>
                                 Name</>
                             }</th>
                             <th className="">
                             {
-                                lang.lang=="ru"
+                                lang.lang==="ru"
                                 ?<>Цена</>
                                 :<>Price</>
                             }</th>
                             <th>
                             {
-                                lang.lang=="ru"
+                                lang.lang==="ru"
                                 ?<>Количество</>
                                 :<>Quantity</>
                             }</th>
                             <th>
                             {
-                                lang.lang=="ru"
+                                lang.lang==="ru"
                                 ?<>Сумма</>
                                 :<>
                                 Sum</>
@@ -61,10 +61,10 @@ const ModalForOrder = (props) => {
                         {
                             props?.data?.map(item =>
                                 <tr className="" data-price={1790} data-product={2} data-shipping={1}>
-                                    <td><span className="cart-item__name">{lang.lang=="ru"?item?.nameRu:item?.nameEn} </span><br /><span style={{ fontSize: '.8em' }}></span></td>
+                                    <td><span className="cart-item__name">{lang.lang==="ru"?item?.nameRu:item?.nameEn} </span><br /><span style={{ fontSize: '.8em' }}></span></td>
                                     <td className="d-sm-table-cell">
                                         {item?.price} {
-                                            lang.lang=="ru"?<>руб.</>
+                                            lang.lang==="ru"?<>руб.</>
                                             :<>rub</>
                                         } 
                                     </td>

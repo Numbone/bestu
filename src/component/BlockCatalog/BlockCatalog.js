@@ -28,14 +28,14 @@ const BlockCatalog = () => {
             <div className='container'>
                 <div className='block__title text-center'>
                     {
-                        lang.lang == 'ru'
+                        lang.lang === 'ru'
                             ? <NavLink to='/all_products'>Смотреть все товары</NavLink>
                             : <NavLink to='/all_products'>See all products</NavLink>
                     }
                     <br></br>
                     <br></br>
                     {
-                        lang.lang == 'ru'
+                        lang.lang === 'ru'
                             ?
                             <NavLink to='/available'>Сейчас в наличии</NavLink>
                             :
@@ -48,21 +48,21 @@ const BlockCatalog = () => {
                             categories?.map((item, index) =>
                                 <div className='col-sm-6'>
                                     <div className='block-catalog__item  item item-square d-block'
-                                        style={lang.lang == 'ru' ?
+                                        style={lang.lang === 'ru' ?
                                             {
 
-                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(227, 233, 238, 0.35)),  url("${item.ImagesRu == undefined ? null : item?.ImagesRu[0]}")`
+                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(227, 233, 238, 0.35)),  url("${item.ImagesRu === undefined ? null : item?.ImagesRu[0]}")`
                                             }
                                             :
                                             {
 
-                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(227, 233, 238, 0.35)), url("${item.ImagesEn == undefined ? null : item?.ImagesEn[0]}")`
+                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(227, 233, 238, 0.35)), url("${item.ImagesEn === undefined ? null : item?.ImagesEn[0]}")`
                                             }
                                         }>
                                         <NavLink to={'/category/' + item?.name_en} state={categories[index]} className='img d-flex justify-content-center align-items-center flex-column'>
 
                                             {
-                                                lang.lang == 'ru'
+                                                lang.lang === 'ru'
                                                     ?
                                                     <div className={item?.cursive === "1" ? "block-catalog__item-title" : "block-catalog__item-title block-catalog__item-title--montserrat"}
                                                         style={item?.cursive === "1" ?
@@ -87,7 +87,7 @@ const BlockCatalog = () => {
                                             }
 
                                             {
-                                                lang.lang == 'ru' && item?.description_ru != ""
+                                                lang.lang === 'ru' && item?.description_ru != ""
                                                     ? <div className={".block-catalog__item-subtitle"}
                                                         style={{ color: 'rgb(255, 255, 255)' }}
                                                     >
@@ -97,7 +97,7 @@ const BlockCatalog = () => {
                                                     : null
                                             }
                                             {
-                                                lang.lang == 'en' && item?.description_en != ""
+                                                lang.lang === 'en' && item?.description_en != ""
                                                     ? <div className={".block-catalog__item-subtitle"}
                                                         style={{ color: 'rgb(255, 255, 255)' }}
                                                     >

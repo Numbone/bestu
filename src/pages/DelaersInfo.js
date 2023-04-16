@@ -14,7 +14,7 @@ const DelaersInfo = () => {
                 <div>
                     <div className='text-center mb-5'>
                         {
-                            lang.lang == "ru"
+                            lang.lang === "ru"
                                 ? <h2>Список дилеров</h2>
                                 : <h2>List of dealers</h2>
                         }

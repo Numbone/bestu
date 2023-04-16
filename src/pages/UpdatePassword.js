@@ -9,8 +9,7 @@ const UpdatePassword = () => {
     const {search}=useLocation()
     const location=search.split("code=")[1]
     const email=search.split("code=")[0].split("=")[1].replace("&","")
-    console.log(location)
-    console.log((email));
+  
     const handleOpen = () => {
         setOpen(!open);
     };
@@ -24,7 +23,7 @@ const UpdatePassword = () => {
         try {
             const data = await authLink(password)
             setChange(true)
-            console.log(data)
+           
             return data
         } catch (error) {
             console.log(error)
@@ -61,7 +60,7 @@ const UpdatePassword = () => {
                             <li className='nav-item'>
                                 <NavLink to='/' className='nav-link'>
                                     {
-                                        lang.lang == "ru" ? <>Магазин</> : <>Stores</>
+                                        lang.lang === "ru" ? <>Магазин</> : <>Stores</>
                                     }
 
                                 </NavLink>
@@ -76,7 +75,7 @@ const UpdatePassword = () => {
                                 <li className='nav-item'>
                                     <NavLink to='/' className='nav-link'>
                                         {
-                                            lang.lang == "ru" ? <>Магазин</> : <>Stores</>
+                                            lang.lang === "ru" ? <>Магазин</> : <>Stores</>
                                         }
 
                                     </NavLink>
@@ -125,7 +124,7 @@ const UpdatePassword = () => {
                                                         <div className='form-group row'>
                                                             <label htmlFor="email" className="col-md-4 col-form-label text-md-right">
                                                             {
-                                                                        lang.lang=="ru"?
+                                                                        lang.lang==="ru"?
                                                                         <>Пароль</>
                                                                         :<>Password</>
                                                                     }
@@ -143,7 +142,7 @@ const UpdatePassword = () => {
                                                             <div className='col-md-8 offset-md-4'>
                                                                 <button onClick={getCode} className='btn2 btn-primary'>
                                                                 {
-                                                                        lang.lang=="ru"?
+                                                                        lang.lang==="ru"?
                                                                         <>Продолжить</>
                                                                         :<>Continue</>
                                                                     }

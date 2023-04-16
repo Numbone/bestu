@@ -41,7 +41,7 @@ const Beauty = () => {
             </div>
             <div className='block-catalog__items'>
               <div className='row g-2 g-md-4'>
-              {product?.length == undefined |null
+              {product?.length === undefined |null
                 ? <div></div>
                 : product.map((item, index) =>
                   <Item props={item} key={index}  clickOrder={clickOrder}/>)

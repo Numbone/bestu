@@ -12,7 +12,7 @@ const BlockTop = () => {
                     <div className='block-top__badge-box'>
 
                         {
-                            lang.lang == 'ru'
+                            lang.lang === 'ru'
                                 ?
                                 <div className='block-top__badge'>
                                     Позвольте себе ощутить истинное наслаждение с косметикой из ценных натуральных масел. Ваша кожа ещё никогда не была такой увлажненной и напитанной.

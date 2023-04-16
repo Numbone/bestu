@@ -13,7 +13,7 @@ const Oferta = () => {
             <div class="page">
                 <div class="container">
                     {
-                        lang.lang == "ru"
+                        lang.lang === "ru"
                             ?
                             <div class="mt-4">
                                 <p><strong>ДОГОВОР ОФЕРТЫ</strong></p>

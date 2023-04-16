@@ -10,7 +10,7 @@ const BlockAbout = () => {
             <div className='container'>
                 <div className='badge--flowers'>
                     {
-                        lang.lang == "ru"
+                        lang.lang === "ru"
                             ?
                             <>
                                 <div className='badge__title text-center'>

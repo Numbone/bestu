@@ -51,7 +51,7 @@ const Ambassadors = () => {
         console.log(error.text);
       });
   };
-  console.log(checker, "amva")
+  
   return (
     <div className='flex-1' style={{ minHeight: '100%' }}>
       <div className='block-page-order'>
@@ -93,7 +93,7 @@ const Ambassadors = () => {
                         type="text"
                         name="person"
                         id="person"
-                        placeholder={lang.lang == "ru" ? "Введите..." : "Enter..."} />
+                        placeholder={lang.lang === "ru" ? "Введите..." : "Enter..."} />
                     </div>
                     <div className="form-field">
                       <label htmlFor="service">
@@ -109,7 +109,7 @@ const Ambassadors = () => {
                         type="text"
                         name="service"
                         id="service"
-                        placeholder={lang.lang == "ru" ? "Введите..." : "Enter..."} />
+                        placeholder={lang.lang === "ru" ? "Введите..." : "Enter..."} />
                     </div>
                     <div className="form-field">
                       <label htmlFor="">
@@ -127,7 +127,7 @@ const Ambassadors = () => {
                         <label className="field__file-wrapper" for="filename">
                           <div className="field__file-fake">
                             {
-                              file.length == 0 ? <span>Файл не выбран</span>
+                              file.length === 0 ? <span>Файл не выбран</span>
                                 : <div>Файлы выбраны</div>
                             }
                           </div>
@@ -149,7 +149,7 @@ const Ambassadors = () => {
                       <input
                         onChange={(e) => setName(e.target.value)}
                         type="text" name="name" id="name"
-                        placeholder={lang.lang == "ru" ? "Введите имя" : "Enter name"} />
+                        placeholder={lang.lang === "ru" ? "Введите имя" : "Enter name"} />
                     </div>
                     <div className="form-field">
                       <label htmlFor="phone">
@@ -163,7 +163,7 @@ const Ambassadors = () => {
                       <input
                         onChange={(e) => setPhone(e.target.value)}
                         type="text" name="phone" id="phone"
-                        placeholder={lang.lang == "ru" ? "Введите телефон" : "Enter phone"} />
+                        placeholder={lang.lang === "ru" ? "Введите телефон" : "Enter phone"} />
                     </div>
                     <div className="form-field">
                       <label htmlFor="email">
@@ -178,7 +178,7 @@ const Ambassadors = () => {
                       <input
                         onChange={(e) => setEmail(e.target.value)}
                         type="text" name="email" id="email"
-                        placeholder={lang.lang == "ru" ? "Введите email" : "Enter email"} />
+                        placeholder={lang.lang === "ru" ? "Введите email" : "Enter email"} />
                     </div>
 
                   </div>

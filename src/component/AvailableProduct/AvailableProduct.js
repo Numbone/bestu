@@ -24,14 +24,13 @@ const AvailableProduct = () => {
             const { data } = await productAvailable(lang.lang)   
             setProduct(data.product)
         } catch (error) {
-            console.log(error);
+            
         }
     }
     useEffect(() => {
         getAllProducts()
     }, [])
-    console.log(product,"productAllItems")
-    console.log(product[5]?.Action?.split(new RegExp("/n")))
+ 
     return (
         <>
             <div className='block-catalog'>

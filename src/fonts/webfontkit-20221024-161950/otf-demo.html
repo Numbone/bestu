@@ -11,11 +11,11 @@
 				var param = jQuery.extend({ fadeSpeed: 'fast', defaultContent: 1, activeClass: 'active' }, option);
 				$(this).each(function() {
 					var thisId = '#' + this.id;
-					if ( param.defaultContent == '' )
+					if ( param.defaultContent === '' )
 					{
 						param.defaultContent = 1;
 					}
-					if ( typeof param.defaultContent == 'number' )
+					if ( typeof param.defaultContent === 'number' )
 					{
 						var defaultTab = $(thisId + ' .tabs li:eq(' + (param.defaultContent - 1) + ') a').attr('href').substr(1);
 					}

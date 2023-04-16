@@ -22,9 +22,7 @@ const Search = () => {
     useEffect(() => {
         getProduct()
     }, [])
-    console.log(product);
-    console.log(locate);
-    console.log(world);
+  
     const [search1, setSeacrh1] = useState("")
     const SearchItem=async()=>{
         try {
@@ -52,7 +50,7 @@ const Search = () => {
                     </div>
                     <div className='block-catalog__items'>
                         <div className='row gy-4 gx-2 g-md-4'>
-                            {product== undefined
+                            {product=== undefined
                                 ? <div></div>
                                 : product.map((item, index) =>
                                     <Item props={item} key={index}  />)

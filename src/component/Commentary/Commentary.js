@@ -41,7 +41,7 @@ const Commentary = () => {
   const handleOpen = () => {
     setOpen(!open);
   };
-  console.log(user?.userName.first_name,"/////////////////");
+
   return (
     <div className="content-wrapper">
       <nav
@@ -128,7 +128,7 @@ const Commentary = () => {
                     }}
                   >
                     <div>
-                      {lang.lang == "ru" ? (
+                      {lang.lang === "ru" ? (
                         <div>Оставить отзыв</div>
                       ) : (
                         <div>Leave a review </div>
@@ -140,14 +140,14 @@ const Commentary = () => {
               <hr></hr>
               <div className="form-field">
                 <label>
-                  {lang.lang == "ru" ? (
+                  {lang.lang === "ru" ? (
                     <div>Товар: </div>
                   ) : (
                     <div>Product: </div>
                   )}
                 </label>
                 <div style={{ background: "#CDCDCD" }}>
-                  {lang.lang == "ru"
+                  {lang.lang === "ru"
                     ? location?.state?.nameRu
                     : location?.state?.nameEn}
                 </div>
@@ -155,7 +155,7 @@ const Commentary = () => {
               <div className="form-field">
                 <label>
                   {" "}
-                  {lang.lang == "ru" ? (
+                  {lang.lang === "ru" ? (
                     <div>Качество продукта: </div>
                   ) : (
                     <div>Product quality:</div>
@@ -166,11 +166,11 @@ const Commentary = () => {
                     <div className="d-flex">
                       <RiStarSFill
                         style={
-                          numberStar == 1 ||
-                          numberStar == 2 ||
-                          numberStar == 3 ||
-                          numberStar == 4 ||
-                          numberStar == 5
+                          numberStar === 1 ||
+                          numberStar === 2 ||
+                          numberStar === 3 ||
+                          numberStar === 4 ||
+                          numberStar === 5
                             ? { color: "yellow" }
                             : null
                         }
@@ -179,10 +179,10 @@ const Commentary = () => {
                       />
                       <RiStarSFill
                         style={
-                          numberStar == 2 ||
-                          numberStar == 3 ||
-                          numberStar == 4 ||
-                          numberStar == 5
+                          numberStar === 2 ||
+                          numberStar === 3 ||
+                          numberStar === 4 ||
+                          numberStar === 5
                             ? { color: "yellow" }
                             : null
                         }
@@ -191,7 +191,7 @@ const Commentary = () => {
                       />
                       <RiStarSFill
                         style={
-                          numberStar == 3 || numberStar == 4 || numberStar == 5
+                          numberStar === 3 || numberStar === 4 || numberStar === 5
                             ? { color: "yellow" }
                             : null
                         }
@@ -200,7 +200,7 @@ const Commentary = () => {
                       />
                       <RiStarSFill
                         style={
-                          numberStar == 4 || numberStar == 5
+                          numberStar === 4 || numberStar === 5
                             ? { color: "yellow" }
                             : null
                         }
@@ -208,7 +208,7 @@ const Commentary = () => {
                         onClick={() => setNumberStars(4)}
                       />
                       <RiStarSFill
-                        style={numberStar == 5 ? { color: "yellow" } : null}
+                        style={numberStar === 5 ? { color: "yellow" } : null}
                         className="icon_star_comment"
                         onClick={() => setNumberStars(5)}
                       />
@@ -229,11 +229,11 @@ const Commentary = () => {
                   <div className="d-flex">
                     <RiStarSFill
                       style={
-                        numberStar2 == 1 ||
-                        numberStar2 == 2 ||
-                        numberStar2 == 3 ||
-                        numberStar2 == 4 ||
-                        numberStar2 == 5
+                        numberStar2 === 1 ||
+                        numberStar2 === 2 ||
+                        numberStar2 === 3 ||
+                        numberStar2 === 4 ||
+                        numberStar2 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -242,10 +242,10 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar2 == 2 ||
-                        numberStar2 == 3 ||
-                        numberStar2 == 4 ||
-                        numberStar2 == 5
+                        numberStar2 === 2 ||
+                        numberStar2 === 3 ||
+                        numberStar2 === 4 ||
+                        numberStar2 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -254,7 +254,7 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar2 == 3 || numberStar2 == 4 || numberStar2 == 5
+                        numberStar2 === 3 || numberStar2 === 4 || numberStar2 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -263,7 +263,7 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar2 == 4 || numberStar2 == 5
+                        numberStar2 === 4 || numberStar2 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -271,7 +271,7 @@ const Commentary = () => {
                       onClick={() => setNumberStars2(4)}
                     />
                     <RiStarSFill
-                      style={numberStar2 == 5 ? { color: "yellow" } : null}
+                      style={numberStar2 === 5 ? { color: "yellow" } : null}
                       className="icon_star_comment"
                       onClick={() => setNumberStars2(5)}
                     />
@@ -281,7 +281,7 @@ const Commentary = () => {
               <div className="form-field">
                 <label>
                   {" "}
-                  {lang.lang == "ru" ? (
+                  {lang.lang === "ru" ? (
                     <div>Текстура: </div>
                   ) : (
                     <div>Texture: </div>
@@ -291,11 +291,11 @@ const Commentary = () => {
                   <div className="d-flex">
                     <RiStarSFill
                       style={
-                        numberStar3 == 1 ||
-                        numberStar3 == 2 ||
-                        numberStar3 == 3 ||
-                        numberStar3 == 4 ||
-                        numberStar3 == 5
+                        numberStar3 === 1 ||
+                        numberStar3 === 2 ||
+                        numberStar3 === 3 ||
+                        numberStar3 === 4 ||
+                        numberStar3 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -304,10 +304,10 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar3 == 2 ||
-                        numberStar3 == 3 ||
-                        numberStar3 == 4 ||
-                        numberStar3 == 5
+                        numberStar3 === 2 ||
+                        numberStar3 === 3 ||
+                        numberStar3 === 4 ||
+                        numberStar3 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -316,7 +316,7 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar3 == 3 || numberStar3 == 4 || numberStar3 == 5
+                        numberStar3 === 3 || numberStar3 === 4 || numberStar3 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -325,7 +325,7 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar3 == 4 || numberStar3 == 5
+                        numberStar3 === 4 || numberStar3 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -333,7 +333,7 @@ const Commentary = () => {
                       onClick={() => setNumberStars3(4)}
                     />
                     <RiStarSFill
-                      style={numberStar3 == 5 ? { color: "yellow" } : null}
+                      style={numberStar3 === 5 ? { color: "yellow" } : null}
                       className="icon_star_comment"
                       onClick={() => setNumberStars3(5)}
                     />
@@ -343,7 +343,7 @@ const Commentary = () => {
               <div className="form-field">
                 <label>
                   {" "}
-                  {lang.lang == "ru" ? (
+                  {lang.lang === "ru" ? (
                     <div>Эффект от продукта: </div>
                   ) : (
                     <div>Product effect: </div>
@@ -353,11 +353,11 @@ const Commentary = () => {
                   <div className="d-flex">
                     <RiStarSFill
                       style={
-                        numberStar4 == 1 ||
-                        numberStar4 == 2 ||
-                        numberStar4 == 3 ||
-                        numberStar4 == 4 ||
-                        numberStar4 == 5
+                        numberStar4 === 1 ||
+                        numberStar4 === 2 ||
+                        numberStar4 === 3 ||
+                        numberStar4 === 4 ||
+                        numberStar4 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -366,10 +366,10 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar4 == 2 ||
-                        numberStar4 == 3 ||
-                        numberStar4 == 4 ||
-                        numberStar4 == 5
+                        numberStar4 === 2 ||
+                        numberStar4 === 3 ||
+                        numberStar4 === 4 ||
+                        numberStar4 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -378,7 +378,7 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar4 == 3 || numberStar4 == 4 || numberStar4 == 5
+                        numberStar4 === 3 || numberStar4 === 4 || numberStar4 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -387,7 +387,7 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar4 == 4 || numberStar4 == 5
+                        numberStar4 === 4 || numberStar4 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -395,7 +395,7 @@ const Commentary = () => {
                       onClick={() => setNumberStars4(4)}
                     />
                     <RiStarSFill
-                      style={numberStar4 == 5 ? { color: "yellow" } : null}
+                      style={numberStar4 === 5 ? { color: "yellow" } : null}
                       className="icon_star_comment"
                       onClick={() => setNumberStars4(5)}
                     />
@@ -405,7 +405,7 @@ const Commentary = () => {
               <div className="form-field">
                 <label>
                   {" "}
-                  {lang.lang == "ru" ? (
+                  {lang.lang === "ru" ? (
                     <div>Качество доставки: </div>
                   ) : (
                     <div>Delivery quality: </div>
@@ -415,11 +415,11 @@ const Commentary = () => {
                   <div className="d-flex">
                     <RiStarSFill
                       style={
-                        numberStar5 == 1 ||
-                        numberStar5 == 2 ||
-                        numberStar5 == 3 ||
-                        numberStar5 == 4 ||
-                        numberStar5 == 5
+                        numberStar5 === 1 ||
+                        numberStar5 === 2 ||
+                        numberStar5 === 3 ||
+                        numberStar5 === 4 ||
+                        numberStar5 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -428,10 +428,10 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar5 == 2 ||
-                        numberStar5 == 3 ||
-                        numberStar5 == 4 ||
-                        numberStar5 == 5
+                        numberStar5 === 2 ||
+                        numberStar5 === 3 ||
+                        numberStar5 === 4 ||
+                        numberStar5 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -440,7 +440,7 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar5 == 3 || numberStar5 == 4 || numberStar5 == 5
+                        numberStar5 === 3 || numberStar5 === 4 || numberStar5 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -449,7 +449,7 @@ const Commentary = () => {
                     />
                     <RiStarSFill
                       style={
-                        numberStar5 == 4 || numberStar5 == 5
+                        numberStar5 === 4 || numberStar5 === 5
                           ? { color: "yellow" }
                           : null
                       }
@@ -457,7 +457,7 @@ const Commentary = () => {
                       onClick={() => setNumberStars5(4)}
                     />
                     <RiStarSFill
-                      style={numberStar5 == 5 ? { color: "yellow" } : null}
+                      style={numberStar5 === 5 ? { color: "yellow" } : null}
                       className="icon_star_comment"
                       onClick={() => setNumberStars5(5)}
                     />
@@ -467,7 +467,7 @@ const Commentary = () => {
               <div className="form-field">
                 <label>
                   {" "}
-                  {lang.lang == "ru" ? (
+                  {lang.lang === "ru" ? (
                     <div>Текст отзыва</div>
                   ) : (
                     <div>Text feedback </div>
@@ -491,7 +491,7 @@ const Commentary = () => {
                 onClick={sendReviewStar}
               >
                 {" "}
-                {lang.lang == "ru" ? <div>Отправить </div> : <div>Send </div>}
+                {lang.lang === "ru" ? <div>Отправить </div> : <div>Send </div>}
               </button>
             </div>
           </div>

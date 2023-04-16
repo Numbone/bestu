@@ -45,17 +45,17 @@ const Login = () => {
       const data = await getUser(username, password)
       for (let i = 0; i < data?.Transactions.length; i++) {
         let element = data?.Transactions[i];
-        console.log(element,"element")
+   
         const date = new Date(element?.date);
       
         date.setHours(date.getHours() - 6);
-        console.log(date,"date")
+      
         const formattedDate = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS");
         element.date=formattedDate
       }
       setUserData(data)
       user.setUserName(data?.User)
-      console.log(data?.User)
+     
     } catch (error) {
 
     }
@@ -317,7 +317,7 @@ const Login = () => {
 
                                 <div className='col-md-6'>
                                   {
-                                    lang.lang == "ru" ?
+                                    lang.lang === "ru" ?
                                       <>Неправильный пароль или email </>
                                       : <>Incorrect password or email</>
                                   }

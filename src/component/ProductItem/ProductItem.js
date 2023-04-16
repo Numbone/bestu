@@ -75,41 +75,40 @@ const ProductItem = () => {
   const [similarProduct, setSimilarProduct] = useState([]);
   const getSimilarData = async () => {
     const { data } = await productSimilar();
-    console.log(data, "?/////////////////data");
+   
     setSimilarProduct(data);
   };
   useEffect(() => {
     window.scrollTo(0, 0);
     getItem();
-  }, [description_ru,id]);
+  }, [description_ru, id]);
 
   const [active, setActive] = useState(false);
   const [activeModal, setActiveModal] = useState(false);
   const [activeModal1, setActiveModal1] = useState(false);
   const clickOrder1 = (id) => {
     basket.setBasket(id);
-    
   };
 
   const [indexPhoto1, setIndexPhoto1] = useState(0);
   useEffect(() => {
     if (
-      numberStar != 0 &&
-      numberStar2 != 0 &&
-      numberStar3 != 0 &&
-      numberStar4 != 0 &&
-      numberStar5 != 0 &&
-      user?.isAuth == true
+      numberStar !== 0 &&
+      numberStar2 !== 0 &&
+      numberStar3 !== 0 &&
+      numberStar4 !== 0 &&
+      numberStar5 !== 0 &&
+      user?.isAuth === true
     ) {
       setActive(true);
     }
     if (
-      numberStar != 0 &&
-      numberStar2 != 0 &&
-      numberStar3 != 0 &&
-      numberStar4 != 0 &&
-      numberStar5 != 0 &&
-      user?.isAuth == false
+      numberStar !== 0 &&
+      numberStar2 !== 0 &&
+      numberStar3 !== 0 &&
+      numberStar4 !== 0 &&
+      numberStar5 !== 0 &&
+      user?.isAuth === false
     ) {
       navigate("/login");
     }
@@ -119,7 +118,7 @@ const ProductItem = () => {
     getSimilarData();
     window.scrollTo(0, 0);
   }, []);
-  console.log(similarProduct, "similarProduct");
+
   return (
     <div className="flex-1" style={{ minHeight: "100vh" }}>
       <div
@@ -150,12 +149,21 @@ const ProductItem = () => {
               </ul> */}
             </div>
             <div className="product-top__about-bottom d-flex justify-content-between align-items-end">
-              <div>
-                <div className="product-top__volume">{data.weight} </div>
-                <div className="product-top__price-block d-flex align-items-center">
-                  <div className="product-top__price">{data.price} руб.</div>
+              {lang.lang === "ru" ? (
+                <div>
+                  <div className="product-top__volume">{data.weight} мл </div>
+                  <div className="product-top__price-block d-flex align-items-center">
+                    <div className="product-top__price">{data.price} руб.</div>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div>
+                  <div className="product-top__volume">{data.weight} ml </div>
+                  <div className="product-top__price-block d-flex align-items-center">
+                    <div className="product-top__price">{data.price} rub.</div>
+                  </div>
+                </div>
+              )}
               <div>
                 <div
                   style={{ fontSize: "1.8em" }}
@@ -196,7 +204,7 @@ const ProductItem = () => {
           <div className="product-buttons__btns">
             <div className="row g-2">
               <div className="col-6">
-                {lang.lang == "ru" ? (
+                {lang.lang === "ru" ? (
                   <a
                     className="custom-btn custom-btn-dark"
                     onClick={clickOrder}
@@ -218,7 +226,7 @@ const ProductItem = () => {
                   data-type="iframe"
                   onClick={() => setModalShow(true)}
                 >
-                  {lang.lang == "ru" ? (
+                  {lang.lang === "ru" ? (
                     <>Читать все отзывы</>
                   ) : (
                     <>Read all reviews</>
@@ -249,7 +257,7 @@ const ProductItem = () => {
                     className="d-flex justify-content-end align-items-center"
                     onClick={() => setReviews("quality_stars")}
                   >
-                    {lang.lang == "ru" ? (
+                    {lang.lang === "ru" ? (
                       <div>Качество продукта: </div>
                     ) : (
                       <div>Product quality:</div>
@@ -259,11 +267,11 @@ const ProductItem = () => {
                       <div className="d-flex">
                         <RiStarSFill
                           style={
-                            numberStar == 1 ||
-                            numberStar == 2 ||
-                            numberStar == 3 ||
-                            numberStar == 4 ||
-                            numberStar == 5
+                            numberStar === 1 ||
+                            numberStar === 2 ||
+                            numberStar === 3 ||
+                            numberStar === 4 ||
+                            numberStar === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -272,10 +280,10 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar == 2 ||
-                            numberStar == 3 ||
-                            numberStar == 4 ||
-                            numberStar == 5
+                            numberStar === 2 ||
+                            numberStar === 3 ||
+                            numberStar === 4 ||
+                            numberStar === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -284,9 +292,9 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar == 3 ||
-                            numberStar == 4 ||
-                            numberStar == 5
+                            numberStar === 3 ||
+                            numberStar === 4 ||
+                            numberStar === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -295,7 +303,7 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar == 4 || numberStar == 5
+                            numberStar === 4 || numberStar === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -303,7 +311,7 @@ const ProductItem = () => {
                           onClick={() => setNumberStars(4)}
                         />
                         <RiStarSFill
-                          style={numberStar == 5 ? { color: "yellow" } : null}
+                          style={numberStar === 5 ? { color: "yellow" } : null}
                           className="icon_star"
                           onClick={() => setNumberStars(5)}
                         />
@@ -324,11 +332,11 @@ const ProductItem = () => {
                       <div className="d-flex">
                         <RiStarSFill
                           style={
-                            numberStar2 == 1 ||
-                            numberStar2 == 2 ||
-                            numberStar2 == 3 ||
-                            numberStar2 == 4 ||
-                            numberStar2 == 5
+                            numberStar2 === 1 ||
+                            numberStar2 === 2 ||
+                            numberStar2 === 3 ||
+                            numberStar2 === 4 ||
+                            numberStar2 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -337,10 +345,10 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar2 == 2 ||
-                            numberStar2 == 3 ||
-                            numberStar2 == 4 ||
-                            numberStar2 == 5
+                            numberStar2 === 2 ||
+                            numberStar2 === 3 ||
+                            numberStar2 === 4 ||
+                            numberStar2 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -349,9 +357,9 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar2 == 3 ||
-                            numberStar2 == 4 ||
-                            numberStar2 == 5
+                            numberStar2 === 3 ||
+                            numberStar2 === 4 ||
+                            numberStar2 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -360,7 +368,7 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar2 == 4 || numberStar2 == 5
+                            numberStar2 === 4 || numberStar2 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -368,7 +376,7 @@ const ProductItem = () => {
                           onClick={() => setNumberStars2(4)}
                         />
                         <RiStarSFill
-                          style={numberStar2 == 5 ? { color: "yellow" } : null}
+                          style={numberStar2 === 5 ? { color: "yellow" } : null}
                           className="icon_star"
                           onClick={() => setNumberStars2(5)}
                         />
@@ -379,7 +387,7 @@ const ProductItem = () => {
                     className="d-flex justify-content-end align-items-center"
                     onClick={() => setReviews3("texture_stars")}
                   >
-                    {lang.lang == "ru" ? (
+                    {lang.lang === "ru" ? (
                       <div>Текстура: </div>
                     ) : (
                       <div>Texture: </div>
@@ -389,11 +397,11 @@ const ProductItem = () => {
                       <div className="d-flex">
                         <RiStarSFill
                           style={
-                            numberStar3 == 1 ||
-                            numberStar3 == 2 ||
-                            numberStar3 == 3 ||
-                            numberStar3 == 4 ||
-                            numberStar3 == 5
+                            numberStar3 === 1 ||
+                            numberStar3 === 2 ||
+                            numberStar3 === 3 ||
+                            numberStar3 === 4 ||
+                            numberStar3 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -402,10 +410,10 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar3 == 2 ||
-                            numberStar3 == 3 ||
-                            numberStar3 == 4 ||
-                            numberStar3 == 5
+                            numberStar3 === 2 ||
+                            numberStar3 === 3 ||
+                            numberStar3 === 4 ||
+                            numberStar3 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -414,9 +422,9 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar3 == 3 ||
-                            numberStar3 == 4 ||
-                            numberStar3 == 5
+                            numberStar3 === 3 ||
+                            numberStar3 === 4 ||
+                            numberStar3 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -425,7 +433,7 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar3 == 4 || numberStar3 == 5
+                            numberStar3 === 4 || numberStar3 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -433,7 +441,7 @@ const ProductItem = () => {
                           onClick={() => setNumberStars3(4)}
                         />
                         <RiStarSFill
-                          style={numberStar3 == 5 ? { color: "yellow" } : null}
+                          style={numberStar3 === 5 ? { color: "yellow" } : null}
                           className="icon_star"
                           onClick={() => setNumberStars3(5)}
                         />
@@ -444,7 +452,7 @@ const ProductItem = () => {
                     className="d-flex justify-content-end align-items-center"
                     onClick={() => setReviews4("effect_stars")}
                   >
-                    {lang.lang == "ru" ? (
+                    {lang.lang === "ru" ? (
                       <div>Эффект от продукта: </div>
                     ) : (
                       <div>Product effect: </div>
@@ -454,11 +462,11 @@ const ProductItem = () => {
                       <div className="d-flex">
                         <RiStarSFill
                           style={
-                            numberStar4 == 1 ||
-                            numberStar4 == 2 ||
-                            numberStar4 == 3 ||
-                            numberStar4 == 4 ||
-                            numberStar4 == 5
+                            numberStar4 === 1 ||
+                            numberStar4 === 2 ||
+                            numberStar4 === 3 ||
+                            numberStar4 === 4 ||
+                            numberStar4 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -467,10 +475,10 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar4 == 2 ||
-                            numberStar4 == 3 ||
-                            numberStar4 == 4 ||
-                            numberStar4 == 5
+                            numberStar4 === 2 ||
+                            numberStar4 === 3 ||
+                            numberStar4 === 4 ||
+                            numberStar4 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -479,9 +487,9 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar4 == 3 ||
-                            numberStar4 == 4 ||
-                            numberStar4 == 5
+                            numberStar4 === 3 ||
+                            numberStar4 === 4 ||
+                            numberStar4 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -490,7 +498,7 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar4 == 4 || numberStar4 == 5
+                            numberStar4 === 4 || numberStar4 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -498,7 +506,7 @@ const ProductItem = () => {
                           onClick={() => setNumberStars4(4)}
                         />
                         <RiStarSFill
-                          style={numberStar4 == 5 ? { color: "yellow" } : null}
+                          style={numberStar4 === 5 ? { color: "yellow" } : null}
                           className="icon_star"
                           onClick={() => setNumberStars4(5)}
                         />
@@ -509,7 +517,7 @@ const ProductItem = () => {
                     className="d-flex justify-content-end align-items-center"
                     onClick={() => setReviews5("delivery_stars")}
                   >
-                    {lang.lang == "ru" ? (
+                    {lang.lang === "ru" ? (
                       <div>Качество доставки: </div>
                     ) : (
                       <div>Delivery quality: </div>
@@ -519,11 +527,11 @@ const ProductItem = () => {
                       <div className="d-flex">
                         <RiStarSFill
                           style={
-                            numberStar5 == 1 ||
-                            numberStar5 == 2 ||
-                            numberStar5 == 3 ||
-                            numberStar5 == 4 ||
-                            numberStar5 == 5
+                            numberStar5 === 1 ||
+                            numberStar5 === 2 ||
+                            numberStar5 === 3 ||
+                            numberStar5 === 4 ||
+                            numberStar5 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -532,10 +540,10 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar5 == 2 ||
-                            numberStar5 == 3 ||
-                            numberStar5 == 4 ||
-                            numberStar5 == 5
+                            numberStar5 === 2 ||
+                            numberStar5 === 3 ||
+                            numberStar5 === 4 ||
+                            numberStar5 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -544,9 +552,9 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar5 == 3 ||
-                            numberStar5 == 4 ||
-                            numberStar5 == 5
+                            numberStar5 === 3 ||
+                            numberStar5 === 4 ||
+                            numberStar5 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -555,7 +563,7 @@ const ProductItem = () => {
                         />
                         <RiStarSFill
                           style={
-                            numberStar5 == 4 || numberStar5 == 5
+                            numberStar5 === 4 || numberStar5 === 5
                               ? { color: "yellow" }
                               : null
                           }
@@ -563,7 +571,7 @@ const ProductItem = () => {
                           onClick={() => setNumberStars5(4)}
                         />
                         <RiStarSFill
-                          style={numberStar5 == 5 ? { color: "yellow" } : null}
+                          style={numberStar5 === 5 ? { color: "yellow" } : null}
                           className="icon_star"
                           onClick={() => setNumberStars5(5)}
                         />
@@ -594,7 +602,7 @@ const ProductItem = () => {
       </div>
       <div className="block-product-about">
         <div className="container p-0">
-          {lang.lang == "ru" ? (
+          {lang.lang === "ru" ? (
             <div className="block__title ps-3">Описание</div>
           ) : (
             <div className="block__title ps-3">Description</div>
@@ -603,12 +611,12 @@ const ProductItem = () => {
           <div className="row g-0 gy-4">
             <div className="col-6">
               <div className="block-product-about__text p-3">
-                {lang.lang == "ru"
+                {lang.lang === "ru"
                   ? data?.descriptionRu
                       ?.split(/\n/)
                       ?.map((item) => <div>{item} </div>)
                   : null}
-                {lang.lang != "ru"
+                {lang.lang !== "ru"
                   ? data?.descriptionEn
                       ?.split(/\n/)
                       ?.map((item) => <div>{item} </div>)
@@ -620,7 +628,7 @@ const ProductItem = () => {
               style={{ minHeight: "500px" }}
             >
               <div className="img d-block block-product-about__img -right">
-                {lang.lang == "ru" ? (
+                {lang.lang === "ru" ? (
                   <img
                     src={
                       data?.imagesRu === undefined ? null : data?.imagesRu[1]
@@ -654,7 +662,7 @@ const ProductItem = () => {
                 aria-label="1 / 1"
               >
                 <div className="swipre-slide__text">
-                  {lang.lang == "ru" ? (
+                  {lang.lang === "ru" ? (
                     <span>
                       Косметика, которую <br /> выбирают звезды
                     </span>
@@ -665,7 +673,7 @@ const ProductItem = () => {
                   )}
                 </div>
                 <div className="img d-block">
-                  {lang.lang == "ru" ? (
+                  {lang.lang === "ru" ? (
                     <img
                       src={
                         data?.imagesRu === undefined ? null : data?.imagesRu[2]
@@ -691,137 +699,169 @@ const ProductItem = () => {
           </div>
         </div>
       </div>
-      <div className="block-how-it-works">
-        <div className="container">
-          <div className="block-how-it-works__title">
-            {lang.lang === "ru" ? <p>Действие</p> : <p>Action</p>}
-          </div>
-          <div className="block-how-it-works__text">
-            <ul>
-              {lang.lang == "ru"
-                ? data?.actionRu?.split(/\n/)?.map((item) => <div>{item} </div>)
-                : null}
-              {lang.lang != "ru"
-                ? data?.actionEn?.split(/\n/)?.map((item) => <div>{item} </div>)
-                : null}
-            </ul>
-          </div>
-        </div>
-        <div className="block-how-it-works__img img d-block">
-          {lang.lang == "ru" ? (
-            <img
-              src={data?.imagesRu === undefined ? null : data?.imagesRu[3]}
-              alt="images"
-            />
-          ) : (
-            <img
-              src={data?.imagesEn === undefined ? null : data?.imagesEn[3]}
-              alt="images"
-            />
-          )}
-        </div>
-      </div>
-      <div className="block-accordion">
-        <div className="container p-0">
-          <a className="block-accordion__item d-block" onClick={handleOpen}>
-            {lang.lang == "ru" ? (
-              <>Способ применения:</>
-            ) : (
-              <>Mode of application:</>
-            )}
-          </a>
-          {open ? (
-            <div
-              className="block-accordion__panel"
-              data-max-height="621px"
-              style={{
-                position: "static",
-                visibility: "visible",
-                display: "block",
-                transition: "max-height 0.5s ease-in-out 0s",
-                overflowY: "hidden",
-              }}
-            >
-              <div>
-                {lang.lang == "ru"
-                  ? data?.modeOfAppRus
-                      ?.split(/\n/)
-                      ?.map((item) => <div>{item} </div>)
-                  : null}
-                {lang.lang != "ru"
-                  ? data?.modeOfAppEn
-                      ?.split(/\n/)
-                      ?.map((item) => <div>{item} </div>)
-                  : null}
-              </div>
+      {data?.categoryRu === "Подарочные боксы и сеты" ||
+      data?.categoryEn === "Gift boxes and sets" ? (
+        <div className="block-how-it-works">
+          <div className="container">
+            <div className="block-how-it-works__title">
+              {lang.lang === "ru" ? (
+                <p>Состав бокса</p>
+              ) : (
+                <p>Boxing Composition</p>
+              )}
             </div>
-          ) : null}
-
-          <a onClick={handleOpen1} className="block-accordion__item d-block">
-            {lang.lang == "ru" ? (
-              <>Противопоказания:</>
-            ) : (
-              <>Contraindications:</>
-            )}
-          </a>
-          {open1 ? (
-            <div
-              className="block-accordion__panel"
-              data-max-height="430px"
-              style={{
-                position: "static",
-                visibility: "visible",
-                display: "block",
-                transition: "max-height 0.5s ease-in-out 0s",
-                overflowY: "hidden",
-              }}
-            >
-              <div>
-                {lang.lang == "ru"
-                  ? data?.contraindicationsRu
-                      ?.split(/\n/)
-                      ?.map((item) => <div>{item} </div>)
-                  : null}
-                {lang.lang != "ru"
-                  ? data?.contraindicationsEn
-                      ?.split(/\n/)
-                      ?.map((item) => <div>{item} </div>)
-                  : null}
-              </div>
-            </div>
-          ) : null}
-
-          <a onClick={handleOpen2} className="block-accordion__item d-block">
-            {lang.lang == "ru" ? <>Состав:</> : <>Compound</>}
-          </a>
-          {open2 ? (
-            <div
-              className="block-accordion__panel"
-              data-max-height="296px"
-              style={{
-                position: "static",
-                visibility: "visible",
-                display: "block",
-                transition: "max-height 0.5s ease-in-out 0s",
-                overflowY: "hidden",
-              }}
-            >
-              <div>
-                {lang.lang == "ru"
+            <div className="block-how-it-works__text">
+              <ul>
+                {lang.lang === "ru"
                   ? data?.compoundRu
                       ?.split(/\n/)
-                      ?.map((item) => <div>{item} </div>)
+                      ?.map((item) => <li>{item} </li>)
                   : null}
-                {lang.lang != "ru"
+                {lang.lang !== "ru"
                   ? data?.compoundEn
                       ?.split(/\n/)
-                      ?.map((item) => <div>{item} </div>)
+                      ?.map((item) => <li>{item} </li>)
                   : null}
-              </div>
+              </ul>
             </div>
-          ) : null}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="block-how-it-works">
+          <div className="container">
+            <div className="block-how-it-works__title">
+              {lang.lang === "ru" ? <p>Действие</p> : <p>Action</p>}
+            </div>
+            <div className="block-how-it-works__text">
+              <ul>
+                {lang.lang === "ru"
+                  ? data?.actionRu?.split(/\n/)?.map((item) => <li>{item} </li>)
+                  : null}
+                {lang.lang !== "ru"
+                  ? data?.actionEn?.split(/\n/)?.map((item) => <li>{item} </li>)
+                  : null}
+              </ul>
+            </div>
+          </div>
+          <div className="block-how-it-works__img img d-block">
+            {lang.lang === "ru" ? (
+              <img
+                src={data?.imagesRu === undefined ? null : data?.imagesRu[3]}
+                alt="images"
+              />
+            ) : (
+              <img
+                src={data?.imagesEn === undefined ? null : data?.imagesEn[3]}
+                alt="images"
+              />
+            )}
+          </div>
+        </div>
+      )}
+      {data?.categoryRu === "Подарочные боксы и сеты" ||
+      data?.categoryEn === "Gift boxes and sets" ? null : (
+        <div className="block-accordion">
+          <div className="container p-0">
+            <a className="block-accordion__item d-block" onClick={handleOpen}>
+              {lang.lang === "ru" ? (
+                <>Способ применения:</>
+              ) : (
+                <>Mode of application:</>
+              )}
+            </a>
+            {open ? (
+              <div
+                className="block-accordion__panel"
+                data-max-height="621px"
+                style={{
+                  position: "static",
+                  visibility: "visible",
+                  display: "block",
+                  transition: "max-height 0.5s ease-in-out 0s",
+                  overflowY: "hidden",
+                }}
+              >
+                <div>
+                  {lang.lang === "ru"
+                    ? data?.modeOfAppRus
+                        ?.split(/\n/)
+                        ?.map((item) => <div>{item} </div>)
+                    : null}
+                  {lang.lang !== "ru"
+                    ? data?.modeOfAppEn
+                        ?.split(/\n/)
+                        ?.map((item) => <div>{item} </div>)
+                    : null}
+                </div>
+              </div>
+            ) : null}
+
+            <a onClick={handleOpen1} className="block-accordion__item d-block">
+              {lang.lang === "ru" ? (
+                <>Противопоказания:</>
+              ) : (
+                <>Contraindications:</>
+              )}
+            </a>
+            {open1 ? (
+              <div
+                className="block-accordion__panel"
+                data-max-height="430px"
+                style={{
+                  position: "static",
+                  visibility: "visible",
+                  display: "block",
+                  transition: "max-height 0.5s ease-in-out 0s",
+                  overflowY: "hidden",
+                }}
+              >
+                <div>
+                  {lang.lang === "ru"
+                    ? data?.contraindicationsRu
+                        ?.split(/\n/)
+                        ?.map((item) => <div>{item} </div>)
+                    : null}
+                  {lang.lang !== "ru"
+                    ? data?.contraindicationsEn
+                        ?.split(/\n/)
+                        ?.map((item) => <div>{item} </div>)
+                    : null}
+                </div>
+              </div>
+            ) : null}
+
+            <a onClick={handleOpen2} className="block-accordion__item d-block">
+              {lang.lang === "ru" ? <>Состав:</> : <>Compound</>}
+            </a>
+            {open2 ? (
+              <div
+                className="block-accordion__panel"
+                data-max-height="296px"
+                style={{
+                  position: "static",
+                  visibility: "visible",
+                  display: "block",
+                  transition: "max-height 0.5s ease-in-out 0s",
+                  overflowY: "hidden",
+                }}
+              >
+                <div>
+                  {lang.lang === "ru"
+                    ? data?.compoundRu
+                        ?.split(/\n/)
+                        ?.map((item) => <div>{item} </div>)
+                    : null}
+                  {lang.lang !== "ru"
+                    ? data?.compoundEn
+                        ?.split(/\n/)
+                        ?.map((item) => <div>{item} </div>)
+                    : null}
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      )}
       <div className="block-similar">
         <div className="container">
           <div className="block__title">Похожие продукты</div>
@@ -841,50 +881,51 @@ const ProductItem = () => {
                   setActive={setActiveModal1}
                   index={index}
                 />
-               
               </>
             ))}
-             <ModalItem2 active={activeModal1} setActive={setActiveModal1}>
-                  <div className="toastjs-container">
-                    <div className="toastjs success">
-                      <p>
-                      {
-                      lang.lang==="ru"?
-                      similarProduct===null ?null
-                      :similarProduct[indexPhoto1] ===undefined  ? null :similarProduct[indexPhoto1]?.name_ru
-                      :
-                      similarProduct===null ?null
-                      :similarProduct[indexPhoto1] ===undefined  ? null :similarProduct[indexPhoto1]?.name_en
-                    }
-                    
-                      </p>
-                      <div className="d-flex">
-                        <button
-                          type="button"
-                          className="toastjs-btn toastjs-btn--custom"
-                          onClick={() => setActiveModal1(false)}
-                        >
-                          <NavLink to="/order" style={{ color: "#fff" }}>
-                            {" "}
-                            {lang.lang === "ru" ? (
-                              <>Оформить заказ </>
-                            ) : (
-                              <>Checkout</>
-                            )}
-                          </NavLink>
-                        </button>
+            <ModalItem2 active={activeModal1} setActive={setActiveModal1}>
+              <div className="toastjs-container">
+                <div className="toastjs success">
+                  <p>
+                    {lang.lang === "ru"
+                      ? similarProduct === null
+                        ? null
+                        : similarProduct[indexPhoto1] === undefined
+                        ? null
+                        : similarProduct[indexPhoto1]?.name_ru
+                      : similarProduct === null
+                      ? null
+                      : similarProduct[indexPhoto1] === undefined
+                      ? null
+                      : similarProduct[indexPhoto1]?.name_en}
+                  </p>
+                  <div className="d-flex">
+                    <button
+                      type="button"
+                      className="toastjs-btn toastjs-btn--custom"
+                      onClick={() => setActiveModal1(false)}
+                    >
+                      <NavLink to="/order" style={{ color: "#fff" }}>
+                        {" "}
+                        {lang.lang === "ru" ? (
+                          <>Оформить заказ </>
+                        ) : (
+                          <>Checkout</>
+                        )}
+                      </NavLink>
+                    </button>
 
-                        <button
-                          type="button"
-                          className="toastjs-btn toastjs-btn--close"
-                          onClick={() => setActiveModal1(false)}
-                        >
-                          Ок
-                        </button>
-                      </div>
-                    </div>
+                    <button
+                      type="button"
+                      className="toastjs-btn toastjs-btn--close"
+                      onClick={() => setActiveModal1(false)}
+                    >
+                      Ок
+                    </button>
                   </div>
-                </ModalItem2>
+                </div>
+              </div>
+            </ModalItem2>
           </div>
         </div>
       </div>
