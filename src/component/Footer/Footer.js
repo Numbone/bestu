@@ -15,7 +15,7 @@ const Footer = () => {
       navi.pathname !== "/robokassa/success" &&
       navi.pathname !== "/authrobofail" &&
       navi.pathname != "/commentary" &&
-      navi.pathname!="/updatepassword" ? (
+      navi.pathname!="/auth/change" ? (
         <div>
           <footer className="footer">
             <div className="container">
@@ -180,7 +180,7 @@ const Footer = () => {
         navi.pathname !== "/login" &&
         navi.pathname !== "/reset" &&
         navi.pathname !== "/authrobofail"&&
-        navi.pathname!="/updatepassword" ? (
+        navi.pathname!="/auth/change" ? (
         <div style={{ height: "100vh", backgroundColor: "#E7DBE2" }}></div>
       ) : null}
     </>

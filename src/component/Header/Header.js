@@ -35,7 +35,7 @@ const Header = () => {
       navigation.pathname !== "/robokassa/success" &&
       navigation.pathname !== "/authrobofail" &&
       navigation.pathname != "/commentary" &&
-      navigation.pathname!="/updatepassword"? (
+      navigation.pathname!="/auth/change"? (
         <header className="header d-flex align-items-center">
           <div className="container container-xxl">
             <div className=" d-flex justify-content-between align-items-center">
