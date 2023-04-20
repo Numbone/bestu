@@ -108,7 +108,7 @@ function App() {
           <Route key={23} path='/authrobofail' element={<AuthRoboFail />}></Route>
           <Route key={24} path='/commentary' element={<Commentary />}></Route>
           <Route key={25} path='/product/article' element={<Article />}></Route>
-          <Route key={26} path='/updatepassword' element={<UpdatePassword />}></Route>
+          <Route key={26} path='/auth/change' element={<UpdatePassword />}></Route>
         </Routes>
 
         <Footer />
