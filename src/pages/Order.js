@@ -1118,7 +1118,7 @@ const Order = () => {
                     id="error-message"
                     style={{ color: "red", marginBottom: 15 }}
                   />
-                  <div className="text-center" onClick={sendTransaction}>
+                  <div className="text-center" onClick={formValid?sendTransaction:null}>
                     <button
                       disabled={!formValid}
                       type="submit"
