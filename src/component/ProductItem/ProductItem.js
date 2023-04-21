@@ -864,7 +864,12 @@ const ProductItem = () => {
       )}
       <div className="block-similar">
         <div className="container">
-          <div className="block__title">Похожие продукты</div>
+          {
+            lang.lang==="ru"?<div className="block__title">Похожие продукты</div>
+            :<div className="block__title">Similar products</div>
+
+          }
+          
           <div
             className="row"
             style={{ flexWrap: "nowrap", overflowY: "scroll" }}
