@@ -52,31 +52,14 @@ const Search = () => {
                         <div className='row gy-4 gx-2 g-md-4'>
                             {product=== undefined
                                 ? <div></div>
-                                : product.map((item, index) =>
+                                : product?.map((item, index) =>
                                     <Item props={item} key={index}  />)
                             }
                         </div>
                     </div>
                 </div>
             </div>
-            {/* <div className='container'>
-                <nav>
-                    <ul className='pagination'>
-                        <li className='page-item'>
-                            <a className='page-link'>{prev}</a>
-                        </li>
-                        <li className='page-item'>
-                            <a className='page-link'>1</a>
-                        </li>
-                        <li className='page-item'>
-                            <a className='page-link'>2</a>
-                        </li>
-                        <li className='page-item'>
-                            <a className='page-link'>{next}</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div> */}
+           
         </>
            
         </div>
