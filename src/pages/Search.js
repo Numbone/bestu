@@ -50,11 +50,10 @@ const Search = () => {
                     </div>
                     <div className='block-catalog__items'>
                         <div className='row gy-4 gx-2 g-md-4'>
-                            {product=== undefined
-                                ? <div></div>
-                                : product?.map((item, index) =>
+                         {
+                                 product?.map((item, index) =>
                                     <Item props={item} key={index}  />)
-                            }
+                         }
                         </div>
                     </div>
                 </div>
