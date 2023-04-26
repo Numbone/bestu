@@ -26,7 +26,7 @@ const Search = () => {
   const [search1, setSeacrh1] = useState("");
   const SearchItem = async () => {
     try {
-      const { data } = await productSearch(search1,lang.lang);
+      const { data } = await productSearch(search1, lang.lang);
       setProduct(data.search_products);
     } catch (error) {
       console.log(error);
@@ -42,7 +42,7 @@ const Search = () => {
             placehoder="Введите слово для поиска"
             onChange={(e) => setSeacrh1(e.target.value)}
           />
-          <button onClick={SearchItem} className=" btn-search">
+          <button onClick={SearchItem} className=" btn-search" type="submit">
             <img src={search} alt="props" />
           </button>
         </div>
@@ -50,7 +50,12 @@ const Search = () => {
       <>
         <div className="block-catalog">
           <div className="container">
-            <div className="block__title text-center">Результаты поиска</div>
+            {
+                lang.lang==="ru"?
+                <div className="block__title text-center">Результаты поиска</div>
+                : <div className="block__title text-center">Result of search</div>
+            }
+           
             <div className="block-catalog__items">
               <div className="row gy-4 gx-2 g-md-4">
                 {product?.map((item, index) => (
