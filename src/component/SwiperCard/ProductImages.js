@@ -38,7 +38,7 @@ const ProductImages = (props) => {
                 id="img"
                 src={item}
                 style={{
-                  objectFit: "fill",
+                  objectFit: "cover",
                   width: "100%",
                   height: heightImg,
                 }}
