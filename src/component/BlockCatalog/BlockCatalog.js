@@ -51,12 +51,12 @@ const BlockCatalog = () => {
                                         style={lang.lang === 'ru' ?
                                             {
 
-                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(227, 233, 238, 0.35)),  url("${item.ImagesRu === undefined ? null : item?.ImagesRu[0]}")`
+                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(227, 233, 238, 0.35)),  url("${item?.ImagesRu === undefined ? null : item?.ImagesRu?.[0]}")`
                                             }
                                             :
                                             {
 
-                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(227, 233, 238, 0.35)), url("${item.ImagesEn === undefined ? null : item?.ImagesEn[0]}")`
+                                                backgroundImage: `linear-gradient(0deg, rgba(23, 32, 39, 0.65), rgba(227, 233, 238, 0.35)), url("${item?.ImagesEn === undefined ? null : item?.ImagesEn?.[0]}")`
                                             }
                                         }>
                                         <NavLink to={'/category/' + item?.name_en} state={categories[index]} className='img d-flex justify-content-center align-items-center flex-column'>
